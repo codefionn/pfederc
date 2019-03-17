@@ -94,7 +94,7 @@ namespace feder {
     public:
       /*!\brief Initializes identifier expression with id (identifier).
        */
-      IdExpr(const std::string &id) noexcept;
+      IdExpr(const lexer::Position &pos, const std::string &id) noexcept;
       virtual ~IdExpr();
 
       /*!\return Returns associated identifier.
@@ -111,7 +111,7 @@ namespace feder {
     public:
       /*!\brief Initializes number expression.
        */
-      NumExpr(lexer::NumberType numType,
+      NumExpr(const lexer::Position &pos, lexer::NumberType numType,
           lexer::NumberValue numVal) noexcept;
       virtual ~NumExpr();
 
@@ -133,7 +133,7 @@ namespace feder {
     class StrExpr : public Expr {
       std::string str;
     public:
-      StrExpr(const std::string &str) noexcept;
+      StrExpr(const lexer::Position &pos, const std::string &str) noexcept;
       virtual ~StrExpr();
 
       /*!\return Returns associated string.
@@ -147,7 +147,7 @@ namespace feder {
     class CharExpr : public Expr {
       char c;
     public:
-      CharExpr(char c) noexcept;
+      CharExpr(const lexer::Position &pos, char c) noexcept;
       virtual ~CharExpr();
 
       /*!\return Returns associated character.
@@ -174,7 +174,7 @@ namespace feder {
        * \param guard Can be null (optional).
        * \param guardResult Can be null (optional).
        */
-      FuncParamExpr(const std::string &name,
+      FuncParamExpr(const lexer::Position &pos, const std::string &name,
           std::unique_ptr<Expr> semanticType,
           std::unique_ptr<Expr> guard,
           std::unique_ptr<Expr> guardResult) noexcept;
@@ -227,7 +227,7 @@ namespace feder {
 
       std::unique_ptr<Program> program;
     public:
-      FuncExpr(const std::string &name,
+      FuncExpr(const lexer::Position &pos, const std::string &name,
           std::unique_ptr<Expr> returnType,
           std::vector<std::unique_ptr<Expr>> params,
           std::unique_ptr<Program> program) noexcept;
@@ -288,7 +288,7 @@ namespace feder {
       std::vector<std::unique_ptr<Expr>> attributes;
       std::vector<std::unique_ptr<FuncExpr>> functions;
     public:
-      ClassExpr(const std::string &name,
+      ClassExpr(const lexer::Position &pos, const std::string &name,
           std::vector<std::unique_ptr<Expr>> attributes,
           std::vector<std::unique_ptr<FuncExpr>> functions) noexcept;
       virtual ~ClassExpr();
@@ -309,7 +309,7 @@ namespace feder {
     class EnumExpr : public IdExpr {
       std::vector<std::unique_ptr<BiOpExpr>> constructors;
     public:
-      EnumExpr(const std::string &name,
+      EnumExpr(const lexer::Position &pos, const std::string &name,
           std::vector<std::unique_ptr<BiOpExpr>> constructors) noexcept;
       virtual ~EnumExpr();
 
@@ -333,7 +333,7 @@ namespace feder {
        * \param name Name of the trait.
        * \param functions Declared (not defined) functions.
        */
-      TraitExpr(const std::string &name,
+      TraitExpr(const lexer::Position &pos, const std::string &name,
           std::vector<std::unique_ptr<FuncExpr>> functions) noexcept;
       virtual ~TraitExpr();
 
@@ -353,7 +353,7 @@ namespace feder {
     class NmspExpr : public IdExpr {
       std::unique_ptr<Program> program;
     public:
-      NmspExpr(const std::string &name,
+      NmspExpr(const lexer::Position &pos, const std::string &name,
           std::unique_ptr<Program> program) noexcept;
       virtual ~NmspExpr();
 
@@ -374,7 +374,7 @@ namespace feder {
       OperatorType opType;
       std::unique_ptr<Expr> lhs, rhs;
     public:
-      BiOpExpr(OperatorType opType,
+      BiOpExpr(const lexer::Position &pos, OperatorType opType,
           std::unique_ptr<Expr> lhs, std::unique_ptr<Expr> rhs) noexcept;
       virtual ~BiOpExpr();
 
@@ -411,7 +411,7 @@ namespace feder {
       OperatorPosition opPos;
       std::unique_ptr<Expr> expr;
     public:
-      UnOpExpr(OperatorPosition opPos, OperatorType opType,
+      UnOpExpr(const lexer::Position &pos, OperatorPosition opPos, OperatorType opType,
           std::unique_ptr<Expr> expr) noexcept;
       virtual ~UnOpExpr();
 

@@ -15,5 +15,5 @@ var searchData=
   ['num_5fu8',['num_u8',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49a544ed3b6c7ac8ed6bdb880c0e99cc7bf',1,'feder::lexer']]],
   ['numbertype',['NumberType',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49',1,'feder::lexer']]],
   ['numbervalue',['NumberValue',['../unionfeder_1_1lexer_1_1NumberValue.html',1,'feder::lexer']]],
-  ['numexpr',['NumExpr',['../classfeder_1_1syntax_1_1NumExpr.html',1,'feder::syntax::NumExpr'],['../classfeder_1_1syntax_1_1NumExpr.html#a9d25dc2ac19fa8bee31c32434f3d46de',1,'feder::syntax::NumExpr::NumExpr()']]]
+  ['numexpr',['NumExpr',['../classfeder_1_1syntax_1_1NumExpr.html',1,'feder::syntax::NumExpr'],['../classfeder_1_1syntax_1_1NumExpr.html#aa9eae88e92efd2a4402f99cedf08209f',1,'feder::syntax::NumExpr::NumExpr()']]]
 ];
