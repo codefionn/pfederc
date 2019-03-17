@@ -17,6 +17,8 @@ namespace feder {
     class Expr;
     class IdExpr;
     class NumExpr;
+    class StrExpr;
+    class CharExpr;
     class FuncParamExpr;
     class FuncExpr;
     class ClassExpr;
@@ -50,6 +52,8 @@ namespace feder {
       expr_id, //!< \see IdExpr
       expr_num, //!< \see NumExpr
       expr_func, //!< \see FuncExpr
+      expr_str, //!< \see StrExpr
+      expr_char, //!< \see CharExpr
       expr_class, //!< \see ClassExpr
       expr_enum, //!< \see EnumExpr
       expr_trait, //!< \see TraitExpr
@@ -122,6 +126,34 @@ namespace feder {
        */
       auto getNumberType() const noexcept
       { return numType; }
+    };
+
+    /*!\brief String expression
+     */
+    class StrExpr : public Expr {
+      std::string str;
+    public:
+      StrExpr(const std::string &str) noexcept;
+      virtual ~StrExpr();
+
+      /*!\return Returns associated string.
+       */
+      const std::string &getString() const noexcept
+      { return str; }
+    };
+
+    /*!\brief Character expression
+     */
+    class CharExpr : public Expr {
+      char c;
+    public:
+      CharExpr(char c) noexcept;
+      virtual ~CharExpr();
+
+      /*!\return Returns associated character.
+       */
+      char getCharacter() const noexcept
+      { return c; }
     };
 
     /*!\brief Function parameter expression.
@@ -335,75 +367,75 @@ namespace feder {
       const auto &getProgram() const noexcept
       { return program; }
     };
+
+    /*!\brief Binary operator expression.
+     */
+    class BiOpExpr : public Expr {
+      OperatorType opType;
+      std::unique_ptr<Expr> lhs, rhs;
+    public:
+      BiOpExpr(OperatorType opType,
+          std::unique_ptr<Expr> lhs, std::unique_ptr<Expr> rhs) noexcept;
+      virtual ~BiOpExpr();
+
+      /*!\return Returns binary operator type.
+       */
+      OperatorType getOperator() const noexcept
+      { return opType; }
+
+      /*!\return Returns left-hand-side.
+       */
+      Expr &getLHS() noexcept
+      { return *lhs; }
+      
+      /*!\return Returns left-hand-side (const).
+       */
+      const &getLHS() const noexcept
+      { return *lhs; }
+
+      /*!\return Returns right-hand-side.
+       */
+      Expr &getRHS() noexcept
+      { return *rhs; }
+
+      /*!\return Returns right-hand-side (const).
+       */
+      const Expr &getRHS() const noexcept
+      { return *rhs; }
+    };
+
+    /*!\brief Unary operator expression
+     */
+    class UnOpExpr : public Expr {
+      OperatorType opType;
+      OperatorPosition opPos;
+      std::unique_ptr<Expr> expr;
+    public:
+      UnOpExpr(OperatorPosition opPos, OperatorType opType,
+          std::unique_ptr<Expr> expr) noexcept;
+      virtual ~UnOpExpr();
+
+      /*!\return Returns unary operator type.
+       */
+      OperatorType getOperator() const noexcept
+      { return opType; }
+
+      /*!\return Returns either op_lunary or op_runary.
+       */
+      OperatorPosition getOperatorPosition() const noexcept
+      { return opPos; }
+
+      /*!\return Returns expression associated with unary operator.
+       */
+      Expr &getExpression() noexcept
+      { return *expr; }
+
+      /*!\return Returns expression associated with unary operator (const).
+       */
+      const Expr &getExpression() const noexcept
+      { return *expr; }
+    };
   } // end namespace syntax
-
-  /*!\brief Binary operator expression.
-   */
-  class BiOpExpr : public Expr {
-    OperatorType opType;
-    std::unique_ptr<Expr> lhs, rhs;
-  public:
-    BiOpExpr(OperatorType opType,
-        std::unique_ptr<Expr> lhs, std::unique_ptr<Expr> rhs) noexcept;
-    virtual ~BiOpExpr();
-
-    /*!\return Returns binary operator type.
-     */
-    OperatorType getOperator() const noexcept
-    { return opType; }
-
-    /*!\return Returns left-hand-side.
-     */
-    Expr &getLHS() noexcept
-    { return *lhs; }
-    
-    /*!\return Returns left-hand-side (const).
-     */
-    const &getLHS() const noexcept
-    { return *lhs; }
-
-    /*!\return Returns right-hand-side.
-     */
-    Expr &getRHS() noexcept
-    { return *rhs; }
-
-    /*!\return Returns right-hand-side (const).
-     */
-    const Expr &getRHS() const noexcept
-    { return *rhs; }
-  };
-
-  /*!\brief Unary operator expression
-   */
-  class UnOpExpr : public Expr {
-    OperatorType opType;
-    OperatorPosition opPos;
-    std::unique_ptr<Expr> expr;
-  public:
-    UnOpExpr(OperatorPosition opPos, OperatorType opType,
-        std::unique_ptr<Expr> expr) noexcept;
-    virtual ~UnOpExpr();
-
-    /*!\return Returns unary operator type.
-     */
-    OperatorType getOperator() const noexcept
-    { return opType; }
-
-    /*!\return Returns either op_lunary or op_runary.
-     */
-    OperatorPosition getOperatorPosition() const noexcept
-    { return opPos; }
-
-    /*!\return Returns expression associated with unary operator.
-     */
-    Expr &getExpression() noexcept
-    { return *expr; }
-
-    /*!\return Returns expression associated with unary operator (const).
-     */
-    const Expr &getExpression() const noexcept
-    { return *expr; }
-  };
 } // end namespace feder
 
 #endif /* FEDER_SYNTAX_HPP */
