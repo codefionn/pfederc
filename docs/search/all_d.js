@@ -1,6 +1,9 @@
 var searchData=
 [
+  ['templateexpr',['TemplateExpr',['../classfeder_1_1syntax_1_1TemplateExpr.html',1,'feder::syntax']]],
   ['tok_5fcbrace',['tok_cbrace',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85dafe55d178b1e09b9ffefa3b6677269c4f',1,'feder::lexer']]],
+  ['tok_5fcbrace_5farray',['tok_cbrace_array',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da2bcff9c58f6630fa45b3aa937a04a52a',1,'feder::lexer']]],
+  ['tok_5fcbrace_5ftemplate',['tok_cbrace_template',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85daf6d3ea62facc9dff2aff91fa7cba613f',1,'feder::lexer']]],
   ['tok_5fchar',['tok_char',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85dab82cf9c22df6afec64a8e989af04f35f',1,'feder::lexer']]],
   ['tok_5fclass',['tok_class',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da6a8872147d93e8d2b5975516314275d7',1,'feder::lexer']]],
   ['tok_5fcmd',['tok_cmd',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da69c6fee434976a17d29bdf5159f86a93',1,'feder::lexer']]],
@@ -19,6 +22,8 @@ var searchData=
   ['tok_5fnmsp',['tok_nmsp',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da1ca343e20c52c34f5f9ce2268da84fe9',1,'feder::lexer']]],
   ['tok_5fnum',['tok_num',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da40e08d459df0d1cca52bbc38538c08e7',1,'feder::lexer']]],
   ['tok_5fobrace',['tok_obrace',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da9aa3c3d5b17d6cf94697fd9eb02dd3ce',1,'feder::lexer']]],
+  ['tok_5fobrace_5farray',['tok_obrace_array',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da3edcd8a5eabb829c5b1d7271fa999c01',1,'feder::lexer']]],
+  ['tok_5fobrace_5ftemplate',['tok_obrace_template',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da3b6d36045c749a0410049dead590eade',1,'feder::lexer']]],
   ['tok_5fop',['tok_op',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85dab53991b75423c570a909f331944e4cc5',1,'feder::lexer']]],
   ['tok_5fstr',['tok_str',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85dad83a547fa4b8c02a3320cf74789302f5',1,'feder::lexer']]],
   ['tok_5ftrait',['tok_trait',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da477ffa3dfa2c0e49e344eb1addf3a77f',1,'feder::lexer']]],

@@ -1,10 +1,11 @@
 var searchData=
 [
   ['pfederc',['pfederc',['../md_README.html',1,'']]],
-  ['parse',['parse',['../parser_8hpp.html#af63cf115f47357907d97c1a0282d7010',1,'feder::parser']]],
-  ['parseprogram',['parseProgram',['../parser_8hpp.html#a22b81cf220a1432c043210da31c2409f',1,'feder::parser']]],
+  ['parse',['parse',['../parser_8hpp.html#aef0bbac52a27c01a529521a0a89d4368',1,'feder::parser']]],
+  ['parseprimary',['parsePrimary',['../parser_8hpp.html#a4358be534a56e4b090de543aff3e1a29',1,'feder::parser']]],
+  ['parseprogram',['parseProgram',['../parser_8hpp.html#ad024ae49b00817415a480dd44cbe695a',1,'feder::parser']]],
   ['parser_2ehpp',['parser.hpp',['../parser_8hpp.html',1,'']]],
-  ['parserhs',['parseRHS',['../parser_8hpp.html#ad5267b16ad50db94137c2007454e4515',1,'feder::parser']]],
+  ['parserhs',['parseRHS',['../parser_8hpp.html#afc2e879e0f07c1d818f058eb3b3605da',1,'feder::parser']]],
   ['pfederc_5fversion_5fmajor',['PFEDERC_VERSION_MAJOR',['../global_8hpp.html#ac79baa209da1b1f4d726555adb6d845d',1,'global.hpp']]],
   ['pfederc_5fversion_5fminor',['PFEDERC_VERSION_MINOR',['../global_8hpp.html#aba3f3567688992426bba2a958b1d51f1',1,'global.hpp']]],
   ['pfederc_5fversion_5frevision',['PFEDERC_VERSION_REVISION',['../global_8hpp.html#a3cdfd14200764978041650614f99a5ed',1,'global.hpp']]],

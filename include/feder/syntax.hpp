@@ -28,6 +28,8 @@ namespace feder {
     class NmspExpr;
     class BiOpExpr;
     class UnOpExpr;
+    class BraceExpr;
+    class TemplateExpr;
 
     class Program {
       std::vector<std::unique_ptr<Expr>> lines;
@@ -50,19 +52,22 @@ namespace feder {
      * \see Expr
      */
     enum ExprType {
-      expr_id, //!< \see IdExpr
-      expr_num, //!< \see NumExpr
-      expr_func, //!< \see FuncExpr
+      expr_id,         //!< \see IdExpr
+      expr_num,        //!< \see NumExpr
+      expr_func,       //!< \see FuncExpr
       expr_func_param, //!< \see FuncParamExpr
-      expr_str, //!< \see StrExpr
-      expr_char, //!< \see CharExpr
-      expr_class, //!< \see ClassExpr
-      expr_enum, //!< \see EnumExpr
-      expr_trait, //!< \see TraitExpr
-      expr_nmsp, //!< \see NmspExpr
+      expr_str,        //!< \see StrExpr
+      expr_char,       //!< \see CharExpr
+      expr_class,      //!< \see ClassExpr
+      expr_enum,       //!< \see EnumExpr
+      expr_trait,      //!< \see TraitExpr
+      expr_nmsp,       //!< \see NmspExpr
 
       expr_unop, //!< \see UnOpExpr
       expr_biop, //!< \see BiOpExpr
+
+      expr_brace,    //!< \see BraceExpr
+      expr_template, //!< \see TemplateExpr
     };
 
     /*!\brief Parent of expressions.
@@ -442,6 +447,33 @@ namespace feder {
        */
       const Expr &getExpression() const noexcept
       { return *expr; }
+    };
+
+    /*!\brief Brace expression
+     */
+    class BraceExpr : public Expr {
+      std::unique_ptr<Expr> expr;
+    public:
+      BraceExpr(std::unique_ptr<Expr> expr) noexcept;
+      virtual ~BraceExpr();
+
+      BraceExpr &getExpression() noexcept
+      { return *expr; }
+
+      const BraceExpr &getExpression() const noexcept
+      { return *expr; }
+    };
+
+    /*!\brief Template expression
+     */
+    class TemplateExpr : public Expr {
+      std::vector<std::unique_ptr<Expr>> templates;
+    public:
+      TemplateExpr(std::vector<std::unique_ptr<Expr>> templates) noexcept;
+      virtual ~TemplateExpr();
+
+      std::vector<std::unique_ptr<Expr>> &getTemplates() noexcept;
+      const std::vector<std::unique_ptr<Expr>> &getTemplates() const noexcept;
     };
   } // end namespace syntax
 } // end namespace feder

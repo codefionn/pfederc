@@ -11,14 +11,17 @@
 
 namespace feder {
   namespace parser {
-    Expr *parsePrimary(lexer::Lexer &lexer);
+    /*!\brief Parse primary token.
+     */
+    std::unique_ptr<syntax::Expr> parsePrimary(lexer::Lexer &lexer) noexcept;
 
     /*!\brief Parse RHS expression of binary operator.
      * \param lexer
      * \param lhs The lhs expr to merge rhs with.
      * \param prec Minimal operator precedence.
      */
-    Expr *parseRHS(lexer::Lexer &lexer, Expr *lhs, std::size_t prec);
+    std::unique_ptr<syntax::Expr> parseRHS(lexer::Lexer &lexer,
+        Expr *lhs, std::size_t prec) noexcept;
 
     /*!\brief Parse primary expresion + optional operator where prec is passed
      * to parseRHS.
@@ -26,14 +29,16 @@ namespace feder {
      * \param prec Minimal operator precedence.
      * \see parseRHS
      */
-    Expr *parse(lexer::Lexer &lexer, std::size_t prec = 0);
+    std::unique_ptr<syntax::Expr> parse(lexer::Lexer &lexer,
+        std::size_t prec = 0) noexcept;
 
     /*!\brief Parse program lines.
      * \param lexer
      * \param topLevel True if top level (first scope). False if not.
      * \return Returns parsed program
      */
-    Program *parseProgram(lexer::Lexer &lexer, bool topLevel = true);
+    std::unique_ptr<syntax::Program> parseProgram(lexer::Lexer &lexer,
+        bool topLevel = true) noexcept;
   } // end namespace parser
 } // end namespace feder
 

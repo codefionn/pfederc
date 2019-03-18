@@ -78,6 +78,7 @@ $(function() {
 <p>Syntax expressions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="global_8hpp_source.html">feder/global.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lexer_8hpp_source.html">feder/lexer.hpp</a>&quot;</code><br />
 </div>
 <p><a href="syntax_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -124,6 +125,12 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1UnOpExpr.html">feder::syntax::UnOpExpr</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unary operator expression.  <a href="classfeder_1_1syntax_1_1UnOpExpr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html">feder::syntax::BraceExpr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Brace expression.  <a href="classfeder_1_1syntax_1_1BraceExpr.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html">feder::syntax::TemplateExpr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template expression.  <a href="classfeder_1_1syntax_1_1TemplateExpr.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -131,16 +138,20 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaaba620fa816de14460c852f9f928f1077">feder::syntax::expr_id</a>, 
 <a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaaa41d47c26d58762b0baf8f049ec26b80">feder::syntax::expr_num</a>, 
 <a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa9e751af607c87a36a88131b3d685921b">feder::syntax::expr_func</a>, 
-<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa6f83a44e8f8d954831bb7fd86288ab96">feder::syntax::expr_str</a>, 
+<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa47af84e9dfd7a96f29dee3f97cbd4bf7">feder::syntax::expr_func_param</a>, 
 <br />
-&#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaacde70a3e3a8214818f10411f9a73a989">feder::syntax::expr_char</a>, 
+&#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa6f83a44e8f8d954831bb7fd86288ab96">feder::syntax::expr_str</a>, 
+<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaacde70a3e3a8214818f10411f9a73a989">feder::syntax::expr_char</a>, 
 <a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaaf6098f53f89173eaa8ef71c38ef9ad0c">feder::syntax::expr_class</a>, 
 <a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa4f779c5d729e09d05145262c5ed86789">feder::syntax::expr_enum</a>, 
-<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa7b3548e4011fb40d29be33eaebcd621a">feder::syntax::expr_trait</a>, 
 <br />
-&#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa80e6085a22d015dcd13055d25431bbed">feder::syntax::expr_nmsp</a>, 
+&#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa7b3548e4011fb40d29be33eaebcd621a">feder::syntax::expr_trait</a>, 
+<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa80e6085a22d015dcd13055d25431bbed">feder::syntax::expr_nmsp</a>, 
 <a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa7a099e1d83bd3ad53f7f5c037e15cbfd">feder::syntax::expr_unop</a>, 
-<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa16ac811f151f8d7577b12a2a96d0bb2d">feder::syntax::expr_biop</a>
+<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa16ac811f151f8d7577b12a2a96d0bb2d">feder::syntax::expr_biop</a>, 
+<br />
+&#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa237ab6c923172308eee8d2de1879190b">feder::syntax::expr_brace</a>, 
+<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1">feder::syntax::expr_template</a>
 <br />
  }</td></tr>
 <tr class="memdesc:a3a920d8e611fde2a62ad15a786faacfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expression types.  <a href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfa">More...</a><br /></td></tr>
@@ -170,6 +181,8 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa9e751af607c87a36a88131b3d685921b"></a>expr_func&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html" title="Function expression.">FuncExpr</a> </dd></dl>
 </td></tr>
+<tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa47af84e9dfd7a96f29dee3f97cbd4bf7"></a>expr_func_param&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1FuncParamExpr.html" title="Function parameter expression.">FuncParamExpr</a> </dd></dl>
+</td></tr>
 <tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa6f83a44e8f8d954831bb7fd86288ab96"></a>expr_str&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1StrExpr.html" title="String expression.">StrExpr</a> </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaacde70a3e3a8214818f10411f9a73a989"></a>expr_char&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1CharExpr.html" title="Character expression.">CharExpr</a> </dd></dl>
@@ -185,6 +198,10 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa7a099e1d83bd3ad53f7f5c037e15cbfd"></a>expr_unop&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1UnOpExpr.html" title="Unary operator expression.">UnOpExpr</a> </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa16ac811f151f8d7577b12a2a96d0bb2d"></a>expr_biop&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html" title="Binary operator expression.">BiOpExpr</a> </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa237ab6c923172308eee8d2de1879190b"></a>expr_brace&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html" title="Brace expression.">BraceExpr</a> </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1"></a>expr_template&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html" title="Template expression.">TemplateExpr</a> </dd></dl>
 </td></tr>
 </table>
 

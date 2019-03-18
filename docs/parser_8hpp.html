@@ -84,30 +84,34 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9724027887a00251977071c2923b9bd9"><td class="memItemLeft" align="right" valign="top"><a id="a9724027887a00251977071c2923b9bd9"></a>
-Expr *&#160;</td><td class="memItemRight" valign="bottom"><b>feder::parser::parsePrimary</b> (lexer::Lexer &amp;lexer)</td></tr>
-<tr class="separator:a9724027887a00251977071c2923b9bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5267b16ad50db94137c2007454e4515"><td class="memItemLeft" align="right" valign="top">Expr *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#ad5267b16ad50db94137c2007454e4515">feder::parser::parseRHS</a> (lexer::Lexer &amp;lexer, Expr *lhs, std::size_t prec)</td></tr>
-<tr class="memdesc:ad5267b16ad50db94137c2007454e4515"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse RHS expression of binary operator.  <a href="parser_8hpp.html#ad5267b16ad50db94137c2007454e4515">More...</a><br /></td></tr>
-<tr class="separator:ad5267b16ad50db94137c2007454e4515"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af63cf115f47357907d97c1a0282d7010"><td class="memItemLeft" align="right" valign="top">Expr *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#af63cf115f47357907d97c1a0282d7010">feder::parser::parse</a> (lexer::Lexer &amp;lexer, std::size_t prec=0)</td></tr>
-<tr class="memdesc:af63cf115f47357907d97c1a0282d7010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary expresion + optional operator where prec is passed to parseRHS.  <a href="parser_8hpp.html#af63cf115f47357907d97c1a0282d7010">More...</a><br /></td></tr>
-<tr class="separator:af63cf115f47357907d97c1a0282d7010"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22b81cf220a1432c043210da31c2409f"><td class="memItemLeft" align="right" valign="top">Program *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#a22b81cf220a1432c043210da31c2409f">feder::parser::parseProgram</a> (lexer::Lexer &amp;lexer, bool topLevel=true)</td></tr>
-<tr class="memdesc:a22b81cf220a1432c043210da31c2409f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse program lines.  <a href="parser_8hpp.html#a22b81cf220a1432c043210da31c2409f">More...</a><br /></td></tr>
-<tr class="separator:a22b81cf220a1432c043210da31c2409f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4358be534a56e4b090de543aff3e1a29"><td class="memItemLeft" align="right" valign="top"><a id="a4358be534a56e4b090de543aff3e1a29"></a>
+std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#a4358be534a56e4b090de543aff3e1a29">feder::parser::parsePrimary</a> (lexer::Lexer &amp;lexer) noexcept</td></tr>
+<tr class="memdesc:a4358be534a56e4b090de543aff3e1a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary token. <br /></td></tr>
+<tr class="separator:a4358be534a56e4b090de543aff3e1a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc2e879e0f07c1d818f058eb3b3605da"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#afc2e879e0f07c1d818f058eb3b3605da">feder::parser::parseRHS</a> (lexer::Lexer &amp;lexer, Expr *lhs, std::size_t prec) noexcept</td></tr>
+<tr class="memdesc:afc2e879e0f07c1d818f058eb3b3605da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse RHS expression of binary operator.  <a href="parser_8hpp.html#afc2e879e0f07c1d818f058eb3b3605da">More...</a><br /></td></tr>
+<tr class="separator:afc2e879e0f07c1d818f058eb3b3605da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef0bbac52a27c01a529521a0a89d4368"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#aef0bbac52a27c01a529521a0a89d4368">feder::parser::parse</a> (lexer::Lexer &amp;lexer, std::size_t prec=0) noexcept</td></tr>
+<tr class="memdesc:aef0bbac52a27c01a529521a0a89d4368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary expresion + optional operator where prec is passed to parseRHS.  <a href="parser_8hpp.html#aef0bbac52a27c01a529521a0a89d4368">More...</a><br /></td></tr>
+<tr class="separator:aef0bbac52a27c01a529521a0a89d4368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad024ae49b00817415a480dd44cbe695a"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Program &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#ad024ae49b00817415a480dd44cbe695a">feder::parser::parseProgram</a> (lexer::Lexer &amp;lexer, bool topLevel=true) noexcept</td></tr>
+<tr class="memdesc:ad024ae49b00817415a480dd44cbe695a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse program lines.  <a href="parser_8hpp.html#ad024ae49b00817415a480dd44cbe695a">More...</a><br /></td></tr>
+<tr class="separator:ad024ae49b00817415a480dd44cbe695a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parser. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="file_af63cf115f47357907d97c1a0282d7010"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_af63cf115f47357907d97c1a0282d7010">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="file_aef0bbac52a27c01a529521a0a89d4368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_aef0bbac52a27c01a529521a0a89d4368">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Expr* feder::parser::parse </td>
+          <td class="memname">std::unique_ptr&lt;syntax::Expr&gt; feder::parser::parse </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
           <td class="paramname"><em>lexer</em>, </td>
@@ -124,6 +128,11 @@ Expr *&#160;</td><td class="memItemRight" valign="bottom"><b>feder::parser::pars
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Parse primary expresion + optional operator where prec is passed to parseRHS. </p>
@@ -138,14 +147,17 @@ Expr *&#160;</td><td class="memItemRight" valign="bottom"><b>feder::parser::pars
 
 </div>
 </div>
-<a id="file_a22b81cf220a1432c043210da31c2409f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a22b81cf220a1432c043210da31c2409f">&#9670;&nbsp;</a></span>parseProgram()</h2>
+<a id="file_ad024ae49b00817415a480dd44cbe695a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ad024ae49b00817415a480dd44cbe695a">&#9670;&nbsp;</a></span>parseProgram()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Program* feder::parser::parseProgram </td>
+          <td class="memname">std::unique_ptr&lt;syntax::Program&gt; feder::parser::parseProgram </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
           <td class="paramname"><em>lexer</em>, </td>
@@ -162,6 +174,11 @@ Expr *&#160;</td><td class="memItemRight" valign="bottom"><b>feder::parser::pars
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Parse program lines. </p>
@@ -176,14 +193,17 @@ Expr *&#160;</td><td class="memItemRight" valign="bottom"><b>feder::parser::pars
 
 </div>
 </div>
-<a id="file_ad5267b16ad50db94137c2007454e4515"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_ad5267b16ad50db94137c2007454e4515">&#9670;&nbsp;</a></span>parseRHS()</h2>
+<a id="file_afc2e879e0f07c1d818f058eb3b3605da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_afc2e879e0f07c1d818f058eb3b3605da">&#9670;&nbsp;</a></span>parseRHS()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Expr* feder::parser::parseRHS </td>
+          <td class="memname">std::unique_ptr&lt;syntax::Expr&gt; feder::parser::parseRHS </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
           <td class="paramname"><em>lexer</em>, </td>
@@ -206,6 +226,11 @@ Expr *&#160;</td><td class="memItemRight" valign="bottom"><b>feder::parser::pars
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Parse RHS expression of binary operator. </p>
