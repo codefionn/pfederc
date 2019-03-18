@@ -973,6 +973,14 @@ std::string std::to_string(feder::lexer::TokenType tok) {
       return "(";
     case tok_cbrace:
       return ")";
+    case tok_obrace_array:
+      return "[";
+    case tok_cbrace_array:
+      return "]";
+    case tok_obrace_template:
+      return "{";
+    case tok_cbrace_template:
+      return "}";
     case tok_op:
       return "operator";
     case tok_cmd:

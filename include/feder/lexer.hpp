@@ -34,6 +34,10 @@ namespace feder {
 
       tok_obrace, //!< (
       tok_cbrace, //!< )
+      tok_obrace_array, //!< [
+      tok_cbrace_array, //!< ]
+      tok_obrace_template, //!< {
+      tok_cbrace_template, //!< }
 
       tok_op,     //!< Operator
 
