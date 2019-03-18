@@ -6,6 +6,7 @@
  */
 
 #include "feder/global.hpp"
+#include "feder/lexer.hpp"
 
 /*!\file feder/syntax.hpp
  * \brief Syntax expressions.
@@ -31,7 +32,7 @@ namespace feder {
     class Program {
       std::vector<std::unique_ptr<Expr>> lines;
     public:
-      Program(std::vector<std::unique_ptr<Expr>> lines);
+      Program(std::vector<std::unique_ptr<Expr>> lines) noexcept;
       virtual ~Program();
 
       /*!\return Returns lines of program.
@@ -52,6 +53,7 @@ namespace feder {
       expr_id, //!< \see IdExpr
       expr_num, //!< \see NumExpr
       expr_func, //!< \see FuncExpr
+      expr_func_param, //!< \see FuncParamExpr
       expr_str, //!< \see StrExpr
       expr_char, //!< \see CharExpr
       expr_class, //!< \see ClassExpr
@@ -91,6 +93,9 @@ namespace feder {
      */
     class IdExpr : public Expr {
       std::string id;
+    protected:
+      IdExpr(ExprType type, const lexer::Position &pos,
+          const std::string &id) noexcept;
     public:
       /*!\brief Initializes identifier expression with id (identifier).
        */
@@ -111,7 +116,8 @@ namespace feder {
     public:
       /*!\brief Initializes number expression.
        */
-      NumExpr(const lexer::Position &pos, lexer::NumberType numType,
+      NumExpr(const lexer::Position &pos,
+          lexer::NumberType numType,
           lexer::NumberValue numVal) noexcept;
       virtual ~NumExpr();
 
@@ -371,16 +377,17 @@ namespace feder {
     /*!\brief Binary operator expression.
      */
     class BiOpExpr : public Expr {
-      OperatorType opType;
+      lexer::OperatorType opType;
       std::unique_ptr<Expr> lhs, rhs;
     public:
-      BiOpExpr(const lexer::Position &pos, OperatorType opType,
+      BiOpExpr(const lexer::Position &pos,
+          lexer::OperatorType opType,
           std::unique_ptr<Expr> lhs, std::unique_ptr<Expr> rhs) noexcept;
       virtual ~BiOpExpr();
 
       /*!\return Returns binary operator type.
        */
-      OperatorType getOperator() const noexcept
+      lexer::OperatorType getOperator() const noexcept
       { return opType; }
 
       /*!\return Returns left-hand-side.
@@ -390,7 +397,7 @@ namespace feder {
       
       /*!\return Returns left-hand-side (const).
        */
-      const &getLHS() const noexcept
+      const Expr &getLHS() const noexcept
       { return *lhs; }
 
       /*!\return Returns right-hand-side.
@@ -407,22 +414,23 @@ namespace feder {
     /*!\brief Unary operator expression
      */
     class UnOpExpr : public Expr {
-      OperatorType opType;
-      OperatorPosition opPos;
+      lexer::OperatorType opType;
+      lexer::OperatorPosition opPos;
       std::unique_ptr<Expr> expr;
     public:
-      UnOpExpr(const lexer::Position &pos, OperatorPosition opPos, OperatorType opType,
+      UnOpExpr(const lexer::Position &pos,
+          lexer::OperatorPosition opPos, lexer::OperatorType opType,
           std::unique_ptr<Expr> expr) noexcept;
       virtual ~UnOpExpr();
 
       /*!\return Returns unary operator type.
        */
-      OperatorType getOperator() const noexcept
+      lexer::OperatorType getOperator() const noexcept
       { return opType; }
 
       /*!\return Returns either op_lunary or op_runary.
        */
-      OperatorPosition getOperatorPosition() const noexcept
+      lexer::OperatorPosition getOperatorPosition() const noexcept
       { return opPos; }
 
       /*!\return Returns expression associated with unary operator.

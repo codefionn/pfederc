@@ -5,7 +5,8 @@ include_directories("${pfederc_SOURCE_DIR}/include")
 
 set(pfederc_SOURCES
   "${pfederc_SOURCE_DIR}/src/lexer.cpp"
-  "${pfederc_SOURCE_DIR}/src/global.cpp")
+  "${pfederc_SOURCE_DIR}/src/global.cpp"
+  "${pfederc_SOURCE_DIR}/src/syntax.cpp")
 
 add_executable(pfederc ${pfederc_SOURCES}
   "${pfederc_SOURCE_DIR}/src/main.cpp")
