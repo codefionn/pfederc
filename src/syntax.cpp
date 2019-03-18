@@ -68,10 +68,12 @@ FuncParamExpr::~FuncParamExpr() {
 
 FuncExpr::FuncExpr(const feder::lexer::Position &pos,
     const std::string &name,
+    std::unique_ptr<TemplateExpr> templ,
     std::unique_ptr<Expr> returnType,
     std::vector<std::unique_ptr<Expr>> params,
     std::unique_ptr<Program> program) noexcept
     : IdExpr(expr_func, pos, name),
+      templ(std::move(templ)),
       returnType(std::move(returnType)),
       params(std::move(params)),
       program(std::move(program)) {
@@ -82,9 +84,11 @@ FuncExpr::~FuncExpr() {
 
 ClassExpr::ClassExpr(const feder::lexer::Position &pos,
     const std::string &name,
+    std::unique_ptr<TemplateExpr> templ,
     std::vector<std::unique_ptr<Expr>> attributes,
     std::vector<std::unique_ptr<FuncExpr>> functions) noexcept
     : IdExpr(expr_class, pos, name),
+      templ(std::move(templ)),
       attributes(std::move(attributes)),
       functions(std::move(functions)) {
 }
@@ -94,8 +98,10 @@ ClassExpr::~ClassExpr() {
 
 EnumExpr::EnumExpr(const feder::lexer::Position &pos,
     const std::string &name,
+    std::unique_ptr<TemplateExpr> templ,
     std::vector<std::unique_ptr<BiOpExpr>> constructors) noexcept
     : IdExpr(expr_enum, pos, name),
+      templ(std::move(templ)),
       constructors(std::move(constructors)) {
 }
 
@@ -104,8 +110,10 @@ EnumExpr::~EnumExpr() {
 
 TraitExpr::TraitExpr(const feder::lexer::Position &pos,
     const std::string &name,
+    std::unique_ptr<TemplateExpr> templ,
     std::vector<std::unique_ptr<FuncExpr>> functions) noexcept
     : IdExpr(expr_trait, pos, name),
+      templ(std::move(templ)),
       functions(std::move(functions)) {
 }
 

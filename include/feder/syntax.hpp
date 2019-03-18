@@ -235,10 +235,12 @@ namespace feder {
     class FuncExpr : public IdExpr {
       std::unique_ptr<Expr> returnType; //!< Can be null (optional).
       std::vector<std::unique_ptr<Expr>> params;
+      std::unique_ptr<TemplateExpr> templ;
 
       std::unique_ptr<Program> program;
     public:
       FuncExpr(const lexer::Position &pos, const std::string &name,
+          std::unique_ptr<TemplateExpr> templ,
           std::unique_ptr<Expr> returnType,
           std::vector<std::unique_ptr<Expr>> params,
           std::unique_ptr<Program> program) noexcept;
@@ -298,8 +300,10 @@ namespace feder {
     class ClassExpr : public IdExpr {
       std::vector<std::unique_ptr<Expr>> attributes;
       std::vector<std::unique_ptr<FuncExpr>> functions;
+      std::unique_ptr<TemplateExpr> templ;
     public:
       ClassExpr(const lexer::Position &pos, const std::string &name,
+          std::unique_ptr<TemplateExpr> templ,
           std::vector<std::unique_ptr<Expr>> attributes,
           std::vector<std::unique_ptr<FuncExpr>> functions) noexcept;
       virtual ~ClassExpr();
@@ -319,8 +323,10 @@ namespace feder {
      */
     class EnumExpr : public IdExpr {
       std::vector<std::unique_ptr<BiOpExpr>> constructors;
+      std::unique_ptr<TemplateExpr> templ;
     public:
       EnumExpr(const lexer::Position &pos, const std::string &name,
+          std::unique_ptr<TemplateExpr> templ,
           std::vector<std::unique_ptr<BiOpExpr>> constructors) noexcept;
       virtual ~EnumExpr();
 
@@ -339,12 +345,14 @@ namespace feder {
      */
     class TraitExpr : public IdExpr {
       std::vector<std::unique_ptr<FuncExpr>> functions;
+      std::unique_ptr<TemplateExpr> templ;
     public:
       /*!\brief Initialize instance of TraitExpr.
        * \param name Name of the trait.
        * \param functions Declared (not defined) functions.
        */
       TraitExpr(const lexer::Position &pos, const std::string &name,
+          std::unique_ptr<TemplateExpr> templ,
           std::vector<std::unique_ptr<FuncExpr>> functions) noexcept;
       virtual ~TraitExpr();
 
@@ -457,10 +465,10 @@ namespace feder {
       BraceExpr(std::unique_ptr<Expr> expr) noexcept;
       virtual ~BraceExpr();
 
-      BraceExpr &getExpression() noexcept
+      Expr &getExpression() noexcept
       { return *expr; }
 
-      const BraceExpr &getExpression() const noexcept
+      const Expr &getExpression() const noexcept
       { return *expr; }
     };
 
