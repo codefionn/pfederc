@@ -19,6 +19,14 @@ static std::unique_ptr<syntax::NumExpr> _parsePrimaryNumExpr(lexer::Lexer &lex) 
       tok.getPosition(), numType, numVal);
 }
 
+static std::unique_ptr<syntax::StrExpr> _parsePrimaryString(lexer::Lexer &lex) noexcept {
+  lexer::Token tok = lex.currentToken();
+  lex.nextToken(); // eat str
+
+  return std::make_unique<syntax::StrExpr>(tok.getPosition(),
+      tok.getString());
+}
+
 static std::unique_ptr<syntax::BraceExpr> _parsePrimaryBraceExpr(lexer::Lexer &lex) noexcept {
   lexer::Position posStart = lex.currentToken().getPosition();
   lex.nextToken(); // eat (
@@ -65,6 +73,29 @@ static std::unique_ptr<syntax::UnOpExpr> _parsePrimaryUnOpExpr(lexer::Lexer &lex
       lexer::op_lunary, opTok.getOperator(), std::move(expr));
 }
 
+static std::unique_ptr<syntax::Expr> _parsePrimaryArray(lexer::Lexer &lex) noexcept {
+
+}
+
+static std::unique_ptr<syntax::TemplateExpr> _parsePrimaryTemplate(lexer::Lexer &lex) noexcept {
+
+}
+
+static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex) noexcept {
+
+}
+
+static std::unique_ptr<syntax::ClassExpr> _parsePrimaryClass(lexer::Lexer &lex) noexcept {
+
+}
+
+static std::unique_ptr<syntax::TraitExpr> _parsePrimaryTrait(lexer::Lexer &lex) noexcept {
+
+}
+
+static std::unique_ptr<syntax::NmspExpr> _parsePrimaryNamespace(lexer::Lexer &lex) noexcept {
+
+}
 
 std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
   switch (lex.currentToken().getType()) {
@@ -72,14 +103,22 @@ std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
     return _parsePrimaryIdExpr(lex);
   case lexer::tok_num: 
     return _parsePrimaryNumExpr(lex);
+  case lexer::tok_str:
+    return _parsePrimaryString(lex);
   case lexer::tok_obrace:
     return _parsePrimaryBraceExpr(lex);
   case lexer::tok_obrace_array:
+    return _parsePrimaryArray(lex);
   case lexer::tok_obrace_template:
+    return _parsePrimaryTemplate(lex);
   case lexer::tok_func:
+    return _parsePrimaryFunction(lex);
   case lexer::tok_class:
+    return _parsePrimaryClass(lex);
   case lexer::tok_trait:
+    return _parsePrimaryTrait(lex);
   case lexer::tok_nmsp:
+    return _parsePrimaryNamespace(lex);
   case lexer::tok_op:
     return _parsePrimaryUnOpExpr(lex);
 
@@ -156,6 +195,8 @@ std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
     std::unique_ptr<syntax::Expr> lhs, std::size_t prec) noexcept {
 
   lexer::Token curtok;
+
+  // https://en.wikipedia.org/wiki/Operator-precedence_parser
   while (_isBinaryOperator(curtok = lex.currentToken())
       && curtok.getPrecedence() >= prec) {
     lexer::Token opTok = lex.currentToken(); // Operator token

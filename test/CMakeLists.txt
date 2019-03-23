@@ -31,6 +31,7 @@ target_link_libraries(parseline pfederctestlib)
 add_test(parseline_empty_braces parseline "()")
 add_test(parseline_num_braces parseline "(1)")
 add_test(parseline_fncall parseline "hello()")
+add_test(parseline_indexcall parseline "hello[]")
 
 # Test Precedence
 add_test(parseline_prec0 parseline "1 + 2")
