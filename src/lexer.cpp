@@ -727,6 +727,9 @@ TokenType Lexer::constructToken() noexcept {
     curchar = EOF - 1;
     return curtok = tok_eol;
 
+  case ';':
+    return curtok = tok_delim;
+
   case '~':
     nextChar(); // eat ~
     curop = op_bnot;
@@ -1111,6 +1114,8 @@ std::string std::to_string(feder::lexer::TokenType tok) {
       return "import";
     case tok_id:
       return "identifier";
+    case tok_delim:
+      return ";";
     case tok_str:
       return "string";
     case tok_char:
