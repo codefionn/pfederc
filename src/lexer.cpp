@@ -572,7 +572,8 @@ static TokenType tokenNumber(Lexer &lexer,
 }
 
 static TokenType tokenIdentifier(Lexer &lexer,
-    TokenType &curtok, std::string &str) noexcept {
+    TokenType &curtok,
+    OperatorType &curop, std::string &str) noexcept {
   str = ""; // Reset string
 
   while (isalpha(lexer.currentChar())
@@ -580,6 +581,20 @@ static TokenType tokenIdentifier(Lexer &lexer,
       || (str != "_" && isdigit(lexer.currentChar()))) {
     str += lexer.currentChar();
     lexer.nextChar(); // eat char
+  }
+
+  if (str == "class")
+    return curtok = tok_class;
+  if (str == "namespace")
+    return curtok = tok_nmsp;
+  if (str == "trait")
+    return curtok = tok_trait;
+  if (str == "func")
+    return curtok = tok_func;
+
+  if (str == "safe") {
+    curop = op_safe;
+    return curtok = tok_op;
   }
 
   return curtok = tok_id;
@@ -937,7 +952,7 @@ TokenType Lexer::constructToken() noexcept {
 
   if (isalpha(curchar) || curchar == '_') {
     // identifier
-    return tokenIdentifier(*this, curtok, curstr);
+    return tokenIdentifier(*this, curtok, curop, curstr);
   }
 
   if (curchar == '\"') {
