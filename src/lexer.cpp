@@ -1011,7 +1011,11 @@ TokenType Lexer::reportLexerError(const std::string &msg,
   readLine(); // read till EOL
   
   size_t startindex = pos.getColumnStart() - 1;
+  if (pos.getColumnStart() == 0)
+    startindex = 0;
   size_t endindex = pos.getColumnEnd() - 1;
+  if (pos.getColumnEnd() == 0)
+    endindex = 0;
 
   if (startindex > endindex)
     std::swap(startindex, endindex);
@@ -1039,9 +1043,13 @@ TokenType Lexer::reportLexerError(const std::string &msg,
 void Lexer::reportSyntaxError(const std::string &msg,
     const Position &pos) noexcept {
   readLine(); // read till EOL
-  
+
   size_t startindex = pos.getColumnStart() - 1;
+  if (pos.getColumnStart() == 0)
+    startindex = 0;
   size_t endindex = pos.getColumnEnd() - 2;
+  if (pos.getColumnEnd() <= 1)
+    endindex = 0; 
 
   if (startindex > endindex)
     std::swap(startindex, endindex);
