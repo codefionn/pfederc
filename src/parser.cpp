@@ -138,6 +138,20 @@ static bool _parseRHSRightUnary(lexer::Lexer &lex, lexer::Token &opTok,
   return false;
 }
 
+static lexer::OperatorType _getOperatorType(lexer::Token &opTok) {
+  switch (opTok.getType()) {
+  case lexer::tok_obrace:
+    return lexer::op_fncall;
+  case lexer::tok_obrace_array:
+    return lexer::op_indexcall;
+  case lexer::tok_op:
+    return opTok.getOperator();
+  }
+
+  feder::fatal("Reached unreachable code.");
+  return lexer::op_sub;
+}
+
 std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
     std::unique_ptr<syntax::Expr> lhs, std::size_t prec) noexcept {
 
@@ -162,7 +176,7 @@ std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
 
     lhs = std::make_unique<syntax::BiOpExpr>(
         lexer::Position(lhs->getPosition(), rhs->getPosition()),
-        opTok.getOperator(), std::move(lhs), std::move(rhs));
+        _getOperatorType(opTok), std::move(lhs), std::move(rhs));
   }
 
   return std::move(lhs);

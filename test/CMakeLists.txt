@@ -27,3 +27,21 @@ set_tests_properties(lexer_operators PROPERTIES PASS_REGULAR_EXPRESSION
 # parseline
 add_executable(parseline "${pfederc_SOURCE_DIR}/test/parseline.cpp")
 target_link_libraries(parseline pfederctestlib)
+
+add_test(parseline_empty_braces parseline "()")
+add_test(parseline_num_braces parseline "(1)")
+add_test(parseline_fncall parseline "hello()")
+
+# Test Precedence
+add_test(parseline_prec0 parseline "1 + 2")
+set_tests_properties(parseline_prec0 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\(1 \\+ 2\\)\n$")
+add_test(parseline_prec1 parseline "1 + 2 * 3")
+set_tests_properties(parseline_prec1 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\(1 \\+ \\(2 \\* 3\\)\\)\n$")
+add_test(parseline_prec2 parseline "id0 = id1 = id2")
+set_tests_properties(parseline_prec2 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\(id0 = \\(id1 = id2\\)\\)\n$")
+add_test(parseline_prec3 parseline "id0 + id1 + id2")
+set_tests_properties(parseline_prec3 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\(\\(id0 \\+ id1\\) \\+ id2\\)\n$")

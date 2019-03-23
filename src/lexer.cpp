@@ -1166,6 +1166,8 @@ std::string std::to_string(feder::lexer::OperatorType op) {
     case op_safe: return "safe";
     case op_mem: return ".";
     case op_deref_mem: return "->";
+    case op_fncall: return "()";
+    case op_indexcall: return "[]";
   }
 
   feder::fatal("Unknown operator type.");
