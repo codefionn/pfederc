@@ -33,8 +33,10 @@ namespace feder {
 
     class Program {
       std::vector<std::unique_ptr<Expr>> lines;
+      bool error;
     public:
-      Program(std::vector<std::unique_ptr<Expr>> lines) noexcept;
+      Program(std::vector<std::unique_ptr<Expr>> lines,
+          bool error = false) noexcept;
       virtual ~Program();
 
       /*!\return Returns lines of program.
@@ -46,6 +48,11 @@ namespace feder {
        */
       const auto &getLines() const noexcept
       { return lines; }
+
+      /*!\return Returns true, if program has error, otherwise false.
+       */
+      bool hasError() const noexcept
+      { return error; }
     };
 
     /*!\brief Expression types.
@@ -62,6 +69,10 @@ namespace feder {
       expr_enum,       //!< \see EnumExpr
       expr_trait,      //!< \see TraitExpr
       expr_nmsp,       //!< \see NmspExpr
+
+      expr_array_con,   //!< \see ArrayConExpr
+      expr_array_list,  //!< \see ArrayListExpr
+      expr_array_index, //!< \see ArrayIndexExpr
 
       expr_unop, //!< \see UnOpExpr
       expr_biop, //!< \see BiOpExpr
@@ -92,6 +103,11 @@ namespace feder {
        */
       const lexer::Position &getPosition() const noexcept
       { return pos; }
+
+      /*!\return Returns expression converted to Feder code.
+       */
+      virtual std::string to_string() const noexcept
+      { feder::fatal("Compiler error"); return std::string(""); }
     };
 
     /*!\brief Identifier expression.
@@ -110,6 +126,9 @@ namespace feder {
       /*!\return Returns associated identifier.
        */
       const std::string &getIdentifier() const noexcept
+      { return id; }
+
+      virtual std::string to_string() const noexcept override
       { return id; }
     };
 
@@ -137,6 +156,8 @@ namespace feder {
        */
       auto getNumberType() const noexcept
       { return numType; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief String expression
@@ -151,6 +172,8 @@ namespace feder {
        */
       const std::string &getString() const noexcept
       { return str; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Character expression
@@ -165,6 +188,8 @@ namespace feder {
        */
       char getCharacter() const noexcept
       { return c; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Function parameter expression.
@@ -228,23 +253,35 @@ namespace feder {
 
       bool hasGuardResult() const noexcept
       { return (bool) guardResult; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Function expression.
      */
     class FuncExpr : public IdExpr {
       std::unique_ptr<Expr> returnType; //!< Can be null (optional).
-      std::vector<std::unique_ptr<Expr>> params;
+      std::vector<std::unique_ptr<FuncParamExpr>> params;
       std::unique_ptr<TemplateExpr> templ;
 
       std::unique_ptr<Program> program;
     public:
-      FuncExpr(const lexer::Position &pos, const std::string &name,
+      FuncExpr(const lexer::Position &pos,
+          const std::string &name,
           std::unique_ptr<TemplateExpr> templ,
           std::unique_ptr<Expr> returnType,
-          std::vector<std::unique_ptr<Expr>> params,
+          std::vector<std::unique_ptr<FuncParamExpr>> params,
           std::unique_ptr<Program> program) noexcept;
       virtual ~FuncExpr();
+
+      bool hasTemplate() const noexcept
+      { return (bool) templ; }
+
+      auto &getTemplate() noexcept
+      { return *templ; }
+
+      const auto &getTemplate() const noexcept
+      { return *templ; }
 
       /*!\return Returns return type of the function. Can be null (optional).
        * \see hasReturnType
@@ -293,20 +330,39 @@ namespace feder {
        */
       bool isDefined() const noexcept
       { return !isDeclared(); }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Class expression.
      */
     class ClassExpr : public IdExpr {
+      std::unique_ptr<TemplateExpr> templ;
+      std::vector<std::unique_ptr<Expr>> traits;
       std::vector<std::unique_ptr<Expr>> attributes;
       std::vector<std::unique_ptr<FuncExpr>> functions;
-      std::unique_ptr<TemplateExpr> templ;
     public:
       ClassExpr(const lexer::Position &pos, const std::string &name,
           std::unique_ptr<TemplateExpr> templ,
+          std::vector<std::unique_ptr<Expr>> traits,
           std::vector<std::unique_ptr<Expr>> attributes,
           std::vector<std::unique_ptr<FuncExpr>> functions) noexcept;
       virtual ~ClassExpr();
+
+      bool hasTemplate() const noexcept
+      { return (bool) templ; }
+
+      auto &getTemplate() noexcept
+      { return *templ; }
+
+      const auto &getTemplate() const noexcept
+      { return *templ; }
+
+      auto &getTraits() noexcept
+      { return traits; }
+
+      const auto &getTraits() const noexcept
+      { return traits; }
 
       /*!\return Returns (potential) attributes of the class.
        */
@@ -317,6 +373,14 @@ namespace feder {
        */
       const auto &getAttributes() const noexcept
       { return attributes; }
+
+      auto &getFunctions() noexcept
+      { return functions; }
+
+      const auto &getFunctions() const noexcept
+      { return functions; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Enum expression.
@@ -330,6 +394,15 @@ namespace feder {
           std::vector<std::unique_ptr<BiOpExpr>> constructors) noexcept;
       virtual ~EnumExpr();
 
+      bool hasTemplate() const noexcept
+      { return (bool) templ; }
+
+      auto &getTemplate() noexcept
+      { return *templ; }
+
+      const auto &getTemplate() const noexcept
+      { return *templ; }
+
       /*!\return Returns constructors of the enum.
        */
       auto &getConstructors() noexcept
@@ -339,13 +412,16 @@ namespace feder {
        */
       const auto &getConstructors() const noexcept
       { return constructors; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Trait expression
      */
     class TraitExpr : public IdExpr {
-      std::vector<std::unique_ptr<FuncExpr>> functions;
       std::unique_ptr<TemplateExpr> templ;
+      std::vector<std::unique_ptr<Expr>> traits;
+      std::vector<std::unique_ptr<FuncExpr>> functions;
     public:
       /*!\brief Initialize instance of TraitExpr.
        * \param name Name of the trait.
@@ -353,8 +429,24 @@ namespace feder {
        */
       TraitExpr(const lexer::Position &pos, const std::string &name,
           std::unique_ptr<TemplateExpr> templ,
+          std::vector<std::unique_ptr<Expr>> traits,
           std::vector<std::unique_ptr<FuncExpr>> functions) noexcept;
       virtual ~TraitExpr();
+
+      bool hasTemplate() const noexcept
+      { return (bool) templ; }
+
+      auto &getTemplate() noexcept
+      { return *templ; }
+
+      const auto &getTemplate() const noexcept
+      { return *templ; }
+
+      auto &getTraits() noexcept
+      { return traits; }
+
+      const auto &getTraits() const noexcept
+      { return traits; }
 
       /*!\return Returns declared functions.
        */
@@ -365,6 +457,8 @@ namespace feder {
        */
       const auto &getFunctions() const noexcept
       { return functions; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Namespace expression.
@@ -385,6 +479,8 @@ namespace feder {
        */
       const auto &getProgram() const noexcept
       { return program; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Binary operator expression.
@@ -422,6 +518,8 @@ namespace feder {
        */
       const Expr &getRHS() const noexcept
       { return *rhs; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Unary operator expression
@@ -455,6 +553,8 @@ namespace feder {
        */
       const Expr &getExpression() const noexcept
       { return *expr; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Brace expression
@@ -462,14 +562,20 @@ namespace feder {
     class BraceExpr : public Expr {
       std::unique_ptr<Expr> expr;
     public:
-      BraceExpr(std::unique_ptr<Expr> expr) noexcept;
+      BraceExpr(const lexer::Position &pos,
+          std::unique_ptr<Expr> expr) noexcept;
       virtual ~BraceExpr();
+
+      bool hasExpression() const noexcept
+      { return (bool) expr; }
 
       Expr &getExpression() noexcept
       { return *expr; }
 
       const Expr &getExpression() const noexcept
       { return *expr; }
+
+      virtual std::string to_string() const noexcept override;
     };
 
     /*!\brief Template expression
@@ -477,12 +583,112 @@ namespace feder {
     class TemplateExpr : public Expr {
       std::vector<std::unique_ptr<Expr>> templates;
     public:
-      TemplateExpr(std::vector<std::unique_ptr<Expr>> templates) noexcept;
+      TemplateExpr(const lexer::Position &pos,
+          std::vector<std::unique_ptr<Expr>> templates) noexcept;
       virtual ~TemplateExpr();
 
-      std::vector<std::unique_ptr<Expr>> &getTemplates() noexcept;
-      const std::vector<std::unique_ptr<Expr>> &getTemplates() const noexcept;
+      auto &getTemplates() noexcept
+      { return templates; }
+
+      const auto &getTemplates() const noexcept
+      { return templates; }
+
+      virtual std::string to_string() const noexcept override;
     };
+
+    /*!\brief Array constructor expression
+     */
+    class ArrayConExpr : public Expr {
+      std::unique_ptr<Expr> obj;
+      std::unique_ptr<Expr> size;
+    public:
+      /*!\brief Initialize array constructor expression.
+       * \param pos Position
+       * \param obj The base (null) object.
+       * \param size Size of the array.
+       */
+      ArrayConExpr(const lexer::Position &pos,
+          std::unique_ptr<Expr> obj,
+          std::unique_ptr<Expr> size) noexcept;
+      virtual ~ArrayConExpr();
+
+      /*!\return Returns the object to copy n times.
+       */
+      Expr &getObject() noexcept
+      { return *obj; }
+
+      /*!\return Returns the object to copy n times (const).
+       */
+      const Expr &getObject() const noexcept
+      { return *obj; }
+
+
+      /*!\return Returns the size expression.
+       */
+      Expr &getSize() noexcept
+      { return *size; }
+
+      /*!\return Returns the size expression (const).
+       */
+      const Expr &getSize() const noexcept
+      { return *size; }
+
+      virtual std::string to_string() const noexcept override;
+    };
+
+    /*!\brief Array list (constructor) expression.
+     */
+    class ArrayListExpr : public Expr {
+      std::vector<std::unique_ptr<Expr>> objs;
+    public:
+      /*!\brief Initialize Array list expression.
+       * \param pos Position
+       * \param objs 
+       */
+      ArrayListExpr(const lexer::Position &pos,
+          std::vector<std::unique_ptr<Expr>> objs) noexcept;
+      virtual ~ArrayListExpr();
+
+      /*!\return Returns ordered list of objects the array should have.
+       */
+      std::vector<std::unique_ptr<Expr>> &getObjects() noexcept
+      { return objs; }
+
+      /*!\return Returns ordered list of objects the array should have (const).
+       */
+      const std::vector<std::unique_ptr<Expr>> &getObjects() const noexcept
+      { return objs; }
+
+      virtual std::string to_string() const noexcept override;
+    };
+
+    /*!\brief Array index expression.
+     */
+    class ArrayIndexExpr : public Expr {
+      std::unique_ptr<Expr> indexExpr;
+    public:
+      ArrayIndexExpr(const lexer::Position &pos,
+          std::unique_ptr<Expr> indexExpr) noexcept;
+      virtual ~ArrayIndexExpr();
+
+      /*!\return Returns index expression.
+       */
+      Expr &getIndex() noexcept
+      { return *indexExpr; }
+
+      /*!\return Returns index expression (const).
+       */
+      const Expr &getIndex() const noexcept
+      { return *indexExpr; }
+
+      virtual std::string to_string() const noexcept override;
+    };
+
+    /*!\brief Prints error.
+     * \return Returns nullptr;
+     */
+    std::unique_ptr<Expr> reportSyntaxError(lexer::Lexer &lexer,
+        const lexer::Position &pos, const std::string &msg) noexcept;
   } // end namespace syntax
 } // end namespace feder
 

@@ -34,6 +34,7 @@ bool feder::lexer::isValidOperatorPosition(OperatorType op, OperatorPosition pos
       case op_sub:
       case op_mul:
       case op_land:
+      case op_bnot:
         return true;
     }
 
@@ -50,6 +51,7 @@ bool feder::lexer::isValidOperatorPosition(OperatorType op, OperatorPosition pos
     switch (op) {
       case op_dec:
       case op_inc:
+      case op_bnot:
         return false;
       default:
         return true;
@@ -63,7 +65,13 @@ bool feder::lexer::isValidOperatorPosition(OperatorType op, OperatorPosition pos
 
 bool feder::lexer::isPrimaryToken(TokenType tok) noexcept {
   switch (tok) {
-    case tok_op:
+    case tok_include:
+    case tok_import:
+    case tok_cbrace:
+    case tok_cbrace_array:
+    case tok_cbrace_template:
+    case tok_delim:
+    case tok_cmd:
       return false;
   }
 
@@ -153,7 +161,8 @@ static std::size_t _getPrecedenceBinary(OperatorType op) noexcept {
       return 17;
   }
 
-  return 0;
+  // Sometimes this is necessary (when operator is not binary but only unary)
+  return _getPrecedenceRightUnary(op);
 }
 
 std::size_t feder::lexer::getPrecedence(OperatorType op, OperatorPosition pos) noexcept {
@@ -182,6 +191,22 @@ Position::Position(Lexer *lexer,
     size_t columnStart, size_t columnEnd, size_t line) noexcept
     : lexer{lexer}, columnStart{columnStart}, columnEnd{columnEnd},
       lineStart{line}, lineEnd{line} {
+}
+
+Position::Position(const Position &pos0, const Position &pos1) noexcept {
+  if (pos0.getLexer() == pos1.getLexer()) {
+    lexer = const_cast<Lexer*>(pos0.getLexer());
+    columnStart = std::min(pos0.getColumnStart(), pos1.getColumnStart());
+    columnEnd = std::max(pos0.getColumnEnd(), pos1.getColumnEnd());
+    lineStart = std::min(pos0.getLineStart(), pos1.getLineStart());
+    lineEnd = std::max(pos0.getLineEnd(), pos1.getLineEnd());
+  } else {
+    lexer = const_cast<Lexer*>(pos0.getLexer());
+    columnStart = pos0.getColumnStart();
+    columnEnd = pos0.getColumnEnd();
+    lineStart = pos0.getLineStart();
+    lineEnd = pos0.getLineEnd();
+  }
 }
 
 Position::Position(const Position &pos) noexcept
@@ -275,6 +300,15 @@ TokenType Token::getType() const noexcept {
   return tokenType;
 }
 
+bool Token::isRightAssociative() const noexcept {
+  switch (getType()) {
+    case tok_op:
+      return lexer::isRightAssociative(getOperator());
+    default:
+      return false;
+  }
+}
+
 // Lexer
 
 Lexer::Lexer(const std::string &name, std::istream &input)
@@ -361,6 +395,12 @@ Position Lexer::getPosition() const noexcept {
       lineStart, lineEnd);
 }
 
+Position Lexer::getCursorPosition() const noexcept {
+  return Position(const_cast<Lexer*>(this),
+      columnEnd, columnEnd,
+      lineEnd, lineEnd);
+}
+
 void Lexer::readLine() noexcept {
   while (nextChar() != '\n'
       && currentChar() != EOF - 1
@@ -388,8 +428,22 @@ static TokenType tokenNumber(Lexer &lexer,
       // hexadecimal
       lexer.nextChar(); // eat x
 
-      while (isxdigit(lexer.currentChar())) {
+      if (!isxdigit(lexer.currentChar()))
+        return curtok = lexer.reportLexerError(
+            "Expected hexadecimal character!",
+            lexer.getCursorPosition());
 
+      while (isxdigit(lexer.currentChar())) {
+        result *= 16;
+
+        if (lexer.currentChar() >= '0' && lexer.currentChar() <= '9')
+          result += lexer.currentChar() - '0';
+        if (lexer.currentChar() >= 'A' && lexer.currentChar() <= 'F')
+          result += lexer.currentChar() - 'A' + 10;
+        if (lexer.currentChar() >= 'a' && lexer.currentChar() <= 'f')
+          result += lexer.currentChar() - 'a' + 10;
+
+        lexer.nextChar();
       }
     } else if (lexer.currentChar() == 'o') {
       // octal
@@ -397,13 +451,13 @@ static TokenType tokenNumber(Lexer &lexer,
     } else if (lexer.currentChar() == 'b') {
       // binary
       lexer.nextChar(); // eat b
-    } else if (isdigit(lexer.currentChar())) {
+    } else {
       // invalid 0[num]
       // Current pos points to invalid character
       // but pointing to the zero is better (so column - 1)
       return curtok = lexer.reportLexerError(
           "Number sequences can't be leaded by 0.",
-          lexer.getPosition().minColumn());
+          lexer.getCursorPosition().minColumn());
     }
 
     // Or just 0
@@ -413,6 +467,7 @@ static TokenType tokenNumber(Lexer &lexer,
     // dec
     while (isdigit(lexer.currentChar())) {
       numStr += lexer.currentChar();
+      result *= 10;
       result += lexer.currentChar() - '0';
 
       lexer.nextChar(); // eat digit
@@ -854,6 +909,24 @@ TokenType Lexer::constructToken() noexcept {
     }
 
     return curtok = tok_op;
+  case '(':
+    nextChar(); // eat (
+    return curtok = tok_obrace;
+  case ')':
+    nextChar(); // eat )
+    return curtok = tok_cbrace;
+  case '[':
+    nextChar(); // eat [
+    return curtok = tok_obrace_array;
+  case ']':
+    nextChar(); // eat ]
+    return curtok = tok_cbrace_array;
+  case '{':
+    nextChar(); // eat {
+    return curtok = tok_obrace_template;
+  case '}':
+    nextChar(); // eat }
+    return curtok = tok_cbrace_template;
   }
 
   // Dynamic tokens
@@ -883,6 +956,17 @@ TokenType Lexer::constructToken() noexcept {
 }
 
 const Token& Lexer::nextToken() noexcept {
+  // First come the pushed_tokens
+  if (!pushed_tokens.empty()) {
+    // queue
+    auto last = pushed_tokens.end() - 1;
+    curtokval = new Token(*last); // Copy token
+    // remove last 
+    pushed_tokens.erase(last);
+
+    return *curtokval;
+  }
+
   constructToken(); // aquire next token
 
   if (curtokval) delete curtokval;
@@ -935,6 +1019,47 @@ TokenType Lexer::reportLexerError(const std::string &msg,
               << msg << std::endl;
 
   return tok_err;
+}
+
+void Lexer::reportSyntaxError(const std::string &msg,
+    const Position &pos) noexcept {
+  readLine(); // read till EOL
+  
+  size_t startindex = pos.getColumnStart() - 1;
+  size_t endindex = pos.getColumnEnd() - 2;
+
+  if (startindex > endindex)
+    std::swap(startindex, endindex);
+
+  for (size_t i = pos.getLineStart(); i <= pos.getLineEnd(); ++i) {
+    std::cerr << getLines()[i] << std::endl;
+  }
+
+  // Print position
+  for (size_t i = 0; i <= endindex; ++i) {
+    if (i < startindex)
+      std::cerr << " ";
+    else
+      std::cerr << "^";
+  }
+  std::cerr << std::endl;
+
+  if (!msg.empty())
+    std::cerr << "error:"<< name << ":" << pos.getLineStart() + 1 << ": "
+              << msg << std::endl;
+}
+
+std::size_t Token::getPrecedence(OperatorPosition pos) const noexcept {
+  switch (getType()) {
+  case tok_op:
+    return feder::lexer::getPrecedence(getOperator(), pos);
+  case tok_obrace:
+  case tok_obrace_array:
+  case tok_obrace_template:
+    return 16;
+  }
+
+  return 0; // Minimal precedence
 }
 
 std::string std::to_string(feder::lexer::TokenType tok) {
@@ -993,5 +1118,56 @@ std::string std::to_string(feder::lexer::TokenType tok) {
       return "error";
   }
 
-  throw std::runtime_error("Unknown token type.");
+  feder::fatal("Unknown token type.");
+  return "";
+}
+
+std::string std::to_string(feder::lexer::OperatorType op) {
+  switch (op) {
+    case op_comma: return ",";
+    case op_def: return ":=";
+    case op_asg: return "=";
+    case op_asg_band: return "&=";
+    case op_asg_bxor: return "^=";
+    case op_asg_bor: return "|=";
+    case op_asg_add: return "+=";
+    case op_asg_sub: return "-=";
+    case op_asg_mul: return "*=";
+    case op_asg_div: return "/=";
+    case op_asg_mod: return "%=";
+    case op_asg_lsh: return "<<=";
+    case op_asg_rsh: return ">>=";
+    case op_land: return "&&";
+    case op_lor: return "||";
+    case op_eq: return "==";
+    case op_neq: return "!=";
+    case op_veq: return "===";
+    case op_leq: return "<=";
+    case op_geq: return ">=";
+    case op_lt: return "<";
+    case op_gt: return ">";
+    case op_band: return "&";
+    case op_bxor: return "^";
+    case op_bor: return "|";
+    case op_lsh: return "<<";
+    case op_rsh: return ">>";
+    case op_add: return "+";
+    case op_sub: return "-";
+    case op_mul: return "*";
+    case op_div: return "/";
+    case op_mod: return "%";
+    case op_decl: return ":";
+    case op_tcast: return "::";
+    case op_tcheck: return ":?";
+    case op_lnot: return "!";
+    case op_bnot: return "~";
+    case op_inc: return "++";
+    case op_dec: return "--";
+    case op_safe: return "safe";
+    case op_mem: return ".";
+    case op_deref_mem: return "->";
+  }
+
+  feder::fatal("Unknown operator type.");
+  return "";
 }

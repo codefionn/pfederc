@@ -39,6 +39,8 @@ namespace feder {
       tok_obrace_template, //!< {
       tok_cbrace_template, //!< }
 
+      tok_delim, //!< ;
+
       tok_op,     //!< Operator
 
       tok_cmd,    //!< #.*$
@@ -221,7 +223,10 @@ namespace feder {
       Position(const Position &pos) noexcept;
 
       /*!\brief Merges position pos0 and pos1 (the resulting Position is the
-       * maximal marked area between pos0 and pos1).
+       * maximal marked area between pos0 and pos1). If lexer of pos0 and pos1
+       * is not the same, the new position will be a copy of pos0.
+       * \param pos0
+       * \param pos1
        */
       Position(const Position &pos0, const Position &pos1) noexcept;
 
@@ -323,6 +328,11 @@ namespace feder {
        */
       Token() noexcept {}
 
+      /*!\return Returns precedence of token.
+       * \param opPos Position of the operator
+       */
+      std::size_t getPrecedence(OperatorPosition opPos = op_binary) const noexcept;
+
       /*!\brief Copy-constructor.
        * \param tok Token to copy.
        */
@@ -359,6 +369,23 @@ namespace feder {
       /*!\return Return type of token.
        */
       TokenType getType() const noexcept;
+
+      /*!\return Returns if (operator) token is right-associative.
+       */
+      bool isRightAssociative() const noexcept;
+
+      /*!\return Returns true, if getType() and type are equal, otherwise
+       * false.
+       */
+      bool operator ==(TokenType type) const noexcept
+      { return getType() == type; }
+
+      /*!\return Returns false, if getType() and type are equal, otherwise
+       * true.
+       */
+      bool operator !=(TokenType type) const noexcept
+      { return getType() != type; }
+
     };
 
     /*!\brief Describing a lexer instance (e.g. a file).
@@ -390,6 +417,8 @@ namespace feder {
       NumberType curnumtype; //!< Current number type.
       NumberValue curnumval; //!< Current number value.
       std::string curstr; //!< Current string. Without escape sequences.
+
+      std::vector<Token> pushed_tokens; //!< Next tokens (Stack).
 
       Token *curtokval;
       TokenType constructToken() noexcept;
@@ -450,6 +479,12 @@ namespace feder {
        */
       const Token &nextToken() noexcept;
 
+      /*!\brief Pushes token on a stack. Call nextToken(), will return the
+       * last element (and remove it).
+       * \param tok
+       */
+      void pushToken(const Token &tok) noexcept;
+
       /*!\return Returns latest token returned by nextToken.
        */
       const Token &currentToken() const noexcept
@@ -473,6 +508,25 @@ namespace feder {
        * expect it to be like this. So don't try to "correct" this "error".
        */
       Position getPosition() const noexcept;
+
+      /*!\return Returns position of latest cursor position.
+       *
+       * A black/control character is also regarded as a column. Known that
+       * getColumnEnd of position is actually not the last column but the
+       * column right after the last column. Also columns are counted starting
+       * from 1, not 0 (the first column has the index 1). So computing the
+       * real position of is done like this:
+       *
+       *     Position pos = lexer.getPosition();
+       *     Position realPos(pos.getLexer(),
+       *       pos.getColumnStart() - 1,
+       *       pos.getColumnEnd() - 2,
+       *       pos.getLineStart(), pos.getLineEnd());
+       *
+       * Note that any reportSyntaxError and reportSemanticError/Warning
+       * expect it to be like this. So don't try to "correct" this "error".
+       */
+      Position getCursorPosition() const noexcept;
 
       /*!\brief Reports a lexical error. Reads till EOL.
        * \param msg
@@ -517,6 +571,7 @@ namespace feder {
 
 namespace std {
   std::string to_string(feder::lexer::TokenType tok);
+  std::string to_string(feder::lexer::OperatorType tok);
 }
 
 #endif /* FEDER_LEXER_HPP */

@@ -1,8 +1,9 @@
 #include "feder/syntax.hpp"
 using namespace feder::syntax;
 
-Program::Program(std::vector<std::unique_ptr<Expr>> lines) noexcept
-    : lines(std::move(lines)) {
+Program::Program(std::vector<std::unique_ptr<Expr>> lines,
+    bool error) noexcept
+    : lines(std::move(lines)), error{error} {
 }
 
 Program::~Program() {
@@ -70,7 +71,7 @@ FuncExpr::FuncExpr(const feder::lexer::Position &pos,
     const std::string &name,
     std::unique_ptr<TemplateExpr> templ,
     std::unique_ptr<Expr> returnType,
-    std::vector<std::unique_ptr<Expr>> params,
+    std::vector<std::unique_ptr<FuncParamExpr>> params,
     std::unique_ptr<Program> program) noexcept
     : IdExpr(expr_func, pos, name),
       templ(std::move(templ)),
@@ -85,10 +86,12 @@ FuncExpr::~FuncExpr() {
 ClassExpr::ClassExpr(const feder::lexer::Position &pos,
     const std::string &name,
     std::unique_ptr<TemplateExpr> templ,
+    std::vector<std::unique_ptr<Expr>> traits,
     std::vector<std::unique_ptr<Expr>> attributes,
     std::vector<std::unique_ptr<FuncExpr>> functions) noexcept
     : IdExpr(expr_class, pos, name),
       templ(std::move(templ)),
+      traits(std::move(traits)),
       attributes(std::move(attributes)),
       functions(std::move(functions)) {
 }
@@ -111,9 +114,11 @@ EnumExpr::~EnumExpr() {
 TraitExpr::TraitExpr(const feder::lexer::Position &pos,
     const std::string &name,
     std::unique_ptr<TemplateExpr> templ,
+    std::vector<std::unique_ptr<Expr>> traits,
     std::vector<std::unique_ptr<FuncExpr>> functions) noexcept
     : IdExpr(expr_trait, pos, name),
       templ(std::move(templ)),
+      traits(std::move(traits)),
       functions(std::move(functions)) {
 }
 
@@ -147,4 +152,249 @@ UnOpExpr::UnOpExpr(const feder::lexer::Position &pos,
 }
 
 UnOpExpr::~UnOpExpr() {
+}
+
+BraceExpr::BraceExpr(const feder::lexer::Position &pos,
+    std::unique_ptr<Expr> expr) noexcept
+    : Expr(expr_brace, pos), expr(std::move(expr)) {
+}
+
+BraceExpr::~BraceExpr() {
+}
+
+TemplateExpr::TemplateExpr(const lexer::Position &pos,
+    std::vector<std::unique_ptr<Expr>> templates) noexcept
+    : Expr(expr_template, pos), templates(std::move(templates)) {
+}
+
+TemplateExpr::~TemplateExpr() {
+}
+
+ArrayConExpr::ArrayConExpr(const feder::lexer::Position &pos,
+    std::unique_ptr<Expr> obj, std::unique_ptr<Expr> size) noexcept
+    : Expr(expr_array_con, pos), obj(std::move(obj)), size(std::move(size)) {
+}
+
+ArrayConExpr::~ArrayConExpr() {
+}
+
+ArrayListExpr::ArrayListExpr(const feder::lexer::Position &pos,
+    std::vector<std::unique_ptr<Expr>> objs) noexcept
+    : Expr(expr_array_list, pos), objs(std::move(objs)) {
+}
+
+ArrayListExpr::~ArrayListExpr() {
+}
+
+ArrayIndexExpr::ArrayIndexExpr(const feder::lexer::Position &pos,
+    std::unique_ptr<Expr> indexExpr) noexcept
+    : Expr(expr_array_index, pos), indexExpr(std::move(indexExpr)) {
+}
+
+ArrayIndexExpr::~ArrayIndexExpr() {
+}
+
+std::unique_ptr<Expr> feder::syntax::reportSyntaxError(
+    feder::lexer::Lexer &lex,
+    const feder::lexer::Position &pos, const std::string &msg) noexcept {
+  lex.reportSyntaxError(msg, pos);
+  return std::unique_ptr<Expr>(nullptr);
+}
+
+// to_string
+
+std::string NumExpr::to_string() const noexcept {
+  switch (getNumberType()) {
+    case lexer::num_i8:
+      return std::to_string(getNumberValue().i8);
+    case lexer::num_i16:
+      return std::to_string(getNumberValue().i16);
+    case lexer::num_i32:
+      return std::to_string(getNumberValue().i32);
+    case lexer::num_i64:
+      return std::to_string(getNumberValue().i64);
+
+    case lexer::num_u8:
+      return std::to_string(getNumberValue().u8);
+    case lexer::num_u16:
+      return std::to_string(getNumberValue().u16);
+    case lexer::num_u32:
+      return std::to_string(getNumberValue().u32);
+    case lexer::num_u64:
+      return std::to_string(getNumberValue().u64);
+
+    case lexer::num_f32:
+      return std::to_string(getNumberValue().f32);
+    case lexer::num_f64:
+      return std::to_string(getNumberValue().f64);
+  }
+
+  feder::fatal("Impossible-to-reach code reached");
+  return "";
+}
+
+std::string StrExpr::to_string() const noexcept {
+  return "\"" + str + "\"";
+}
+
+std::string CharExpr::to_string() const noexcept {
+  return std::string("\'") + c + "\'";
+}
+
+std::string FuncParamExpr::to_string() const noexcept {
+  std::string result = getIdentifier() + " : " + getSemanticType().to_string();
+
+  if (hasGuard()) {
+    result += " | " + getGuard().to_string();
+    if (hasGuardResult())
+      result += " => " + getGuardResult().to_string();
+  }
+
+  return result;
+}
+
+std::string FuncExpr::to_string() const noexcept {
+  std::string result = "func";
+  if (hasTemplate())
+    result += getTemplate().to_string();
+
+  result += " " + getIdentifier();
+
+  if (getParameters().size() > 0) {
+    result += "(";
+    for (auto &param : getParameters()) {
+      if (result[result.size() - 1] != '(')
+        result += ", ";
+
+      result += param->to_string();
+    }
+    result += ")";
+  }
+
+  if (hasReturnType()) {
+    result += " : ";
+    result += getReturnType().to_string();
+  }
+
+  return result;
+}
+
+std::string ClassExpr::to_string() const noexcept {
+  std::string result = "class";
+  if (hasTemplate())
+    result += getTemplate().to_string();
+
+  result += " " + getIdentifier();
+
+  if (getTraits().size() > 0) {
+    result += " : ";
+    for (auto &t : getTraits()) {
+      if (result[result.size() - 2] != ':')
+        result += ", ";
+
+      result += t->to_string();
+    }
+  }
+
+  return result;
+}
+
+std::string EnumExpr::to_string() const noexcept {
+  std::string result = "enum";
+  if (hasTemplate())
+    result += getTemplate().to_string();
+
+  result += " " + getIdentifier();
+
+  return result;
+}
+
+std::string TraitExpr::to_string() const noexcept {
+  std::string result = "trait";
+  if (hasTemplate())
+    result += getTemplate().to_string();
+
+  result += " " + getIdentifier();
+
+  if (getTraits().size() > 0) {
+    result += " : ";
+    for (auto &t : getTraits()) {
+      if (result[result.size() - 2] != ':')
+        result += ", ";
+
+      result += t->to_string();
+    }
+  }
+
+  return result;
+}
+
+std::string NmspExpr::to_string() const noexcept {
+  return "namespace " + getIdentifier();
+}
+
+std::string BiOpExpr::to_string() const noexcept {
+  switch(getOperator()) {
+    case lexer::op_fncall:
+    case lexer::op_indexcall:
+      return getLHS().to_string() + getRHS().to_string();
+    default:
+      return "(" + getLHS().to_string()
+        + " " + std::to_string(getOperator()) + " "
+        + getRHS().to_string() + ")";
+  }
+}
+
+std::string UnOpExpr::to_string() const noexcept {
+  switch (getOperatorPosition()) {
+    case lexer::op_lunary:
+      return std::to_string(getOperator()) + getExpression().to_string();
+    case lexer::op_runary:
+      return getExpression().to_string() + std::to_string(getOperator());
+  }
+
+  feder::fatal("Impossible-to-reach code reached");
+  return "";
+}
+
+std::string BraceExpr::to_string() const noexcept {
+  if (!hasExpression())
+    return std::string("()");
+  return "(" + getExpression().to_string() + ")";
+}
+
+std::string TemplateExpr::to_string() const noexcept {
+  std::string result = "{";
+
+  for (auto &templ : getTemplates()) {
+    if (result[result.size() - 1] != '{')
+      result += ", ";
+
+    result += templ->to_string();
+  }
+
+  result += "}";
+  return result;
+}
+
+std::string ArrayConExpr::to_string() const noexcept {
+  return "[" + getObject().to_string() + " ; " + getSize().to_string() + "]";
+}
+
+std::string ArrayListExpr::to_string() const noexcept {
+  std::string result = "[";
+  for (auto &obj : getObjects()) {
+    if (result[result.size() - 1] != '[')
+      result += ", ";
+
+    result += obj->to_string();
+  }
+
+  result += "]";
+
+  return result;
+}
+
+std::string ArrayIndexExpr::to_string() const noexcept {
+  return "[" + getIndex().to_string() + "]";
 }
