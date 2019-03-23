@@ -46,3 +46,7 @@ set_tests_properties(parseline_prec2 PROPERTIES PASS_REGULAR_EXPRESSION
 add_test(parseline_prec3 parseline "id0 + id1 + id2")
 set_tests_properties(parseline_prec3 PROPERTIES PASS_REGULAR_EXPRESSION
   "^\\(\\(id0 \\+ id1\\) \\+ id2\\)\n$")
+
+# parseinput
+add_executable(parseinput "${pfederc_SOURCE_DIR}/test/parseinput.cpp")
+target_link_libraries(parseinput pfederctestlib)

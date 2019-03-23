@@ -137,7 +137,7 @@ static std::unique_ptr<syntax::NmspExpr> _parsePrimaryNamespace(lexer::Lexer &le
 
   lex.nextToken(); // eat eol
 
-  auto program = parser::parseProgram(lex);
+  auto program = parser::parseProgram(lex, false);
   if (program->hasError()) return nullptr;
 
   if (lex.currentToken() != lexer::tok_delim) {
@@ -146,6 +146,8 @@ static std::unique_ptr<syntax::NmspExpr> _parsePrimaryNamespace(lexer::Lexer &le
         "Expected ';'.");
     return nullptr;
   }
+
+  lex.nextToken(); // eat ;
 
   return std::make_unique<syntax::NmspExpr>(
       lexer::Position(pos, tokId.getPosition()),
@@ -294,6 +296,9 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Lexer &lex,
   bool error = false;
 
   while (true) {
+    if (!lexer::isPrimaryToken(lex.currentToken().getType()))
+      break;
+
     std::unique_ptr<syntax::Expr> line(parser::parse(lex));
     if (line)
       lines.push_back(std::move(line));
