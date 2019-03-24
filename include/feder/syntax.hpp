@@ -503,6 +503,18 @@ namespace feder {
        */
       Expr &getLHS() noexcept
       { return *lhs; }
+
+      /*!\return Returns rhs (as unique pointer). This makes RHS of this binary
+       * operator invalid.
+       */
+      std::unique_ptr<Expr> moveRHS() noexcept
+      { return std::move(rhs); }
+
+      /*!\return Returns lhs (as unique pointer). This makes LHS of this binary
+       * operator invalid.
+       */
+      std::unique_ptr<Expr> moveLHS() noexcept
+      { return std::move(lhs); }
       
       /*!\return Returns left-hand-side (const).
        */

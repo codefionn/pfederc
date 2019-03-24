@@ -98,6 +98,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aca36b766d1b2f469210fbad217a3f632"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21747db8b833d4ece8480feaecf815b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a21747db8b833d4ece8480feaecf815b8">getLHS</a> () noexcept</td></tr>
 <tr class="separator:a21747db8b833d4ece8480feaecf815b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6376b6171d19f163047d311b7ce44bdc"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a6376b6171d19f163047d311b7ce44bdc">moveRHS</a> () noexcept</td></tr>
+<tr class="separator:a6376b6171d19f163047d311b7ce44bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7150f4cb6c459b0c7e5cfbad538dc9c7"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a7150f4cb6c459b0c7e5cfbad538dc9c7">moveLHS</a> () noexcept</td></tr>
+<tr class="separator:a7150f4cb6c459b0c7e5cfbad538dc9c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2d847b9c26c5172214ce2f66856dff2"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#ac2d847b9c26c5172214ce2f66856dff2">getLHS</a> () const noexcept</td></tr>
 <tr class="separator:ac2d847b9c26c5172214ce2f66856dff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7880a1a609e4508201022d77fece476d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a7880a1a609e4508201022d77fece476d">getRHS</a> () noexcept</td></tr>
@@ -245,6 +249,58 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns right-hand-side (const). </dd></dl>
+
+</div>
+</div>
+<a id="a7150f4cb6c459b0c7e5cfbad538dc9c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7150f4cb6c459b0c7e5cfbad538dc9c7">&#9670;&nbsp;</a></span>moveLHS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a>&gt; feder::syntax::BiOpExpr::moveLHS </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns lhs (as unique pointer). This makes LHS of this binary operator invalid. </dd></dl>
+
+</div>
+</div>
+<a id="a6376b6171d19f163047d311b7ce44bdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6376b6171d19f163047d311b7ce44bdc">&#9670;&nbsp;</a></span>moveRHS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a>&gt; feder::syntax::BiOpExpr::moveRHS </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns rhs (as unique pointer). This makes RHS of this binary operator invalid. </dd></dl>
 
 </div>
 </div>
