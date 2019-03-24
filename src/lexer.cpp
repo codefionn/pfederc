@@ -191,12 +191,22 @@ Position::Position(Lexer *lexer,
     size_t lineStart, size_t lineEnd) noexcept
     : lexer{lexer}, columnStart{columnStart}, columnEnd{columnEnd},
       lineStart{lineStart}, lineEnd{lineEnd} {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) lexer, "lexer == nullptr");
+  FEDER_SANITY_CHECK(columnStart <= columnEnd, "columnStart > columnEnd");
+  FEDER_SANITY_CHECK(lineStart <= lineEnd, "lineStart > lineEnd");
+#endif /* SANITY */
 }
 
 Position::Position(Lexer *lexer,
     size_t columnStart, size_t columnEnd, size_t line) noexcept
     : lexer{lexer}, columnStart{columnStart}, columnEnd{columnEnd},
       lineStart{line}, lineEnd{line} {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) lexer, "lexer == nullptr");
+  FEDER_SANITY_CHECK(columnStart <= columnEnd, "columnStart > columnEnd");
+  FEDER_SANITY_CHECK(lineStart <= lineEnd, "lineStart > lineEnd");
+#endif /* SANITY */
 }
 
 Position::Position(const Position &pos0, const Position &pos1) noexcept {
@@ -213,12 +223,23 @@ Position::Position(const Position &pos0, const Position &pos1) noexcept {
     lineStart = pos0.getLineStart();
     lineEnd = pos0.getLineEnd();
   }
+
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) lexer, "lexer == nullptr");
+  FEDER_SANITY_CHECK(columnStart <= columnEnd, "columnStart > columnEnd");
+  FEDER_SANITY_CHECK(lineStart <= lineEnd, "lineStart > lineEnd");
+#endif /* SANITY */
 }
 
 Position::Position(const Position &pos) noexcept
     : lexer{const_cast<Position&>(pos).getLexer()},
       columnStart{pos.getColumnStart()}, columnEnd{pos.getColumnEnd()},
       lineStart{pos.getLineStart()}, lineEnd{pos.getLineEnd()} {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) lexer, "lexer == nullptr");
+  FEDER_SANITY_CHECK(columnStart <= columnEnd, "columnStart > columnEnd");
+  FEDER_SANITY_CHECK(lineStart <= lineEnd, "lineStart > lineEnd");
+#endif /* SANITY */
 }
 
 Position::~Position() {

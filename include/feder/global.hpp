@@ -21,13 +21,14 @@
 #ifndef NSANITY
 /*!\brief Perform sanity checks.
  */
-#define SANITY
+# define SANITY
 /*!\brief Report fatal error if cond is false.
  * \see feder::fatal
  */
-#define FEDER_SANITY_CHECK(cond, msg) if (cond) feder::fatal(msg)
-#elif
-#define FEDER_SANITY_CHECK(cond, msg)
+# define FEDER_SANITY_CHECK(cond, msg) \
+  if (!(cond)) feder::fatal(std::string(__FILE__) + ":" + std::to_string(__LINE__) + ": " msg)
+#else
+# define FEDER_SANITY_CHECK(cond, msg)
 #endif /* NSANITY */
 
 /*!\brief Incompatible API changes.

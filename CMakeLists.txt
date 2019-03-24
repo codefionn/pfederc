@@ -3,6 +3,8 @@ project(pfederc)
 
 include_directories("${pfederc_SOURCE_DIR}/include")
 
+option(PFEDERC_SANITY_CHECKS "Do sanity checks" OFF)
+
 set(pfederc_SOURCES
   "${pfederc_SOURCE_DIR}/src/lexer.cpp"
   "${pfederc_SOURCE_DIR}/src/global.cpp"
@@ -12,5 +14,8 @@ set(pfederc_SOURCES
 
 add_executable(pfederc ${pfederc_SOURCES}
   "${pfederc_SOURCE_DIR}/src/main.cpp")
+if (NOT PFEDERC_SANITY_CHECKS)
+  target_compile_definitions(pfederc PRIVATE NSANITY=1)
+endif()
 
 add_subdirectory("${pfederc_SOURCE_DIR}/test")

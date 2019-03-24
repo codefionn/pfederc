@@ -3,6 +3,9 @@ enable_testing()
 
 # Build test libary (consume less resources)
 add_library(pfederctestlib STATIC ${pfederc_SOURCES})
+if (NOT PFEDERC_SANITY_CHECKS)
+  target_compile_definitions(pfederctestlib PRIVATE NSANITY=1)
+endif()
 
 # lexer
 add_executable(lexer "${pfederc_SOURCE_DIR}/test/lexer.cpp")
