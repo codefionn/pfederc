@@ -47,8 +47,8 @@ var searchData=
   ['op_5ftcast',['op_tcast',['../lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6aae2779e7f67d8b5dac30d220f6ea1f73',1,'feder::lexer']]],
   ['op_5ftcheck',['op_tcheck',['../lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6a525876ca3f44585b3b709642061fb3c4',1,'feder::lexer']]],
   ['op_5fveq',['op_veq',['../lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6a4d4a4530b9bb4c7da648a6b7b342adec',1,'feder::lexer']]],
-  ['operator_20_21_3d',['operator !=',['../classfeder_1_1lexer_1_1Token.html#a798b1449f466b4dc88c2cbf2fdd97469',1,'feder::lexer::Token']]],
-  ['operator_3d_3d',['operator==',['../classfeder_1_1lexer_1_1Token.html#aa92cbbd5a48521867db844706dd21356',1,'feder::lexer::Token']]],
+  ['operator_20_21_3d',['operator !=',['../classfeder_1_1lexer_1_1Token.html#a798b1449f466b4dc88c2cbf2fdd97469',1,'feder::lexer::Token::operator !=(TokenType type) const noexcept'],['../classfeder_1_1lexer_1_1Token.html#ad5d154ed72b5dff05f0b182d78a23114',1,'feder::lexer::Token::operator !=(OperatorType type) const noexcept']]],
+  ['operator_3d_3d',['operator==',['../classfeder_1_1lexer_1_1Token.html#aa92cbbd5a48521867db844706dd21356',1,'feder::lexer::Token::operator==(TokenType type) const noexcept'],['../classfeder_1_1lexer_1_1Token.html#a2262ffd94af43d6ac186d5fb4a59cfc9',1,'feder::lexer::Token::operator==(OperatorType type) const noexcept']]],
   ['operatorposition',['OperatorPosition',['../lexer_8hpp.html#affb59bed95a0a88b3ea546fd9a9fa023',1,'feder::lexer']]],
   ['operatortype',['OperatorType',['../lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6',1,'feder::lexer']]]
 ];

@@ -125,6 +125,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa92cbbd5a48521867db844706dd21356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a798b1449f466b4dc88c2cbf2fdd97469"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a798b1449f466b4dc88c2cbf2fdd97469">operator !=</a> (<a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85d">TokenType</a> type) const noexcept</td></tr>
 <tr class="separator:a798b1449f466b4dc88c2cbf2fdd97469"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2262ffd94af43d6ac186d5fb4a59cfc9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a2262ffd94af43d6ac186d5fb4a59cfc9">operator==</a> (<a class="el" href="lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6">OperatorType</a> type) const noexcept</td></tr>
+<tr class="separator:a2262ffd94af43d6ac186d5fb4a59cfc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d154ed72b5dff05f0b182d78a23114"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#ad5d154ed72b5dff05f0b182d78a23114">operator !=</a> (<a class="el" href="lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6">OperatorType</a> type) const noexcept</td></tr>
+<tr class="separator:ad5d154ed72b5dff05f0b182d78a23114"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A <a class="el" href="classfeder_1_1lexer_1_1Token.html" title="A Token is the result of the lexical analysis nextToken.">Token</a> is the result of the lexical analysis nextToken. </p>
@@ -675,7 +679,7 @@ tok = lexer.nextToken(); // Now tok can be used
 </div>
 </div>
 <a id="a798b1449f466b4dc88c2cbf2fdd97469"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a798b1449f466b4dc88c2cbf2fdd97469">&#9670;&nbsp;</a></span>operator !=()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a798b1449f466b4dc88c2cbf2fdd97469">&#9670;&nbsp;</a></span>operator !=() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -701,8 +705,35 @@ tok = lexer.nextToken(); // Now tok can be used
 
 </div>
 </div>
+<a id="ad5d154ed72b5dff05f0b182d78a23114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5d154ed72b5dff05f0b182d78a23114">&#9670;&nbsp;</a></span>operator !=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::lexer::Token::operator != </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6">OperatorType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns false, if <a class="el" href="classfeder_1_1lexer_1_1Token.html#a868bfdffc565198cd2b4250e53bb7351">getType()</a> is not operator or operator isn't type, otherwise true is returned. </dd></dl>
+
+</div>
+</div>
 <a id="aa92cbbd5a48521867db844706dd21356"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa92cbbd5a48521867db844706dd21356">&#9670;&nbsp;</a></span>operator==()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92cbbd5a48521867db844706dd21356">&#9670;&nbsp;</a></span>operator==() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -725,6 +756,33 @@ tok = lexer.nextToken(); // Now tok can be used
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns true, if <a class="el" href="classfeder_1_1lexer_1_1Token.html#a868bfdffc565198cd2b4250e53bb7351">getType()</a> and type are equal, otherwise false. </dd></dl>
+
+</div>
+</div>
+<a id="a2262ffd94af43d6ac186d5fb4a59cfc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2262ffd94af43d6ac186d5fb4a59cfc9">&#9670;&nbsp;</a></span>operator==() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::lexer::Token::operator== </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6">OperatorType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true, if <a class="el" href="classfeder_1_1lexer_1_1Token.html#a868bfdffc565198cd2b4250e53bb7351">getType()</a> is operator and operator equals type, otherwise false is returned. </dd></dl>
 
 </div>
 </div>

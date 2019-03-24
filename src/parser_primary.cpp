@@ -84,14 +84,32 @@ static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex
    lexer::Position pos = lex.currentToken().getPosition();
   bool virtualFunc = lex.currentToken() == lexer::tok_vfunc;
   lex.nextToken(); // eat 'func'/'Func'
+
+  std::unique_ptr<syntax::TemplateExpr> templ = nullptr;
+  if (lex.currentToken() == lexer::tok_obrace_template) {
+    // Template
+    templ = _parsePrimaryTemplate(lex);
+    if (!templ) return nullptr;
+  }
+
+  lexer::Token idTok;
+  if (!parser::match(lex, &idTok, lexer::tok_id)) return nullptr;
+
+  if (lex.currentToken() == lexer::tok_obrace) {
+    // Function parameters
+  }
+
+  if (lex.currentToken() == lexer::op_decl) {
+    // Return type
+    lex.nextToken(); // eat :
+  }
 }
 
 static std::vector<std::unique_ptr<syntax::Expr>> _parseInherited(
     lexer::Lexer &lex, bool &error) noexcept {
   error = false;
 
-  if (lex.currentToken() != lexer::tok_op
-      || lex.currentToken().getOperator() != lexer::op_tcast)
+  if (lex.currentToken() != lexer::op_tcast)
     return std::vector<std::unique_ptr<syntax::Expr>>();
 
   lex.nextToken(); // eat ::
