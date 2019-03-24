@@ -129,6 +129,7 @@ static std::size_t _getPrecedenceBinary(OperatorType op) noexcept {
     case op_asg_mod:
     case op_asg_lsh:
     case op_asg_rsh:
+    case op_impl:
       return 3;
     case op_lor:
       return 4;

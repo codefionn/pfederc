@@ -92,6 +92,8 @@ namespace feder {
       op_lt,  //!< \<
       op_gt,  //!< \>
 
+      op_impl, //!< =\>
+
       op_band, //!< &
       op_bxor, //!< ^
       op_bor,  //!< |
