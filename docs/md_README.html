@@ -71,7 +71,8 @@ $(function() {
 <h2>Build</h2>
 <p>Build Release target:</p>
 <div class="fragment"><div class="line">mkdir build ; cd build</div><div class="line">cmake -DCMAKE_BUILD_TYPE=Release .. ; cmake --build . -j</div></div><!-- fragment --><p>Testing:</p>
-<div class="fragment"><div class="line">cd build/test</div><div class="line">ctest</div></div><!-- fragment --><h2>Documentation</h2>
+<div class="fragment"><div class="line">cd build/test</div><div class="line">ctest</div></div><!-- fragment --><p>Docker:</p>
+<div class="fragment"><div class="line">docker build -t pfederc .</div></div><!-- fragment --><h2>Documentation</h2>
 <p>Online at [<a href="https://codefionn.github.io/pfederc">https://codefionn.github.io/pfederc</a>]. Build and open with:</p>
 <div class="fragment"><div class="line">doxygen .doxyconf</div><div class="line">xdg-open docs/index.html</div></div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->

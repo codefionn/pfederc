@@ -19,6 +19,12 @@ cd build/test
 ctest
 ```
 
+Docker:
+
+```bash
+docker build -t pfederc .
+```
+
 ## Documentation
 
 Online at [https://codefionn.github.io/pfederc]. Build and open with:
