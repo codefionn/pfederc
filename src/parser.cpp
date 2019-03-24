@@ -82,13 +82,21 @@ static lexer::OperatorType _getOperatorType(lexer::Token &opTok) {
 }
 
 std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
-    std::unique_ptr<syntax::Expr> lhs, std::size_t prec) noexcept {
+    std::unique_ptr<syntax::Expr> lhs, std::size_t prec,
+        bool parseFunctionDecl) noexcept {
 
   lexer::Token curtok;
 
   // https://en.wikipedia.org/wiki/Operator-precedence_parser
   while (_isBinaryOperator(curtok = lex.currentToken())
       && curtok.getPrecedence() >= prec) {
+
+    if (parseFunctionDecl
+        && lex.currentToken() == lexer::tok_op
+        && lex.currentToken().getOperator() == lexer::op_comma) {
+      break;
+    }
+
     lexer::Token opTok = lex.currentToken(); // Operator token
     if (_parseRHSRightUnary(lex, opTok, lhs)) continue;
 
@@ -101,8 +109,16 @@ std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
         && (curtok.getPrecedence() > opTok.getPrecedence()
           || (curtok.isRightAssociative()
             && curtok.getPrecedence() == opTok.getPrecedence()))) {
+
+      if (parseFunctionDecl
+          && lex.currentToken() == lexer::tok_op
+          && lex.currentToken().getOperator() == lexer::op_comma) {
+        break;
+      }
+
       if (_parseRHSRightUnary(lex, curtok, rhs)) continue;
-      rhs = parseRHS(lex, std::move(rhs), curtok.getPrecedence());
+      rhs = parseRHS(lex, std::move(rhs), curtok.getPrecedence(),
+          parseFunctionDecl);
     }
 
     lhs = std::make_unique<syntax::BiOpExpr>(
@@ -114,11 +130,13 @@ std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
 }
 
 std::unique_ptr<syntax::Expr> parser::parse(lexer::Lexer &lex,
-    std::size_t prec) noexcept {
+    std::size_t prec,
+    bool parseFunctionDecl) noexcept {
   std::unique_ptr<syntax::Expr> primaryExpr = parser::parsePrimary(lex);
   if (!primaryExpr) return nullptr;
 
-  return parser::parseRHS(lex, std::move(primaryExpr), prec);
+  return parser::parseRHS(lex, std::move(primaryExpr), prec,
+      parseFunctionDecl);
 }
 
 std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Lexer &lex,

@@ -21,7 +21,8 @@ namespace feder {
      * \param prec Minimal operator precedence.
      */
     std::unique_ptr<syntax::Expr> parseRHS(lexer::Lexer &lexer,
-        std::unique_ptr<syntax::Expr> lhs, std::size_t prec) noexcept;
+        std::unique_ptr<syntax::Expr> lhs, std::size_t prec,
+        bool parseFunctionDecl = false) noexcept;
 
     /*!\brief Parse primary expresion + optional operator where prec is passed
      * to parseRHS.
@@ -30,7 +31,8 @@ namespace feder {
      * \see parseRHS
      */
     std::unique_ptr<syntax::Expr> parse(lexer::Lexer &lexer,
-        std::size_t prec = 0) noexcept;
+        std::size_t prec = 0,
+        bool parseFunctionDecl = false) noexcept;
 
     /*!\brief Parse program lines.
      * \param lexer

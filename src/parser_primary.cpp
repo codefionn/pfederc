@@ -138,7 +138,6 @@ static std::unique_ptr<syntax::TraitExpr> _parsePrimaryTrait(lexer::Lexer &lex) 
   lexer::Position pos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'trait'
 
-
   lexer::Token idTok;
   if (!parser::match(lex, &idTok, lexer::tok_id))
     return nullptr;

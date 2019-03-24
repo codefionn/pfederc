@@ -88,12 +88,12 @@ Functions</h2></td></tr>
 std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#a4358be534a56e4b090de543aff3e1a29">feder::parser::parsePrimary</a> (lexer::Lexer &amp;lexer) noexcept</td></tr>
 <tr class="memdesc:a4358be534a56e4b090de543aff3e1a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary token. <br /></td></tr>
 <tr class="separator:a4358be534a56e4b090de543aff3e1a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aa445703591bed7ebaa565bbe23fd56"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#a2aa445703591bed7ebaa565bbe23fd56">feder::parser::parseRHS</a> (lexer::Lexer &amp;lexer, std::unique_ptr&lt; syntax::Expr &gt; lhs, std::size_t prec) noexcept</td></tr>
-<tr class="memdesc:a2aa445703591bed7ebaa565bbe23fd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse RHS expression of binary operator.  <a href="parser_8hpp.html#a2aa445703591bed7ebaa565bbe23fd56">More...</a><br /></td></tr>
-<tr class="separator:a2aa445703591bed7ebaa565bbe23fd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef0bbac52a27c01a529521a0a89d4368"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#aef0bbac52a27c01a529521a0a89d4368">feder::parser::parse</a> (lexer::Lexer &amp;lexer, std::size_t prec=0) noexcept</td></tr>
-<tr class="memdesc:aef0bbac52a27c01a529521a0a89d4368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary expresion + optional operator where prec is passed to parseRHS.  <a href="parser_8hpp.html#aef0bbac52a27c01a529521a0a89d4368">More...</a><br /></td></tr>
-<tr class="separator:aef0bbac52a27c01a529521a0a89d4368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75fc20f073b098e42a667a7ff35374ab"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#a75fc20f073b098e42a667a7ff35374ab">feder::parser::parseRHS</a> (lexer::Lexer &amp;lexer, std::unique_ptr&lt; syntax::Expr &gt; lhs, std::size_t prec, bool parseFunctionDecl=false) noexcept</td></tr>
+<tr class="memdesc:a75fc20f073b098e42a667a7ff35374ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse RHS expression of binary operator.  <a href="parser_8hpp.html#a75fc20f073b098e42a667a7ff35374ab">More...</a><br /></td></tr>
+<tr class="separator:a75fc20f073b098e42a667a7ff35374ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0633d2fdba0a50678ca5e2486e2b071"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#af0633d2fdba0a50678ca5e2486e2b071">feder::parser::parse</a> (lexer::Lexer &amp;lexer, std::size_t prec=0, bool parseFunctionDecl=false) noexcept</td></tr>
+<tr class="memdesc:af0633d2fdba0a50678ca5e2486e2b071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary expresion + optional operator where prec is passed to parseRHS.  <a href="parser_8hpp.html#af0633d2fdba0a50678ca5e2486e2b071">More...</a><br /></td></tr>
+<tr class="separator:af0633d2fdba0a50678ca5e2486e2b071"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad024ae49b00817415a480dd44cbe695a"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Program &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#ad024ae49b00817415a480dd44cbe695a">feder::parser::parseProgram</a> (lexer::Lexer &amp;lexer, bool topLevel=true) noexcept</td></tr>
 <tr class="memdesc:ad024ae49b00817415a480dd44cbe695a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse program lines.  <a href="parser_8hpp.html#ad024ae49b00817415a480dd44cbe695a">More...</a><br /></td></tr>
 <tr class="separator:ad024ae49b00817415a480dd44cbe695a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,8 +164,8 @@ std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign=
 
 </div>
 </div>
-<a id="file_aef0bbac52a27c01a529521a0a89d4368"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_aef0bbac52a27c01a529521a0a89d4368">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="file_af0633d2fdba0a50678ca5e2486e2b071"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_af0633d2fdba0a50678ca5e2486e2b071">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,13 @@ std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign=
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>prec</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>prec</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>parseFunctionDecl</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -256,8 +262,8 @@ std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign=
 
 </div>
 </div>
-<a id="file_a2aa445703591bed7ebaa565bbe23fd56"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a2aa445703591bed7ebaa565bbe23fd56">&#9670;&nbsp;</a></span>parseRHS()</h2>
+<a id="file_a75fc20f073b098e42a667a7ff35374ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a75fc20f073b098e42a667a7ff35374ab">&#9670;&nbsp;</a></span>parseRHS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +287,13 @@ std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign=
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>prec</em>&#160;</td>
+          <td class="paramname"><em>prec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>parseFunctionDecl</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
