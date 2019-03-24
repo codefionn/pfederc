@@ -71,7 +71,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classfeder_1_1lexer_1_1Position-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">feder::lexer::Position Class Reference</div>  </div>
+<div class="title">feder::lexer::Position Class Reference<div class="ingroups"><a class="el" href="group__lexer.html">Lexical analysis</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -82,396 +82,38 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a02a4542ca91742c49ff799480a542ffd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#a02a4542ca91742c49ff799480a542ffd">Position</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *lexer, size_t columnStart, size_t columnEnd, size_t lineStart, size_t lineEnd) noexcept</td></tr>
-<tr class="memdesc:a02a4542ca91742c49ff799480a542ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes code position reference.  <a href="#a02a4542ca91742c49ff799480a542ffd">More...</a><br /></td></tr>
-<tr class="separator:a02a4542ca91742c49ff799480a542ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01775f526eea70a3bc955eace64907f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#a01775f526eea70a3bc955eace64907f7">Position</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *lexer, size_t columnStart, size_t columnEnd, size_t line) noexcept</td></tr>
-<tr class="memdesc:a01775f526eea70a3bc955eace64907f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes code position reference.  <a href="#a01775f526eea70a3bc955eace64907f7">More...</a><br /></td></tr>
-<tr class="separator:a01775f526eea70a3bc955eace64907f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78e278f9929015146cf67b1ffb8ce490"><td class="memItemLeft" align="right" valign="top"><a id="a78e278f9929015146cf67b1ffb8ce490"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#a78e278f9929015146cf67b1ffb8ce490">Position</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos) noexcept</td></tr>
-<tr class="memdesc:a78e278f9929015146cf67b1ffb8ce490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy-constructor. <br /></td></tr>
-<tr class="separator:a78e278f9929015146cf67b1ffb8ce490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4fbc65c331a67684f57e244dba4c5ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#ae4fbc65c331a67684f57e244dba4c5ae">Position</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos0, const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos1) noexcept</td></tr>
-<tr class="memdesc:ae4fbc65c331a67684f57e244dba4c5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merges position pos0 and pos1 (the resulting <a class="el" href="classfeder_1_1lexer_1_1Position.html" title="Class for referencing code position.">Position</a> is the maximal marked area between pos0 and pos1). If lexer of pos0 and pos1 is not the same, the new position will be a copy of pos0.  <a href="#ae4fbc65c331a67684f57e244dba4c5ae">More...</a><br /></td></tr>
-<tr class="separator:ae4fbc65c331a67684f57e244dba4c5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2e85c3c9c6684391d6da2d9e0351122"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#ad2e85c3c9c6684391d6da2d9e0351122">getLexer</a> () noexcept</td></tr>
-<tr class="separator:ad2e85c3c9c6684391d6da2d9e0351122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2d73891a8d26130b43a665a851d82c7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#ad2d73891a8d26130b43a665a851d82c7">getLexer</a> () const noexcept</td></tr>
-<tr class="separator:ad2d73891a8d26130b43a665a851d82c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0226adbef5d3077e5ec633316a1f6034"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#a0226adbef5d3077e5ec633316a1f6034">getColumnStart</a> () const noexcept</td></tr>
-<tr class="separator:a0226adbef5d3077e5ec633316a1f6034"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fb709d7baac61a029dce38c9de238e1"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#a4fb709d7baac61a029dce38c9de238e1">getColumnEnd</a> () const noexcept</td></tr>
-<tr class="separator:a4fb709d7baac61a029dce38c9de238e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7a41c8c30ebea0acbea757a05e67f01"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#ad7a41c8c30ebea0acbea757a05e67f01">getLineStart</a> () const noexcept</td></tr>
-<tr class="separator:ad7a41c8c30ebea0acbea757a05e67f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a358a699f5812ff9a4458674bbacd49a2"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#a358a699f5812ff9a4458674bbacd49a2">getLineEnd</a> () const noexcept</td></tr>
-<tr class="separator:a358a699f5812ff9a4458674bbacd49a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0f68ff113e450b401c15e8f0bf9fbec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Position.html#af0f68ff113e450b401c15e8f0bf9fbec">minColumn</a> () const noexcept</td></tr>
-<tr class="separator:af0f68ff113e450b401c15e8f0bf9fbec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02a4542ca91742c49ff799480a542ffd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga02a4542ca91742c49ff799480a542ffd">Position</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *lexer, size_t columnStart, size_t columnEnd, size_t lineStart, size_t lineEnd) noexcept</td></tr>
+<tr class="memdesc:ga02a4542ca91742c49ff799480a542ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes code position reference.  <a href="group__lexer.html#ga02a4542ca91742c49ff799480a542ffd">More...</a><br /></td></tr>
+<tr class="separator:ga02a4542ca91742c49ff799480a542ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga01775f526eea70a3bc955eace64907f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga01775f526eea70a3bc955eace64907f7">Position</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *lexer, size_t columnStart, size_t columnEnd, size_t line) noexcept</td></tr>
+<tr class="memdesc:ga01775f526eea70a3bc955eace64907f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes code position reference.  <a href="group__lexer.html#ga01775f526eea70a3bc955eace64907f7">More...</a><br /></td></tr>
+<tr class="separator:ga01775f526eea70a3bc955eace64907f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78e278f9929015146cf67b1ffb8ce490"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga78e278f9929015146cf67b1ffb8ce490">Position</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos) noexcept</td></tr>
+<tr class="memdesc:ga78e278f9929015146cf67b1ffb8ce490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy-constructor. <br /></td></tr>
+<tr class="separator:ga78e278f9929015146cf67b1ffb8ce490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4fbc65c331a67684f57e244dba4c5ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gae4fbc65c331a67684f57e244dba4c5ae">Position</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos0, const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos1) noexcept</td></tr>
+<tr class="memdesc:gae4fbc65c331a67684f57e244dba4c5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merges position pos0 and pos1 (the resulting <a class="el" href="classfeder_1_1lexer_1_1Position.html" title="Class for referencing code position.">Position</a> is the maximal marked area between pos0 and pos1). If lexer of pos0 and pos1 is not the same, the new position will be a copy of pos0.  <a href="group__lexer.html#gae4fbc65c331a67684f57e244dba4c5ae">More...</a><br /></td></tr>
+<tr class="separator:gae4fbc65c331a67684f57e244dba4c5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad2e85c3c9c6684391d6da2d9e0351122"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gad2e85c3c9c6684391d6da2d9e0351122">getLexer</a> () noexcept</td></tr>
+<tr class="separator:gad2e85c3c9c6684391d6da2d9e0351122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad2d73891a8d26130b43a665a851d82c7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gad2d73891a8d26130b43a665a851d82c7">getLexer</a> () const noexcept</td></tr>
+<tr class="separator:gad2d73891a8d26130b43a665a851d82c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0226adbef5d3077e5ec633316a1f6034"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga0226adbef5d3077e5ec633316a1f6034">getColumnStart</a> () const noexcept</td></tr>
+<tr class="separator:ga0226adbef5d3077e5ec633316a1f6034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4fb709d7baac61a029dce38c9de238e1"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga4fb709d7baac61a029dce38c9de238e1">getColumnEnd</a> () const noexcept</td></tr>
+<tr class="separator:ga4fb709d7baac61a029dce38c9de238e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad7a41c8c30ebea0acbea757a05e67f01"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gad7a41c8c30ebea0acbea757a05e67f01">getLineStart</a> () const noexcept</td></tr>
+<tr class="separator:gad7a41c8c30ebea0acbea757a05e67f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga358a699f5812ff9a4458674bbacd49a2"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga358a699f5812ff9a4458674bbacd49a2">getLineEnd</a> () const noexcept</td></tr>
+<tr class="separator:ga358a699f5812ff9a4458674bbacd49a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf0f68ff113e450b401c15e8f0bf9fbec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gaf0f68ff113e450b401c15e8f0bf9fbec">minColumn</a> () const noexcept</td></tr>
+<tr class="separator:gaf0f68ff113e450b401c15e8f0bf9fbec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for referencing code position. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1lexer_1_1Lexer.html" title="Describing a lexer instance (e.g. a file).">Lexer</a> </dd></dl>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a02a4542ca91742c49ff799480a542ffd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02a4542ca91742c49ff799480a542ffd">&#9670;&nbsp;</a></span>Position() <span class="overload">[1/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">feder::lexer::Position::Position </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *&#160;</td>
-          <td class="paramname"><em>lexer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>columnStart</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>columnEnd</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>lineStart</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>lineEnd</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initializes code position reference. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lexer</td><td>Where the position is referenced from. </td></tr>
-    <tr><td class="paramname">columnStart</td><td></td></tr>
-    <tr><td class="paramname">columnEnd</td><td></td></tr>
-    <tr><td class="paramname">lineStart</td><td></td></tr>
-    <tr><td class="paramname">lineEnd</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a01775f526eea70a3bc955eace64907f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01775f526eea70a3bc955eace64907f7">&#9670;&nbsp;</a></span>Position() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">feder::lexer::Position::Position </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a> *&#160;</td>
-          <td class="paramname"><em>lexer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>columnStart</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>columnEnd</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>line</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initializes code position reference. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lexer</td><td>Where the position is referenced from. </td></tr>
-    <tr><td class="paramname">columnStart</td><td></td></tr>
-    <tr><td class="paramname">columnEnd</td><td></td></tr>
-    <tr><td class="paramname">line</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ae4fbc65c331a67684f57e244dba4c5ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4fbc65c331a67684f57e244dba4c5ae">&#9670;&nbsp;</a></span>Position() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">feder::lexer::Position::Position </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>pos0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>pos1</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Merges position pos0 and pos1 (the resulting <a class="el" href="classfeder_1_1lexer_1_1Position.html" title="Class for referencing code position.">Position</a> is the maximal marked area between pos0 and pos1). If lexer of pos0 and pos1 is not the same, the new position will be a copy of pos0. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pos0</td><td></td></tr>
-    <tr><td class="paramname">pos1</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4fb709d7baac61a029dce38c9de238e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fb709d7baac61a029dce38c9de238e1">&#9670;&nbsp;</a></span>getColumnEnd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::size_t feder::lexer::Position::getColumnEnd </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Returns last column of the marked area. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1lexer_1_1Position.html#a0226adbef5d3077e5ec633316a1f6034">getColumnStart</a> </dd></dl>
-
-</div>
-</div>
-<a id="a0226adbef5d3077e5ec633316a1f6034"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0226adbef5d3077e5ec633316a1f6034">&#9670;&nbsp;</a></span>getColumnStart()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::size_t feder::lexer::Position::getColumnStart </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Returns first column of the marked area. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1lexer_1_1Position.html#a4fb709d7baac61a029dce38c9de238e1">getColumnEnd</a> </dd></dl>
-
-</div>
-</div>
-<a id="ad2e85c3c9c6684391d6da2d9e0351122"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2e85c3c9c6684391d6da2d9e0351122">&#9670;&nbsp;</a></span>getLexer() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a>* feder::lexer::Position::getLexer </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Where to find the referenced position. </dd></dl>
-
-</div>
-</div>
-<a id="ad2d73891a8d26130b43a665a851d82c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2d73891a8d26130b43a665a851d82c7">&#9670;&nbsp;</a></span>getLexer() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="classfeder_1_1lexer_1_1Lexer.html">Lexer</a>* feder::lexer::Position::getLexer </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Where to find the referenced position (const). </dd></dl>
-
-</div>
-</div>
-<a id="a358a699f5812ff9a4458674bbacd49a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a358a699f5812ff9a4458674bbacd49a2">&#9670;&nbsp;</a></span>getLineEnd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::size_t feder::lexer::Position::getLineEnd </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Returns last line of the marked area. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1lexer_1_1Position.html#ad7a41c8c30ebea0acbea757a05e67f01">getLineStart</a> </dd></dl>
-
-</div>
-</div>
-<a id="ad7a41c8c30ebea0acbea757a05e67f01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7a41c8c30ebea0acbea757a05e67f01">&#9670;&nbsp;</a></span>getLineStart()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::size_t feder::lexer::Position::getLineStart </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Returns first line of the marked area. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1lexer_1_1Position.html#a358a699f5812ff9a4458674bbacd49a2">getLineEnd</a> </dd></dl>
-
-</div>
-</div>
-<a id="af0f68ff113e450b401c15e8f0bf9fbec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0f68ff113e450b401c15e8f0bf9fbec">&#9670;&nbsp;</a></span>minColumn()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> feder::lexer::Position::minColumn </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Returns position where 1 is substracted from columnEnd. If columnStart is greater than columnEnd, 1 will also be substracted from columnStart. </dd></dl>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/feder/<a class="el" href="lexer_8hpp_source.html">lexer.hpp</a></li>
 </ul>
 </div><!-- contents -->

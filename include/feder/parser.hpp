@@ -9,8 +9,17 @@
 #include "feder/lexer.hpp"
 #include "feder/syntax.hpp"
 
+/*!\defgroup parser Syntactic analysis/Parser
+ */
+
 namespace feder {
   namespace parser {
+    /*!\addtogroup parser
+     * \brief Syntactic analysis/Parser.
+     *
+     *\{
+     */
+
     /*!\brief Parse primary token.
      */
     std::unique_ptr<syntax::Expr> parsePrimary(lexer::Lexer &lexer) noexcept;
@@ -54,6 +63,8 @@ namespace feder {
     bool match(lexer::Lexer &lex,
         lexer::Token *tok, lexer::TokenType tokType,
         lexer::OperatorType opType = lexer::op_asg) noexcept;
+
+    /*!\} */
   } // end namespace parser
 } // end namespace feder
 

@@ -12,8 +12,17 @@
  * \brief Syntax expressions.
  */
 
+/*!\defgroup syntax Syntactic analysis results
+ */
+
 namespace feder {
   namespace syntax {
+    /*!\addtogroup syntax
+     * \brief Contains syntactic elements required by the parser.
+     *
+     * \{
+     */
+
     class Program;
     class Expr;
     class IdExpr;
@@ -710,6 +719,8 @@ namespace feder {
      */
     std::unique_ptr<Expr> reportSyntaxError(lexer::Lexer &lexer,
         const lexer::Position &pos, const std::string &msg) noexcept;
+
+    /*!\} */
   } // end namespace syntax
 } // end namespace feder
 

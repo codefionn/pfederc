@@ -5,10 +5,19 @@
  * \brief Lexical analysis/Tokenizer.
  */
 
+/*!\defgroup lexer Lexical analysis
+ */
+
 #include "feder/global.hpp"
 
 namespace feder {
   namespace lexer {
+    /*!\addtogroup lexer
+     * \brief Semantics for lexical analysis/tokenizer.
+     *
+     * \{
+     */
+
     /*!\brief Token types.
      */
     enum TokenType {
@@ -577,6 +586,8 @@ namespace feder {
        */
       void reportSemanticWarning(const std::string &msg,
           const Position &pos) noexcept;
+
+      /*!\} */
     };
   } // end namespace lexer
 } // end namespace feder
