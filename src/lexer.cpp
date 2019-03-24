@@ -72,12 +72,6 @@ bool feder::lexer::isPrimaryToken(TokenType tok) noexcept {
     case tok_cbrace_template:
     case tok_delim:
     case tok_cmd:
-    case tok_class:
-    case tok_func:
-    case tok_vfunc:
-    case tok_nmsp:
-    case tok_trait:
-    case tok_op:
       return false;
   }
 
@@ -624,6 +618,8 @@ static TokenType tokenIdentifier(Lexer &lexer,
     return curtok = tok_func;
   if (str == "Func")
     return curtok = tok_vfunc;
+  if (str == "match")
+    return curtok = tok_match;
 
   if (str == "safe") {
     curop = op_safe;
@@ -1133,6 +1129,8 @@ std::string std::to_string(feder::lexer::TokenType tok) {
       return "trait";
     case tok_func:
       return "func";
+    case tok_vfunc:
+      return "Func";
     case tok_nmsp:
       return "namespace";
     case tok_if:
@@ -1143,6 +1141,8 @@ std::string std::to_string(feder::lexer::TokenType tok) {
       return "for";
     case tok_do:
       return "do";
+    case tok_match:
+      return "match";
     case tok_include:
       return "include";
     case tok_import:

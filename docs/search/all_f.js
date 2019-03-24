@@ -21,6 +21,7 @@ var searchData=
   ['tok_5fif',['tok_if',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da502a89e56d3fe825feb487810260a628',1,'feder::lexer']]],
   ['tok_5fimport',['tok_import',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da1659600cf644c4ac60a21c36eae2adec',1,'feder::lexer']]],
   ['tok_5finclude',['tok_include',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da81277337916be15c9318999eba03c577',1,'feder::lexer']]],
+  ['tok_5fmatch',['tok_match',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da174598fa7069b6a1864ad48042732ba5',1,'feder::lexer']]],
   ['tok_5fnmsp',['tok_nmsp',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da1ca343e20c52c34f5f9ce2268da84fe9',1,'feder::lexer']]],
   ['tok_5fnum',['tok_num',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da40e08d459df0d1cca52bbc38538c08e7',1,'feder::lexer']]],
   ['tok_5fobrace',['tok_obrace',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da9aa3c3d5b17d6cf94697fd9eb02dd3ce',1,'feder::lexer']]],

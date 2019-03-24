@@ -32,6 +32,7 @@ namespace feder {
       tok_else,  //!< 'else'
       tok_for,   //!< 'for'
       tok_do,    //!< 'do'
+      tok_match, //!< 'match'
 
       tok_include, //!< 'include'
       tok_import,  //!< 'import'
