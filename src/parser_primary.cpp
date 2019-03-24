@@ -80,8 +80,119 @@ static std::unique_ptr<syntax::TemplateExpr> _parsePrimaryTemplate(lexer::Lexer 
   lex.nextToken(); // eat {
 }
 
+static std::unique_ptr<syntax::FuncParamExpr> _parsePrimaryFunctionParam(lexer::Lexer &lex) noexcept {
+  auto param = parser::parse(lex, 0, true);
+  if (!param) return nullptr;
+
+  auto parampos = param->getPosition();
+  std::string name;
+  std::unique_ptr<syntax::Expr>  semanticType;
+  std::unique_ptr<syntax::Expr> guard;
+  std::unique_ptr<syntax::Expr> guardResult;
+
+  if (param->getType() == syntax::expr_biop
+      && dynamic_cast<syntax::BiOpExpr&>(*param).getOperator() == lexer::op_bor) {
+    auto &biopexpr0 = dynamic_cast<syntax::BiOpExpr&>(*param);
+    semanticType = biopexpr0.moveLHS();
+
+    if (biopexpr0.getRHS().getType() == syntax::expr_biop
+        && dynamic_cast<syntax::BiOpExpr&>(biopexpr0.getRHS()).getOperator() == lexer::op_impl) {
+      auto &biopexpr1 = dynamic_cast<syntax::BiOpExpr&>(biopexpr0.getRHS());
+      guard = biopexpr1.moveLHS();
+      guardResult = biopexpr1.moveRHS();
+    } else {
+      guard = biopexpr0.moveRHS();
+    }
+  } else {
+    semanticType = std::move(param);
+  }
+
+  if (semanticType->getType() == syntax::expr_biop
+      && dynamic_cast<syntax::BiOpExpr&>(*semanticType).getOperator() == lexer::op_decl) {
+    auto &biopexpr = dynamic_cast<syntax::BiOpExpr&>(*semanticType);
+    if (biopexpr.getLHS().getType() != syntax::expr_id) {
+      syntax::reportSyntaxError(lex,
+          biopexpr.getLHS().getPosition(),
+          "Expected identifier.");
+      return nullptr;
+    }
+
+    name = dynamic_cast<syntax::IdExpr&>(biopexpr.getLHS()).getIdentifier();
+    semanticType = biopexpr.moveRHS();
+  } else {
+    name = "_"; // == no name
+  }
+
+  return std::make_unique<syntax::FuncParamExpr>(
+      parampos, name,
+      std::move(semanticType), std::move(guard), std::move(guardResult));
+}
+
+static std::vector<std::unique_ptr<syntax::FuncParamExpr>> _parsePrimaryFunctionParams(lexer::Lexer &lex, bool &err) noexcept {
+  err = false;
+
+  std::vector<std::unique_ptr<syntax::FuncParamExpr>> result;
+
+  if (lex.currentToken() != lexer::tok_obrace) return result;
+  lex.nextToken(); // eat (
+
+  while (lex.currentToken() != lexer::tok_cbrace
+      && lex.currentToken() != lexer::tok_eof) {
+
+    if (result.size() > 0) {
+      if (lex.currentToken() != lexer::op_comma) {
+        err = true;
+        syntax::reportSyntaxError(lex,
+            lex.currentToken().getPosition(),
+            "Expected tokens ',' or ')'.");
+        return result;
+      }
+
+      lex.nextToken(); // eat ,
+    }
+
+    auto param = _parsePrimaryFunctionParam(lex);
+    if (!param) {
+      err = true;
+      return result;
+    }
+
+    result.push_back(std::move(param));
+  }
+
+  if (!parser::match(lex, nullptr, lexer::tok_cbrace)) {
+    err = true;
+    return result;
+  }
+
+  return result;
+}
+
+static std::vector<std::string> _parsePrimaryFunctionName(lexer::Lexer &lex, bool &err) noexcept {
+  err = false;
+
+  std::vector<std::string> result;
+  if (lex.currentToken() == lexer::tok_id) {
+    result.push_back(lex.currentToken().getString());
+    lex.nextToken(); // eat id
+    while (lex.currentToken() == lexer::op_mem) {
+      lex.nextToken(); // eat .
+
+      lexer::Token tokid;
+      if (!parser::match(lex, &tokid, lexer::tok_id)) {
+        err = true;
+        return result;
+      }
+
+      result.push_back(tokid.getString());
+    }
+  }
+
+  return result;
+}
+
 static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex) noexcept {
-   lexer::Position pos = lex.currentToken().getPosition();
+  lexer::Position pos = lex.currentToken().getPosition();
   bool virtualFunc = lex.currentToken() == lexer::tok_vfunc;
   lex.nextToken(); // eat 'func'/'Func'
 
@@ -92,17 +203,72 @@ static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex
     if (!templ) return nullptr;
   }
 
-  lexer::Token idTok;
-  if (!parser::match(lex, &idTok, lexer::tok_id)) return nullptr;
+  bool funcNameErr;
+  auto funcname = _parsePrimaryFunctionName(lex, funcNameErr);
+  if (funcNameErr) return nullptr; // error forwarding
 
+  std::vector<std::unique_ptr<syntax::FuncParamExpr>> params;
   if (lex.currentToken() == lexer::tok_obrace) {
     // Function parameters
+    bool errorParams;
+    params = _parsePrimaryFunctionParams(lex, errorParams);
+    if (errorParams) return nullptr;
   }
 
+  std::unique_ptr<syntax::Expr> resultType;
   if (lex.currentToken() == lexer::op_decl) {
     // Return type
     lex.nextToken(); // eat :
+
+    resultType = parser::parse(lex);
+    if (!resultType) return nullptr; // error forwarding
   }
+
+  if (funcname.size() == 0) {
+    if (virtualFunc) {
+      syntax::reportSyntaxError(lex,
+          pos, "Function types mustn't be virtual functions.");
+      return nullptr;
+    }
+
+    if (templ) {
+      syntax::reportSyntaxError(lex,
+          templ->getPosition(), "Function types mustn't have a tempalte.");
+      return nullptr;
+    }
+
+    // Type
+    return std::make_unique<syntax::FuncExpr>(
+        pos, funcname,
+        nullptr, std::move(resultType), std::move(params), nullptr, false);
+  }
+
+  if (lex.currentToken() == lexer::tok_delim) {
+    if (funcname.size() != 1) {
+      syntax::reportSyntaxError(lex, pos,
+          "Reference name of declared function must be just 1 identifier.");
+      return nullptr;
+    }
+
+    // Declared (but not defined function)
+    return std::make_unique<syntax::FuncExpr>(
+        pos, funcname,
+        std::move(templ), std::move(resultType),
+        std::move(params), nullptr, virtualFunc);
+  }
+
+  if (!parser::match(lex, nullptr, lexer::tok_eol)) return nullptr;
+
+  // Defined
+  auto program = parser::parseProgram(lex, false);
+  if (!program) return nullptr;
+
+  if (!parser::match(lex, nullptr, lexer::tok_delim)) return nullptr;
+
+  return std::make_unique<syntax::FuncExpr>(
+      pos, funcname,
+      std::move(templ), std::move(resultType),
+      std::move(params), std::move(program), virtualFunc);
 }
 
 static std::vector<std::unique_ptr<syntax::Expr>> _parseInherited(

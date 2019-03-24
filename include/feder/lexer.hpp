@@ -401,14 +401,14 @@ namespace feder {
       /*!\return Returns true, if getType() is operator and operator
        * equals type, otherwise false is returned.
        */
-      bool operator ==(OperatorType type) const noexcept
-      { return getType() == tok_op && getOperator() == type; }
+      bool operator ==(OperatorType optype) const noexcept
+      { return getType() == lexer::tok_op && getOperator() == optype; }
 
       /*!\return Returns false, if getType() is not operator or operator
        * isn't type, otherwise true is returned.
        */
       bool operator !=(OperatorType type) const noexcept
-      { return getType() != tok_op || getOperator() != type; }
+      { return getType() != lexer::tok_op || getOperator() != type; }
     };
 
     /*!\brief Describing a lexer instance (e.g. a file).

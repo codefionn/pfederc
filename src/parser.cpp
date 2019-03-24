@@ -91,9 +91,7 @@ std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
   while (_isBinaryOperator(curtok = lex.currentToken())
       && curtok.getPrecedence() >= prec) {
 
-    if (parseFunctionDecl && lex.currentToken() == lexer::op_comma) {
-      break;
-    }
+    if (parseFunctionDecl && lex.currentToken() == lexer::op_comma) break;
 
     lexer::Token opTok = lex.currentToken(); // Operator token
     if (_parseRHSRightUnary(lex, opTok, lhs)) continue;
@@ -108,9 +106,7 @@ std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
           || (curtok.isRightAssociative()
             && curtok.getPrecedence() == opTok.getPrecedence()))) {
 
-      if (parseFunctionDecl && lex.currentToken() == lexer::op_comma) {
-        break;
-      }
+      if (parseFunctionDecl && lex.currentToken() == lexer::op_comma) break;
 
       if (_parseRHSRightUnary(lex, curtok, rhs)) continue;
       rhs = parseRHS(lex, std::move(rhs), curtok.getPrecedence(),

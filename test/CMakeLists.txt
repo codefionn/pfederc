@@ -36,7 +36,22 @@ add_test(parseline_num_braces parseline "(1)")
 add_test(parseline_fncall parseline "hello()")
 add_test(parseline_indexcall parseline "hello[]")
 
-# Test Precedence
+## Functions
+add_test(parseline_fn00 parseline "func hello ;")
+add_test(parseline_fn01 parseline "func hello : hellot ;")
+add_test(parseline_fn02 parseline "func hello(param : hellot) : hellot ;")
+add_test(parseline_fn03 parseline "func hello(param0 : hellot0, param1 : hellot1) : hellot ;")
+add_test(parseline_fn04 parseline "func hello(param0 : hellot0, param1 : hellot1, param2 : hellot2) : hellot ;")
+add_test(parseline_fn05 parseline "func hello\nhello()\n;")
+add_test(parseline_fn06 parseline "func hello : hellot\nhello(helloval)\n;")
+add_test(parseline_fn07 parseline "func hello(param : hellot) : hellot\nhello(param)\n;")
+add_test(parseline_fn07 parseline "func hello(param0 : hellot0, param1 : hellot1) : hellot\nhello(param0)\nhello(param1)\n;")
+add_test(parseline_fn08 parseline "func")
+add_test(parseline_fn09 parseline "func : hellot")
+add_test(parseline_fn10 parseline "func (param : hellot) : hellot")
+add_test(parseline_fn11 parseline "func (param0 : hellot0, param1 : hellot1) : hellot")
+
+## Test Precedence
 add_test(parseline_prec0 parseline "1 + 2")
 set_tests_properties(parseline_prec0 PROPERTIES PASS_REGULAR_EXPRESSION
   "^\\(1 \\+ 2\\)\n$")
