@@ -72,6 +72,12 @@ bool feder::lexer::isPrimaryToken(TokenType tok) noexcept {
     case tok_cbrace_template:
     case tok_delim:
     case tok_cmd:
+    case tok_class:
+    case tok_func:
+    case tok_vfunc:
+    case tok_nmsp:
+    case tok_trait:
+    case tok_op:
       return false;
   }
 
@@ -591,6 +597,8 @@ static TokenType tokenIdentifier(Lexer &lexer,
     return curtok = tok_trait;
   if (str == "func")
     return curtok = tok_func;
+  if (str == "Func")
+    return curtok = tok_vfunc;
 
   if (str == "safe") {
     curop = op_safe;

@@ -16,6 +16,7 @@ namespace feder {
       tok_enum,  //!< 'enum'
       tok_trait, //!< 'trait'
       tok_func,  //!< 'func'
+      tok_vfunc, //!< 'Func'
       tok_nmsp,  //!< 'namespace'
 
       tok_if,    //!< 'if'

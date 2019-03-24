@@ -92,9 +92,11 @@ Inheritance diagram for feder::syntax::FuncExpr:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aadd9924ef2232de010c9aa034b732ace"><td class="memItemLeft" align="right" valign="top"><a id="aadd9924ef2232de010c9aa034b732ace"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>FuncExpr</b> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, const std::string &amp;name, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html">TemplateExpr</a> &gt; templ, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; returnType, std::vector&lt; std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1FuncParamExpr.html">FuncParamExpr</a> &gt;&gt; params, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; program) noexcept</td></tr>
-<tr class="separator:aadd9924ef2232de010c9aa034b732ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a103b1fd82e41fdc5154c9d8de3ff8d99"><td class="memItemLeft" align="right" valign="top"><a id="a103b1fd82e41fdc5154c9d8de3ff8d99"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>FuncExpr</b> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, const std::string &amp;name, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html">TemplateExpr</a> &gt; templ, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; returnType, std::vector&lt; std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1FuncParamExpr.html">FuncParamExpr</a> &gt;&gt; params, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; program, bool virtualFunc) noexcept</td></tr>
+<tr class="separator:a103b1fd82e41fdc5154c9d8de3ff8d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52a7d21e44d202417d594acf5cb24ac7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a52a7d21e44d202417d594acf5cb24ac7">isVirtual</a> () const noexcept</td></tr>
+<tr class="separator:a52a7d21e44d202417d594acf5cb24ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3fa80a20922d42e1153c0963dc124fd"><td class="memItemLeft" align="right" valign="top"><a id="ab3fa80a20922d42e1153c0963dc124fd"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasTemplate</b> () const noexcept</td></tr>
 <tr class="separator:ab3fa80a20922d42e1153c0963dc124fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -361,6 +363,32 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns !isDeclared(). </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#ab1a15f8764a0864bd2aac76594483712">isDeclared</a> </dd></dl>
+
+</div>
+</div>
+<a id="a52a7d21e44d202417d594acf5cb24ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52a7d21e44d202417d594acf5cb24ac7">&#9670;&nbsp;</a></span>isVirtual()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::syntax::FuncExpr::isVirtual </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true, if function is a virtual function (starting with Func). Otherwise false is returned. </dd></dl>
 
 </div>
 </div>

@@ -10,5 +10,6 @@ var searchData=
   ['isleftassociative',['isLeftAssociative',['../lexer_8hpp.html#a825e644df86754dc3f7d5ac10cf5a46d',1,'feder::lexer']]],
   ['isprimarytoken',['isPrimaryToken',['../lexer_8hpp.html#a64f87de4631e5e50c2aed748275d9e6b',1,'feder::lexer']]],
   ['isrightassociative',['isRightAssociative',['../classfeder_1_1lexer_1_1Token.html#a07f3fe5cba22879e9aab7f99ff9e2efd',1,'feder::lexer::Token::isRightAssociative()'],['../lexer_8hpp.html#a6757a39ee5911279c100fbab20847149',1,'feder::lexer::isRightAssociative()']]],
-  ['isvalidoperatorposition',['isValidOperatorPosition',['../lexer_8hpp.html#afbef59574bfdc6216c95567ecdb4b347',1,'feder::lexer']]]
+  ['isvalidoperatorposition',['isValidOperatorPosition',['../lexer_8hpp.html#afbef59574bfdc6216c95567ecdb4b347',1,'feder::lexer']]],
+  ['isvirtual',['isVirtual',['../classfeder_1_1syntax_1_1FuncExpr.html#a52a7d21e44d202417d594acf5cb24ac7',1,'feder::syntax::FuncExpr']]]
 ];

@@ -265,14 +265,23 @@ namespace feder {
       std::unique_ptr<TemplateExpr> templ;
 
       std::unique_ptr<Program> program;
+
+      bool virtualFunc;
     public:
       FuncExpr(const lexer::Position &pos,
           const std::string &name,
           std::unique_ptr<TemplateExpr> templ,
           std::unique_ptr<Expr> returnType,
           std::vector<std::unique_ptr<FuncParamExpr>> params,
-          std::unique_ptr<Program> program) noexcept;
+          std::unique_ptr<Program> program,
+          bool virtualFunc) noexcept;
       virtual ~FuncExpr();
+
+      /*!\return Returns true, if function is a virtual function
+       * (starting with Func). Otherwise false is returned.
+       */
+      bool isVirtual() const noexcept
+      { return virtualFunc; }
 
       bool hasTemplate() const noexcept
       { return (bool) templ; }

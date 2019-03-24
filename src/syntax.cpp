@@ -72,12 +72,14 @@ FuncExpr::FuncExpr(const feder::lexer::Position &pos,
     std::unique_ptr<TemplateExpr> templ,
     std::unique_ptr<Expr> returnType,
     std::vector<std::unique_ptr<FuncParamExpr>> params,
-    std::unique_ptr<Program> program) noexcept
+    std::unique_ptr<Program> program,
+    bool virtualFunc) noexcept
     : IdExpr(expr_func, pos, name),
       templ(std::move(templ)),
       returnType(std::move(returnType)),
       params(std::move(params)),
-      program(std::move(program)) {
+      program(std::move(program)),
+      virtualFunc{virtualFunc} {
 }
 
 FuncExpr::~FuncExpr() {
