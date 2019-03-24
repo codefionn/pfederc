@@ -68,13 +68,14 @@ FuncParamExpr::~FuncParamExpr() {
 }
 
 FuncExpr::FuncExpr(const feder::lexer::Position &pos,
-    const std::string &name,
+    const std::vector<std::string> &name,
     std::unique_ptr<TemplateExpr> templ,
     std::unique_ptr<Expr> returnType,
     std::vector<std::unique_ptr<FuncParamExpr>> params,
     std::unique_ptr<Program> program,
     bool virtualFunc) noexcept
-    : IdExpr(expr_func, pos, name),
+    : Expr(expr_func, pos),
+      name(name),
       templ(std::move(templ)),
       returnType(std::move(returnType)),
       params(std::move(params)),
@@ -260,7 +261,17 @@ std::string FuncExpr::to_string() const noexcept {
   if (hasTemplate())
     result += getTemplate().to_string();
 
-  result += " " + getIdentifier();
+  if (getName().size() > 0) {
+    bool isfirst = true;
+    for (const std::string &name : getName()) {
+      if (isfirst) {
+        result += " " + name;
+        isfirst = false;
+      } else {
+        result += "." + name;
+      }
+    }
+  }
 
   if (getParameters().size() > 0) {
     result += "(";

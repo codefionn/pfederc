@@ -268,23 +268,34 @@ namespace feder {
 
     /*!\brief Function expression.
      */
-    class FuncExpr : public IdExpr {
+    class FuncExpr : public Expr {
       std::unique_ptr<Expr> returnType; //!< Can be null (optional).
       std::vector<std::unique_ptr<FuncParamExpr>> params;
       std::unique_ptr<TemplateExpr> templ;
 
       std::unique_ptr<Program> program;
 
+      std::vector<std::string> name;
+
       bool virtualFunc;
     public:
       FuncExpr(const lexer::Position &pos,
-          const std::string &name,
+          const std::vector<std::string> &name,
           std::unique_ptr<TemplateExpr> templ,
           std::unique_ptr<Expr> returnType,
           std::vector<std::unique_ptr<FuncParamExpr>> params,
           std::unique_ptr<Program> program,
           bool virtualFunc) noexcept;
       virtual ~FuncExpr();
+
+      /*!\return Returns name of function. If empty, not a func declaration,
+       * but function type.
+       */
+      const auto &getName() const noexcept
+      { return name; }
+
+      bool isType() const noexcept
+      { return name.size() == 0; }
 
       /*!\return Returns true, if function is a virtual function
        * (starting with Func). Otherwise false is returned.
