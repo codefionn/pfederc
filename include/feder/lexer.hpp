@@ -492,7 +492,7 @@ namespace feder {
        *
        * After readLine was called, it is guaranteed, that currentChar() is
        * either EOF or EOF - 1. Also that currentLine is empty and the last
-       * line was added to lines (getLines).
+       * line was added to lines (getLines). Sets skipNewLine to false.
        */
       void readLine() noexcept;
 
@@ -589,8 +589,10 @@ namespace feder {
       void reportSemanticWarning(const std::string &msg,
           const Position &pos) noexcept;
 
-      /*!\} */
+      bool skipNewLine;
     };
+
+    /*!\} */
   } // end namespace lexer
 } // end namespace feder
 

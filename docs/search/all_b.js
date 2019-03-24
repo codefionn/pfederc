@@ -27,6 +27,7 @@ var searchData=
   ['op_5ffncall',['op_fncall',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6adc033e448153777c87ff3b0b91056da5',1,'feder::lexer']]],
   ['op_5fgeq',['op_geq',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6af1bc047ef80d2d51cd8aeec29fb036d7',1,'feder::lexer']]],
   ['op_5fgt',['op_gt',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6a6b4b2b55298f4f54d7d250de6fd3dcc9',1,'feder::lexer']]],
+  ['op_5fimpl',['op_impl',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6a9ae004a91877be01391bfc8f3d2bd7dd',1,'feder::lexer']]],
   ['op_5finc',['op_inc',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6ae905e01fb3b3910dca6873de9c919783',1,'feder::lexer']]],
   ['op_5findexcall',['op_indexcall',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6a8e16b23c0d60233cd40757fd30499090',1,'feder::lexer']]],
   ['op_5fland',['op_land',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6a4a81dd730db445d1e481754d52d7d9b4',1,'feder::lexer']]],
@@ -47,8 +48,8 @@ var searchData=
   ['op_5ftcast',['op_tcast',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6aae2779e7f67d8b5dac30d220f6ea1f73',1,'feder::lexer']]],
   ['op_5ftcheck',['op_tcheck',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6a525876ca3f44585b3b709642061fb3c4',1,'feder::lexer']]],
   ['op_5fveq',['op_veq',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6a4d4a4530b9bb4c7da648a6b7b342adec',1,'feder::lexer']]],
-  ['operator_20_21_3d',['operator !=',['../group__lexer.html#ga798b1449f466b4dc88c2cbf2fdd97469',1,'feder::lexer::Token::operator !=(TokenType type) const noexcept'],['../group__lexer.html#gad5d154ed72b5dff05f0b182d78a23114',1,'feder::lexer::Token::operator !=(OperatorType type) const noexcept']]],
-  ['operator_3d_3d',['operator==',['../group__lexer.html#gaa92cbbd5a48521867db844706dd21356',1,'feder::lexer::Token::operator==(TokenType type) const noexcept'],['../group__lexer.html#ga2262ffd94af43d6ac186d5fb4a59cfc9',1,'feder::lexer::Token::operator==(OperatorType type) const noexcept']]],
+  ['operator_20_21_3d',['operator !=',['../classfeder_1_1lexer_1_1Token.html#a798b1449f466b4dc88c2cbf2fdd97469',1,'feder::lexer::Token::operator !=(TokenType type) const noexcept'],['../classfeder_1_1lexer_1_1Token.html#ad5d154ed72b5dff05f0b182d78a23114',1,'feder::lexer::Token::operator !=(OperatorType type) const noexcept']]],
+  ['operator_3d_3d',['operator==',['../classfeder_1_1lexer_1_1Token.html#aa92cbbd5a48521867db844706dd21356',1,'feder::lexer::Token::operator==(TokenType type) const noexcept'],['../classfeder_1_1lexer_1_1Token.html#afe91ac5b571b2262dde3b9736edf27d9',1,'feder::lexer::Token::operator==(OperatorType optype) const noexcept']]],
   ['operatorposition',['OperatorPosition',['../group__lexer.html#gaffb59bed95a0a88b3ea546fd9a9fa023',1,'feder::lexer']]],
   ['operatortype',['OperatorType',['../group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6',1,'feder::lexer']]]
 ];

@@ -13,18 +13,22 @@ target_link_libraries(lexer pfederctestlib)
 
 add_test(lexer_add lexer "2 + id\n")
 set_tests_properties(lexer_add PROPERTIES PASS_REGULAR_EXPRESSION
-  "number\noperator\nidentifier\nend-of-line\n$")
+  "^number\noperator\nidentifier\nend-of-line\n$")
 
 # Check if all existing lines are read
 add_test(lexer_lines lexer "id0\nid1\nid2\n\n")
 set_tests_properties(lexer_lines PROPERTIES PASS_REGULAR_EXPRESSION
-  "identifier\nend-of-line\nidentifier\nend-of-line\nidentifier\nend-of-line\nend-of-line\n$")
+  "^identifier\nend-of-line\nidentifier\nend-of-line\nidentifier\nend-of-line\nend-of-line\n$")
+
+add_test(lexer_lines_skip0 lexer "(1) + (2)\n")
+set_tests_properties(lexer_lines_skip0 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\(\nnumber\n\\)\noperator\n\\(\nnumber\n\\)\nend-of-line\n$")
 
 # Check if operators get parsed
 add_test(lexer_operators lexer
   "++ -- += + -> -= &= && & |= || | *= * != ! === == = :: :? := : <<= << <= < >>= >> >= > ~ ^= ^ /= / %= % . ,")
 set_tests_properties(lexer_operators PROPERTIES PASS_REGULAR_EXPRESSION
-  "operator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\n$")
+  "^operator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\noperator\n$")
 
 
 # parseline
@@ -35,6 +39,9 @@ add_test(parseline_empty_braces parseline "()")
 add_test(parseline_num_braces parseline "(1)")
 add_test(parseline_fncall parseline "hello()")
 add_test(parseline_indexcall parseline "hello[]")
+
+## Skip new line
+add_test(parseline_skipline parseline "(\n 1 + \n 2)")
 
 ## Functions
 add_test(parseline_fn00 parseline "func hello ;")

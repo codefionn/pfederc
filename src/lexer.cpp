@@ -344,7 +344,8 @@ Lexer::Lexer(const std::string &name, std::istream &input)
       curchar{EOF - 2}, // -3 makes nextToken read a new char first
       lineEnd{0},
       columnEnd{0},
-      curtokval{nullptr}
+      curtokval{nullptr},
+      skipNewLine{false}
 {
 }
 
@@ -433,6 +434,8 @@ void Lexer::readLine() noexcept {
   while (nextChar() != '\n'
       && currentChar() != EOF - 1
       && currentChar() != EOF);
+
+  skipNewLine = false;
 
   if (currentChar() != EOF)
     curchar = EOF - 1; // Set to read char state
@@ -1016,7 +1019,9 @@ const Token& Lexer::nextToken() noexcept {
     return *curtokval;
   }
 
-  constructToken(); // aquire next token
+  do {
+    constructToken(); // aquire next token
+  } while (skipNewLine && curtok == lexer::tok_eol);
 
   if (curtokval) delete curtokval;
   
@@ -1041,7 +1046,6 @@ TokenType Lexer::reportLexerError(const std::string &msg) noexcept {
 
 TokenType Lexer::reportLexerError(const std::string &msg,
     const Position &pos) noexcept {
-
   readLine(); // read till EOL
   
   size_t startindex = pos.getColumnStart() - 1;

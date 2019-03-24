@@ -82,58 +82,711 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:gabd4ffdbc1fc4f5340b973f4a96da97e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gabd4ffdbc1fc4f5340b973f4a96da97e0">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a> tokenType) noexcept</td></tr>
-<tr class="memdesc:gabd4ffdbc1fc4f5340b973f4a96da97e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token.  <a href="group__lexer.html#gabd4ffdbc1fc4f5340b973f4a96da97e0">More...</a><br /></td></tr>
-<tr class="separator:gabd4ffdbc1fc4f5340b973f4a96da97e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga511e5e5c0b01aef88af9e536e0e574e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga511e5e5c0b01aef88af9e536e0e574e6">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, <a class="el" href="group__lexer.html#ga6c707104ea3baca7c4ca1c0158436f49">NumberType</a> numType, <a class="el" href="unionfeder_1_1lexer_1_1NumberValue.html">NumberValue</a> numVal) noexcept</td></tr>
-<tr class="memdesc:ga511e5e5c0b01aef88af9e536e0e574e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token with type tok_num.  <a href="group__lexer.html#ga511e5e5c0b01aef88af9e536e0e574e6">More...</a><br /></td></tr>
-<tr class="separator:ga511e5e5c0b01aef88af9e536e0e574e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga31c66e0faada0ab3434e2fc94a89139e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga31c66e0faada0ab3434e2fc94a89139e">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a> type, const std::string &amp;str) noexcept</td></tr>
-<tr class="memdesc:ga31c66e0faada0ab3434e2fc94a89139e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token with type tok_id or tok_str.  <a href="group__lexer.html#ga31c66e0faada0ab3434e2fc94a89139e">More...</a><br /></td></tr>
-<tr class="separator:ga31c66e0faada0ab3434e2fc94a89139e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab189cd7c68970d66b102e97ce026dff4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gab189cd7c68970d66b102e97ce026dff4">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, <a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a> opType) noexcept</td></tr>
-<tr class="memdesc:gab189cd7c68970d66b102e97ce026dff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token with type tok_op.  <a href="group__lexer.html#gab189cd7c68970d66b102e97ce026dff4">More...</a><br /></td></tr>
-<tr class="separator:gab189cd7c68970d66b102e97ce026dff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga012610d5d753a045a34477d7bb1ef2aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga012610d5d753a045a34477d7bb1ef2aa">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, char c) noexcept</td></tr>
-<tr class="memdesc:ga012610d5d753a045a34477d7bb1ef2aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token with type tok_char.  <a href="group__lexer.html#ga012610d5d753a045a34477d7bb1ef2aa">More...</a><br /></td></tr>
-<tr class="separator:ga012610d5d753a045a34477d7bb1ef2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2c2529916b4127bb4f7cc135ed0494cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga2c2529916b4127bb4f7cc135ed0494cf">Token</a> () noexcept</td></tr>
-<tr class="memdesc:ga2c2529916b4127bb4f7cc135ed0494cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty initialization. Any methods of the initialized must not be used. Must be assigned to another valid <a class="el" href="classfeder_1_1lexer_1_1Token.html" title="A Token is the result of the lexical analysis nextToken.">Token</a> first.  <a href="group__lexer.html#ga2c2529916b4127bb4f7cc135ed0494cf">More...</a><br /></td></tr>
-<tr class="separator:ga2c2529916b4127bb4f7cc135ed0494cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf4b543f46c6e50632c7995eb97cd114f"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gaf4b543f46c6e50632c7995eb97cd114f">getPrecedence</a> (<a class="el" href="group__lexer.html#gaffb59bed95a0a88b3ea546fd9a9fa023">OperatorPosition</a> opPos=op_binary) const noexcept</td></tr>
-<tr class="separator:gaf4b543f46c6e50632c7995eb97cd114f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae9f6183fe98e3082a300353662dc8e8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gae9f6183fe98e3082a300353662dc8e8b">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Token.html">Token</a> &amp;tok) noexcept</td></tr>
-<tr class="memdesc:gae9f6183fe98e3082a300353662dc8e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy-constructor.  <a href="group__lexer.html#gae9f6183fe98e3082a300353662dc8e8b">More...</a><br /></td></tr>
-<tr class="separator:gae9f6183fe98e3082a300353662dc8e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga211a96c3c426e087dc379dfdb56c084b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga211a96c3c426e087dc379dfdb56c084b">getPosition</a> () const noexcept</td></tr>
-<tr class="separator:ga211a96c3c426e087dc379dfdb56c084b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga882ecc9bd33a88a802510b37d06cbb1b"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga882ecc9bd33a88a802510b37d06cbb1b">getString</a> () const noexcept</td></tr>
-<tr class="separator:ga882ecc9bd33a88a802510b37d06cbb1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8ec531cc78e9d8707b7188e1982ca728"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga8ec531cc78e9d8707b7188e1982ca728">getCharacter</a> () const noexcept</td></tr>
-<tr class="separator:ga8ec531cc78e9d8707b7188e1982ca728"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga37acb533dec9ea4ed3a225785bbd5b78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__lexer.html#ga6c707104ea3baca7c4ca1c0158436f49">NumberType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga37acb533dec9ea4ed3a225785bbd5b78">getNumberType</a> () const noexcept</td></tr>
-<tr class="separator:ga37acb533dec9ea4ed3a225785bbd5b78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga770c0dd9ab3c50a14cf43c2463cf9433"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionfeder_1_1lexer_1_1NumberValue.html">NumberValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga770c0dd9ab3c50a14cf43c2463cf9433">getNumberValue</a> () const noexcept</td></tr>
-<tr class="separator:ga770c0dd9ab3c50a14cf43c2463cf9433"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab6edec099f259bb8388a855f3ba950b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gab6edec099f259bb8388a855f3ba950b8">getOperator</a> () const noexcept</td></tr>
-<tr class="separator:gab6edec099f259bb8388a855f3ba950b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga868bfdffc565198cd2b4250e53bb7351"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga868bfdffc565198cd2b4250e53bb7351">getType</a> () const noexcept</td></tr>
-<tr class="separator:ga868bfdffc565198cd2b4250e53bb7351"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga07f3fe5cba22879e9aab7f99ff9e2efd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga07f3fe5cba22879e9aab7f99ff9e2efd">isRightAssociative</a> () const noexcept</td></tr>
-<tr class="separator:ga07f3fe5cba22879e9aab7f99ff9e2efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa92cbbd5a48521867db844706dd21356"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gaa92cbbd5a48521867db844706dd21356">operator==</a> (<a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a> type) const noexcept</td></tr>
-<tr class="separator:gaa92cbbd5a48521867db844706dd21356"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga798b1449f466b4dc88c2cbf2fdd97469"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga798b1449f466b4dc88c2cbf2fdd97469">operator !=</a> (<a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a> type) const noexcept</td></tr>
-<tr class="separator:ga798b1449f466b4dc88c2cbf2fdd97469"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2262ffd94af43d6ac186d5fb4a59cfc9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga2262ffd94af43d6ac186d5fb4a59cfc9">operator==</a> (<a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a> type) const noexcept</td></tr>
-<tr class="separator:ga2262ffd94af43d6ac186d5fb4a59cfc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad5d154ed72b5dff05f0b182d78a23114"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gad5d154ed72b5dff05f0b182d78a23114">operator !=</a> (<a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a> type) const noexcept</td></tr>
-<tr class="separator:gad5d154ed72b5dff05f0b182d78a23114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd4ffdbc1fc4f5340b973f4a96da97e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#abd4ffdbc1fc4f5340b973f4a96da97e0">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a> tokenType) noexcept</td></tr>
+<tr class="memdesc:abd4ffdbc1fc4f5340b973f4a96da97e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token.  <a href="#abd4ffdbc1fc4f5340b973f4a96da97e0">More...</a><br /></td></tr>
+<tr class="separator:abd4ffdbc1fc4f5340b973f4a96da97e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a511e5e5c0b01aef88af9e536e0e574e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a511e5e5c0b01aef88af9e536e0e574e6">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, <a class="el" href="group__lexer.html#ga6c707104ea3baca7c4ca1c0158436f49">NumberType</a> numType, <a class="el" href="unionfeder_1_1lexer_1_1NumberValue.html">NumberValue</a> numVal) noexcept</td></tr>
+<tr class="memdesc:a511e5e5c0b01aef88af9e536e0e574e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token with type tok_num.  <a href="#a511e5e5c0b01aef88af9e536e0e574e6">More...</a><br /></td></tr>
+<tr class="separator:a511e5e5c0b01aef88af9e536e0e574e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31c66e0faada0ab3434e2fc94a89139e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a31c66e0faada0ab3434e2fc94a89139e">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a> type, const std::string &amp;str) noexcept</td></tr>
+<tr class="memdesc:a31c66e0faada0ab3434e2fc94a89139e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token with type tok_id or tok_str.  <a href="#a31c66e0faada0ab3434e2fc94a89139e">More...</a><br /></td></tr>
+<tr class="separator:a31c66e0faada0ab3434e2fc94a89139e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab189cd7c68970d66b102e97ce026dff4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#ab189cd7c68970d66b102e97ce026dff4">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, <a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a> opType) noexcept</td></tr>
+<tr class="memdesc:ab189cd7c68970d66b102e97ce026dff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token with type tok_op.  <a href="#ab189cd7c68970d66b102e97ce026dff4">More...</a><br /></td></tr>
+<tr class="separator:ab189cd7c68970d66b102e97ce026dff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a012610d5d753a045a34477d7bb1ef2aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a012610d5d753a045a34477d7bb1ef2aa">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;pos, char c) noexcept</td></tr>
+<tr class="memdesc:a012610d5d753a045a34477d7bb1ef2aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes token with type tok_char.  <a href="#a012610d5d753a045a34477d7bb1ef2aa">More...</a><br /></td></tr>
+<tr class="separator:a012610d5d753a045a34477d7bb1ef2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c2529916b4127bb4f7cc135ed0494cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a2c2529916b4127bb4f7cc135ed0494cf">Token</a> () noexcept</td></tr>
+<tr class="memdesc:a2c2529916b4127bb4f7cc135ed0494cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty initialization. Any methods of the initialized must not be used. Must be assigned to another valid <a class="el" href="classfeder_1_1lexer_1_1Token.html" title="A Token is the result of the lexical analysis nextToken.">Token</a> first.  <a href="#a2c2529916b4127bb4f7cc135ed0494cf">More...</a><br /></td></tr>
+<tr class="separator:a2c2529916b4127bb4f7cc135ed0494cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4b543f46c6e50632c7995eb97cd114f"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#af4b543f46c6e50632c7995eb97cd114f">getPrecedence</a> (<a class="el" href="group__lexer.html#gaffb59bed95a0a88b3ea546fd9a9fa023">OperatorPosition</a> opPos=op_binary) const noexcept</td></tr>
+<tr class="separator:af4b543f46c6e50632c7995eb97cd114f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9f6183fe98e3082a300353662dc8e8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#ae9f6183fe98e3082a300353662dc8e8b">Token</a> (const <a class="el" href="classfeder_1_1lexer_1_1Token.html">Token</a> &amp;tok) noexcept</td></tr>
+<tr class="memdesc:ae9f6183fe98e3082a300353662dc8e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy-constructor.  <a href="#ae9f6183fe98e3082a300353662dc8e8b">More...</a><br /></td></tr>
+<tr class="separator:ae9f6183fe98e3082a300353662dc8e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a211a96c3c426e087dc379dfdb56c084b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a211a96c3c426e087dc379dfdb56c084b">getPosition</a> () const noexcept</td></tr>
+<tr class="separator:a211a96c3c426e087dc379dfdb56c084b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a882ecc9bd33a88a802510b37d06cbb1b"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a882ecc9bd33a88a802510b37d06cbb1b">getString</a> () const noexcept</td></tr>
+<tr class="separator:a882ecc9bd33a88a802510b37d06cbb1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ec531cc78e9d8707b7188e1982ca728"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a8ec531cc78e9d8707b7188e1982ca728">getCharacter</a> () const noexcept</td></tr>
+<tr class="separator:a8ec531cc78e9d8707b7188e1982ca728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37acb533dec9ea4ed3a225785bbd5b78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__lexer.html#ga6c707104ea3baca7c4ca1c0158436f49">NumberType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a37acb533dec9ea4ed3a225785bbd5b78">getNumberType</a> () const noexcept</td></tr>
+<tr class="separator:a37acb533dec9ea4ed3a225785bbd5b78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a770c0dd9ab3c50a14cf43c2463cf9433"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionfeder_1_1lexer_1_1NumberValue.html">NumberValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a770c0dd9ab3c50a14cf43c2463cf9433">getNumberValue</a> () const noexcept</td></tr>
+<tr class="separator:a770c0dd9ab3c50a14cf43c2463cf9433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6edec099f259bb8388a855f3ba950b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#ab6edec099f259bb8388a855f3ba950b8">getOperator</a> () const noexcept</td></tr>
+<tr class="separator:ab6edec099f259bb8388a855f3ba950b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868bfdffc565198cd2b4250e53bb7351"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a868bfdffc565198cd2b4250e53bb7351">getType</a> () const noexcept</td></tr>
+<tr class="separator:a868bfdffc565198cd2b4250e53bb7351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07f3fe5cba22879e9aab7f99ff9e2efd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a07f3fe5cba22879e9aab7f99ff9e2efd">isRightAssociative</a> () const noexcept</td></tr>
+<tr class="separator:a07f3fe5cba22879e9aab7f99ff9e2efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa92cbbd5a48521867db844706dd21356"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#aa92cbbd5a48521867db844706dd21356">operator==</a> (<a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a> type) const noexcept</td></tr>
+<tr class="separator:aa92cbbd5a48521867db844706dd21356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a798b1449f466b4dc88c2cbf2fdd97469"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#a798b1449f466b4dc88c2cbf2fdd97469">operator !=</a> (<a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a> type) const noexcept</td></tr>
+<tr class="separator:a798b1449f466b4dc88c2cbf2fdd97469"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe91ac5b571b2262dde3b9736edf27d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#afe91ac5b571b2262dde3b9736edf27d9">operator==</a> (<a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a> optype) const noexcept</td></tr>
+<tr class="separator:afe91ac5b571b2262dde3b9736edf27d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d154ed72b5dff05f0b182d78a23114"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Token.html#ad5d154ed72b5dff05f0b182d78a23114">operator !=</a> (<a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a> type) const noexcept</td></tr>
+<tr class="separator:ad5d154ed72b5dff05f0b182d78a23114"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A <a class="el" href="classfeder_1_1lexer_1_1Token.html" title="A Token is the result of the lexical analysis nextToken.">Token</a> is the result of the lexical analysis nextToken. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__lexer.html#ga78c0cef71fc46391d173f3b2995dd7dc">Lexer.nextToken</a> </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1lexer_1_1Lexer.html#a78c0cef71fc46391d173f3b2995dd7dc">Lexer.nextToken</a> </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abd4ffdbc1fc4f5340b973f4a96da97e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd4ffdbc1fc4f5340b973f4a96da97e0">&#9670;&nbsp;</a></span>Token() <span class="overload">[1/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::lexer::Token::Token </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a>&#160;</td>
+          <td class="paramname"><em>tokenType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes token. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td><a class="el" href="classfeder_1_1lexer_1_1Position.html" title="Class for referencing code position.">Position</a> in program. </td></tr>
+    <tr><td class="paramname">tokenType</td><td>Type of the token. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a511e5e5c0b01aef88af9e536e0e574e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a511e5e5c0b01aef88af9e536e0e574e6">&#9670;&nbsp;</a></span>Token() <span class="overload">[2/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::lexer::Token::Token </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__lexer.html#ga6c707104ea3baca7c4ca1c0158436f49">NumberType</a>&#160;</td>
+          <td class="paramname"><em>numType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="unionfeder_1_1lexer_1_1NumberValue.html">NumberValue</a>&#160;</td>
+          <td class="paramname"><em>numVal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes token with type tok_num. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td></td></tr>
+    <tr><td class="paramname">numType</td><td></td></tr>
+    <tr><td class="paramname">numVal</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a31c66e0faada0ab3434e2fc94a89139e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31c66e0faada0ab3434e2fc94a89139e">&#9670;&nbsp;</a></span>Token() <span class="overload">[3/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::lexer::Token::Token </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes token with type tok_id or tok_str. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td></td></tr>
+    <tr><td class="paramname">type</td><td></td></tr>
+    <tr><td class="paramname">str</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab189cd7c68970d66b102e97ce026dff4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab189cd7c68970d66b102e97ce026dff4">&#9670;&nbsp;</a></span>Token() <span class="overload">[4/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::lexer::Token::Token </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a>&#160;</td>
+          <td class="paramname"><em>opType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes token with type tok_op. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td></td></tr>
+    <tr><td class="paramname">opType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a012610d5d753a045a34477d7bb1ef2aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a012610d5d753a045a34477d7bb1ef2aa">&#9670;&nbsp;</a></span>Token() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::lexer::Token::Token </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes token with type tok_char. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td></td></tr>
+    <tr><td class="paramname">c</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2c2529916b4127bb4f7cc135ed0494cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c2529916b4127bb4f7cc135ed0494cf">&#9670;&nbsp;</a></span>Token() <span class="overload">[6/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::lexer::Token::Token </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Empty initialization. Any methods of the initialized must not be used. Must be assigned to another valid <a class="el" href="classfeder_1_1lexer_1_1Token.html" title="A Token is the result of the lexical analysis nextToken.">Token</a> first. </p>
+<pre class="fragment">Token tok; // Only reassigning should be used (copy-constructor)
+tok = lexer.nextToken(); // Now tok can be used
+</pre> 
+</div>
+</div>
+<a id="ae9f6183fe98e3082a300353662dc8e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9f6183fe98e3082a300353662dc8e8b">&#9670;&nbsp;</a></span>Token() <span class="overload">[7/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::lexer::Token::Token </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Token.html">Token</a> &amp;&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy-constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td><a class="el" href="classfeder_1_1lexer_1_1Token.html" title="A Token is the result of the lexical analysis nextToken.">Token</a> to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8ec531cc78e9d8707b7188e1982ca728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ec531cc78e9d8707b7188e1982ca728">&#9670;&nbsp;</a></span>getCharacter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char feder::lexer::Token::getCharacter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns character. Must only be used if token type is tok_char. </dd></dl>
+
+</div>
+</div>
+<a id="a37acb533dec9ea4ed3a225785bbd5b78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37acb533dec9ea4ed3a225785bbd5b78">&#9670;&nbsp;</a></span>getNumberType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__lexer.html#ga6c707104ea3baca7c4ca1c0158436f49">NumberType</a> feder::lexer::Token::getNumberType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns number type. <a class="el" href="classfeder_1_1lexer_1_1Token.html" title="A Token is the result of the lexical analysis nextToken.">Token</a> type must be tok_num. </dd></dl>
+
+</div>
+</div>
+<a id="a770c0dd9ab3c50a14cf43c2463cf9433"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a770c0dd9ab3c50a14cf43c2463cf9433">&#9670;&nbsp;</a></span>getNumberValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="unionfeder_1_1lexer_1_1NumberValue.html">NumberValue</a> feder::lexer::Token::getNumberValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns number value. <a class="el" href="classfeder_1_1lexer_1_1Token.html" title="A Token is the result of the lexical analysis nextToken.">Token</a> type must be tok_num. </dd></dl>
+
+</div>
+</div>
+<a id="ab6edec099f259bb8388a855f3ba950b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6edec099f259bb8388a855f3ba950b8">&#9670;&nbsp;</a></span>getOperator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a> feder::lexer::Token::getOperator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns operator type. </dd></dl>
+
+</div>
+</div>
+<a id="a211a96c3c426e087dc379dfdb56c084b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a211a96c3c426e087dc379dfdb56c084b">&#9670;&nbsp;</a></span>getPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a>&amp; feder::lexer::Token::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the token's code position. </dd></dl>
+
+</div>
+</div>
+<a id="af4b543f46c6e50632c7995eb97cd114f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4b543f46c6e50632c7995eb97cd114f">&#9670;&nbsp;</a></span>getPrecedence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t feder::lexer::Token::getPrecedence </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__lexer.html#gaffb59bed95a0a88b3ea546fd9a9fa023">OperatorPosition</a>&#160;</td>
+          <td class="paramname"><em>opPos</em> = <code>op_binary</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns precedence of token. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opPos</td><td><a class="el" href="classfeder_1_1lexer_1_1Position.html" title="Class for referencing code position.">Position</a> of the operator </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a882ecc9bd33a88a802510b37d06cbb1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a882ecc9bd33a88a802510b37d06cbb1b">&#9670;&nbsp;</a></span>getString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; feder::lexer::Token::getString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns string. Must only be used if token type is tok_id, tok_str or tok_cmd. Without escape sequences. </dd></dl>
+
+</div>
+</div>
+<a id="a868bfdffc565198cd2b4250e53bb7351"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a868bfdffc565198cd2b4250e53bb7351">&#9670;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a> feder::lexer::Token::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Return type of token. </dd></dl>
+
+</div>
+</div>
+<a id="a07f3fe5cba22879e9aab7f99ff9e2efd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07f3fe5cba22879e9aab7f99ff9e2efd">&#9670;&nbsp;</a></span>isRightAssociative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::lexer::Token::isRightAssociative </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns if (operator) token is right-associative. </dd></dl>
+
+</div>
+</div>
+<a id="a798b1449f466b4dc88c2cbf2fdd97469"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a798b1449f466b4dc88c2cbf2fdd97469">&#9670;&nbsp;</a></span>operator !=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::lexer::Token::operator != </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns false, if <a class="el" href="classfeder_1_1lexer_1_1Token.html#a868bfdffc565198cd2b4250e53bb7351">getType()</a> and type are equal, otherwise true. </dd></dl>
+
+</div>
+</div>
+<a id="ad5d154ed72b5dff05f0b182d78a23114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5d154ed72b5dff05f0b182d78a23114">&#9670;&nbsp;</a></span>operator !=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::lexer::Token::operator != </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns false, if <a class="el" href="classfeder_1_1lexer_1_1Token.html#a868bfdffc565198cd2b4250e53bb7351">getType()</a> is not operator or operator isn't type, otherwise true is returned. </dd></dl>
+
+</div>
+</div>
+<a id="aa92cbbd5a48521867db844706dd21356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92cbbd5a48521867db844706dd21356">&#9670;&nbsp;</a></span>operator==() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::lexer::Token::operator== </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">TokenType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true, if <a class="el" href="classfeder_1_1lexer_1_1Token.html#a868bfdffc565198cd2b4250e53bb7351">getType()</a> and type are equal, otherwise false. </dd></dl>
+
+</div>
+</div>
+<a id="afe91ac5b571b2262dde3b9736edf27d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe91ac5b571b2262dde3b9736edf27d9">&#9670;&nbsp;</a></span>operator==() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::lexer::Token::operator== </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">OperatorType</a>&#160;</td>
+          <td class="paramname"><em>optype</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true, if <a class="el" href="classfeder_1_1lexer_1_1Token.html#a868bfdffc565198cd2b4250e53bb7351">getType()</a> is operator and operator equals type, otherwise false is returned. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/feder/<a class="el" href="lexer_8hpp_source.html">lexer.hpp</a></li>
 </ul>
 </div><!-- contents -->

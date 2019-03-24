@@ -28,18 +28,23 @@ static std::unique_ptr<syntax::StrExpr> _parsePrimaryString(lexer::Lexer &lex) n
 }
 
 static std::unique_ptr<syntax::BraceExpr> _parsePrimaryBraceExpr(lexer::Lexer &lex) noexcept {
+  lex.skipNewLine = true;
+
   lexer::Position posStart = lex.currentToken().getPosition();
   lex.nextToken(); // eat (
 
   if (lex.currentToken().getType() == lexer::tok_cbrace) {
     // Emtpy brace expression
     lexer::Position pos(posStart, lex.currentToken().getPosition());
+    lex.skipNewLine = false;
     lex.nextToken(); // eat )
     return std::make_unique<syntax::BraceExpr>(pos, nullptr);
   }
 
   std::unique_ptr<syntax::Expr> expr(parser::parse(lex));
   if (!expr) return nullptr;
+
+  lex.skipNewLine = false;
 
   lexer::Token tokcbrace;
   if (!parser::match(lex, &tokcbrace, lexer::tok_cbrace))
@@ -129,6 +134,8 @@ static std::unique_ptr<syntax::FuncParamExpr> _parsePrimaryFunctionParam(lexer::
 }
 
 static std::vector<std::unique_ptr<syntax::FuncParamExpr>> _parsePrimaryFunctionParams(lexer::Lexer &lex, bool &err) noexcept {
+  lex.skipNewLine = true;
+
   err = false;
 
   std::vector<std::unique_ptr<syntax::FuncParamExpr>> result;
@@ -164,6 +171,8 @@ static std::vector<std::unique_ptr<syntax::FuncParamExpr>> _parsePrimaryFunction
     err = true;
     return result;
   }
+
+  lex.skipNewLine = false;
 
   return result;
 }

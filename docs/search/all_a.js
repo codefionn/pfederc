@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['nextchar',['nextChar',['../group__lexer.html#ga889f78c219add2eb034d4348ba0b1969',1,'feder::lexer::Lexer']]],
-  ['nexttoken',['nextToken',['../group__lexer.html#ga78c0cef71fc46391d173f3b2995dd7dc',1,'feder::lexer::Lexer']]],
+  ['nextchar',['nextChar',['../classfeder_1_1lexer_1_1Lexer.html#a889f78c219add2eb034d4348ba0b1969',1,'feder::lexer::Lexer']]],
+  ['nexttoken',['nextToken',['../classfeder_1_1lexer_1_1Lexer.html#a78c0cef71fc46391d173f3b2995dd7dc',1,'feder::lexer::Lexer']]],
   ['nmspexpr',['NmspExpr',['../classfeder_1_1syntax_1_1NmspExpr.html',1,'feder::syntax']]],
   ['num_5ff32',['num_f32',['../group__lexer.html#gga6c707104ea3baca7c4ca1c0158436f49a0c42830a4e8f012d517ade4048ae00f8',1,'feder::lexer']]],
   ['num_5ff64',['num_f64',['../group__lexer.html#gga6c707104ea3baca7c4ca1c0158436f49a625aed296d0f106db60d6df93e6c8858',1,'feder::lexer']]],
