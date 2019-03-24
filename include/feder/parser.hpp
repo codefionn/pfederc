@@ -42,7 +42,8 @@ namespace feder {
 
     /*!\return Returns true, if currentToken matches cur_tok (and if
      * curtok == tok_op curop). Otherwise false.
-     * \brief If match then advance to next token.
+     * \brief If match then advance to next token. If no match, an error
+     * messages is printed.
      * \param lex
      * \param tok Will be set to currentToken (if not nullptr).
      * \param tokType

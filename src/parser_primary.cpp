@@ -42,11 +42,8 @@ static std::unique_ptr<syntax::BraceExpr> _parsePrimaryBraceExpr(lexer::Lexer &l
   if (!expr) return nullptr;
 
   lexer::Token tokcbrace;
-  if (!parser::match(lex, &tokcbrace, lexer::tok_cbrace)) {
-    syntax::reportSyntaxError(lex, lex.currentToken().getPosition(),
-        "Expected token ')'.");
+  if (!parser::match(lex, &tokcbrace, lexer::tok_cbrace))
     return nullptr;
-  }
 
   lexer::Position pos(posStart, tokcbrace.getPosition());
 
@@ -109,11 +106,20 @@ static std::vector<std::unique_ptr<syntax::Expr>> _parseInherited(lexer::Lexer &
 static std::unique_ptr<syntax::ClassExpr> _parsePrimaryClass(lexer::Lexer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'class'
+
+  lexer::Token idTok;
+  if (!parser::match(lex, &idTok, lexer::tok_id))
+    return nullptr;
 }
 
 static std::unique_ptr<syntax::TraitExpr> _parsePrimaryTrait(lexer::Lexer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'trait'
+
+
+  lexer::Token idTok;
+  if (!parser::match(lex, &idTok, lexer::tok_id))
+    return nullptr;
 }
 
 static std::unique_ptr<syntax::NmspExpr> _parsePrimaryNamespace(lexer::Lexer &lex) noexcept {
@@ -121,29 +127,17 @@ static std::unique_ptr<syntax::NmspExpr> _parsePrimaryNamespace(lexer::Lexer &le
   lex.nextToken(); // eat 'namespace'
   
   lexer::Token tokId;
-  if (!parser::match(lex, &tokId, lexer::tok_id)) {
-    syntax::reportSyntaxError(lex,
-        lex.currentToken().getPosition(),
-        "Expected identifier after token 'namespace'.");
+  if (!parser::match(lex, &tokId, lexer::tok_id))
     return nullptr;
-  }
 
-  if (!parser::match(lex, nullptr, lexer::tok_eol)) {
-    syntax::reportSyntaxError(lex,
-        lex.currentToken().getPosition(),
-        "Expected end-of-line.");
+  if (!parser::match(lex, nullptr, lexer::tok_eol))
     return nullptr;
-  }
 
   auto program = parser::parseProgram(lex, false);
   if (program->hasError()) return nullptr;
 
-  if (!parser::match(lex, nullptr, lexer::tok_delim)) {
-    syntax::reportSyntaxError(lex,
-        lex.currentToken().getPosition(),
-        "Expected ';'.");
+  if (!parser::match(lex, nullptr, lexer::tok_delim))
     return nullptr;
-  }
 
   return std::make_unique<syntax::NmspExpr>(
       lexer::Position(pos, tokId.getPosition()),

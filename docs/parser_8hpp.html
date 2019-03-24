@@ -98,7 +98,7 @@ std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign=
 <tr class="memdesc:ad024ae49b00817415a480dd44cbe695a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse program lines.  <a href="parser_8hpp.html#ad024ae49b00817415a480dd44cbe695a">More...</a><br /></td></tr>
 <tr class="separator:ad024ae49b00817415a480dd44cbe695a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a936da9aa59a0b1ff1378ca97b9a39c14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#a936da9aa59a0b1ff1378ca97b9a39c14">feder::parser::match</a> (lexer::Lexer &amp;lex, lexer::Token *tok, lexer::TokenType tokType, lexer::OperatorType opType=lexer::op_asg) noexcept</td></tr>
-<tr class="memdesc:a936da9aa59a0b1ff1378ca97b9a39c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">If match then advance to next token.  <a href="parser_8hpp.html#a936da9aa59a0b1ff1378ca97b9a39c14">More...</a><br /></td></tr>
+<tr class="memdesc:a936da9aa59a0b1ff1378ca97b9a39c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">If match then advance to next token. If no match, an error messages is printed.  <a href="parser_8hpp.html#a936da9aa59a0b1ff1378ca97b9a39c14">More...</a><br /></td></tr>
 <tr class="separator:a936da9aa59a0b1ff1378ca97b9a39c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -150,7 +150,7 @@ std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign=
 </table>
 </div><div class="memdoc">
 
-<p>If match then advance to next token. </p>
+<p>If match then advance to next token. If no match, an error messages is printed. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true, if currentToken matches cur_tok (and if curtok == tok_op curop). Otherwise false. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

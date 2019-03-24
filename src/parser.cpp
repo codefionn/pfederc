@@ -15,6 +15,10 @@ bool parser::match(lexer::Lexer &lex,
     return true; // match successfull
   }
 
+  syntax::reportSyntaxError(lex,
+      lex.currentToken().getPosition(),
+      std::string("Expected token ") + std::to_string(tokType));
+
   return false; // match not successfull
 }
 
