@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['readme',['README',['../md_README.html',1,'']]],
   ['readline',['readLine',['../classfeder_1_1lexer_1_1Lexer.html#ae3af31045286dd252289faa9da5a13fc',1,'feder::lexer::Lexer']]],
   ['reportlexererror',['reportLexerError',['../classfeder_1_1lexer_1_1Lexer.html#ae4ab6704d5b19a6f5aeefc79450104d3',1,'feder::lexer::Lexer::reportLexerError(const std::string &amp;msg) noexcept'],['../classfeder_1_1lexer_1_1Lexer.html#a8bd892ce4f574b323675b05f08ffb501',1,'feder::lexer::Lexer::reportLexerError(const std::string &amp;msg, const Position &amp;pos) noexcept']]],
   ['reportsemanticerror',['reportSemanticError',['../classfeder_1_1lexer_1_1Lexer.html#a235212ab2b936d1730b8a86a5897e08c',1,'feder::lexer::Lexer']]],

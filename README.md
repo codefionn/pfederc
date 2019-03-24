@@ -1,3 +1,5 @@
+![](./logo.png)
+
 # pfederc
 
 Documentation at [https://codefionn.github.io/pfederc]. Language documentation
