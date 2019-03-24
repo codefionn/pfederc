@@ -758,6 +758,7 @@ TokenType Lexer::constructToken() noexcept {
     return curtok = tok_eol;
 
   case ';':
+    nextChar(); // eat ;
     return curtok = tok_delim;
 
   case '~':
