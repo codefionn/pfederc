@@ -1,6 +1,23 @@
 #include "feder/parser.hpp"
 using namespace feder;
 
+bool parser::match(lexer::Lexer &lex,
+    lexer::Token *tok,
+    lexer::TokenType tokType, lexer::OperatorType opType) noexcept {
+  if (lex.currentToken() == tokType
+      && (lex.currentToken() != lexer::tok_op
+        || (lex.currentToken().getOperator() == opType))) {
+    if (tok)
+      *tok = lex.currentToken();
+
+    lex.nextToken(); // eat current token
+
+    return true; // match successfull
+  }
+
+  return false; // match not successfull
+}
+
 static bool _isRightSideUnary(lexer::Token &tokOp, lexer::Lexer &lex) noexcept {
   if (!lexer::isPrimaryToken(lex.currentToken().getType())) return true;
 

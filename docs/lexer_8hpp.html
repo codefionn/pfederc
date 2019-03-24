@@ -126,11 +126,12 @@ Enumerations</h2></td></tr>
 <a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da3b6d36045c749a0410049dead590eade">feder::lexer::tok_obrace_template</a>, 
 <br />
 &#160;&#160;<a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85daf6d3ea62facc9dff2aff91fa7cba613f">feder::lexer::tok_cbrace_template</a>, 
+<a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da8b8ecc98bb69c2f045ec90e57187a6d1">feder::lexer::tok_delim</a>, 
 <a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85dab53991b75423c570a909f331944e4cc5">feder::lexer::tok_op</a>, 
 <a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da69c6fee434976a17d29bdf5159f86a93">feder::lexer::tok_cmd</a>, 
-<a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85daac59a9b72aeec528ce255eb46f7db6e4">feder::lexer::tok_eol</a>, 
 <br />
-&#160;&#160;<a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da24096910dcbb6461257b7e59c8adbc08">feder::lexer::tok_eof</a>, 
+&#160;&#160;<a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85daac59a9b72aeec528ce255eb46f7db6e4">feder::lexer::tok_eol</a>, 
+<a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da24096910dcbb6461257b7e59c8adbc08">feder::lexer::tok_eof</a>, 
 <a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85dac2ad917ebd89571886b5e4c27eacc633">feder::lexer::tok_err</a>
 <br />
  }</td></tr>
@@ -234,6 +235,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5b2bea81c1fb29577ae1375e59192574"><td class="memItemLeft" align="right" valign="top"><a id="a5b2bea81c1fb29577ae1375e59192574"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>std::to_string</b> (<a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85d">feder::lexer::TokenType</a> tok)</td></tr>
 <tr class="separator:a5b2bea81c1fb29577ae1375e59192574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78eb8b13f4dc2cab01c4228c716bada6"><td class="memItemLeft" align="right" valign="top"><a id="a78eb8b13f4dc2cab01c4228c716bada6"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>std::to_string</b> (<a class="el" href="lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6">feder::lexer::OperatorType</a> tok)</td></tr>
+<tr class="separator:a78eb8b13f4dc2cab01c4228c716bada6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Lexical analysis/Tokenizer. </p>
@@ -466,6 +470,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>std::to_string
 <tr><td class="fieldname"><a id="acd10a4c7bad26913f314ffaaf177a85da3b6d36045c749a0410049dead590eade"></a>tok_obrace_template&#160;</td><td class="fielddoc"><p>{ </p>
 </td></tr>
 <tr><td class="fieldname"><a id="acd10a4c7bad26913f314ffaaf177a85daf6d3ea62facc9dff2aff91fa7cba613f"></a>tok_cbrace_template&#160;</td><td class="fielddoc"><p>} </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acd10a4c7bad26913f314ffaaf177a85da8b8ecc98bb69c2f045ec90e57187a6d1"></a>tok_delim&#160;</td><td class="fielddoc"><p>; </p>
 </td></tr>
 <tr><td class="fieldname"><a id="acd10a4c7bad26913f314ffaaf177a85dab53991b75423c570a909f331944e4cc5"></a>tok_op&#160;</td><td class="fielddoc"><p>Operator. </p>
 </td></tr>

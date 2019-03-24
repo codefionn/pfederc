@@ -91,15 +91,17 @@ Inheritance diagram for feder::syntax::TemplateExpr:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aff09afc667f8fd99adb15460f7bad0cf"><td class="memItemLeft" align="right" valign="top"><a id="aff09afc667f8fd99adb15460f7bad0cf"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TemplateExpr</b> (std::vector&lt; std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt;&gt; templates) noexcept</td></tr>
-<tr class="separator:aff09afc667f8fd99adb15460f7bad0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d72d679ebb94784239943c8c0f53b17"><td class="memItemLeft" align="right" valign="top"><a id="a0d72d679ebb94784239943c8c0f53b17"></a>
-std::vector&lt; std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTemplates</b> () noexcept</td></tr>
-<tr class="separator:a0d72d679ebb94784239943c8c0f53b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a805a4d6b8e9d4f50b7eef95dcfeecf"><td class="memItemLeft" align="right" valign="top"><a id="a5a805a4d6b8e9d4f50b7eef95dcfeecf"></a>
-const std::vector&lt; std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTemplates</b> () const noexcept</td></tr>
-<tr class="separator:a5a805a4d6b8e9d4f50b7eef95dcfeecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0845da105d24dc4ef7d31bc8ccd52793"><td class="memItemLeft" align="right" valign="top"><a id="a0845da105d24dc4ef7d31bc8ccd52793"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TemplateExpr</b> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::vector&lt; std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt;&gt; templates) noexcept</td></tr>
+<tr class="separator:a0845da105d24dc4ef7d31bc8ccd52793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae983f960b202d30ff2d960fe1176f701"><td class="memItemLeft" align="right" valign="top"><a id="ae983f960b202d30ff2d960fe1176f701"></a>
+auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTemplates</b> () noexcept</td></tr>
+<tr class="separator:ae983f960b202d30ff2d960fe1176f701"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a63c3ce66ae5181c443cfd3006272ca"><td class="memItemLeft" align="right" valign="top"><a id="a4a63c3ce66ae5181c443cfd3006272ca"></a>
+const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTemplates</b> () const noexcept</td></tr>
+<tr class="separator:a4a63c3ce66ae5181c443cfd3006272ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4f868f04e03cc05d51a04d5701a17d7"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html#ac4f868f04e03cc05d51a04d5701a17d7">to_string</a> () const noexcept override</td></tr>
+<tr class="separator:ac4f868f04e03cc05d51a04d5701a17d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classfeder_1_1syntax_1_1Expr"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classfeder_1_1syntax_1_1Expr')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classfeder_1_1syntax_1_1Expr.html">feder::syntax::Expr</a></td></tr>
 <tr class="memitem:a7ae243f14a89403b6ead08e3dab6ccd7 inherit pub_methods_classfeder_1_1syntax_1_1Expr"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1Expr.html#a7ae243f14a89403b6ead08e3dab6ccd7">Expr</a> (<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfa">ExprType</a> type, const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos) noexcept</td></tr>
 <tr class="memdesc:a7ae243f14a89403b6ead08e3dab6ccd7 inherit pub_methods_classfeder_1_1syntax_1_1Expr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes expression with type and in-code position.  <a href="classfeder_1_1syntax_1_1Expr.html#a7ae243f14a89403b6ead08e3dab6ccd7">More...</a><br /></td></tr>
@@ -111,7 +113,36 @@ const std::vector&lt; std::unique_ptr&lt; <a class="el" href="classfeder_1_1synt
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Template expression. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac4f868f04e03cc05d51a04d5701a17d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4f868f04e03cc05d51a04d5701a17d7">&#9670;&nbsp;</a></span>to_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string feder::syntax::TemplateExpr::to_string </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns expression converted to Feder code. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classfeder_1_1syntax_1_1Expr.html#aec67457f8a22add8bd217af86b50d6a9">feder::syntax::Expr</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/feder/<a class="el" href="syntax_8hpp_source.html">syntax.hpp</a></li>
 </ul>
 </div><!-- contents -->

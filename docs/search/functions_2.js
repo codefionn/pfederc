@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['funcparamexpr',['FuncParamExpr',['../classfeder_1_1syntax_1_1FuncParamExpr.html#ada736e3740f1ceb730c4b5ca344e21e9',1,'feder::syntax::FuncParamExpr']]]
+  ['expr',['Expr',['../classfeder_1_1syntax_1_1Expr.html#a7ae243f14a89403b6ead08e3dab6ccd7',1,'feder::syntax::Expr']]]
 ];

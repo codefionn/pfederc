@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['expr_5farray_5fcon',['expr_array_con',['../syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa3f472ee0ca4b69c80700a8d9723988ae',1,'feder::syntax']]],
+  ['expr_5farray_5findex',['expr_array_index',['../syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa2e19e2b3b192b22fe6763bd77e7c5c3f',1,'feder::syntax']]],
+  ['expr_5farray_5flist',['expr_array_list',['../syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaaff740b556789bcf79d9c5a9d9d14e9a6',1,'feder::syntax']]],
   ['expr_5fbiop',['expr_biop',['../syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa16ac811f151f8d7577b12a2a96d0bb2d',1,'feder::syntax']]],
   ['expr_5fbrace',['expr_brace',['../syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa237ab6c923172308eee8d2de1879190b',1,'feder::syntax']]],
   ['expr_5fchar',['expr_char',['../syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaacde70a3e3a8214818f10411f9a73a989',1,'feder::syntax']]],

@@ -39,6 +39,18 @@ namespace feder {
      */
     std::unique_ptr<syntax::Program> parseProgram(lexer::Lexer &lexer,
         bool topLevel = true) noexcept;
+
+    /*!\return Returns true, if currentToken matches cur_tok (and if
+     * curtok == tok_op curop). Otherwise false.
+     * \brief If match then advance to next token.
+     * \param lex
+     * \param tok Will be set to currentToken (if not nullptr).
+     * \param tokType
+     * \param opType
+     */
+    bool match(lexer::Lexer &lex,
+        lexer::Token *tok, lexer::TokenType tokType,
+        lexer::OperatorType opType = lexer::op_asg) noexcept;
   } // end namespace parser
 } // end namespace feder
 

@@ -69,7 +69,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">syntax.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -131,6 +132,15 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html">feder::syntax::TemplateExpr</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template expression.  <a href="classfeder_1_1syntax_1_1TemplateExpr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1ArrayConExpr.html">feder::syntax::ArrayConExpr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array constructor expression.  <a href="classfeder_1_1syntax_1_1ArrayConExpr.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1ArrayListExpr.html">feder::syntax::ArrayListExpr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array list (constructor) expression.  <a href="classfeder_1_1syntax_1_1ArrayListExpr.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1ArrayIndexExpr.html">feder::syntax::ArrayIndexExpr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array index expression.  <a href="classfeder_1_1syntax_1_1ArrayIndexExpr.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -147,15 +157,25 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa7b3548e4011fb40d29be33eaebcd621a">feder::syntax::expr_trait</a>, 
 <a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa80e6085a22d015dcd13055d25431bbed">feder::syntax::expr_nmsp</a>, 
+<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa3f472ee0ca4b69c80700a8d9723988ae">feder::syntax::expr_array_con</a>, 
+<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaaff740b556789bcf79d9c5a9d9d14e9a6">feder::syntax::expr_array_list</a>, 
+<br />
+&#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa2e19e2b3b192b22fe6763bd77e7c5c3f">feder::syntax::expr_array_index</a>, 
 <a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa7a099e1d83bd3ad53f7f5c037e15cbfd">feder::syntax::expr_unop</a>, 
 <a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa16ac811f151f8d7577b12a2a96d0bb2d">feder::syntax::expr_biop</a>, 
+<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa237ab6c923172308eee8d2de1879190b">feder::syntax::expr_brace</a>, 
 <br />
-&#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa237ab6c923172308eee8d2de1879190b">feder::syntax::expr_brace</a>, 
-<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1">feder::syntax::expr_template</a>
+&#160;&#160;<a class="el" href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1">feder::syntax::expr_template</a>
 <br />
  }</td></tr>
 <tr class="memdesc:a3a920d8e611fde2a62ad15a786faacfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expression types.  <a href="syntax_8hpp.html#a3a920d8e611fde2a62ad15a786faacfa">More...</a><br /></td></tr>
 <tr class="separator:a3a920d8e611fde2a62ad15a786faacfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac796dee69f3f5b087f31cf2e899f5919"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8hpp.html#ac796dee69f3f5b087f31cf2e899f5919">feder::syntax::reportSyntaxError</a> (lexer::Lexer &amp;lexer, const lexer::Position &amp;pos, const std::string &amp;msg) noexcept</td></tr>
+<tr class="memdesc:ac796dee69f3f5b087f31cf2e899f5919"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints error.  <a href="syntax_8hpp.html#ac796dee69f3f5b087f31cf2e899f5919">More...</a><br /></td></tr>
+<tr class="separator:ac796dee69f3f5b087f31cf2e899f5919"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Syntax expressions. </p>
@@ -195,6 +215,12 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa80e6085a22d015dcd13055d25431bbed"></a>expr_nmsp&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html" title="Namespace expression.">NmspExpr</a> </dd></dl>
 </td></tr>
+<tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa3f472ee0ca4b69c80700a8d9723988ae"></a>expr_array_con&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1ArrayConExpr.html" title="Array constructor expression.">ArrayConExpr</a> </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaaff740b556789bcf79d9c5a9d9d14e9a6"></a>expr_array_list&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1ArrayListExpr.html" title="Array list (constructor) expression.">ArrayListExpr</a> </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa2e19e2b3b192b22fe6763bd77e7c5c3f"></a>expr_array_index&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1ArrayIndexExpr.html" title="Array index expression.">ArrayIndexExpr</a> </dd></dl>
+</td></tr>
 <tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa7a099e1d83bd3ad53f7f5c037e15cbfd"></a>expr_unop&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1UnOpExpr.html" title="Unary operator expression.">UnOpExpr</a> </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa16ac811f151f8d7577b12a2a96d0bb2d"></a>expr_biop&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html" title="Binary operator expression.">BiOpExpr</a> </dd></dl>
@@ -204,6 +230,52 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="a3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1"></a>expr_template&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html" title="Template expression.">TemplateExpr</a> </dd></dl>
 </td></tr>
 </table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="file_ac796dee69f3f5b087f31cf2e899f5919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ac796dee69f3f5b087f31cf2e899f5919">&#9670;&nbsp;</a></span>reportSyntaxError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;Expr&gt; feder::syntax::reportSyntaxError </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
+          <td class="paramname"><em>lexer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints error. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns nullptr; </dd></dl>
 
 </div>
 </div>

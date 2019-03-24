@@ -101,10 +101,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae3af31045286dd252289faa9da5a13fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78c0cef71fc46391d173f3b2995dd7dc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classfeder_1_1lexer_1_1Token.html">Token</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html#a78c0cef71fc46391d173f3b2995dd7dc">nextToken</a> () noexcept</td></tr>
 <tr class="separator:a78c0cef71fc46391d173f3b2995dd7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e38a79d100d3f1fad7c53453d826f65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html#a8e38a79d100d3f1fad7c53453d826f65">pushToken</a> (const <a class="el" href="classfeder_1_1lexer_1_1Token.html">Token</a> &amp;tok) noexcept</td></tr>
+<tr class="memdesc:a8e38a79d100d3f1fad7c53453d826f65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes token on a stack. Call <a class="el" href="classfeder_1_1lexer_1_1Lexer.html#a78c0cef71fc46391d173f3b2995dd7dc">nextToken()</a>, will return the last element (and remove it).  <a href="#a8e38a79d100d3f1fad7c53453d826f65">More...</a><br /></td></tr>
+<tr class="separator:a8e38a79d100d3f1fad7c53453d826f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fd3f27be1f59d414aac24665c5311bc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classfeder_1_1lexer_1_1Token.html">Token</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html#a2fd3f27be1f59d414aac24665c5311bc">currentToken</a> () const noexcept</td></tr>
 <tr class="separator:a2fd3f27be1f59d414aac24665c5311bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b9cf1e1dc713dccfb468b52a79b08bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html#a6b9cf1e1dc713dccfb468b52a79b08bd">getPosition</a> () const noexcept</td></tr>
 <tr class="separator:a6b9cf1e1dc713dccfb468b52a79b08bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d1760ddaa9863f53a419193dd971fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html#a52d1760ddaa9863f53a419193dd971fd">getCursorPosition</a> () const noexcept</td></tr>
+<tr class="separator:a52d1760ddaa9863f53a419193dd971fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4ab6704d5b19a6f5aeefc79450104d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85d">TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html#ae4ab6704d5b19a6f5aeefc79450104d3">reportLexerError</a> (const std::string &amp;msg) noexcept</td></tr>
 <tr class="memdesc:ae4ab6704d5b19a6f5aeefc79450104d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports a lexical error. Reads till EOL.  <a href="#ae4ab6704d5b19a6f5aeefc79450104d3">More...</a><br /></td></tr>
 <tr class="separator:ae4ab6704d5b19a6f5aeefc79450104d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,6 +223,38 @@ while ((tok = lexer.nextToken()).getType() != tok_eof) {
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns latest token returned by nextToken. </dd></dl>
+
+</div>
+</div>
+<a id="a52d1760ddaa9863f53a419193dd971fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52d1760ddaa9863f53a419193dd971fd">&#9670;&nbsp;</a></span>getCursorPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfeder_1_1lexer_1_1Position.html">Position</a> feder::lexer::Lexer::getCursorPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns position of latest cursor position.</dd></dl>
+<p>A black/control character is also regarded as a column. Known that getColumnEnd of position is actually not the last column but the column right after the last column. Also columns are counted starting from 1, not 0 (the first column has the index 1). So computing the real position of is done like this: </p><pre class="fragment">Position pos = lexer.getPosition();
+Position realPos(pos.getLexer(),
+  pos.getColumnStart() - 1,
+  pos.getColumnEnd() - 2,
+  pos.getLineStart(), pos.getLineEnd());
+</pre><p>Note that any reportSyntaxError and reportSemanticError/Warning expect it to be like this. So don't try to "correct" this "error". </p>
 
 </div>
 </div>
@@ -360,6 +397,40 @@ Position realPos(pos.getLexer(),
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns next token aquired. Tokenize input.</dd></dl>
 <p>Updates getPosition to the position of the returned token. </p>
+
+</div>
+</div>
+<a id="a8e38a79d100d3f1fad7c53453d826f65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e38a79d100d3f1fad7c53453d826f65">&#9670;&nbsp;</a></span>pushToken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void feder::lexer::Lexer::pushToken </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Token.html">Token</a> &amp;&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pushes token on a stack. Call <a class="el" href="classfeder_1_1lexer_1_1Lexer.html#a78c0cef71fc46391d173f3b2995dd7dc">nextToken()</a>, will return the last element (and remove it). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -6,6 +6,7 @@ var searchData=
   ['tok_5fchar',['tok_char',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85dab82cf9c22df6afec64a8e989af04f35f',1,'feder::lexer']]],
   ['tok_5fclass',['tok_class',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da6a8872147d93e8d2b5975516314275d7',1,'feder::lexer']]],
   ['tok_5fcmd',['tok_cmd',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da69c6fee434976a17d29bdf5159f86a93',1,'feder::lexer']]],
+  ['tok_5fdelim',['tok_delim',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da8b8ecc98bb69c2f045ec90e57187a6d1',1,'feder::lexer']]],
   ['tok_5fdo',['tok_do',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85dab94a1a265d2ce7560414e7dfb3b7284d',1,'feder::lexer']]],
   ['tok_5felse',['tok_else',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da58d2f3dbcd353ea9f6a26547cf517fe6',1,'feder::lexer']]],
   ['tok_5fenum',['tok_enum',['../lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85da3134bd1169305b191860698a75d626db',1,'feder::lexer']]],

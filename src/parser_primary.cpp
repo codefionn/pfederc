@@ -41,14 +41,14 @@ static std::unique_ptr<syntax::BraceExpr> _parsePrimaryBraceExpr(lexer::Lexer &l
   std::unique_ptr<syntax::Expr> expr(parser::parse(lex));
   if (!expr) return nullptr;
 
-  if (lex.currentToken().getType() != lexer::tok_cbrace) {
+  lexer::Token tokcbrace;
+  if (!parser::match(lex, &tokcbrace, lexer::tok_cbrace)) {
     syntax::reportSyntaxError(lex, lex.currentToken().getPosition(),
         "Expected token ')'.");
     return nullptr;
   }
 
-  lexer::Position pos(posStart, lex.currentToken().getPosition());
-  lex.nextToken(); // eat )
+  lexer::Position pos(posStart, tokcbrace.getPosition());
 
   return std::make_unique<syntax::BraceExpr>(pos, std::move(expr));
 }
@@ -118,36 +118,32 @@ static std::unique_ptr<syntax::TraitExpr> _parsePrimaryTrait(lexer::Lexer &lex) 
 
 static std::unique_ptr<syntax::NmspExpr> _parsePrimaryNamespace(lexer::Lexer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
+  lex.nextToken(); // eat 'namespace'
   
-  if (lex.nextToken() != lexer::tok_id) { // eat 'namespace'
+  lexer::Token tokId;
+  if (!parser::match(lex, &tokId, lexer::tok_id)) {
     syntax::reportSyntaxError(lex,
         lex.currentToken().getPosition(),
         "Expected identifier after token 'namespace'.");
     return nullptr;
   }
 
-  lexer::Token tokId = lex.currentToken();
-
-  if (lex.nextToken() != lexer::tok_eol) { // eat identifier
+  if (!parser::match(lex, nullptr, lexer::tok_eol)) {
     syntax::reportSyntaxError(lex,
         lex.currentToken().getPosition(),
         "Expected end-of-line.");
     return nullptr;
   }
 
-  lex.nextToken(); // eat eol
-
   auto program = parser::parseProgram(lex, false);
   if (program->hasError()) return nullptr;
 
-  if (lex.currentToken() != lexer::tok_delim) {
+  if (!parser::match(lex, nullptr, lexer::tok_delim)) {
     syntax::reportSyntaxError(lex,
         lex.currentToken().getPosition(),
         "Expected ';'.");
     return nullptr;
   }
-
-  lex.nextToken(); // eat ;
 
   return std::make_unique<syntax::NmspExpr>(
       lexer::Position(pos, tokId.getPosition()),

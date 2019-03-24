@@ -99,6 +99,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aaddc1fbd0b8acb9a34700e094bae5421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89cae769ddb05f093b6d127cd9008bd3"><td class="memItemLeft" align="right" valign="top">const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html#a89cae769ddb05f093b6d127cd9008bd3">getProgram</a> () const noexcept</td></tr>
 <tr class="separator:a89cae769ddb05f093b6d127cd9008bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6b04caaf52eac3ae0be65a91890da3e"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html#ac6b04caaf52eac3ae0be65a91890da3e">to_string</a> () const noexcept override</td></tr>
+<tr class="separator:ac6b04caaf52eac3ae0be65a91890da3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classfeder_1_1syntax_1_1IdExpr"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classfeder_1_1syntax_1_1IdExpr')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classfeder_1_1syntax_1_1IdExpr.html">feder::syntax::IdExpr</a></td></tr>
 <tr class="memitem:ad3025ed395a067e00eed99fe9e10c43a inherit pub_methods_classfeder_1_1syntax_1_1IdExpr"><td class="memItemLeft" align="right" valign="top"><a id="ad3025ed395a067e00eed99fe9e10c43a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1IdExpr.html#ad3025ed395a067e00eed99fe9e10c43a">IdExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, const std::string &amp;id) noexcept</td></tr>
@@ -174,6 +176,34 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns program of the namespace. </dd></dl>
+
+</div>
+</div>
+<a id="ac6b04caaf52eac3ae0be65a91890da3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6b04caaf52eac3ae0be65a91890da3e">&#9670;&nbsp;</a></span>to_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string feder::syntax::NmspExpr::to_string </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns expression converted to Feder code. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classfeder_1_1syntax_1_1IdExpr.html#a761be304b64286436f2c7400a971d323">feder::syntax::IdExpr</a>.</p>
 
 </div>
 </div>

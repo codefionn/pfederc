@@ -88,19 +88,82 @@ Functions</h2></td></tr>
 std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#a4358be534a56e4b090de543aff3e1a29">feder::parser::parsePrimary</a> (lexer::Lexer &amp;lexer) noexcept</td></tr>
 <tr class="memdesc:a4358be534a56e4b090de543aff3e1a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary token. <br /></td></tr>
 <tr class="separator:a4358be534a56e4b090de543aff3e1a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc2e879e0f07c1d818f058eb3b3605da"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#afc2e879e0f07c1d818f058eb3b3605da">feder::parser::parseRHS</a> (lexer::Lexer &amp;lexer, Expr *lhs, std::size_t prec) noexcept</td></tr>
-<tr class="memdesc:afc2e879e0f07c1d818f058eb3b3605da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse RHS expression of binary operator.  <a href="parser_8hpp.html#afc2e879e0f07c1d818f058eb3b3605da">More...</a><br /></td></tr>
-<tr class="separator:afc2e879e0f07c1d818f058eb3b3605da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aa445703591bed7ebaa565bbe23fd56"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#a2aa445703591bed7ebaa565bbe23fd56">feder::parser::parseRHS</a> (lexer::Lexer &amp;lexer, std::unique_ptr&lt; syntax::Expr &gt; lhs, std::size_t prec) noexcept</td></tr>
+<tr class="memdesc:a2aa445703591bed7ebaa565bbe23fd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse RHS expression of binary operator.  <a href="parser_8hpp.html#a2aa445703591bed7ebaa565bbe23fd56">More...</a><br /></td></tr>
+<tr class="separator:a2aa445703591bed7ebaa565bbe23fd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef0bbac52a27c01a529521a0a89d4368"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#aef0bbac52a27c01a529521a0a89d4368">feder::parser::parse</a> (lexer::Lexer &amp;lexer, std::size_t prec=0) noexcept</td></tr>
 <tr class="memdesc:aef0bbac52a27c01a529521a0a89d4368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary expresion + optional operator where prec is passed to parseRHS.  <a href="parser_8hpp.html#aef0bbac52a27c01a529521a0a89d4368">More...</a><br /></td></tr>
 <tr class="separator:aef0bbac52a27c01a529521a0a89d4368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad024ae49b00817415a480dd44cbe695a"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; syntax::Program &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#ad024ae49b00817415a480dd44cbe695a">feder::parser::parseProgram</a> (lexer::Lexer &amp;lexer, bool topLevel=true) noexcept</td></tr>
 <tr class="memdesc:ad024ae49b00817415a480dd44cbe695a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse program lines.  <a href="parser_8hpp.html#ad024ae49b00817415a480dd44cbe695a">More...</a><br /></td></tr>
 <tr class="separator:ad024ae49b00817415a480dd44cbe695a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a936da9aa59a0b1ff1378ca97b9a39c14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8hpp.html#a936da9aa59a0b1ff1378ca97b9a39c14">feder::parser::match</a> (lexer::Lexer &amp;lex, lexer::Token *tok, lexer::TokenType tokType, lexer::OperatorType opType=lexer::op_asg) noexcept</td></tr>
+<tr class="memdesc:a936da9aa59a0b1ff1378ca97b9a39c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">If match then advance to next token.  <a href="parser_8hpp.html#a936da9aa59a0b1ff1378ca97b9a39c14">More...</a><br /></td></tr>
+<tr class="separator:a936da9aa59a0b1ff1378ca97b9a39c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parser. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="file_a936da9aa59a0b1ff1378ca97b9a39c14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a936da9aa59a0b1ff1378ca97b9a39c14">&#9670;&nbsp;</a></span>match()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::parser::match </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
+          <td class="paramname"><em>lex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Token.html">lexer::Token</a> *&#160;</td>
+          <td class="paramname"><em>tok</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="lexer_8hpp.html#acd10a4c7bad26913f314ffaaf177a85d">lexer::TokenType</a>&#160;</td>
+          <td class="paramname"><em>tokType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="lexer_8hpp.html#a0b9f97971c5bce8d249427fa86afedf6">lexer::OperatorType</a>&#160;</td>
+          <td class="paramname"><em>opType</em> = <code>lexer::op_asg</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If match then advance to next token. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true, if currentToken matches cur_tok (and if curtok == tok_op curop). Otherwise false. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lex</td><td></td></tr>
+    <tr><td class="paramname">tok</td><td>Will be set to currentToken (if not nullptr). </td></tr>
+    <tr><td class="paramname">tokType</td><td></td></tr>
+    <tr><td class="paramname">opType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="file_aef0bbac52a27c01a529521a0a89d4368"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#file_aef0bbac52a27c01a529521a0a89d4368">&#9670;&nbsp;</a></span>parse()</h2>
 
@@ -193,8 +256,8 @@ std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign=
 
 </div>
 </div>
-<a id="file_afc2e879e0f07c1d818f058eb3b3605da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_afc2e879e0f07c1d818f058eb3b3605da">&#9670;&nbsp;</a></span>parseRHS()</h2>
+<a id="file_a2aa445703591bed7ebaa565bbe23fd56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a2aa445703591bed7ebaa565bbe23fd56">&#9670;&nbsp;</a></span>parseRHS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +274,7 @@ std::unique_ptr&lt; syntax::Expr &gt;&#160;</td><td class="memItemRight" valign=
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Expr *&#160;</td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a> &gt;&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>

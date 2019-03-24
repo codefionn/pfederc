@@ -1,19 +1,5 @@
 var searchData=
 [
-  ['nextchar',['nextChar',['../classfeder_1_1lexer_1_1Lexer.html#a889f78c219add2eb034d4348ba0b1969',1,'feder::lexer::Lexer']]],
-  ['nexttoken',['nextToken',['../classfeder_1_1lexer_1_1Lexer.html#a78c0cef71fc46391d173f3b2995dd7dc',1,'feder::lexer::Lexer']]],
-  ['nmspexpr',['NmspExpr',['../classfeder_1_1syntax_1_1NmspExpr.html',1,'feder::syntax']]],
-  ['num_5ff32',['num_f32',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49a0c42830a4e8f012d517ade4048ae00f8',1,'feder::lexer']]],
-  ['num_5ff64',['num_f64',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49a625aed296d0f106db60d6df93e6c8858',1,'feder::lexer']]],
-  ['num_5fi16',['num_i16',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49aa4ac4d16c5ca70bc078e8cbe12119d7c',1,'feder::lexer']]],
-  ['num_5fi32',['num_i32',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49a722af4ce37824a4e3ad65f6e55fac796',1,'feder::lexer']]],
-  ['num_5fi64',['num_i64',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49acefd48a4b70f8eeeef8f629a1c98fda2',1,'feder::lexer']]],
-  ['num_5fi8',['num_i8',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49a559effa45b2a16e1f013fcfe3a31aa75',1,'feder::lexer']]],
-  ['num_5fu16',['num_u16',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49a9439c21bc96bb8318abd7d3814c99438',1,'feder::lexer']]],
-  ['num_5fu32',['num_u32',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49a34dd33d7d0c03cd35c85cac933a2875e',1,'feder::lexer']]],
-  ['num_5fu64',['num_u64',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49a70a11afb35ed7a965d4623a6db0c0902',1,'feder::lexer']]],
-  ['num_5fu8',['num_u8',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49a544ed3b6c7ac8ed6bdb880c0e99cc7bf',1,'feder::lexer']]],
-  ['numbertype',['NumberType',['../lexer_8hpp.html#a6c707104ea3baca7c4ca1c0158436f49',1,'feder::lexer']]],
-  ['numbervalue',['NumberValue',['../unionfeder_1_1lexer_1_1NumberValue.html',1,'feder::lexer']]],
-  ['numexpr',['NumExpr',['../classfeder_1_1syntax_1_1NumExpr.html',1,'feder::syntax::NumExpr'],['../classfeder_1_1syntax_1_1NumExpr.html#aa9eae88e92efd2a4402f99cedf08209f',1,'feder::syntax::NumExpr::NumExpr()']]]
+  ['lexer',['Lexer',['../classfeder_1_1lexer_1_1Lexer.html',1,'feder::lexer::Lexer'],['../classfeder_1_1lexer_1_1Lexer.html#a19bf3ae67d438db4d88153cbc969e69e',1,'feder::lexer::Lexer::Lexer()']]],
+  ['lexer_2ehpp',['lexer.hpp',['../lexer_8hpp.html',1,'']]]
 ];
