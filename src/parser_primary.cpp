@@ -244,6 +244,8 @@ static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex
   }
 
   if (lex.currentToken() == lexer::tok_delim) {
+    lex.nextToken(); // eat ;
+
     if (funcname.size() != 1) {
       syntax::reportSyntaxError(lex, pos,
           "Reference name of declared function must be just 1 identifier.");
