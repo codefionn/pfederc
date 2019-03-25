@@ -924,6 +924,22 @@ TokenType Lexer::constructToken() noexcept {
       // return newline
       curchar = EOF - 1;
       return curtok = tok_eol;
+    } else if (curchar == '*') {
+      nextChar(); // eat *
+      while (curchar != EOF) {
+        if (curchar == '*') {
+          nextChar(); // eat *
+          if (curchar == '/')
+            break;
+        } else
+          nextChar(); // eat char
+
+        if (curchar == '\n') curchar = EOF - 2;
+      }
+
+      if (curchar != '/') return curtok = reportLexerError("Expected '*/'.");
+      nextChar(); // eat '/'
+      return curtok = constructToken(); // Return next token
     } else
       curop = op_div;
 

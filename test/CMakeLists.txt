@@ -56,6 +56,7 @@ set_tests_properties(lexer_operators PROPERTIES PASS_REGULAR_EXPRESSION
 
 ## Comments
 add_test(lexer_comment0 lexer "// i'm a comment")
+add_test(lexer_comment1 lexer "/* comment */")
 
 # parseline
 add_executable(parseline "${pfederc_SOURCE_DIR}/test/parseline.cpp")
@@ -173,6 +174,8 @@ add_test(parseline_templ3 parseline "func{t0 : T, t1 :T} hello() ;")
 
 ## Comments
 add_test(parseline_comment0 parseline "func{T} hello(t : T) // comment\n;")
+add_test(parseline_comment1 parseline "/* 111 == */ 100 + 11")
+add_test(parseline_comment2 parseline "2 + /* 6 == */ 2 * 3")
 
 # parseinput
 add_executable(parseinput "${pfederc_SOURCE_DIR}/test/parseinput.cpp")
