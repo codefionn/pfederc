@@ -27,6 +27,13 @@ static std::unique_ptr<syntax::StrExpr> _parsePrimaryString(lexer::Lexer &lex) n
       tok.getString());
 }
 
+static std::unique_ptr<syntax::CharExpr> _parsePrimaryChar(lexer::Lexer &lex) noexcept {
+  lexer::Token tok = lex.currentToken();
+  lex.nextToken(); // eat str
+
+  return std::make_unique<syntax::CharExpr>(tok.getPosition(), tok.getCharacter());
+}
+
 static std::unique_ptr<syntax::BraceExpr> _parsePrimaryBraceExpr(lexer::Lexer &lex) noexcept {
   lex.skipNewLine = true;
 
@@ -445,6 +452,8 @@ std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
     return _parsePrimaryNumExpr(lex);
   case lexer::tok_str:
     return _parsePrimaryString(lex);
+  case lexer::tok_char:
+    return _parsePrimaryChar(lex);
   case lexer::tok_obrace:
     return _parsePrimaryBraceExpr(lex);
   case lexer::tok_obrace_array:
