@@ -72,6 +72,20 @@ add_test(parseline_indexcall parseline "hello[100]")
 ## Numbers
 add_test(parseline_num0 parseline "1")
 set_tests_properties(parseline_num0 PROPERTIES PASS_REGULAR_EXPRESSION "^1\n$")
+add_test(parseline_num1 parseline "98")
+set_tests_properties(parseline_num1 PROPERTIES PASS_REGULAR_EXPRESSION "^98\n$")
+add_test(parseline_num2 parseline "1.25")
+set_tests_properties(parseline_num2 PROPERTIES PASS_REGULAR_EXPRESSION "^0*1\\.250*\n$")
+add_test(parseline_num3 parseline "1.25f")
+set_tests_properties(parseline_num3 PROPERTIES PASS_REGULAR_EXPRESSION "^0*1\\.250*\n$")
+
+## Strings
+add_test(parseline_str0 parseline "\"Hello world\"")
+set_tests_properties(parseline_str0 PROPERTIES PASS_REGULAR_EXPRESSION "^\"Hello world\"\n$")
+
+## Chars
+add_test(parseline_char0 parseline "'a'")
+set_tests_properties(parseline_char0 PROPERTIES PASS_REGULAR_EXPRESSION "^'a'\n$")
 
 ## Skip new line
 add_test(parseline_skipline parseline "(\n 1 + \n 2)")
