@@ -158,6 +158,22 @@ set_tests_properties(parseline_ffn00 parseline_ffn01 parseline_ffn02
   parseline_ffn03 parseline_ffn04 parseline_ffn05 parseline_ffn06
   PROPERTIES WILL_FAIL TRUE)
 
+## Traits
+add_test(parseline_trait0 parseline "trait T\nFunc hello ;\n;")
+add_test(parseline_trait1 parseline "trait T :: MyTrait0, MyTrait1\nFunc hello ;\n;")
+add_test(parseline_trait2 parseline "trait T :: MyTrait0, MyTrait1\nFunc hello1 ;\n Func hello1 ;\n;")
+add_test(parseline_trait3 parseline "trait{T} MyTrait :: MyTraitParent\n;")
+add_test(parseline_trait4 parseline "trait MyTrait\nFunc hello : u8 ;\n;")
+
+## Traits - Fail tests
+add_test(parseline_ftrait0 parseline "trait T\n;")
+add_test(parseline_ftrait1 parseline "trait T\nFunc hello0 ; Func hello1\n;")
+add_test(parseline_ftrait2 parseline "trait T Func hello0;\n Func hello1\n;")
+add_test(parseline_ftrait3 parseline "trait T\n func hello\n;")
+set_tests_properties(parseline_ftrait0 parseline_ftrait1
+  parseline_ftrait2 parseline_ftrait3
+  PROPERTIES WILL_FAIL TRUE)
+
 ## Arrays
 
 add_test(parseline_array0 parseline "[\"hello\" ; 100]")

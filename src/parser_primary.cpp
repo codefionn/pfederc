@@ -1,7 +1,8 @@
 #include "feder/parser.hpp"
 using namespace feder;
 
-static std::unique_ptr<syntax::IdExpr> _parsePrimaryIdExpr(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::IdExpr>
+_parsePrimaryIdExpr(lexer::Lexer &lex) noexcept {
   lexer::Token tok = lex.currentToken();
   lex.nextToken(); // eat id
 
@@ -9,7 +10,8 @@ static std::unique_ptr<syntax::IdExpr> _parsePrimaryIdExpr(lexer::Lexer &lex) no
   return std::make_unique<syntax::IdExpr>(tok.getPosition(), id);
 }
 
-static std::unique_ptr<syntax::NumExpr> _parsePrimaryNumExpr(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::NumExpr>
+_parsePrimaryNumExpr(lexer::Lexer &lex) noexcept {
   lexer::Token tok = lex.currentToken();
   lex.nextToken(); // eat num
 
@@ -19,7 +21,8 @@ static std::unique_ptr<syntax::NumExpr> _parsePrimaryNumExpr(lexer::Lexer &lex) 
       tok.getPosition(), numType, numVal);
 }
 
-static std::unique_ptr<syntax::StrExpr> _parsePrimaryString(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::StrExpr>
+_parsePrimaryString(lexer::Lexer &lex) noexcept {
   lexer::Token tok = lex.currentToken();
   lex.nextToken(); // eat str
 
@@ -27,14 +30,16 @@ static std::unique_ptr<syntax::StrExpr> _parsePrimaryString(lexer::Lexer &lex) n
       tok.getString());
 }
 
-static std::unique_ptr<syntax::CharExpr> _parsePrimaryChar(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::CharExpr>
+_parsePrimaryChar(lexer::Lexer &lex) noexcept {
   lexer::Token tok = lex.currentToken();
   lex.nextToken(); // eat str
 
   return std::make_unique<syntax::CharExpr>(tok.getPosition(), tok.getCharacter());
 }
 
-static std::unique_ptr<syntax::BraceExpr> _parsePrimaryBraceExpr(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::BraceExpr>
+_parsePrimaryBraceExpr(lexer::Lexer &lex) noexcept {
   lex.skipNewLine = true;
 
   lexer::Position posStart = lex.currentToken().getPosition();
@@ -62,7 +67,8 @@ static std::unique_ptr<syntax::BraceExpr> _parsePrimaryBraceExpr(lexer::Lexer &l
   return std::make_unique<syntax::BraceExpr>(pos, std::move(expr));
 }
 
-static std::unique_ptr<syntax::UnOpExpr> _parsePrimaryUnOpExpr(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::UnOpExpr>
+_parsePrimaryUnOpExpr(lexer::Lexer &lex) noexcept {
   if (!lexer::isValidOperatorPosition(
         lex.currentToken().getOperator(), lexer::op_lunary)) {
     syntax::reportSyntaxError(lex,
@@ -82,7 +88,8 @@ static std::unique_ptr<syntax::UnOpExpr> _parsePrimaryUnOpExpr(lexer::Lexer &lex
       lexer::op_lunary, opTok.getOperator(), std::move(expr));
 }
 
-static std::unique_ptr<syntax::Expr> _parsePrimaryArray(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::Expr>
+_parsePrimaryArray(lexer::Lexer &lex) noexcept {
   lexer::Position posStart = lex.currentToken().getPosition();
   lex.nextToken(); // eat [
 
@@ -133,7 +140,8 @@ static std::unique_ptr<syntax::Expr> _parsePrimaryArray(lexer::Lexer &lex) noexc
       lexer::Position(posStart, posEndTok.getPosition()), std::move(expr));
 }
 
-static std::unique_ptr<syntax::TemplateExpr> _parsePrimaryTemplate(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::TemplateExpr>
+_parsePrimaryTemplate(lexer::Lexer &lex) noexcept {
   lexer::Position startPos = lex.currentToken().getPosition();
   lex.nextToken(); // eat {
 
@@ -159,7 +167,8 @@ static std::unique_ptr<syntax::TemplateExpr> _parsePrimaryTemplate(lexer::Lexer 
       lexer::Position(startPos, endPosTok.getPosition()), std::move(params));
 }
 
-static std::unique_ptr<syntax::FuncParamExpr> _parsePrimaryFunctionParam(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::FuncParamExpr>
+_parsePrimaryFunctionParam(lexer::Lexer &lex) noexcept {
   auto param = parser::parse(lex, 0, true);
   if (!param) return nullptr;
 
@@ -207,7 +216,8 @@ static std::unique_ptr<syntax::FuncParamExpr> _parsePrimaryFunctionParam(lexer::
       std::move(semanticType), std::move(guard), std::move(guardResult));
 }
 
-static std::vector<std::unique_ptr<syntax::FuncParamExpr>> _parsePrimaryFunctionParams(lexer::Lexer &lex, bool &err) noexcept {
+static std::vector<std::unique_ptr<syntax::FuncParamExpr>>
+_parsePrimaryFunctionParams(lexer::Lexer &lex, bool &err) noexcept {
   err = false;
   lex.skipNewLine = true;
 
@@ -253,7 +263,8 @@ static std::vector<std::unique_ptr<syntax::FuncParamExpr>> _parsePrimaryFunction
   return result;
 }
 
-static std::vector<std::string> _parsePrimaryFunctionName(lexer::Lexer &lex, bool &err) noexcept {
+static std::vector<std::string>
+_parsePrimaryFunctionName(lexer::Lexer &lex, bool &err) noexcept {
   err = false;
 
   std::vector<std::string> result;
@@ -276,7 +287,8 @@ static std::vector<std::string> _parsePrimaryFunctionName(lexer::Lexer &lex, boo
   return result;
 }
 
-static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::FuncExpr>
+_parsePrimaryFunction(lexer::Lexer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
   bool virtualFunc = lex.currentToken() == lexer::tok_vfunc;
   lex.nextToken(); // eat 'func'/'Func'
@@ -310,6 +322,7 @@ static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex
   }
 
   if (funcname.size() == 0) {
+    // No function name => It's a function type
     if (virtualFunc) {
       syntax::reportSyntaxError(lex,
           pos, "Function types mustn't be virtual functions.");
@@ -329,6 +342,7 @@ static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex
   }
 
   if (lex.currentToken() == lexer::tok_delim) {
+    // Declared (but not defined function)
     lex.nextToken(); // eat ;
 
     if (funcname.size() != 1) {
@@ -337,7 +351,6 @@ static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex
       return nullptr;
     }
 
-    // Declared (but not defined function)
     return std::make_unique<syntax::FuncExpr>(
         pos, funcname,
         std::move(templ), std::move(resultType),
@@ -346,7 +359,7 @@ static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex
 
   if (!parser::match(lex, nullptr, lexer::tok_eol)) return nullptr;
 
-  // Defined
+  // Defined functions
   auto program = parser::parseProgram(lex, false);
   if (!program) return nullptr;
 
@@ -389,7 +402,8 @@ static std::vector<std::unique_ptr<syntax::Expr>> _parseInherited(
   return result;
 }
 
-static std::unique_ptr<syntax::ClassExpr> _parsePrimaryClass(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::ClassExpr>
+_parsePrimaryClass(lexer::Lexer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'class'
 
@@ -405,9 +419,16 @@ static std::unique_ptr<syntax::ClassExpr> _parsePrimaryClass(lexer::Lexer &lex) 
   if (!parser::match(lex, nullptr, lexer::tok_eol)) return nullptr;
 }
 
-static std::unique_ptr<syntax::TraitExpr> _parsePrimaryTrait(lexer::Lexer &lex) noexcept {
+static std::unique_ptr<syntax::TraitExpr>
+_parsePrimaryTrait(lexer::Lexer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'trait'
+
+  std::unique_ptr<syntax::TemplateExpr> templ;
+  if (lex.currentToken() == lexer::tok_obrace_template) {
+    templ = _parsePrimaryTemplate(lex);
+    if (!templ) return nullptr; // error forwarding
+  }
 
   lexer::Token idTok;
   if (!parser::match(lex, &idTok, lexer::tok_id))
@@ -419,6 +440,45 @@ static std::unique_ptr<syntax::TraitExpr> _parsePrimaryTrait(lexer::Lexer &lex) 
   if (errorInherited) return nullptr;
 
   if (!parser::match(lex, nullptr, lexer::tok_eol)) return nullptr;
+
+  std::vector<std::unique_ptr<syntax::FuncExpr>> funs;
+
+  while (lex.currentToken() == lexer::tok_vfunc
+      || lex.currentToken() == lexer::tok_eol) {
+    if (lex.currentToken() == lexer::tok_eol) {
+      lex.nextToken(); // eat newline
+      continue;
+    }
+
+    auto fun = _parsePrimaryFunction(lex);
+    if (!fun) return nullptr; // error forwarding
+
+    if (!fun->isDeclared() || !fun->isVirtual()) {
+      syntax::reportSyntaxError(lex, fun->getPosition(),
+          "Traits must have just declared, virtual functions.");
+      return nullptr;
+    }
+
+    funs.push_back(std::move(fun));
+
+    if (!parser::match(lex, nullptr, lexer::tok_eol)) return nullptr;
+  }
+
+  if (!parser::match(lex, nullptr, lexer::tok_delim)) return nullptr;
+
+  if (traits.empty() && funs.empty()) {
+    lex.reportSemanticError(
+        "Traits with no inherited traits must declare at least one function.",
+        lexer::Position(pos, idTok.getPosition()));
+    return nullptr;
+  }
+
+  return std::make_unique<syntax::TraitExpr>(
+      lexer::Position(pos, idTok.getPosition()),
+      idTok.getString(),
+      std::move(templ),
+      std::move(traits),
+      std::move(funs));
 }
 
 static std::unique_ptr<syntax::NmspExpr> _parsePrimaryNamespace(lexer::Lexer &lex) noexcept {

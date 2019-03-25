@@ -349,16 +349,15 @@ namespace feder {
       const Program &getProgram() const noexcept
       { return *program; }
 
-      /*!\return Returns true, if only declared, otherwise (defined) false.
+      /*!\return Returns true, if only declared, otherwise false.
        */
       bool isDeclared() const noexcept
-      { return !program; } // If no program => Declared
+      { return !program && !isType(); } // If no program => Declared
 
-      /*!\return Returns !isDeclared().
-       * \see isDeclared
+      /*!\return Returns true, if defined function, otherwise false. 
        */
       bool isDefined() const noexcept
-      { return !isDeclared(); }
+      { return (bool) program && !isType(); }
 
       virtual std::string to_string() const noexcept override;
     };

@@ -47,5 +47,6 @@ var searchData=
   ['op_5fsub',['op_sub',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6aa4e9a1ae7c828243ffc320f1bdd0f8d2',1,'feder::lexer']]],
   ['op_5ftcast',['op_tcast',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6aae2779e7f67d8b5dac30d220f6ea1f73',1,'feder::lexer']]],
   ['op_5ftcheck',['op_tcheck',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6a525876ca3f44585b3b709642061fb3c4',1,'feder::lexer']]],
+  ['op_5ftemplatecall',['op_templatecall',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6afbad94fa0e7b06e183221fbd5f9c16a6',1,'feder::lexer']]],
   ['op_5fveq',['op_veq',['../group__lexer.html#gga0b9f97971c5bce8d249427fa86afedf6a4d4a4530b9bb4c7da648a6b7b342adec',1,'feder::lexer']]]
 ];
