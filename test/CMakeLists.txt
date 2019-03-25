@@ -20,7 +20,7 @@ add_test(lexer_lines lexer "id0\nid1\nid2\n\n")
 set_tests_properties(lexer_lines PROPERTIES PASS_REGULAR_EXPRESSION
   "^identifier\nend-of-line\nidentifier\nend-of-line\nidentifier\nend-of-line\nend-of-line\n$")
 
-# String, Numbers
+## Numbers
 add_test(lexer_num0 lexer "0x0F")
 set_tests_properties(lexer_num0 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
 add_test(lexer_num1 lexer "10")
@@ -42,11 +42,16 @@ set_tests_properties(lexer_num8 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
 add_test(lexer_num9 lexer "1s")
 set_tests_properties(lexer_num9 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
 
-add_test(lexer_lines_skip0 lexer "(1) + (2)\n")
-set_tests_properties(lexer_lines_skip0 PROPERTIES PASS_REGULAR_EXPRESSION
-  "^\\(\nnumber\n\\)\noperator\n\\(\nnumber\n\\)\nend-of-line\n$")
+## Strings
 
-# Check if operators get parsed
+add_test(lexer_str0 lexer "\"Hello, World!\"")
+set_tests_properties(lexer_str0 PROPERTIES PASS_REGULAR_EXPRESSION "^string\n$")
+add_test(lexer_str1 lexer "\"\\t\\n\"")
+set_tests_properties(lexer_str1 PROPERTIES PASS_REGULAR_EXPRESSION "^string\n$")
+add_test(lexer_str2 lexer "\"\"")
+set_tests_properties(lexer_str2 PROPERTIES PASS_REGULAR_EXPRESSION "^string\n$")
+
+## Check if operators get parsed
 add_test(lexer_operators lexer
   "++ -- += + -> -= &= && & |= || | *= * != ! === == = :: :? := : <<= << <= < >>= >> >= > ~ ^= ^ /= / %= % . ,")
 set_tests_properties(lexer_operators PROPERTIES PASS_REGULAR_EXPRESSION
@@ -57,10 +62,13 @@ set_tests_properties(lexer_operators PROPERTIES PASS_REGULAR_EXPRESSION
 add_executable(parseline "${pfederc_SOURCE_DIR}/test/parseline.cpp")
 target_link_libraries(parseline pfederctestlib)
 
-add_test(parseline_empty_braces parseline "()")
 add_test(parseline_num_braces parseline "(1)")
 add_test(parseline_fncall parseline "hello()")
 add_test(parseline_indexcall parseline "hello[100]")
+
+## Numbers
+add_test(parseline_num0 parseline "1")
+set_tests_properties(parseline_num0 PROPERTIES PASS_REGULAR_EXPRESSION "^1\n$")
 
 ## Skip new line
 add_test(parseline_skipline parseline "(\n 1 + \n 2)")

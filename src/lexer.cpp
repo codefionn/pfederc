@@ -643,7 +643,7 @@ static TokenType tokenIdentifier(Lexer &lexer,
  */
 static bool escapeSequence(Lexer &lexer, std::string &str) {
   switch (lexer.currentChar()) {
-    case '\0':
+    case '0':
       str += '\0';
       break;
     case '\'':
@@ -679,10 +679,7 @@ static bool escapeSequence(Lexer &lexer, std::string &str) {
     default:
       Position pos = lexer.getPosition();
       lexer.reportLexerError(
-          "Invalid escape sequence.",
-          Position(pos.getLexer(),
-            pos.getColumnEnd() - 1, pos.getColumnEnd(),
-            pos.getLineStart(), pos.getLineEnd()));
+          "Invalid escape sequence.", pos);
       return false;
   }
 
@@ -694,22 +691,17 @@ static TokenType tokenString(Lexer &lexer,
   str = ""; // Reset string
   lexer.nextChar(); // eat "
 
-  bool escape = false;
-  while ((lexer.currentChar() != '\"' || escape)
-      && lexer.currentChar() != EOF) {
-    if (escape) {
-      if (!escapeSequence(lexer, str))
-        return curtok = tok_err;
-
-      escape = false;
-    } else if (lexer.currentChar() == '\\') {
-      escape = true;
-    } else if (lexer.currentChar() == EOF - 1) {
+  while (lexer.currentChar() != '\"' && lexer.currentChar() != EOF) {
+    if (lexer.currentChar() == EOF - 1 || lexer.currentChar() == '\n') {
       lexer.nextChar(); // eat newline character
 
       // Skip spaces
       while (_iswhitespace(lexer.currentChar())) lexer.nextChar();
       continue;
+    } else if (lexer.currentChar() == '\\') {
+		lexer.nextChar(); // eat '\'
+		if (!escapeSequence(lexer, str))
+			return curtok = tok_err;
     } else {
       str += lexer.currentChar();
     }
