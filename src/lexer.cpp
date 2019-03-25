@@ -445,12 +445,17 @@ void Lexer::readLine() noexcept {
 static TokenType tokenNumber(Lexer &lexer,
     TokenType &curtok,
     NumberValue &numVal, NumberType &numType) noexcept {
+  bool _isdecimal = true;
   std::uint64_t result = 0;
+  std::string numStr;
+
   // dec, hex, bin, oct number
   if (lexer.currentChar() == '0') {
     lexer.nextChar(); // eat 0
     // hex, oct, bin or dec 0
     if (lexer.currentChar() == 'x') {
+      _isdecimal = false;
+
       // hexadecimal
       lexer.nextChar(); // eat x
 
@@ -472,12 +477,16 @@ static TokenType tokenNumber(Lexer &lexer,
         lexer.nextChar();
       }
     } else if (lexer.currentChar() == 'o') {
+      _isdecimal = false;
+
       // octal
       lexer.nextChar(); // eat o
     } else if (lexer.currentChar() == 'b') {
+      _isdecimal = false;
+
       // binary
       lexer.nextChar(); // eat b
-    } else {
+    } else if (isdigit(lexer.currentChar())) {
       // invalid 0[num]
       // Current pos points to invalid character
       // but pointing to the zero is better (so column - 1)
@@ -488,8 +497,6 @@ static TokenType tokenNumber(Lexer &lexer,
 
     // Or just 0
   } else {
-    std::string numStr;
-
     // dec
     while (isdigit(lexer.currentChar())) {
       numStr += lexer.currentChar();
@@ -498,40 +505,40 @@ static TokenType tokenNumber(Lexer &lexer,
 
       lexer.nextChar(); // eat digit
     }
-
-    if (lexer.currentChar() == '.') {
-      // floating-point
-      lexer.nextChar(); // eat .
-
-      while (isdigit(lexer.currentChar())) {
-        numStr += lexer.currentChar();
-        lexer.nextChar(); // eat number
-      }
-
-      switch (lexer.currentChar()) {
-        case 'f': // single-precision floating-point
-          lexer.nextChar(); // eat f
-          numType = num_f32;
-          numVal.f32 = strtof(numStr.c_str(), nullptr);
-          break;
-        case 'F': // Double-precision floating-point
-          lexer.nextChar(); // eat F
-        default: // At default: Double-precision floating-point
-          numType = num_f64;
-          numVal.f64 = strtod(numStr.c_str(), nullptr);
-          break;
-      }
-
-      if (isalpha(lexer.currentChar()) || lexer.currentChar() == '_')
-        return curtok = lexer.reportLexerError(
-            std::string("Invalid character '")
-            + (char) lexer.currentChar()
-            + std::string("' directly after number token."));
-
-      return curtok = tok_num;
-    }
   }
 
+  if (_isdecimal && lexer.currentChar() == '.') {
+    // floating-point
+    lexer.nextChar(); // eat .
+	numStr += ".";
+  
+    while (isdigit(lexer.currentChar())) {
+      numStr += lexer.currentChar();
+      lexer.nextChar(); // eat number
+    }
+  
+    switch (lexer.currentChar()) {
+      case 'f': // single-precision floating-point
+        lexer.nextChar(); // eat f
+        numType = num_f32;
+        numVal.f32 = strtof(numStr.c_str(), nullptr);
+        break;
+      case 'F': // Double-precision floating-point
+        lexer.nextChar(); // eat F
+      default: // At default: Double-precision floating-point
+        numType = num_f64;
+        numVal.f64 = strtod(numStr.c_str(), nullptr);
+        break;
+    }
+  
+    if (isalpha(lexer.currentChar()) || lexer.currentChar() == '_')
+      return curtok = lexer.reportLexerError(
+          std::string("Invalid character '")
+          + (char) lexer.currentChar()
+          + std::string("' directly after number token."));
+  
+    return curtok = tok_num;
+  }
   // Number type given ? 
 
   bool _isunsigned = false;
