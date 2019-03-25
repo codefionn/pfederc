@@ -623,6 +623,8 @@ static TokenType tokenIdentifier(Lexer &lexer,
     return curtok = tok_nmsp;
   if (str == "trait")
     return curtok = tok_trait;
+  if (str == "enum")
+    return curtok = tok_enum;
   if (str == "func")
     return curtok = tok_func;
   if (str == "Func")
