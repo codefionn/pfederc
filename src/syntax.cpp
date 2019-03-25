@@ -362,9 +362,9 @@ std::string BiOpExpr::to_string() const noexcept {
 std::string UnOpExpr::to_string() const noexcept {
   switch (getOperatorPosition()) {
     case lexer::op_lunary:
-      return std::to_string(getOperator()) + getExpression().to_string();
+      return "(" + std::to_string(getOperator()) + getExpression().to_string() + ")";
     case lexer::op_runary:
-      return getExpression().to_string() + std::to_string(getOperator());
+      return "(" + getExpression().to_string() + std::to_string(getOperator()) + ")";
   }
 
   feder::fatal("Impossible-to-reach code reached");
