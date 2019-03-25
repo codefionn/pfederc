@@ -1,15 +1,9 @@
 include(CTest)
 enable_testing()
 
-# Build test libary (consume less resources)
-add_library(pfederctestlib STATIC ${pfederc_SOURCES})
-if (NOT PFEDERC_SANITY_CHECKS)
-  target_compile_definitions(pfederctestlib PRIVATE NSANITY=1)
-endif()
-
 # lexer
 add_executable(lexer "${pfederc_SOURCE_DIR}/test/lexer.cpp")
-target_link_libraries(lexer pfederctestlib)
+target_link_libraries(lexer pfederclib)
 
 add_test(lexer_add lexer "2 + id\n")
 set_tests_properties(lexer_add PROPERTIES PASS_REGULAR_EXPRESSION
@@ -63,7 +57,7 @@ set_tests_properties(lexer_operators PROPERTIES PASS_REGULAR_EXPRESSION
 
 # parseline
 add_executable(parseline "${pfederc_SOURCE_DIR}/test/parseline.cpp")
-target_link_libraries(parseline pfederctestlib)
+target_link_libraries(parseline pfederclib)
 
 add_test(parseline_num_braces parseline "(1)")
 add_test(parseline_fncall parseline "hello()")
@@ -132,4 +126,4 @@ add_test(parseline_templ1 parseline "func{T : myawesometype} hello(t : T) ;")
 
 # parseinput
 add_executable(parseinput "${pfederc_SOURCE_DIR}/test/parseinput.cpp")
-target_link_libraries(parseinput pfederctestlib)
+target_link_libraries(parseinput pfederclib)
