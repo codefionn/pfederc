@@ -201,14 +201,16 @@ static std::unique_ptr<syntax::FuncParamExpr> _parsePrimaryFunctionParam(lexer::
 }
 
 static std::vector<std::unique_ptr<syntax::FuncParamExpr>> _parsePrimaryFunctionParams(lexer::Lexer &lex, bool &err) noexcept {
-  lex.skipNewLine = true;
-
   err = false;
+  lex.skipNewLine = true;
 
   std::vector<std::unique_ptr<syntax::FuncParamExpr>> result;
 
-  if (lex.currentToken() != lexer::tok_obrace) return result;
-  lex.nextToken(); // eat (
+  lexer::Token startPosTok;
+  if (!parser::match(lex, &startPosTok, lexer::tok_obrace)) { // eat (
+      err = true;
+      return result;
+  }
 
   while (lex.currentToken() != lexer::tok_cbrace
       && lex.currentToken() != lexer::tok_eof) {
@@ -234,12 +236,12 @@ static std::vector<std::unique_ptr<syntax::FuncParamExpr>> _parsePrimaryFunction
     result.push_back(std::move(param));
   }
 
+  lex.skipNewLine = false;
+
   if (!parser::match(lex, nullptr, lexer::tok_cbrace)) {
     err = true;
     return result;
   }
-
-  lex.skipNewLine = false;
 
   return result;
 }
@@ -370,12 +372,12 @@ static std::vector<std::unique_ptr<syntax::Expr>> _parseInherited(
     auto &biopexpr = dynamic_cast<syntax::BiOpExpr&>(*expr);
 
     // , is left associative
-    result.push_back(biopexpr.moveRHS());
-    expr = biopexpr.moveLHS();
+    result.insert(result.begin(), biopexpr.moveRHS());
+    expr = biopexpr.moveLHS(); // iterator step
   }
 
   // The last expr is no biopexpr, so push to result
-  result.push_back(std::move(expr));
+  result.insert(result.begin(), std::move(expr));
 
   return result;
 }
