@@ -82,7 +82,9 @@ add_test(parseline_char0 parseline "'a'")
 set_tests_properties(parseline_char0 PROPERTIES PASS_REGULAR_EXPRESSION "^'a'\n$")
 
 ## Skip new line
-add_test(parseline_skipline parseline "(\n 1 + \n 2)")
+add_test(parseline_skipline0 parseline "(\n 1 + \n 2)")
+add_test(parseline_skipline1 parseline "func hello(\nstr : std.String) ;")
+add_test(parseline_skipline2 parseline "func hello(str \n : std.String) ;")
 
 ## Test Precedence
 add_test(parseline_prec0 parseline "1 + 2")
@@ -113,6 +115,18 @@ add_test(parseline_fn09 parseline "func : hellot")
 add_test(parseline_fn10 parseline "func (param : hellot) : hellot")
 add_test(parseline_fn11 parseline "func (param0 : hellot0, param1 : hellot1) : hellot")
 
+## Functions - Fail tests
+add_test(parseline_ffn00 parseline "func ;")
+add_test(parseline_ffn01 parseline "func{T}")
+add_test(parseline_ffn02 parseline "Func (t : T)")
+add_test(parseline_ffn03 parseline "func hello(t : T)")
+add_test(parseline_ffn04 parseline "func hello(t : T) : T")
+add_test(parseline_ffn05 parseline "func hello(t : T) : T\n")
+add_test(parseline_ffn06 parseline "func std.hello(t : T) ;")
+set_tests_properties(parseline_ffn00 parseline_ffn01 parseline_ffn02
+  parseline_ffn03 parseline_ffn04 parseline_ffn05 parseline_ffn06
+  PROPERTIES WILL_FAIL TRUE)
+
 ## Arrays
 
 add_test(parseline_array0 parseline "[\"hello\" ; 100]")
@@ -121,8 +135,11 @@ add_test(parseline_array2 parseline "hello[100]")
 add_test(parseline_array3 parseline "hello[100 + 12354]")
 add_test(parseline_array4 parseline "hello[(100 + 12354)]")
 
+## Templates
 add_test(parseline_templ0 parseline "hello{myawesometype}")
 add_test(parseline_templ1 parseline "func{T : myawesometype} hello(t : T) ;")
+add_test(parseline_templ2 parseline "hello{mytype0, mytype1, mytype2}")
+add_test(parseline_templ3 parseline "func{t0 : T, t1 :T} hello() ;")
 
 # parseinput
 add_executable(parseinput "${pfederc_SOURCE_DIR}/test/parseinput.cpp")
