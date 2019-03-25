@@ -917,6 +917,13 @@ TokenType Lexer::constructToken() noexcept {
     if (curchar == '=') {
       nextChar(); // eat =
       curop = op_asg_div;
+    } else if (curchar == '/') {
+      nextChar(); // eat /
+      readLine(); // read till eof/eol
+      if (curchar == EOF) return curtok = tok_eof;
+      // return newline
+      curchar = EOF - 1;
+      return curtok = tok_eol;
     } else
       curop = op_div;
 
