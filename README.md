@@ -7,14 +7,16 @@ at [https://codefionn.github.io/federlang].
 
 ## Build
 
-Build Release target:
+Clone & build:
 
 ```bash
+git clone https://github.com/codefionn/pfederc
+cd pfederc
 mkdir build ; cd build
-cmake -DCMAKE_BUILD_TYPE=Release .. ; cmake --build . -j
+cmake .. ; cmake --build .
 ```
 
-Testing:
+Testing (in pfederc main directory):
 
 ```bash
 cd build/test
