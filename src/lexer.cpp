@@ -735,8 +735,14 @@ static TokenType tokenChar(Lexer &lexer,
     return curtok = lexer.reportLexerError(
         "Invalid not-printable character.");
   }
+  
+  if (lexer.currentChar() != '\'')
+    return curtok = lexer.reportLexerError(
+        "Expected '.");
 
-  return  curtok = tok_char;
+  lexer.nextChar(); // eat '
+
+  return curtok = tok_char;
 }
 
 TokenType Lexer::constructToken() noexcept {

@@ -43,13 +43,16 @@ add_test(lexer_num9 lexer "1s")
 set_tests_properties(lexer_num9 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
 
 ## Strings
-
 add_test(lexer_str0 lexer "\"Hello, World!\"")
 set_tests_properties(lexer_str0 PROPERTIES PASS_REGULAR_EXPRESSION "^string\n$")
 add_test(lexer_str1 lexer "\"\\t\\n\"")
 set_tests_properties(lexer_str1 PROPERTIES PASS_REGULAR_EXPRESSION "^string\n$")
 add_test(lexer_str2 lexer "\"\"")
 set_tests_properties(lexer_str2 PROPERTIES PASS_REGULAR_EXPRESSION "^string\n$")
+
+## Chars
+add_test(lexer_char0 lexer "' '")
+set_tests_properties(lexer_char0 PROPERTIES PASS_REGULAR_EXPRESSION "^character\n$")
 
 ## Check if operators get parsed
 add_test(lexer_operators lexer
