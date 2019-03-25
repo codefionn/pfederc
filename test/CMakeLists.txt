@@ -100,6 +100,19 @@ add_test(parseline_prec3 parseline "id0 + id1 + id2")
 set_tests_properties(parseline_prec3 PROPERTIES PASS_REGULAR_EXPRESSION
   "^\\(\\(id0 \\+ id1\\) \\+ id2\\)\n$")
 
+add_test(parseline_prec4 parseline "!std.name.hello")
+set_tests_properties(parseline_prec4 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^!\\(\\(std . name\\) . hello\\)\n$")
+add_test(parseline_prec5 parseline "+std.name.hello")
+set_tests_properties(parseline_prec5 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\+\\(\\(std . name\\) . hello\\)\n$")
+add_test(parseline_prec6 parseline "-std.name.hello")
+set_tests_properties(parseline_prec6 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^-\\(\\(std . name\\) . hello\\)\n$")
+add_test(parseline_prec7 parseline "~std.name.hello")
+set_tests_properties(parseline_prec7 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^~\\(\\(std . name\\) . hello\\)\n$")
+
 ## Functions
 add_test(parseline_fn00 parseline "func hello ;")
 add_test(parseline_fn01 parseline "func hello : hellot ;")
