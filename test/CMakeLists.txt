@@ -20,6 +20,24 @@ add_test(lexer_lines lexer "id0\nid1\nid2\n\n")
 set_tests_properties(lexer_lines PROPERTIES PASS_REGULAR_EXPRESSION
   "^identifier\nend-of-line\nidentifier\nend-of-line\nidentifier\nend-of-line\nend-of-line\n$")
 
+# String, Numbers
+add_test(lexer_num0 lexer "0x0F")
+set_tests_properties(lexer_num0 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
+add_test(lexer_num1 lexer "10")
+set_tests_properties(lexer_num1 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
+#add_test(lexer_num2 lexer "0b10")
+#set_tests_properties(lexer_num2 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
+#add_test(lexer_num3 lexer "0o071")
+#set_tests_properties(lexer_num3 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
+add_test(lexer_num4 lexer "10.0")
+set_tests_properties(lexer_num4 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
+add_test(lexer_num5 lexer "0.0")
+set_tests_properties(lexer_num5 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
+add_test(lexer_num6 lexer ".0")
+set_tests_properties(lexer_num6 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
+add_test(lexer_num7 lexer ".1")
+set_tests_properties(lexer_num7 PROPERTIES PASS_REGULAR_EXPRESSION "^number\n$")
+
 add_test(lexer_lines_skip0 lexer "(1) + (2)\n")
 set_tests_properties(lexer_lines_skip0 PROPERTIES PASS_REGULAR_EXPRESSION
   "^\\(\nnumber\n\\)\noperator\n\\(\nnumber\n\\)\nend-of-line\n$")
