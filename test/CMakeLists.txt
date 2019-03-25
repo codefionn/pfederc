@@ -188,6 +188,20 @@ add_test(parseline_fclass2 parseline "class Str\nfunc my.function ;\n;")
 set_tests_properties(parseline_fclass0 parseline_fclass1 parseline_fclass2
   PROPERTIES WILL_FAIL TRUE)
 
+## Enums
+
+add_test(parseline_enum0 parseline "enum Weekday\nMonday\nTuesday\nWednesday\nAnother\n;")
+add_test(parseline_enum1 parseline "enum{T} Option\nNothing\n;")
+add_test(parseline_enum2 parseline "enum{T} Option\nNothing\nJust(T)\n;")
+
+## Enum - Fail tests
+
+add_test(parseline_fenum0 parseline "enum Weekday\nMonday + Tuesday\n;")
+add_test(parseline_fenum1 parseline "enum Weekday\n1(T)\n;")
+add_test(parseline_fenum2 parseline "enum Weekday\n1\n;")
+set_tests_properties(parseline_fenum0 parseline_fenum1 parseline_fenum2
+  PROPERTIES WILL_FAIL TRUE)
+
 ## Arrays
 
 add_test(parseline_array0 parseline "[\"hello\" ; 100]")

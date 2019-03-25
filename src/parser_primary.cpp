@@ -609,6 +609,88 @@ _parsePrimaryTrait(lexer::Lexer &lex) noexcept {
       std::move(templ), std::move(traits), std::move(funs));
 }
 
+static std::unique_ptr<syntax::EnumExpr>
+_parsePrimaryEnum(lexer::Lexer &lex) noexcept {
+  lexer::Position startPos = lex.currentToken().getPosition();
+  lex.nextToken(); // eat 'enum'
+
+  std::unique_ptr<syntax::TemplateExpr> templ;
+  if (lex.currentToken() == lexer::tok_obrace_template) {
+    templ = _parsePrimaryTemplate(lex);
+    if (!templ)
+      return nullptr; // error forwarding
+  }
+
+
+  lexer::Token tokId;
+  if (!parser::match(lex, &tokId, lexer::tok_id))
+    return nullptr;
+
+  if (!parser::match(lex, nullptr, lexer::tok_eol))
+    return nullptr;
+
+  bool err = false;
+
+  std::vector<std::unique_ptr<syntax::Expr>> constructors;
+  while (lex.currentToken() != lexer::tok_delim
+      && lex.currentToken() != lexer::tok_eof) {
+    if (lex.currentToken() == lexer::tok_eol) {
+      lex.nextToken(); // eat newline
+      continue;
+    }
+
+    auto expr = parser::parse(lex, 0, true);
+    if (!expr) {
+      err = true;
+      continue;
+    }
+
+    if (expr->getType() == syntax::expr_id) {
+      constructors.push_back(std::move(expr));
+    } else if (expr->getType() == syntax::expr_biop) {
+      if (dynamic_cast<syntax::BiOpExpr&>(*expr).getOperator() != lexer::op_fncall) {
+        lex.reportSyntaxError(
+            "Expected either identifier or constructor.",
+            expr->getPosition());
+        err = true;
+        continue;
+      }
+
+      if (dynamic_cast<syntax::BiOpExpr&>(*expr).getLHS().getType() != syntax::expr_id) {
+        auto &biopexpr = dynamic_cast<syntax::BiOpExpr&>(*expr);
+        lex.reportSyntaxError(
+            "Expected identifier.",
+            biopexpr.getLHS().getPosition());
+        err = true;
+        continue;
+      }
+
+      constructors.push_back(std::move(expr));
+    } else {
+      lex.reportSyntaxError(
+          "Expected either identifier or constructor.",
+          expr->getPosition());
+      err = true;
+      continue;
+    }
+
+    if (!parser::match(lex, nullptr, lexer::tok_eol)) {
+      err = true;
+      break;
+    }
+  }
+
+  if (!parser::match(lex, nullptr, lexer::tok_delim))
+    return nullptr;
+
+  if (err)
+    return nullptr;
+
+  return std::make_unique<syntax::EnumExpr>(
+      lexer::Position(startPos, tokId.getPosition()),
+      tokId.getString(), std::move(templ), std::move(constructors));
+}
+
 static std::unique_ptr<syntax::NmspExpr>
 _parsePrimaryNamespace(lexer::Lexer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
@@ -656,6 +738,8 @@ std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
     return _parsePrimaryClass(lex);
   case lexer::tok_trait:
     return _parsePrimaryTrait(lex);
+  case lexer::tok_enum:
+    return _parsePrimaryEnum(lex);
   case lexer::tok_nmsp:
     return _parsePrimaryNamespace(lex);
   case lexer::tok_op:

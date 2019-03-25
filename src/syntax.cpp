@@ -79,7 +79,7 @@ ClassExpr::~ClassExpr() {}
 EnumExpr::EnumExpr(
     const feder::lexer::Position &pos, const std::string &name,
     std::unique_ptr<TemplateExpr> &&templ,
-    std::vector<std::unique_ptr<BiOpExpr>> &&constructors) noexcept
+    std::vector<std::unique_ptr<Expr>> &&constructors) noexcept
     : IdExpr(expr_enum, pos, name), templ(std::move(templ)),
       constructors(std::move(constructors)) {}
 

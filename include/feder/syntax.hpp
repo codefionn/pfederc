@@ -399,13 +399,13 @@ public:
 /*!\brief Enum expression.
  */
 class EnumExpr : public IdExpr {
-  std::vector<std::unique_ptr<BiOpExpr>> constructors;
+  std::vector<std::unique_ptr<Expr>> constructors;
   std::unique_ptr<TemplateExpr> templ;
 
 public:
   EnumExpr(const lexer::Position &pos, const std::string &name,
            std::unique_ptr<TemplateExpr> &&templ,
-           std::vector<std::unique_ptr<BiOpExpr>> &&constructors) noexcept;
+           std::vector<std::unique_ptr<Expr>> &&constructors) noexcept;
   virtual ~EnumExpr();
 
   bool hasTemplate() const noexcept { return (bool)templ; }
