@@ -44,7 +44,7 @@ namespace feder {
       std::vector<std::unique_ptr<Expr>> lines;
       bool error;
     public:
-      Program(std::vector<std::unique_ptr<Expr>> lines,
+      Program(std::vector<std::unique_ptr<Expr>> &&lines,
           bool error = false) noexcept;
       virtual ~Program();
 
@@ -220,9 +220,9 @@ namespace feder {
        * \param guardResult Can be null (optional).
        */
       FuncParamExpr(const lexer::Position &pos, const std::string &name,
-          std::unique_ptr<Expr> semanticType,
-          std::unique_ptr<Expr> guard,
-          std::unique_ptr<Expr> guardResult) noexcept;
+          std::unique_ptr<Expr> &&semanticType,
+          std::unique_ptr<Expr> &&guard,
+          std::unique_ptr<Expr> &&guardResult) noexcept;
       virtual ~FuncParamExpr();
 
       /*!\return Returns the semantic type of the parameter.
@@ -281,10 +281,10 @@ namespace feder {
     public:
       FuncExpr(const lexer::Position &pos,
           const std::vector<std::string> &name,
-          std::unique_ptr<TemplateExpr> templ,
-          std::unique_ptr<Expr> returnType,
-          std::vector<std::unique_ptr<FuncParamExpr>> params,
-          std::unique_ptr<Program> program,
+          std::unique_ptr<TemplateExpr> &&templ,
+          std::unique_ptr<Expr>         &&returnType,
+          std::vector<std::unique_ptr<FuncParamExpr>> &&params,
+          std::unique_ptr<Program> &&program,
           bool virtualFunc) noexcept;
       virtual ~FuncExpr();
 
@@ -371,10 +371,10 @@ namespace feder {
       std::vector<std::unique_ptr<FuncExpr>> functions;
     public:
       ClassExpr(const lexer::Position &pos, const std::string &name,
-          std::unique_ptr<TemplateExpr> templ,
-          std::vector<std::unique_ptr<Expr>> traits,
-          std::vector<std::unique_ptr<Expr>> attributes,
-          std::vector<std::unique_ptr<FuncExpr>> functions) noexcept;
+          std::unique_ptr<TemplateExpr>          &&templ,
+          std::vector<std::unique_ptr<Expr>>     &&traits,
+          std::vector<std::unique_ptr<Expr>>     &&attributes,
+          std::vector<std::unique_ptr<FuncExpr>> &&functions) noexcept;
       virtual ~ClassExpr();
 
       bool hasTemplate() const noexcept
@@ -418,8 +418,8 @@ namespace feder {
       std::unique_ptr<TemplateExpr> templ;
     public:
       EnumExpr(const lexer::Position &pos, const std::string &name,
-          std::unique_ptr<TemplateExpr> templ,
-          std::vector<std::unique_ptr<BiOpExpr>> constructors) noexcept;
+          std::unique_ptr<TemplateExpr>          &&templ,
+          std::vector<std::unique_ptr<BiOpExpr>> &&constructors) noexcept;
       virtual ~EnumExpr();
 
       bool hasTemplate() const noexcept
@@ -456,9 +456,9 @@ namespace feder {
        * \param functions Declared (not defined) functions.
        */
       TraitExpr(const lexer::Position &pos, const std::string &name,
-          std::unique_ptr<TemplateExpr> templ,
-          std::vector<std::unique_ptr<Expr>> traits,
-          std::vector<std::unique_ptr<FuncExpr>> functions) noexcept;
+          std::unique_ptr<TemplateExpr>          &&templ,
+          std::vector<std::unique_ptr<Expr>>     &&traits,
+          std::vector<std::unique_ptr<FuncExpr>> &&functions) noexcept;
       virtual ~TraitExpr();
 
       bool hasTemplate() const noexcept
@@ -495,7 +495,7 @@ namespace feder {
       std::unique_ptr<Program> program;
     public:
       NmspExpr(const lexer::Position &pos, const std::string &name,
-          std::unique_ptr<Program> program) noexcept;
+          std::unique_ptr<Program> &&program) noexcept;
       virtual ~NmspExpr();
 
       /*!\return Returns program of the namespace.
@@ -519,7 +519,8 @@ namespace feder {
     public:
       BiOpExpr(const lexer::Position &pos,
           lexer::OperatorType opType,
-          std::unique_ptr<Expr> lhs, std::unique_ptr<Expr> rhs) noexcept;
+          std::unique_ptr<Expr> &&lhs,
+          std::unique_ptr<Expr> &&rhs) noexcept;
       virtual ~BiOpExpr();
 
       /*!\return Returns binary operator type.
@@ -571,7 +572,7 @@ namespace feder {
     public:
       UnOpExpr(const lexer::Position &pos,
           lexer::OperatorPosition opPos, lexer::OperatorType opType,
-          std::unique_ptr<Expr> expr) noexcept;
+          std::unique_ptr<Expr> &&expr) noexcept;
       virtual ~UnOpExpr();
 
       /*!\return Returns unary operator type.
@@ -603,7 +604,7 @@ namespace feder {
       std::unique_ptr<Expr> expr;
     public:
       BraceExpr(const lexer::Position &pos,
-          std::unique_ptr<Expr> expr) noexcept;
+          std::unique_ptr<Expr> &&expr) noexcept;
       virtual ~BraceExpr();
 
       bool hasExpression() const noexcept
@@ -624,7 +625,7 @@ namespace feder {
       std::vector<std::unique_ptr<Expr>> templates;
     public:
       TemplateExpr(const lexer::Position &pos,
-          std::vector<std::unique_ptr<Expr>> templates) noexcept;
+          std::vector<std::unique_ptr<Expr>> &&templates) noexcept;
       virtual ~TemplateExpr();
 
       auto &getTemplates() noexcept
@@ -648,8 +649,8 @@ namespace feder {
        * \param size Size of the array.
        */
       ArrayConExpr(const lexer::Position &pos,
-          std::unique_ptr<Expr> obj,
-          std::unique_ptr<Expr> size) noexcept;
+          std::unique_ptr<Expr> &&obj,
+          std::unique_ptr<Expr> &&size) noexcept;
       virtual ~ArrayConExpr();
 
       /*!\return Returns the object to copy n times.
@@ -686,7 +687,7 @@ namespace feder {
        * \param objs 
        */
       ArrayListExpr(const lexer::Position &pos,
-          std::vector<std::unique_ptr<Expr>> objs) noexcept;
+          std::vector<std::unique_ptr<Expr>> &&objs) noexcept;
       virtual ~ArrayListExpr();
 
       /*!\return Returns ordered list of objects the array should have.
@@ -708,7 +709,7 @@ namespace feder {
       std::unique_ptr<Expr> indexExpr;
     public:
       ArrayIndexExpr(const lexer::Position &pos,
-          std::unique_ptr<Expr> indexExpr) noexcept;
+          std::unique_ptr<Expr> &&indexExpr) noexcept;
       virtual ~ArrayIndexExpr();
 
       /*!\return Returns index expression.
