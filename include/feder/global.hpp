@@ -27,7 +27,7 @@
 #define FEDER_SANITY_CHECK(cond, msg)                                          \
   if (!(cond))                                                                 \
   feder::fatal(std::string(__FILE__) + ":" + std::to_string(__LINE__) +        \
-               ": " msg)
+               ": " + msg)
 #else
 #define FEDER_SANITY_CHECK(cond, msg)
 #endif /* NSANITY */

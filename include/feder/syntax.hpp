@@ -343,6 +343,7 @@ class ClassExpr : public IdExpr {
   std::unique_ptr<TemplateExpr> templ;
   std::vector<std::unique_ptr<Expr>> traits;
   std::vector<std::unique_ptr<Expr>> attributes;
+  std::vector<std::unique_ptr<FuncExpr>> constructors;
   std::vector<std::unique_ptr<FuncExpr>> functions;
 
 public:
@@ -350,6 +351,7 @@ public:
             std::unique_ptr<TemplateExpr> &&templ,
             std::vector<std::unique_ptr<Expr>> &&traits,
             std::vector<std::unique_ptr<Expr>> &&attributes,
+            std::vector<std::unique_ptr<FuncExpr>> &&constructors,
             std::vector<std::unique_ptr<FuncExpr>> &&functions) noexcept;
   virtual ~ClassExpr();
 
@@ -359,8 +361,12 @@ public:
 
   const auto &getTemplate() const noexcept { return *templ; }
 
+  /*!\return Returns inherited traits.
+   */
   auto &getTraits() noexcept { return traits; }
 
+  /*!\return Returns inherited traits (const).
+   */
   const auto &getTraits() const noexcept { return traits; }
 
   /*!\return Returns (potential) attributes of the class.
@@ -371,8 +377,20 @@ public:
    */
   const auto &getAttributes() const noexcept { return attributes; }
 
+  /*!\return Returns constructors.
+   */
+  auto &getConstructors() noexcept { return constructors; }
+
+  /*!\return Returns constructors (const).
+   */
+  const auto &getConstructors() const noexcept { return constructors; }
+
+  /*!\return Returns functions of this class (not constructors).
+   */
   auto &getFunctions() noexcept { return functions; }
 
+  /*!\return Returns functions of this class (not constructors).
+   */
   const auto &getFunctions() const noexcept { return functions; }
 
   virtual std::string to_string() const noexcept override;
@@ -429,10 +447,16 @@ public:
 
   auto &getTemplate() noexcept { return *templ; }
 
+  /*!\return Returns inherited traits.
+   */
   const auto &getTemplate() const noexcept { return *templ; }
 
+  /*!\return Returns inherited traits.
+   */
   auto &getTraits() noexcept { return traits; }
 
+  /*!\return Returns inherited traits (const).
+   */
   const auto &getTraits() const noexcept { return traits; }
 
   /*!\return Returns declared functions.

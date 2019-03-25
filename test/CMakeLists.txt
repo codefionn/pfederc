@@ -174,6 +174,20 @@ set_tests_properties(parseline_ftrait0 parseline_ftrait1
   parseline_ftrait2 parseline_ftrait3
   PROPERTIES WILL_FAIL TRUE)
 
+## Classes
+
+add_test(parseline_class0 parseline "class Str\nvar : MyClass\nfunc Str : Str\ndoSomething()\n;\nfunc hello0 ;\nFunc hello\ndoSomething()\n;\n;")
+add_test(parseline_class1 parseline "class Str :: MyClass\nvar : MyClass\nfunc Str : Str\ndoSomething()\n;\nfunc hello0 ;\nfunc hello\ndoSomething()\n;\n;")
+add_test(parseline_class2 parseline "class Str :: MyClass\nvar0 : MyClass\nfunc _Str : Str\ndoSomething()\n;\nfunc Str : Str\ndoSomething()\n;\nfunc hello0 ;\nfunc hello\ndoSomething()\n;\nvar1 : MyClass\n;")
+
+## Classes - Fail tests
+
+add_test(parseline_fclass0 parseline "class Str")
+add_test(parseline_fclass1 parseline "class Str\nFunc Str : Str ;\n;")
+add_test(parseline_fclass2 parseline "class Str\nfunc my.function ;\n;")
+set_tests_properties(parseline_fclass0 parseline_fclass1 parseline_fclass2
+  PROPERTIES WILL_FAIL TRUE)
+
 ## Arrays
 
 add_test(parseline_array0 parseline "[\"hello\" ; 100]")

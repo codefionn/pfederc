@@ -68,10 +68,11 @@ ClassExpr::ClassExpr(
     std::unique_ptr<TemplateExpr> &&templ,
     std::vector<std::unique_ptr<Expr>> &&traits,
     std::vector<std::unique_ptr<Expr>> &&attributes,
+    std::vector<std::unique_ptr<FuncExpr>> &&constructors,
     std::vector<std::unique_ptr<FuncExpr>> &&functions) noexcept
     : IdExpr(expr_class, pos, name), templ(std::move(templ)),
       traits(std::move(traits)), attributes(std::move(attributes)),
-      functions(std::move(functions)) {}
+      constructors(std::move(constructors)), functions(std::move(functions)) {}
 
 ClassExpr::~ClassExpr() {}
 

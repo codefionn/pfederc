@@ -420,10 +420,93 @@ _parseInherited(lexer::Lexer &lex, bool &error) noexcept {
   return result;
 }
 
+static void _parsePrimaryClassBody(
+    lexer::Lexer &lex, bool &err, const std::string &className,
+    std::vector<std::unique_ptr<syntax::Expr>> &attributes,
+    std::vector<std::unique_ptr<syntax::FuncExpr>> &constructors,
+    std::vector<std::unique_ptr<syntax::FuncExpr>> &functions) noexcept {
+  while (lex.currentToken() != lexer::tok_eof &&
+         lex.currentToken() != lexer::tok_delim) {
+    if (lex.currentToken() == lexer::tok_eol) {
+      lex.nextToken(); // eat newline
+      continue;
+    }
+
+    auto expr = parser::parse(lex);
+    if (!expr) {
+      err = true;
+      continue;
+    }
+
+    switch (expr->getType()) {
+    case syntax::expr_func: {
+      if (dynamic_cast<syntax::FuncExpr &>(*expr).isType()) {
+        syntax::reportSyntaxError(
+            lex, expr->getPosition(),
+            "Excpected function or variable declaration.");
+        err = true;
+        break;
+      }
+
+      auto &funcexpr = dynamic_cast<syntax::FuncExpr &>(*expr);
+      if (funcexpr.getName().size() > 1) {
+        syntax::reportSyntaxError(
+            lex, expr->getPosition(),
+            "Function was expected to have just one identifier.");
+        err = true;
+        break;
+      }
+
+      const std::string &funcname = funcexpr.getName()[0];
+      if (funcname == className || funcname == "_" + className) {
+        if (funcexpr.isVirtual()) {
+          syntax::reportSyntaxError(
+              lex, expr->getPosition(),
+              "Constructors must not be virtual functions!");
+          err = true;
+          break;
+        }
+
+        // Constructor
+        constructors.push_back(std::move(
+            reinterpret_cast<std::unique_ptr<syntax::FuncExpr> &>(expr)));
+        break;
+      }
+
+      // Normal function
+      functions.push_back(std::move(
+          reinterpret_cast<std::unique_ptr<syntax::FuncExpr> &>(expr)));
+      break;
+    }
+    case syntax::expr_biop:
+      if (dynamic_cast<syntax::BiOpExpr &>(*expr).getOperator() ==
+          lexer::op_decl) {
+        attributes.push_back(std::move(expr));
+        break;
+      }
+    default:
+      syntax::reportSyntaxError(lex, expr->getPosition(),
+                                "Excpected function or variable declaration.");
+      err = true;
+      break;
+    }
+
+    if (!parser::match(lex, nullptr, lexer::tok_eol))
+      err = true;
+  }
+}
+
 static std::unique_ptr<syntax::ClassExpr>
 _parsePrimaryClass(lexer::Lexer &lex) noexcept {
-  lexer::Position pos = lex.currentToken().getPosition();
+  lexer::Position startPos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'class'
+
+  std::unique_ptr<syntax::TemplateExpr> templ;
+  if (lex.currentToken() == lexer::tok_obrace_template) {
+    templ = _parsePrimaryTemplate(lex);
+    if (!templ)
+      return nullptr; // error forwarding
+  }
 
   lexer::Token idTok;
   if (!parser::match(lex, &idTok, lexer::tok_id))
@@ -437,6 +520,27 @@ _parsePrimaryClass(lexer::Lexer &lex) noexcept {
 
   if (!parser::match(lex, nullptr, lexer::tok_eol))
     return nullptr;
+
+  std::vector<std::unique_ptr<syntax::Expr>> attributes;
+  std::vector<std::unique_ptr<syntax::FuncExpr>> constructors;
+  std::vector<std::unique_ptr<syntax::FuncExpr>> functions;
+
+  bool err = false;
+
+  // Parse body of class
+  _parsePrimaryClassBody(lex, err, idTok.getString(), attributes, constructors,
+                         functions);
+
+  if (!parser::match(lex, nullptr, lexer::tok_delim))
+    return nullptr;
+
+  if (err)
+    return nullptr;
+
+  return std::make_unique<syntax::ClassExpr>(
+      lexer::Position(startPos, idTok.getPosition()), idTok.getString(),
+      std::move(templ), std::move(traits), std::move(attributes),
+      std::move(constructors), std::move(functions));
 }
 
 static std::unique_ptr<syntax::TraitExpr>
