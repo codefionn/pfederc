@@ -455,11 +455,23 @@ static TokenType tokenNumber(Lexer &lexer, TokenType &curtok,
 
       // octal
       lexer.nextChar(); // eat o
+      while (lexer.currentChar() >= '0' && lexer.currentChar() <= '7') {
+        result *= 8;
+        result += lexer.currentChar() - '0';
+
+        lexer.nextChar();
+      }
     } else if (lexer.currentChar() == 'b') {
       _isdecimal = false;
 
       // binary
       lexer.nextChar(); // eat b
+      while (lexer.currentChar() == '0' || lexer.currentChar() == '1') {
+        result *= 2;
+        result += lexer.currentChar() - '0';
+
+        lexer.nextChar();
+      }
     } else if (isdigit(lexer.currentChar())) {
       // invalid 0[num]
       // Current pos points to invalid character
