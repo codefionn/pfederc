@@ -76,8 +76,54 @@ static std::unique_ptr<syntax::UnOpExpr> _parsePrimaryUnOpExpr(lexer::Lexer &lex
 }
 
 static std::unique_ptr<syntax::Expr> _parsePrimaryArray(lexer::Lexer &lex) noexcept {
-  lexer::Position pos = lex.currentToken().getPosition();
+  lexer::Position posStart = lex.currentToken().getPosition();
   lex.nextToken(); // eat [
+
+  auto expr = parser::parse(lex);
+  if (!expr) return nullptr; // error forwarding
+
+  if (lex.currentToken() == lexer::tok_delim) {
+    // Constructor
+    lex.nextToken(); // eat ;
+    auto expr1 = parser::parse(lex);
+    if (!expr1) return nullptr; // error forwarding
+
+    lexer::Token posEndTok;
+    if (!parser::match(lex, &posEndTok, lexer::tok_cbrace_array)) return nullptr;
+
+    return std::make_unique<syntax::ArrayConExpr>(
+        lexer::Position(posStart, posEndTok.getPosition()),
+        std::move(expr), std::move(expr1));
+  }
+
+  lexer::Token posEndTok;
+  if (!parser::match(lex, &posEndTok, lexer::tok_cbrace_array)) return nullptr;
+
+  if (expr->getType() == syntax::expr_biop
+      && dynamic_cast<syntax::BiOpExpr&>(*expr).getOperator() == lexer::op_comma) {
+    // List
+    std::vector<std::unique_ptr<syntax::Expr>> objs;
+    // Iterator through LHSs of expr and append RHS to objs
+    while (expr->getType() == syntax::expr_biop
+      && dynamic_cast<syntax::BiOpExpr&>(*expr).getOperator() == lexer::op_comma) {
+      auto &biopexpr = dynamic_cast<syntax::BiOpExpr&>(*expr);
+
+      // Comma is left-associative binary operator.
+      objs.push_back(biopexpr.moveRHS());
+      
+      expr = biopexpr.moveLHS(); // iterator step
+    }
+
+    // Last element
+    objs.push_back(std::move(expr));
+
+    return std::make_unique<syntax::ArrayListExpr>(
+        lexer::Position(posStart, posEndTok.getPosition()), std::move(objs));
+  }
+
+  // Index expression
+  return std::make_unique<syntax::ArrayIndexExpr>(
+      lexer::Position(posStart, posEndTok.getPosition()), std::move(expr));
 }
 
 static std::unique_ptr<syntax::TemplateExpr> _parsePrimaryTemplate(lexer::Lexer &lex) noexcept {

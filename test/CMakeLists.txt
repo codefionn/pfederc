@@ -38,10 +38,24 @@ target_link_libraries(parseline pfederctestlib)
 add_test(parseline_empty_braces parseline "()")
 add_test(parseline_num_braces parseline "(1)")
 add_test(parseline_fncall parseline "hello()")
-add_test(parseline_indexcall parseline "hello[]")
+add_test(parseline_indexcall parseline "hello[100]")
 
 ## Skip new line
 add_test(parseline_skipline parseline "(\n 1 + \n 2)")
+
+## Test Precedence
+add_test(parseline_prec0 parseline "1 + 2")
+set_tests_properties(parseline_prec0 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\(1 \\+ 2\\)\n$")
+add_test(parseline_prec1 parseline "1 + 2 * 3")
+set_tests_properties(parseline_prec1 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\(1 \\+ \\(2 \\* 3\\)\\)\n$")
+add_test(parseline_prec2 parseline "id0 = id1 = id2")
+set_tests_properties(parseline_prec2 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\(id0 = \\(id1 = id2\\)\\)\n$")
+add_test(parseline_prec3 parseline "id0 + id1 + id2")
+set_tests_properties(parseline_prec3 PROPERTIES PASS_REGULAR_EXPRESSION
+  "^\\(\\(id0 \\+ id1\\) \\+ id2\\)\n$")
 
 ## Functions
 add_test(parseline_fn00 parseline "func hello ;")
@@ -58,19 +72,11 @@ add_test(parseline_fn09 parseline "func : hellot")
 add_test(parseline_fn10 parseline "func (param : hellot) : hellot")
 add_test(parseline_fn11 parseline "func (param0 : hellot0, param1 : hellot1) : hellot")
 
-## Test Precedence
-add_test(parseline_prec0 parseline "1 + 2")
-set_tests_properties(parseline_prec0 PROPERTIES PASS_REGULAR_EXPRESSION
-  "^\\(1 \\+ 2\\)\n$")
-add_test(parseline_prec1 parseline "1 + 2 * 3")
-set_tests_properties(parseline_prec1 PROPERTIES PASS_REGULAR_EXPRESSION
-  "^\\(1 \\+ \\(2 \\* 3\\)\\)\n$")
-add_test(parseline_prec2 parseline "id0 = id1 = id2")
-set_tests_properties(parseline_prec2 PROPERTIES PASS_REGULAR_EXPRESSION
-  "^\\(id0 = \\(id1 = id2\\)\\)\n$")
-add_test(parseline_prec3 parseline "id0 + id1 + id2")
-set_tests_properties(parseline_prec3 PROPERTIES PASS_REGULAR_EXPRESSION
-  "^\\(\\(id0 \\+ id1\\) \\+ id2\\)\n$")
+## Arrays
+
+add_test(parseline_array0 parseline "[\"hello\" ; 100]")
+add_test(parseline_array1 parseline "[\"hello0\", \"hello1\"]")
+add_test(parseline_array2 parseline "hello[100]")
 
 # parseinput
 add_executable(parseinput "${pfederc_SOURCE_DIR}/test/parseinput.cpp")
