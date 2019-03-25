@@ -77,6 +77,8 @@ add_test(parseline_fn11 parseline "func (param0 : hellot0, param1 : hellot1) : h
 add_test(parseline_array0 parseline "[\"hello\" ; 100]")
 add_test(parseline_array1 parseline "[\"hello0\", \"hello1\"]")
 add_test(parseline_array2 parseline "hello[100]")
+add_test(parseline_array3 parseline "hello[100 + 12354]")
+add_test(parseline_array4 parseline "hello[(100 + 12354)]")
 
 # parseinput
 add_executable(parseinput "${pfederc_SOURCE_DIR}/test/parseinput.cpp")
