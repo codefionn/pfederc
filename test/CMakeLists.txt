@@ -172,3 +172,13 @@ add_test(parseline_templ3 parseline "func{t0 : T, t1 :T} hello() ;")
 # parseinput
 add_executable(parseinput "${pfederc_SOURCE_DIR}/test/parseinput.cpp")
 target_link_libraries(parseinput pfederclib)
+
+# parseprogram
+add_executable(parseprogram "${pfederc_SOURCE_DIR}/test/parseprogram.cpp")
+target_link_libraries(parseprogram pfederclib)
+
+add_test(parseprogram_decl0 parseprogram "var0 : T\nvar1 : T")
+add_test(parseprogram_decl1 parseprogram "var0 : T\nvar1 : T\nvar2 : T")
+
+add_test(parseprogram_funcs0 parseprogram "t0 : func\nt1 : func")
+add_test(parseprogram_funcs1 parseprogram "t0 : func : T\nt1 : func : T")
