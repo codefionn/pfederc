@@ -206,3 +206,20 @@ add_test(parseprogram_decl1 parseprogram "var0 : T\nvar1 : T\nvar2 : T")
 
 add_test(parseprogram_funcs0 parseprogram "t0 : func\nt1 : func")
 add_test(parseprogram_funcs1 parseprogram "t0 : func : T\nt1 : func : T")
+
+# Valgrind (memory check)
+#| For better valgrind stack-traces pass '-DCMAKE_BUILD_TYPE=Debug',
+#| when generating cmake build cache.
+
+option(PFEDERC_TEST_VALGRIND "Test for memory leaks with valgrind" ON)
+
+find_program(VALGRIND "valgrind")
+if (VALGRIND AND PFEDERC_TEST_VALGRIND)
+  set(VALGRIND_PROG ${VALGRIND} "--tool=memcheck" "--leak-check=yes")
+
+  set(parseline_file )
+
+  add_test(NAME valgrind_parseline0 COMMAND ${VALGRIND_PROG} $<TARGET_FILE:parseline> "hello[100]")
+  add_test(NAME valgrind_parseline1 COMMAND ${VALGRIND_PROG} $<TARGET_FILE:parseline> "trait MyTrait :: MyTraitParent\nFunc helloWorld : std.String ; \n;")
+  add_test(NAME valgrind_parseline2 COMMAND ${VALGRIND_PROG} $<TARGET_FILE:parseline> "func helloWorld\nstd.io.println(\"Hello, World!\")\n;")
+endif()
