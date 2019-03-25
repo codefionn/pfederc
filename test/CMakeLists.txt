@@ -240,6 +240,25 @@ add_test(parseprogram_decl1 parseprogram "var0 : T\nvar1 : T\nvar2 : T")
 add_test(parseprogram_funcs0 parseprogram "t0 : func\nt1 : func")
 add_test(parseprogram_funcs1 parseprogram "t0 : func : T\nt1 : func : T")
 
+add_test(parseprogram_class0 parseprogram "class MyClass \nfunc hello ;\n;")
+add_test(parseprogram_nmsp0 parseprogram "namespace std\n;")
+add_test(parseprogram_enum0 parseprogram "enum Weekday\nMonday\nTuesday\n;")
+add_test(parseprogram_func0 parseprogram "func hello ;")
+add_test(parseprogram_func1 parseprogram "func hello \n;")
+add_test(parseprogram_trait0 parseprogram "trait MyTrait \n Func hello ; \n;")
+
+## Program - Fail tests
+add_test(parseprogram_fail0 parseprogram "1 + 2")
+add_test(parseprogram_fail1 parseprogram "hello[1]")
+add_test(parseprogram_fail2 parseprogram "func _ \n;")
+add_test(parseprogram_fail3 parseprogram "class _\nfunc hello ;\n;")
+add_test(parseprogram_fail4 parseprogram "func")
+add_test(parseprogram_fail5 parseprogram "hello{MyClass}")
+set_tests_properties(parseprogram_fail0 parseprogram_fail1
+  parseprogram_fail2 parseprogram_fail3 parseprogram_fail4
+  parseprogram_fail5
+  PROPERTIES WILL_FAIL TRUE)
+
 # Valgrind (memory check)
 #| For better valgrind stack-traces pass '-DCMAKE_BUILD_TYPE=Debug',
 #| when generating cmake build cache.

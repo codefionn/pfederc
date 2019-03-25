@@ -150,10 +150,15 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Lexer &lex,
       break;
 
     std::unique_ptr<syntax::Expr> line(parser::parse(lex));
-    if (line)
+    if (line && line->isStatement())
       lines.push_back(std::move(line));
-    else
+    else if (!line)
       error = true;
+    else {
+      error = true;
+      lex.reportSemanticError(
+         "Expected statement", line->getPosition());
+    }
 
     if (lex.currentToken() == lexer::tok_eof)
       break;

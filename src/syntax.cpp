@@ -366,3 +366,51 @@ std::string ArrayListExpr::to_string() const noexcept {
 std::string ArrayIndexExpr::to_string() const noexcept {
   return "[" + getIndex().to_string() + "]";
 }
+
+
+// isStatement
+
+bool FuncExpr::isStatement() const noexcept {
+  if (isType()) return false;
+  if (getName().back() == "_") return false;
+
+  return true;
+}
+
+bool ClassExpr::isStatement() const noexcept {
+  return getIdentifier() != "_";
+}
+
+bool EnumExpr::isStatement() const noexcept {
+  return getIdentifier() != "_";
+}
+
+bool TraitExpr::isStatement() const noexcept {
+  return getIdentifier() != "_";
+}
+
+bool BiOpExpr::isStatement() const noexcept {
+  switch (getOperator()) {
+  case lexer::op_def:
+  case lexer::op_asg:
+  case lexer::op_asg_band:
+  case lexer::op_asg_bxor:
+  case lexer::op_asg_bor:
+  case lexer::op_asg_add:
+  case lexer::op_asg_sub:
+  case lexer::op_asg_mul:
+  case lexer::op_asg_div:
+  case lexer::op_asg_mod:
+  case lexer::op_asg_lsh:
+  case lexer::op_asg_rsh:
+  case lexer::op_decl:
+  case lexer::op_fncall:
+    return true;
+  default:
+    return false;
+  }
+}
+
+bool NmspExpr::isStatement() const noexcept {
+  return getIdentifier() != "_";
+}

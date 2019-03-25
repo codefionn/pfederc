@@ -112,6 +112,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa2c227a565cf9004722f8718d36f7290"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec67457f8a22add8bd217af86b50d6a9"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1Expr.html#aec67457f8a22add8bd217af86b50d6a9">to_string</a> () const noexcept</td></tr>
 <tr class="separator:aec67457f8a22add8bd217af86b50d6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3297eff8706e83edfb83f2d3a1b51697"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1Expr.html#a3297eff8706e83edfb83f2d3a1b51697">isStatement</a> () const noexcept</td></tr>
+<tr class="separator:a3297eff8706e83edfb83f2d3a1b51697"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parent of expressions. </p>
@@ -211,6 +213,34 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns expression type. </dd></dl>
+
+</div>
+</div>
+<a id="a3297eff8706e83edfb83f2d3a1b51697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3297eff8706e83edfb83f2d3a1b51697">&#9670;&nbsp;</a></span>isStatement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool feder::syntax::Expr::isStatement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true, if this expression is a statements, otherwise this expression is a secondary statement and false is returned. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a71a039d8c13a9208c90bf9fc45c39ba8">feder::syntax::BiOpExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html#afd5628b9693428e84fd79091cbe4f1f4">feder::syntax::NmspExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1TraitExpr.html#ad3ef98e0e3697ed51424dc127e27e80d">feder::syntax::TraitExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1EnumExpr.html#af35d06ca830d7a65ea8c248bc78066c1">feder::syntax::EnumExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#aa5f4a0f16be7b416d25f6116f03626cb">feder::syntax::ClassExpr</a>, and <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a60c2971c7b4db501a5df236da3188f01">feder::syntax::FuncExpr</a>.</p>
 
 </div>
 </div>

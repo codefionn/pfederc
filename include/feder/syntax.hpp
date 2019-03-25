@@ -116,6 +116,12 @@ public:
     feder::fatal("Compiler error");
     return std::string("");
   }
+
+  /*!\return Returns true, if this expression is a statements, otherwise
+   * this expression is a secondary statement and false is returned.
+   */
+  virtual bool isStatement() const noexcept
+  { return false; }
 };
 
 /*!\brief Identifier expression.
@@ -335,6 +341,8 @@ public:
   bool isDefined() const noexcept { return (bool)program && !isType(); }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool isStatement() const noexcept override;
 };
 
 /*!\brief Class expression.
@@ -394,6 +402,8 @@ public:
   const auto &getFunctions() const noexcept { return functions; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool isStatement() const noexcept override;
 };
 
 /*!\brief Enum expression.
@@ -423,6 +433,8 @@ public:
   const auto &getConstructors() const noexcept { return constructors; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool isStatement() const noexcept override;
 };
 
 /*!\brief Trait expression
@@ -468,6 +480,8 @@ public:
   const auto &getFunctions() const noexcept { return functions; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool isStatement() const noexcept override;
 };
 
 /*!\brief Namespace expression.
@@ -489,6 +503,8 @@ public:
   const auto &getProgram() const noexcept { return program; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool isStatement() const noexcept override;
 };
 
 /*!\brief Binary operator expression.
@@ -533,6 +549,8 @@ public:
   const Expr &getRHS() const noexcept { return *rhs; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool isStatement() const noexcept override;
 };
 
 /*!\brief Unary operator expression
