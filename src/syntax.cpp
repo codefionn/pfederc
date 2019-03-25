@@ -350,6 +350,7 @@ std::string BiOpExpr::to_string() const noexcept {
   switch(getOperator()) {
     case lexer::op_fncall:
     case lexer::op_indexcall:
+	case lexer::op_templatecall:
       return getLHS().to_string() + getRHS().to_string();
     default:
       return "(" + getLHS().to_string()

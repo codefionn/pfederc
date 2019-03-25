@@ -80,6 +80,9 @@ add_test(parseline_array2 parseline "hello[100]")
 add_test(parseline_array3 parseline "hello[100 + 12354]")
 add_test(parseline_array4 parseline "hello[(100 + 12354)]")
 
+add_test(parseline_templ0 parseline "hello{myawesometype}")
+add_test(parseline_templ1 parseline "func{T : myawesometype} hello(t : T) ;")
+
 # parseinput
 add_executable(parseinput "${pfederc_SOURCE_DIR}/test/parseinput.cpp")
 target_link_libraries(parseinput pfederctestlib)

@@ -127,8 +127,29 @@ static std::unique_ptr<syntax::Expr> _parsePrimaryArray(lexer::Lexer &lex) noexc
 }
 
 static std::unique_ptr<syntax::TemplateExpr> _parsePrimaryTemplate(lexer::Lexer &lex) noexcept {
-  lexer::Position pos = lex.currentToken().getPosition();
+  lexer::Position startPos = lex.currentToken().getPosition();
   lex.nextToken(); // eat {
+
+  auto expr = parser::parse(lex);
+  if (!expr) return nullptr; // error forwarding
+
+  lexer::Token endPosTok;
+  if (!parser::match(lex, &endPosTok, lexer::tok_cbrace_template)) return nullptr;
+
+  std::vector<std::unique_ptr<syntax::Expr>> params;
+  while (expr->getType() == syntax::expr_biop
+      && dynamic_cast<syntax::BiOpExpr&>(*expr).getOperator() == lexer::op_comma) {
+    auto &biopexpr = dynamic_cast<syntax::BiOpExpr&>(*expr);
+    // op_comma is left-associative binary operator
+    params.insert(params.begin(), biopexpr.moveRHS());
+    expr = biopexpr.moveLHS(); // iterator step
+  }
+
+  // last lhs to params
+  params.insert(params.begin(), std::move(expr));
+
+  return std::make_unique<syntax::TemplateExpr>(
+      lexer::Position(startPos, endPosTok.getPosition()), std::move(params));
 }
 
 static std::unique_ptr<syntax::FuncParamExpr> _parsePrimaryFunctionParam(lexer::Lexer &lex) noexcept {
@@ -288,7 +309,7 @@ static std::unique_ptr<syntax::FuncExpr> _parsePrimaryFunction(lexer::Lexer &lex
 
     if (templ) {
       syntax::reportSyntaxError(lex,
-          templ->getPosition(), "Function types mustn't have a tempalte.");
+          templ->getPosition(), "Function types mustn't have a template.");
       return nullptr;
     }
 

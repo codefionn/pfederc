@@ -100,6 +100,7 @@ static std::size_t _getPrecedenceRightUnary(OperatorType op) noexcept {
   case op_inc:
   case op_fncall:
   case op_indexcall:
+  case op_templatecall:
     return 16;
   }
   
@@ -1231,6 +1232,7 @@ std::string std::to_string(feder::lexer::OperatorType op) {
     case op_deref_mem: return "->";
     case op_fncall: return "()";
     case op_indexcall: return "[]";
+    case op_templatecall: return "{}";
   }
 
   feder::fatal("Unknown operator type.");

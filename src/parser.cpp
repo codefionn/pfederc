@@ -73,6 +73,8 @@ static lexer::OperatorType _getOperatorType(lexer::Token &opTok) {
     return lexer::op_fncall;
   case lexer::tok_obrace_array:
     return lexer::op_indexcall;
+  case lexer::tok_obrace_template:
+    return lexer::op_templatecall;
   case lexer::tok_op:
     return opTok.getOperator();
   }

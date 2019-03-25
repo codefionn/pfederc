@@ -123,8 +123,9 @@ namespace feder {
 
       /* Special non-character sequence operators */
 
-      op_fncall,    //!< a()
-      op_indexcall, //!< a[]
+      op_fncall,       //!< a()
+      op_indexcall,    //!< a[]
+	  op_templatecall, //!< a{T}
     };
 
     /*!\return Returns true, if the operator is left associative,
