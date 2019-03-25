@@ -1,12 +1,12 @@
 #include "feder/parser.hpp"
 using namespace feder;
 
-bool parser::match(lexer::Lexer &lex,
-    lexer::Token *tok,
-    lexer::TokenType tokType, lexer::OperatorType opType) noexcept {
-  if (lex.currentToken() == tokType
-      && (lex.currentToken() != lexer::tok_op
-        || (lex.currentToken().getOperator() == opType))) {
+bool parser::match(lexer::Lexer &lex, lexer::Token *tok,
+                   lexer::TokenType tokType,
+                   lexer::OperatorType opType) noexcept {
+  if (lex.currentToken() == tokType &&
+      (lex.currentToken() != lexer::tok_op ||
+       (lex.currentToken().getOperator() == opType))) {
     if (tok)
       *tok = lex.currentToken();
 
@@ -15,15 +15,16 @@ bool parser::match(lexer::Lexer &lex,
     return true; // match successfull
   }
 
-  syntax::reportSyntaxError(lex,
-      lex.currentToken().getPosition(),
-      std::string("Expected token ") + std::to_string(tokType));
+  syntax::reportSyntaxError(lex, lex.currentToken().getPosition(),
+                            std::string("Expected token ") +
+                                std::to_string(tokType));
 
   return false; // match not successfull
 }
 
 static bool _isRightSideUnary(lexer::Token &tokOp, lexer::Lexer &lex) noexcept {
-  if (!lexer::isPrimaryToken(lex.currentToken().getType())) return true;
+  if (!lexer::isPrimaryToken(lex.currentToken().getType()))
+    return true;
 
   if (lex.currentToken().getType() == lexer::tok_op) {
     if (!lexer::isValidOperatorPosition(tokOp.getOperator(), lexer::op_binary))
@@ -33,7 +34,7 @@ static bool _isRightSideUnary(lexer::Token &tokOp, lexer::Lexer &lex) noexcept {
       return false;
 
     if (!lexer::isValidOperatorPosition(lex.currentToken().getOperator(),
-          lexer::op_lunary))
+                                        lexer::op_lunary))
       return true;
   }
 
@@ -42,21 +43,21 @@ static bool _isRightSideUnary(lexer::Token &tokOp, lexer::Lexer &lex) noexcept {
 
 static bool _isBinaryOperator(const lexer::Token &tok) noexcept {
   switch (tok.getType()) {
-    case lexer::tok_op:
-    case lexer::tok_obrace:
-    case lexer::tok_obrace_array:
-    case lexer::tok_obrace_template:
-      return true;
-    default:
-      return false;
+  case lexer::tok_op:
+  case lexer::tok_obrace:
+  case lexer::tok_obrace_array:
+  case lexer::tok_obrace_template:
+    return true;
+  default:
+    return false;
   }
 }
 
 static bool _parseRHSRightUnary(lexer::Lexer &lex, lexer::Token &opTok,
-  std::unique_ptr<syntax::Expr> &lhs) {
+                                std::unique_ptr<syntax::Expr> &lhs) {
   // Is right-side unary ?
-  if (opTok.getType() == lexer::tok_op
-      && isValidOperatorPosition(opTok.getOperator(), lexer::op_runary)) {
+  if (opTok.getType() == lexer::tok_op &&
+      isValidOperatorPosition(opTok.getOperator(), lexer::op_runary)) {
     lhs = std::make_unique<syntax::UnOpExpr>(
         lexer::Position(lhs->getPosition(), opTok.getPosition()),
         lexer::op_runary, opTok.getOperator(), std::move(lhs));
@@ -83,36 +84,42 @@ static lexer::OperatorType _getOperatorType(lexer::Token &opTok) {
   return lexer::op_sub;
 }
 
-std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
-    std::unique_ptr<syntax::Expr> lhs, std::size_t prec,
-        bool parseFunctionDecl) noexcept {
+std::unique_ptr<syntax::Expr>
+parser::parseRHS(lexer::Lexer &lex, std::unique_ptr<syntax::Expr> lhs,
+                 std::size_t prec, bool parseFunctionDecl) noexcept {
 
   lexer::Token curtok;
 
   // https://en.wikipedia.org/wiki/Operator-precedence_parser
-  while (_isBinaryOperator(curtok = lex.currentToken())
-      && curtok.getPrecedence() >= prec) {
+  while (_isBinaryOperator(curtok = lex.currentToken()) &&
+         curtok.getPrecedence() >= prec) {
 
-    if (parseFunctionDecl && lex.currentToken() == lexer::op_comma) break;
+    if (parseFunctionDecl && lex.currentToken() == lexer::op_comma)
+      break;
 
     lexer::Token opTok = lex.currentToken(); // Operator token
-    if (_parseRHSRightUnary(lex, opTok, lhs)) continue;
+    if (_parseRHSRightUnary(lex, opTok, lhs))
+      continue;
 
-    if (opTok.getType() == lexer::tok_op) lex.nextToken(); // eat op
+    if (opTok.getType() == lexer::tok_op)
+      lex.nextToken(); // eat op
 
     std::unique_ptr<syntax::Expr> rhs(parser::parsePrimary(lex));
-    if (!rhs) return nullptr; // Error forwarding
+    if (!rhs)
+      return nullptr; // Error forwarding
 
-    while (_isBinaryOperator(curtok = lex.currentToken())
-        && (curtok.getPrecedence() > opTok.getPrecedence()
-          || (curtok.isRightAssociative()
-            && curtok.getPrecedence() == opTok.getPrecedence()))) {
+    while (_isBinaryOperator(curtok = lex.currentToken()) &&
+           (curtok.getPrecedence() > opTok.getPrecedence() ||
+            (curtok.isRightAssociative() &&
+             curtok.getPrecedence() == opTok.getPrecedence()))) {
 
-      if (parseFunctionDecl && lex.currentToken() == lexer::op_comma) break;
+      if (parseFunctionDecl && lex.currentToken() == lexer::op_comma)
+        break;
 
-      if (_parseRHSRightUnary(lex, curtok, rhs)) continue;
+      if (_parseRHSRightUnary(lex, curtok, rhs))
+        continue;
       rhs = parseRHS(lex, std::move(rhs), curtok.getPrecedence(),
-          parseFunctionDecl);
+                     parseFunctionDecl);
     }
 
     lhs = std::make_unique<syntax::BiOpExpr>(
@@ -123,18 +130,17 @@ std::unique_ptr<syntax::Expr> parser::parseRHS(lexer::Lexer &lex,
   return std::move(lhs);
 }
 
-std::unique_ptr<syntax::Expr> parser::parse(lexer::Lexer &lex,
-    std::size_t prec,
-    bool parseFunctionDecl) noexcept {
+std::unique_ptr<syntax::Expr> parser::parse(lexer::Lexer &lex, std::size_t prec,
+                                            bool parseFunctionDecl) noexcept {
   std::unique_ptr<syntax::Expr> primaryExpr = parser::parsePrimary(lex);
-  if (!primaryExpr) return nullptr;
+  if (!primaryExpr)
+    return nullptr;
 
-  return parser::parseRHS(lex, std::move(primaryExpr), prec,
-      parseFunctionDecl);
+  return parser::parseRHS(lex, std::move(primaryExpr), prec, parseFunctionDecl);
 }
 
 std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Lexer &lex,
-    bool topLevel) noexcept {
+                                                      bool topLevel) noexcept {
   std::vector<std::unique_ptr<syntax::Expr>> lines;
 
   bool error = false;
@@ -156,9 +162,8 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Lexer &lex,
   }
 
   if (topLevel && lex.currentToken() != lexer::tok_eof) {
-    syntax::reportSyntaxError(lex,
-        lex.currentToken().getPosition(),
-        "Expected end-of-file.");
+    syntax::reportSyntaxError(lex, lex.currentToken().getPosition(),
+                              "Expected end-of-file.");
     return nullptr;
   }
 

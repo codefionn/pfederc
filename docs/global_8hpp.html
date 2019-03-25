@@ -83,8 +83,8 @@ $(function() {
 <code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 </div>
@@ -96,7 +96,7 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8hpp.html#a7f8ce15b1db8c1df88e1a403e6ab593b">SANITY</a></td></tr>
 <tr class="memdesc:a7f8ce15b1db8c1df88e1a403e6ab593b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform sanity checks. <br /></td></tr>
 <tr class="separator:a7f8ce15b1db8c1df88e1a403e6ab593b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17b7b7778b7d79f219c85e5026e31fcf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8hpp.html#a17b7b7778b7d79f219c85e5026e31fcf">FEDER_SANITY_CHECK</a>(cond,  msg)&#160;&#160;&#160;if (!(cond)) feder::fatal(std::string(__FILE__) + &quot;:&quot; + std::to_string(__LINE__) + &quot;: &quot; msg)</td></tr>
+<tr class="memitem:a17b7b7778b7d79f219c85e5026e31fcf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8hpp.html#a17b7b7778b7d79f219c85e5026e31fcf">FEDER_SANITY_CHECK</a>(cond,  msg)</td></tr>
 <tr class="memdesc:a17b7b7778b7d79f219c85e5026e31fcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report fatal error if cond is false.  <a href="#a17b7b7778b7d79f219c85e5026e31fcf">More...</a><br /></td></tr>
 <tr class="separator:a17b7b7778b7d79f219c85e5026e31fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac79baa209da1b1f4d726555adb6d845d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8hpp.html#ac79baa209da1b1f4d726555adb6d845d">PFEDERC_VERSION_MAJOR</a>&#160;&#160;&#160;0</td></tr>
@@ -139,11 +139,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>feder::fatal</b> (con
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;if (!(cond)) feder::fatal(std::string(__FILE__) + &quot;:&quot; + std::to_string(__LINE__) + &quot;: &quot; msg)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (!(cond))                                                                 \</div><div class="line">  feder::fatal(std::string(__FILE__) + <span class="stringliteral">&quot;:&quot;</span> + std::to_string(__LINE__) +        \</div><div class="line">               <span class="stringliteral">&quot;: &quot;</span> msg)</div></div><!-- fragment -->
 <p>Report fatal error if cond is false. </p>
 <dl class="section see"><dt>See also</dt><dd>feder::fatal </dd></dl>
 

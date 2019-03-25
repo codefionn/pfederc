@@ -2,204 +2,158 @@
 using namespace feder::syntax;
 
 Program::Program(std::vector<std::unique_ptr<Expr>> &&lines,
-    bool error) noexcept
-    : lines(std::move(lines)), error{error} {
-}
+                 bool error) noexcept
+    : lines(std::move(lines)), error{error} {}
 
-Program::~Program() {
-}
+Program::~Program() {}
 
 Expr::Expr(ExprType type, const feder::lexer::Position &pos) noexcept
-    : type{type}, pos(pos) {
-}
+    : type{type}, pos(pos) {}
 
-Expr::~Expr() {
-}
+Expr::~Expr() {}
 
 IdExpr::IdExpr(ExprType type, const feder::lexer::Position &pos,
-    const std::string &id) noexcept
-    : Expr(type, pos), id(id) {
-}
+               const std::string &id) noexcept
+    : Expr(type, pos), id(id) {}
 
 IdExpr::IdExpr(const feder::lexer::Position &pos,
-    const std::string &id) noexcept
-    : Expr(expr_id, pos), id(id) {
-}
+               const std::string &id) noexcept
+    : Expr(expr_id, pos), id(id) {}
 
-IdExpr::~IdExpr() {
-}
+IdExpr::~IdExpr() {}
 
 NumExpr::NumExpr(const feder::lexer::Position &pos,
-    feder::lexer::NumberType numType,
-    feder::lexer::NumberValue numVal) noexcept
-    : Expr(expr_num, pos), numType{numType}, numVal{numVal} {
-}
+                 feder::lexer::NumberType numType,
+                 feder::lexer::NumberValue numVal) noexcept
+    : Expr(expr_num, pos), numType{numType}, numVal{numVal} {}
 
-NumExpr::~NumExpr() {
-}
+NumExpr::~NumExpr() {}
 
 StrExpr::StrExpr(const feder::lexer::Position &pos,
-    const std::string &str) noexcept
-    : Expr(expr_str, pos), str(str) {
-}
+                 const std::string &str) noexcept
+    : Expr(expr_str, pos), str(str) {}
 
-StrExpr::~StrExpr() {
-}
+StrExpr::~StrExpr() {}
 
 CharExpr::CharExpr(const feder::lexer::Position &pos, char c) noexcept
-    : Expr(expr_char, pos), c{c} {
-}
+    : Expr(expr_char, pos), c{c} {}
 
-CharExpr::~CharExpr() {
-}
+CharExpr::~CharExpr() {}
 
 FuncParamExpr::FuncParamExpr(const feder::lexer::Position &pos,
-    const std::string &name,
-    std::unique_ptr<Expr> &&semanticType,
-    std::unique_ptr<Expr> &&guard,
-    std::unique_ptr<Expr> &&guardResult) noexcept
-    : IdExpr(expr_func_param, pos, name),
-      semanticType(std::move(semanticType)),
-      guard(std::move(guard)),
-      guardResult(std::move(guardResult)) {
-}
+                             const std::string &name,
+                             std::unique_ptr<Expr> &&semanticType,
+                             std::unique_ptr<Expr> &&guard,
+                             std::unique_ptr<Expr> &&guardResult) noexcept
+    : IdExpr(expr_func_param, pos, name), semanticType(std::move(semanticType)),
+      guard(std::move(guard)), guardResult(std::move(guardResult)) {}
 
-FuncParamExpr::~FuncParamExpr() {
-}
+FuncParamExpr::~FuncParamExpr() {}
 
 FuncExpr::FuncExpr(const feder::lexer::Position &pos,
-    const std::vector<std::string> &name,
-    std::unique_ptr<TemplateExpr> &&templ,
-    std::unique_ptr<Expr> &&returnType,
-    std::vector<std::unique_ptr<FuncParamExpr>> &&params,
-    std::unique_ptr<Program> &&program,
-    bool virtualFunc) noexcept
-    : Expr(expr_func, pos),
-      name(name),
-      templ(std::move(templ)),
-      returnType(std::move(returnType)),
-      params(std::move(params)),
-      program(std::move(program)),
-      virtualFunc{virtualFunc} {
-}
+                   const std::vector<std::string> &name,
+                   std::unique_ptr<TemplateExpr> &&templ,
+                   std::unique_ptr<Expr> &&returnType,
+                   std::vector<std::unique_ptr<FuncParamExpr>> &&params,
+                   std::unique_ptr<Program> &&program,
+                   bool virtualFunc) noexcept
+    : Expr(expr_func, pos), name(name), templ(std::move(templ)),
+      returnType(std::move(returnType)), params(std::move(params)),
+      program(std::move(program)), virtualFunc{virtualFunc} {}
 
-FuncExpr::~FuncExpr() {
-}
+FuncExpr::~FuncExpr() {}
 
-ClassExpr::ClassExpr(const feder::lexer::Position &pos,
-    const std::string &name,
+ClassExpr::ClassExpr(
+    const feder::lexer::Position &pos, const std::string &name,
     std::unique_ptr<TemplateExpr> &&templ,
     std::vector<std::unique_ptr<Expr>> &&traits,
     std::vector<std::unique_ptr<Expr>> &&attributes,
     std::vector<std::unique_ptr<FuncExpr>> &&functions) noexcept
-    : IdExpr(expr_class, pos, name),
-      templ(std::move(templ)),
-      traits(std::move(traits)),
-      attributes(std::move(attributes)),
-      functions(std::move(functions)) {
-}
+    : IdExpr(expr_class, pos, name), templ(std::move(templ)),
+      traits(std::move(traits)), attributes(std::move(attributes)),
+      functions(std::move(functions)) {}
 
-ClassExpr::~ClassExpr() {
-}
+ClassExpr::~ClassExpr() {}
 
-EnumExpr::EnumExpr(const feder::lexer::Position &pos,
-    const std::string &name,
+EnumExpr::EnumExpr(
+    const feder::lexer::Position &pos, const std::string &name,
     std::unique_ptr<TemplateExpr> &&templ,
     std::vector<std::unique_ptr<BiOpExpr>> &&constructors) noexcept
-    : IdExpr(expr_enum, pos, name),
-      templ(std::move(templ)),
-      constructors(std::move(constructors)) {
-}
+    : IdExpr(expr_enum, pos, name), templ(std::move(templ)),
+      constructors(std::move(constructors)) {}
 
-EnumExpr::~EnumExpr() {
-}
+EnumExpr::~EnumExpr() {}
 
-TraitExpr::TraitExpr(const feder::lexer::Position &pos,
-    const std::string &name,
+TraitExpr::TraitExpr(
+    const feder::lexer::Position &pos, const std::string &name,
     std::unique_ptr<TemplateExpr> &&templ,
     std::vector<std::unique_ptr<Expr>> &&traits,
     std::vector<std::unique_ptr<FuncExpr>> &&functions) noexcept
-    : IdExpr(expr_trait, pos, name),
-      templ(std::move(templ)),
-      traits(std::move(traits)),
-      functions(std::move(functions)) {
-}
+    : IdExpr(expr_trait, pos, name), templ(std::move(templ)),
+      traits(std::move(traits)), functions(std::move(functions)) {}
 
-TraitExpr::~TraitExpr() {
-}
+TraitExpr::~TraitExpr() {}
 
-NmspExpr::NmspExpr(const feder::lexer::Position &pos,
-    const std::string &name, std::unique_ptr<Program> &&program) noexcept
-    : IdExpr(expr_nmsp, pos, name), program(std::move(program)) {
-}
+NmspExpr::NmspExpr(const feder::lexer::Position &pos, const std::string &name,
+                   std::unique_ptr<Program> &&program) noexcept
+    : IdExpr(expr_nmsp, pos, name), program(std::move(program)) {}
 
-NmspExpr::~NmspExpr() {
-}
+NmspExpr::~NmspExpr() {}
 
 BiOpExpr::BiOpExpr(const feder::lexer::Position &pos,
-    feder::lexer::OperatorType opType,
-    std::unique_ptr<Expr> &&lhs, std::unique_ptr<Expr> &&rhs) noexcept
-    : Expr(expr_biop, pos), opType{opType},
-      lhs(std::move(lhs)), rhs(std::move(rhs)) {
-}
+                   feder::lexer::OperatorType opType,
+                   std::unique_ptr<Expr> &&lhs,
+                   std::unique_ptr<Expr> &&rhs) noexcept
+    : Expr(expr_biop, pos), opType{opType}, lhs(std::move(lhs)),
+      rhs(std::move(rhs)) {}
 
-BiOpExpr::~BiOpExpr() {
-}
+BiOpExpr::~BiOpExpr() {}
 
 UnOpExpr::UnOpExpr(const feder::lexer::Position &pos,
-    feder::lexer::OperatorPosition opPos,
-    feder::lexer::OperatorType opType,
-    std::unique_ptr<Expr> &&expr) noexcept
+                   feder::lexer::OperatorPosition opPos,
+                   feder::lexer::OperatorType opType,
+                   std::unique_ptr<Expr> &&expr) noexcept
     : Expr(expr_unop, pos), opPos{opPos}, opType{opType},
-      expr(std::move(expr)) {
-}
+      expr(std::move(expr)) {}
 
-UnOpExpr::~UnOpExpr() {
-}
+UnOpExpr::~UnOpExpr() {}
 
 BraceExpr::BraceExpr(const feder::lexer::Position &pos,
-    std::unique_ptr<Expr> &&expr) noexcept
-    : Expr(expr_brace, pos), expr(std::move(expr)) {
-}
+                     std::unique_ptr<Expr> &&expr) noexcept
+    : Expr(expr_brace, pos), expr(std::move(expr)) {}
 
-BraceExpr::~BraceExpr() {
-}
+BraceExpr::~BraceExpr() {}
 
-TemplateExpr::TemplateExpr(const lexer::Position &pos,
+TemplateExpr::TemplateExpr(
+    const lexer::Position &pos,
     std::vector<std::unique_ptr<Expr>> &&templates) noexcept
-    : Expr(expr_template, pos), templates(std::move(templates)) {
-}
+    : Expr(expr_template, pos), templates(std::move(templates)) {}
 
-TemplateExpr::~TemplateExpr() {
-}
+TemplateExpr::~TemplateExpr() {}
 
 ArrayConExpr::ArrayConExpr(const feder::lexer::Position &pos,
-    std::unique_ptr<Expr> &&obj, std::unique_ptr<Expr> &&size) noexcept
-    : Expr(expr_array_con, pos), obj(std::move(obj)), size(std::move(size)) {
-}
+                           std::unique_ptr<Expr> &&obj,
+                           std::unique_ptr<Expr> &&size) noexcept
+    : Expr(expr_array_con, pos), obj(std::move(obj)), size(std::move(size)) {}
 
-ArrayConExpr::~ArrayConExpr() {
-}
+ArrayConExpr::~ArrayConExpr() {}
 
 ArrayListExpr::ArrayListExpr(const feder::lexer::Position &pos,
-    std::vector<std::unique_ptr<Expr>> &&objs) noexcept
-    : Expr(expr_array_list, pos), objs(std::move(objs)) {
-}
+                             std::vector<std::unique_ptr<Expr>> &&objs) noexcept
+    : Expr(expr_array_list, pos), objs(std::move(objs)) {}
 
-ArrayListExpr::~ArrayListExpr() {
-}
+ArrayListExpr::~ArrayListExpr() {}
 
 ArrayIndexExpr::ArrayIndexExpr(const feder::lexer::Position &pos,
-    std::unique_ptr<Expr> &&indexExpr) noexcept
-    : Expr(expr_array_index, pos), indexExpr(std::move(indexExpr)) {
-}
+                               std::unique_ptr<Expr> &&indexExpr) noexcept
+    : Expr(expr_array_index, pos), indexExpr(std::move(indexExpr)) {}
 
-ArrayIndexExpr::~ArrayIndexExpr() {
-}
+ArrayIndexExpr::~ArrayIndexExpr() {}
 
-std::unique_ptr<Expr> feder::syntax::reportSyntaxError(
-    feder::lexer::Lexer &lex,
-    const feder::lexer::Position &pos, const std::string &msg) noexcept {
+std::unique_ptr<Expr>
+feder::syntax::reportSyntaxError(feder::lexer::Lexer &lex,
+                                 const feder::lexer::Position &pos,
+                                 const std::string &msg) noexcept {
   lex.reportSyntaxError(msg, pos);
   return nullptr;
 }
@@ -208,37 +162,35 @@ std::unique_ptr<Expr> feder::syntax::reportSyntaxError(
 
 std::string NumExpr::to_string() const noexcept {
   switch (getNumberType()) {
-    case lexer::num_i8:
-      return std::to_string(getNumberValue().i8);
-    case lexer::num_i16:
-      return std::to_string(getNumberValue().i16);
-    case lexer::num_i32:
-      return std::to_string(getNumberValue().i32);
-    case lexer::num_i64:
-      return std::to_string(getNumberValue().i64);
+  case lexer::num_i8:
+    return std::to_string(getNumberValue().i8);
+  case lexer::num_i16:
+    return std::to_string(getNumberValue().i16);
+  case lexer::num_i32:
+    return std::to_string(getNumberValue().i32);
+  case lexer::num_i64:
+    return std::to_string(getNumberValue().i64);
 
-    case lexer::num_u8:
-      return std::to_string(getNumberValue().u8);
-    case lexer::num_u16:
-      return std::to_string(getNumberValue().u16);
-    case lexer::num_u32:
-      return std::to_string(getNumberValue().u32);
-    case lexer::num_u64:
-      return std::to_string(getNumberValue().u64);
+  case lexer::num_u8:
+    return std::to_string(getNumberValue().u8);
+  case lexer::num_u16:
+    return std::to_string(getNumberValue().u16);
+  case lexer::num_u32:
+    return std::to_string(getNumberValue().u32);
+  case lexer::num_u64:
+    return std::to_string(getNumberValue().u64);
 
-    case lexer::num_f32:
-      return std::to_string(getNumberValue().f32);
-    case lexer::num_f64:
-      return std::to_string(getNumberValue().f64);
+  case lexer::num_f32:
+    return std::to_string(getNumberValue().f32);
+  case lexer::num_f64:
+    return std::to_string(getNumberValue().f64);
   }
 
   feder::fatal("Impossible-to-reach code reached");
   return "";
 }
 
-std::string StrExpr::to_string() const noexcept {
-  return "\"" + str + "\"";
-}
+std::string StrExpr::to_string() const noexcept { return "\"" + str + "\""; }
 
 std::string CharExpr::to_string() const noexcept {
   return std::string("\'") + c + "\'";
@@ -347,24 +299,25 @@ std::string NmspExpr::to_string() const noexcept {
 }
 
 std::string BiOpExpr::to_string() const noexcept {
-  switch(getOperator()) {
-    case lexer::op_fncall:
-    case lexer::op_indexcall:
-	case lexer::op_templatecall:
-      return getLHS().to_string() + getRHS().to_string();
-    default:
-      return "(" + getLHS().to_string()
-        + " " + std::to_string(getOperator()) + " "
-        + getRHS().to_string() + ")";
+  switch (getOperator()) {
+  case lexer::op_fncall:
+  case lexer::op_indexcall:
+  case lexer::op_templatecall:
+    return getLHS().to_string() + getRHS().to_string();
+  default:
+    return "(" + getLHS().to_string() + " " + std::to_string(getOperator()) +
+           " " + getRHS().to_string() + ")";
   }
 }
 
 std::string UnOpExpr::to_string() const noexcept {
   switch (getOperatorPosition()) {
-    case lexer::op_lunary:
-      return "(" + std::to_string(getOperator()) + getExpression().to_string() + ")";
-    case lexer::op_runary:
-      return "(" + getExpression().to_string() + std::to_string(getOperator()) + ")";
+  case lexer::op_lunary:
+    return "(" + std::to_string(getOperator()) + getExpression().to_string() +
+           ")";
+  case lexer::op_runary:
+    return "(" + getExpression().to_string() + std::to_string(getOperator()) +
+           ")";
   }
 
   feder::fatal("Impossible-to-reach code reached");

@@ -35,7 +35,7 @@
 
 #include "feder/global.hpp"
 #include "feder/lexer.hpp"
-#include "feder/syntax.hpp"
 #include "feder/parser.hpp"
+#include "feder/syntax.hpp"
 
 #endif /* FEDER_FEDER_HPP */
