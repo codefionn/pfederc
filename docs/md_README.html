@@ -70,14 +70,33 @@ $(function() {
 <div class="contents">
 <div class="textblock"><img src="./logo.png" alt="" class="inline"/>
 <h1>pfederc</h1>
-<p>Documentation at [<a href="https://codefionn.github.io/pfederc">https://codefionn.github.io/pfederc</a>]. Language documentation at [<a href="https://codefionn.github.io/federlang">https://codefionn.github.io/federlang</a>].</p>
+<p><em>pfederc</em> (Passau Feder compiler) is a program for managing and compiling Feder source code. Written in Standard C++14 and using LLVM. This project doesn't specify a Feder standard library.</p>
+<p><em>Passau is a city in Bavaria, Germany</em>.</p>
+<h2>Resources</h2>
+<p>About pfederc:</p>
+<ul>
+<li>API Documentation: <a href="https://codefionn.github.io/pfederc">https://codefionn.github.io/pfederc</a></li>
+<li>Language documentation: <a href="https://codefionn.github.io/federlang">https://codefionn.github.io/federlang</a></li>
+</ul>
+<p>Some online resources used directly or as reference:</p>
+<ul>
+<li>Precedence climbing method: <a href="https://en.wikipedia.org/wiki/Operator-precedence_parser">https://en.wikipedia.org/wiki/Operator-precedence_parser</a></li>
+<li>Mangling: <a href="https://itanium-cxx-abi.github.io/cxx-abi/abi.html#mangling">https://itanium-cxx-abi.github.io/cxx-abi/abi.html#mangling</a></li>
+<li>Tracing garbage collection: <a href="https://en.wikipedia.org/wiki/Tracing_garbage_collection">https://en.wikipedia.org/wiki/Tracing_garbage_collection</a></li>
+</ul>
+<p>And books:</p>
+<ul>
+<li><a href="http://www.gchandbook.org/">The Garbage Collection Handbook</a></li>
+<li><a href="https://www.worldcat.org/title/compilers-principles-techniques-and-tools/oclc/12285707">Compilers: Principles, Techniques, and Tools</a> (Dragonbook)</li>
+</ul>
 <h2>Build</h2>
 <p>Clone &amp; build:</p>
 <div class="fragment"><div class="line">git clone https://github.com/codefionn/pfederc</div><div class="line">cd pfederc</div><div class="line">mkdir build ; cd build</div><div class="line">cmake .. ; cmake --build .</div></div><!-- fragment --><p>Testing (in pfederc main directory):</p>
-<div class="fragment"><div class="line">cd build/test</div><div class="line">ctest</div></div><!-- fragment --><h2>Build with Docker</h2>
+<div class="fragment"><div class="line">cd build/test</div><div class="line">ctest</div></div><!-- fragment --><p>If memory checks should also be done, install <em>valgrind</em>.</p>
+<h2>Build with Docker</h2>
 <p>Clone, build &amp; run:</p>
 <div class="fragment"><div class="line">git clone https://github.com/codefionn/pfederc</div><div class="line">cd pfederc</div><div class="line">docker build --rm -t pfederc .</div><div class="line">docker run --rm -ti pfederc</div></div><!-- fragment --><h2>Documentation</h2>
-<p>Online at [<a href="https://codefionn.github.io/pfederc">https://codefionn.github.io/pfederc</a>]. Build and open with:</p>
+<p>Online at <a href="https://codefionn.github.io/pfederc">https://codefionn.github.io/pfeder</a>. Build and open with:</p>
 <div class="fragment"><div class="line">doxygen .doxyconf</div><div class="line">xdg-open docs/index.html</div></div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
