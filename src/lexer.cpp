@@ -1108,6 +1108,11 @@ void Lexer::reportSyntaxError(const std::string &msg,
     const Position &pos) noexcept {
   readLine(); // read till EOL
 
+  reportSemanticError(msg, pos);
+}
+
+void Lexer::reportSemanticError(const std::string &msg,
+    const Position &pos) noexcept {
   size_t startindex = pos.getColumnStart() - 1;
   if (pos.getColumnStart() == 0)
     startindex = 0;
