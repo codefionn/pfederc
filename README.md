@@ -23,10 +23,15 @@ cd build/test
 ctest
 ```
 
-Docker:
+## Build with Docker
+
+Clone, build & run:
 
 ```bash
-docker build -t pfederc .
+git clone https://github.com/codefionn/pfederc
+cd pfederc
+docker build --rm -t pfederc .
+docker run --rm -ti pfederc
 ```
 
 ## Documentation
