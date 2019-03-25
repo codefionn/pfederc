@@ -436,7 +436,7 @@ namespace feder {
                   columnEnd;   //!< Last position of the current token.
 
       int lastlinechar; //!< Last new-line character (CR or LF).
-      int curchar; //!< Current character, -2 if next char should be called
+      int curchar = EOF; //!< Current character, -2 if next char should be called
       TokenType curtok; //!< Current token type
       OperatorType curop; //!< Current operator type
       NumberType curnumtype; //!< Current number type.

@@ -534,10 +534,11 @@ std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
 
   case lexer::tok_err:
     return nullptr;
+  default:
+    return syntax::reportSyntaxError(lex,
+        lex.currentToken().getPosition(),
+        "Not a primary token "
+        + std::to_string(lex.currentToken().getType()) + ".");
+  
   }
-
-  return syntax::reportSyntaxError(lex,
-      lex.currentToken().getPosition(),
-      "Not a primary token "
-      + std::to_string(lex.currentToken().getType()) + ".");
 }

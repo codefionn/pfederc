@@ -19,9 +19,9 @@ bool feder::lexer::isRightAssociative(OperatorType op) noexcept {
   case op_asg_mod:
   case op_decl:
     return true;
+  default:
+    return false;
   }
-  // default:
-  return false;
 }
 
 bool feder::lexer::isValidOperatorPosition(OperatorType op, OperatorPosition pos) noexcept {
@@ -37,17 +37,17 @@ bool feder::lexer::isValidOperatorPosition(OperatorType op, OperatorPosition pos
       case op_bnot:
       case op_lnot:
         return true;
+      default:
+        return false;
     }
-
-    break;
   case op_runary:
     switch (op) {
       case op_dec:
       case op_inc:
         return true;
+      default:
+        return false;
     }
-
-    break;
   case op_binary:
     switch (op) {
       case op_dec:
@@ -57,8 +57,6 @@ bool feder::lexer::isValidOperatorPosition(OperatorType op, OperatorPosition pos
       default:
         return true;
     }
-
-    break;
   }
 
   return false;
@@ -74,9 +72,9 @@ bool feder::lexer::isPrimaryToken(TokenType tok) noexcept {
     case tok_delim:
     case tok_cmd:
       return false;
+    default:
+      return true;
   }
-
-  return true;
 }
 
 static std::size_t _getPrecedenceLeftUnary(OperatorType op) noexcept {
@@ -90,9 +88,9 @@ static std::size_t _getPrecedenceLeftUnary(OperatorType op) noexcept {
   case op_bnot:
   case op_mem:
     return 15;
+  default:
+    return 0;
   }
-
-  return 0;
 }
 
 static std::size_t _getPrecedenceRightUnary(OperatorType op) noexcept {
@@ -103,9 +101,9 @@ static std::size_t _getPrecedenceRightUnary(OperatorType op) noexcept {
   case op_indexcall:
   case op_templatecall:
     return 16;
+  default:
+    return 0;
   }
-  
-  return 0;
 }
 
 static std::size_t _getPrecedenceBinary(OperatorType op) noexcept {
@@ -162,10 +160,10 @@ static std::size_t _getPrecedenceBinary(OperatorType op) noexcept {
     case op_mem:
     case op_deref_mem:
       return 17;
+    default:
+      // Sometimes this is necessary (when operator is not binary but only unary)
+      return _getPrecedenceRightUnary(op);
   }
-
-  // Sometimes this is necessary (when operator is not binary but only unary)
-  return _getPrecedenceRightUnary(op);
 }
 
 std::size_t feder::lexer::getPrecedence(OperatorType op, OperatorPosition pos) noexcept {
@@ -176,9 +174,9 @@ std::size_t feder::lexer::getPrecedence(OperatorType op, OperatorPosition pos) n
       return _getPrecedenceLeftUnary(op);
     case op_runary:
       return _getPrecedenceRightUnary(op);
+    default:
+      return 0;
   }
-
-  return 0;
 }
 
 // Position
@@ -290,6 +288,8 @@ Token::Token(const Token &tok) noexcept
     str = tok.getString();
   case tok_char:
     charVal = tok.getCharacter();
+  default:
+    break; // do nothing
   }
 }
 
@@ -1005,6 +1005,8 @@ TokenType Lexer::constructToken() noexcept {
   case '}':
     nextChar(); // eat }
     return curtok = tok_cbrace_template;
+  default:
+    break; // Do nothing
   }
 
   // Dynamic tokens
@@ -1149,9 +1151,9 @@ std::size_t Token::getPrecedence(OperatorPosition pos) const noexcept {
   case tok_obrace_array:
   case tok_obrace_template:
     return 16;
+  default:
+    return 0; // Minimal precedence
   }
-
-  return 0; // Minimal precedence
 }
 
 std::string std::to_string(feder::lexer::TokenType tok) {
@@ -1214,10 +1216,11 @@ std::string std::to_string(feder::lexer::TokenType tok) {
       return "end-of-file";
     case tok_err:
       return "error";
+    default:
+      feder::fatal("Unknown token type.");
+      return "";
   }
 
-  feder::fatal("Unknown token type.");
-  return "";
 }
 
 std::string std::to_string(feder::lexer::OperatorType op) {
@@ -1267,8 +1270,8 @@ std::string std::to_string(feder::lexer::OperatorType op) {
     case op_fncall: return "()";
     case op_indexcall: return "[]";
     case op_templatecall: return "{}";
+  default:
+    feder::fatal("Unknown operator type.");
+    return "";
   }
-
-  feder::fatal("Unknown operator type.");
-  return "";
 }
