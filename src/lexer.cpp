@@ -37,6 +37,7 @@ bool feder::lexer::isValidOperatorPosition(OperatorType op,
     case op_land:
     case op_bnot:
     case op_lnot:
+    case op_safe:
       return true;
     default:
       return false;
@@ -54,6 +55,8 @@ bool feder::lexer::isValidOperatorPosition(OperatorType op,
     case op_dec:
     case op_inc:
     case op_bnot:
+    case op_lnot:
+    case op_safe:
       return false;
     default:
       return true;
@@ -71,6 +74,7 @@ bool feder::lexer::isPrimaryToken(TokenType tok) noexcept {
   case tok_cbrace_array:
   case tok_cbrace_template:
   case tok_delim:
+  case tok_return:
   case tok_else:
   case tok_cmd:
     return false;
@@ -81,6 +85,8 @@ bool feder::lexer::isPrimaryToken(TokenType tok) noexcept {
 
 static std::size_t _getPrecedenceLeftUnary(OperatorType op) noexcept {
   switch (op) {
+  case op_safe:
+    return 2;
   case op_dec:
   case op_inc:
   case op_add:
@@ -623,6 +629,8 @@ static TokenType tokenIdentifier(Lexer &lexer, TokenType &curtok,
     return tok_do;
   if (str == "match")
     return curtok = tok_match;
+  if (str == "return")
+    return curtok = tok_return;
 
   if (str == "safe") {
     curop = op_safe;
@@ -1213,6 +1221,8 @@ std::string std::to_string(feder::lexer::TokenType tok) {
     return "end-of-file";
   case tok_err:
     return "error";
+  case tok_return:
+    return "return";
   default:
     feder::fatal("Unknown token type.");
     return "";

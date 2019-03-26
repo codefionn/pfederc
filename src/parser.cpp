@@ -146,6 +146,11 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Lexer &lex,
   bool error = false;
 
   while (true) {
+    if (lex.currentToken() == lexer::tok_eol) {
+      lex.nextToken();
+      continue;
+    }
+
     if (!lexer::isPrimaryToken(lex.currentToken().getType()))
       break;
 
@@ -163,14 +168,28 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Lexer &lex,
     if (lex.currentToken() == lexer::tok_eof)
       break;
 
-    lex.nextToken();
+    if (!parser::match(lex, nullptr, lexer::tok_eol))
+      error = true;
   }
+
+  std::unique_ptr<syntax::Expr> returnExpr;
+  if (lex.currentToken() == lexer::tok_return) {
+    lex.nextToken(); // eat 'return'
+    returnExpr = parser::parse(lex);
+    if (!returnExpr)
+      error = true;
+  }
+
+  // Skip newlines
+  while (lex.currentToken() == lexer::tok_eol)
+    lex.nextToken();
 
   if (topLevel && lex.currentToken() != lexer::tok_eof) {
     syntax::reportSyntaxError(lex, lex.currentToken().getPosition(),
                               "Expected end-of-file.");
-    return nullptr;
+    error = true;
   }
 
-  return std::make_unique<syntax::Program>(std::move(lines), error);
+  return std::make_unique<syntax::Program>(std::move(lines),
+      std::move(returnExpr), error);
 }

@@ -2,8 +2,10 @@
 using namespace feder::syntax;
 
 Program::Program(std::vector<std::unique_ptr<Expr>> &&lines,
+                 std::unique_ptr<Expr> &&returnExpr,
                  bool error) noexcept
-    : lines(std::move(lines)), error{error} {}
+    : lines(std::move(lines)), returnExpr(std::move(returnExpr)),
+      error{error} {}
 
 Program::~Program() {}
 

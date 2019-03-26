@@ -10,7 +10,7 @@ int main(int argsc, char * argsv[]) {
   lex.nextToken();
 
   auto prog = parser::parseProgram(lex);
-  if (prog->hasError()) return 1;
+  if (!prog || prog->hasError()) return 1;
   
   return 0;
 }

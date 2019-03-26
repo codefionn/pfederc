@@ -51,6 +51,7 @@ enum TokenType {
   tok_cbrace_template, //!< }
 
   tok_delim, //!< ;
+  tok_return, //!< 'return'
 
   tok_op, //!< Operator
 
@@ -116,7 +117,8 @@ enum OperatorType {
   op_bnot, //!< ~
   op_inc,  //!< ++
   op_dec,  //!< --
-  op_safe, //!< 'safe'
+
+  op_safe,   //!< 'safe'
 
   op_mem,       //!< .
   op_deref_mem, //!< ->

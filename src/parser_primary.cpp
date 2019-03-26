@@ -734,9 +734,6 @@ _parsePrimaryIfCase(lexer::Lexer &lex) noexcept {
   if (!program || program->hasError())
     return syntax::IfCaseExpr(nullptr, nullptr);
 
-  while (lex.currentToken() == lexer::tok_eol)
-    lex.nextToken();
-
   if (lex.currentToken() != lexer::tok_delim
       && lex.currentToken() != lexer::tok_else) {
     syntax::reportSyntaxError(lex,
@@ -790,10 +787,6 @@ _parsePrimaryIf(lexer::Lexer &lex) noexcept {
       break;
     }
   }
-
-  // Skip newlines
-  while (lex.currentToken() == lexer::tok_eol)
-    lex.nextToken();
 
   if (!parser::match(lex, nullptr, lexer::tok_delim))
     return nullptr;

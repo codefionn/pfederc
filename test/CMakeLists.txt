@@ -225,7 +225,8 @@ add_test(parseline_templ3 parseline "func{t0 : T, t1 :T} hello() ;")
 add_test(parseline_if0 parseline "if true\nretfalse()\n;")
 add_test(parseline_if1 parseline "if true\nrettrue()\nelse\nretfalse()\n;")
 add_test(parseline_if2 parseline "if i == 0\nhello1()\nelse if i == 1\nhello2()\nelse\nhello3()\n;")
-add_test(parseline_if3 parseline "if i == 0\nhello1()\nelse if i == 1\nhello2()\n;")
+add_test(parseline_if3 parseline "if i == 0\nhello1()\nelse if i == 1\nhello2()\nelse if i == 2\nhello3()\nelse\nhello4()\n;")
+add_test(parseline_if4 parseline "if i == 0\nhello1()\nelse if i == 1\nhello2()\n;")
 
 ## If - Fail tests
 add_test(parseline_fif0 parseline "if else ;")
@@ -262,6 +263,11 @@ add_test(parseprogram_func0 parseprogram "func hello ;")
 add_test(parseprogram_func1 parseprogram "func hello \n;")
 add_test(parseprogram_trait0 parseprogram "trait MyTrait \n Func hello ; \n;")
 
+## return
+
+add_test(parseprogram_ret0 parseprogram "return true")
+add_test(parseprogram_ret1 parseprogram "if true\nreturn true\n;")
+
 ## Program - Fail tests
 add_test(parseprogram_fail0 parseprogram "1 + 2")
 add_test(parseprogram_fail1 parseprogram "hello[1]")
@@ -269,9 +275,10 @@ add_test(parseprogram_fail2 parseprogram "func _ \n;")
 add_test(parseprogram_fail3 parseprogram "class _\nfunc hello ;\n;")
 add_test(parseprogram_fail4 parseprogram "func")
 add_test(parseprogram_fail5 parseprogram "hello{MyClass}")
+add_test(parseprogram_fail6 parseprogram "return true\nreturn false\n")
 set_tests_properties(parseprogram_fail0 parseprogram_fail1
   parseprogram_fail2 parseprogram_fail3 parseprogram_fail4
-  parseprogram_fail5
+  parseprogram_fail5 parseprogram_fail6
   PROPERTIES WILL_FAIL TRUE)
 
 # Valgrind (memory check)

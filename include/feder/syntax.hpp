@@ -43,10 +43,12 @@ class IfExpr;
 
 class Program {
   std::vector<std::unique_ptr<Expr>> lines;
+  std::unique_ptr<Expr> returnExpr; //!< Optional
   bool error;
 
 public:
   Program(std::vector<std::unique_ptr<Expr>> &&lines,
+          std::unique_ptr<Expr> &&returnExpr,
           bool error = false) noexcept;
   virtual ~Program();
 
@@ -61,6 +63,20 @@ public:
   /*!\return Returns true, if program has error, otherwise false.
    */
   bool hasError() const noexcept { return error; }
+
+  /*!\return Returns true, if program has return. Otherwise false is returned.
+   */
+  bool hasReturn() const noexcept { return (bool) returnExpr; }
+
+  /*!\return Returns optional return expression.
+   */
+  auto &getReturnExpr() noexcept
+  { return *returnExpr; }
+
+  /*!\return Returns optional return expression (const).
+   */
+  const auto &getReturnExpr() const noexcept
+  { return *returnExpr; }
 };
 
 /*!\brief Expression types.
