@@ -256,6 +256,39 @@ set_tests_properties(parseline_fmatch0 parseline_fmatch1 parseline_fmatch2
   parseline_fmatch3
   PROPERTIES WILL_FAIL TRUE)
 
+## For
+add_test(parseline_for0 parseline "for true\n;")
+add_test(parseline_for1 parseline "for true; print()\n;")
+add_test(parseline_for2 parseline "for i := 0; i < 100; ++i\n;")
+add_test(parseline_for3 parseline "for true; print()\n\n;")
+add_test(parseline_for4 parseline "for true\nhello()\n;")
+
+## For - Fail tets
+add_test(parseline_ffor0 parseline "for\n;")
+add_test(parseline_ffor1 parseline "for true;")
+add_test(parseline_ffor2 parseline "for true; hello();\n;")
+add_test(parseline_ffor3 parseline "for i := 0; i < 100; ++i;")
+set_tests_properties(parseline_ffor0 parseline_ffor1 parseline_ffor2
+  parseline_ffor3
+  PROPERTIES WILL_FAIL TRUE)
+
+## Do
+add_test(parseline_do0 parseline "do\nhello()\n; for true\n")
+add_test(parseline_do1 parseline "do\nhello()\n; for true")
+add_test(parseline_do2 parseline "do print()\n hello()\n; for true")
+add_test(parseline_do3 parseline "do i := 100; ++i \n hello()\n; for i < 10")
+
+## Do - Fail tests
+add_test(parseline_fdo0 parseline "do\nhello()\n; for true;")
+add_test(parseline_fdo1 parseline "do\nhello()\n;for")
+add_test(parseline_fdo2 parseline "do\nhello()\n;for ;")
+add_test(parseline_fdo3 parseline "do i := 0; ++i ; for true")
+add_test(parseline_fdo4 parseline "do i := 0; ++i \n; \nfor true")
+add_test(parseline_fdo5 parseline "do i := 0; \n ; for true")
+set_tests_properties(parseline_fdo0 parseline_fdo1 parseline_fdo2
+  parseline_fdo3 parseline_fdo4 parseline_fdo5
+  PROPERTIES WILL_FAIL TRUE)
+
 ## Comments
 add_test(parseline_comment0 parseline "func{T} hello(t : T) // comment\n;")
 add_test(parseline_comment1 parseline "/* 111 == */ 100 + 11")

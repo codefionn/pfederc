@@ -92,12 +92,15 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
 <tr class="memitem:ga936da9aa59a0b1ff1378ca97b9a39c14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#ga936da9aa59a0b1ff1378ca97b9a39c14">feder::parser::match</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;lex, <a class="el" href="classfeder_1_1lexer_1_1Token.html">lexer::Token</a> *tok, <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">lexer::TokenType</a> tokType, <a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">lexer::OperatorType</a> opType=lexer::op_asg) noexcept</td></tr>
 <tr class="memdesc:ga936da9aa59a0b1ff1378ca97b9a39c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">If match then advance to next token. If no match, an error messages is printed.  <a href="group__parser.html#ga936da9aa59a0b1ff1378ca97b9a39c14">More...</a><br /></td></tr>
 <tr class="separator:ga936da9aa59a0b1ff1378ca97b9a39c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b51f96465f321848771779273305973"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#ga2b51f96465f321848771779273305973">feder::parser::match</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;lex, <a class="el" href="classfeder_1_1lexer_1_1Token.html">lexer::Token</a> *tok, const std::vector&lt; <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">lexer::TokenType</a> &gt; &amp;tokTypes) noexcept</td></tr>
+<tr class="memdesc:ga2b51f96465f321848771779273305973"><td class="mdescLeft">&#160;</td><td class="mdescRight">If match then advance to next token. If no match, an error message is printed.  <a href="group__parser.html#ga2b51f96465f321848771779273305973">More...</a><br /></td></tr>
+<tr class="separator:ga2b51f96465f321848771779273305973"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Syntactic analysis/Parser. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga936da9aa59a0b1ff1378ca97b9a39c14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga936da9aa59a0b1ff1378ca97b9a39c14">&#9670;&nbsp;</a></span>match()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ga936da9aa59a0b1ff1378ca97b9a39c14">&#9670;&nbsp;</a></span>match() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,13 +146,66 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
 </div><div class="memdoc">
 
 <p>If match then advance to next token. If no match, an error messages is printed. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns true, if currentToken matches cur_tok (and if curtok == tok_op curop). Otherwise false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true, if currentToken matches tokType (and if curtok == tok_op curop). Otherwise false. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lex</td><td></td></tr>
     <tr><td class="paramname">tok</td><td>Will be set to currentToken (if not nullptr). </td></tr>
     <tr><td class="paramname">tokType</td><td></td></tr>
     <tr><td class="paramname">opType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga2b51f96465f321848771779273305973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2b51f96465f321848771779273305973">&#9670;&nbsp;</a></span>match() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::parser::match </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
+          <td class="paramname"><em>lex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Token.html">lexer::Token</a> *&#160;</td>
+          <td class="paramname"><em>tok</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">lexer::TokenType</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tokTypes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If match then advance to next token. If no match, an error message is printed. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return true, if currenToken matches one of tokTypes. Otherwise false is returned and also if tokTypes.size() == 0. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lex</td><td></td></tr>
+    <tr><td class="paramname">lex</td><td>Will be set to current Token (if not nullptr). </td></tr>
+    <tr><td class="paramname">tokTypes</td><td>size() &gt; 0. </td></tr>
   </table>
   </dd>
 </dl>

@@ -100,6 +100,9 @@ $(function() {
 <li>f64
 : <a class="el" href="unionfeder_1_1lexer_1_1NumberValue.html#a7e6f83aa238316c93498ec20551dc680">feder::lexer::NumberValue</a>
 </li>
+<li>ForExpr()
+: <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#a8a4d3d903e236a4d319b8c94706b0ab3">feder::syntax::ForExpr</a>
+</li>
 <li>FuncParamExpr()
 : <a class="el" href="classfeder_1_1syntax_1_1FuncParamExpr.html#a10d7716a308427d28a3d44bbae9b8998">feder::syntax::FuncParamExpr</a>
 </li>
@@ -120,8 +123,11 @@ $(function() {
 <li>getColumnStart()
 : <a class="el" href="classfeder_1_1lexer_1_1Position.html#a0226adbef5d3077e5ec633316a1f6034">feder::lexer::Position</a>
 </li>
+<li>getCondition()
+: <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#a5fab501e0fb39432b174fdefdd80ccaf">feder::syntax::ForExpr</a>
+</li>
 <li>getConstructors()
-: <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#ae2a26eee1553637783e314200dbac482">feder::syntax::ClassExpr</a>
+: <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#ab207aa292ad3fb806ce505561306e7c4">feder::syntax::ClassExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1EnumExpr.html#a94d94e8ea77f3724ff9d1213668e7fb7">feder::syntax::EnumExpr</a>
 </li>
 <li>getCursorPosition()
@@ -153,10 +159,13 @@ $(function() {
 : <a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#a15b8e312ff9953dfd0d5b8f28e9125a1">feder::syntax::IfExpr</a>
 </li>
 <li>getIndex()
-: <a class="el" href="classfeder_1_1syntax_1_1ArrayIndexExpr.html#ab819e17492f95e3ae46228404569a735">feder::syntax::ArrayIndexExpr</a>
+: <a class="el" href="classfeder_1_1syntax_1_1ArrayIndexExpr.html#a2605fdffbe4538be46f6f423bcfb2514">feder::syntax::ArrayIndexExpr</a>
+</li>
+<li>getInitialization()
+: <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#a58b50eb5d16d53c0a0d27983ab7c8e4f">feder::syntax::ForExpr</a>
 </li>
 <li>getLexer()
-: <a class="el" href="classfeder_1_1lexer_1_1Position.html#ad2d73891a8d26130b43a665a851d82c7">feder::lexer::Position</a>
+: <a class="el" href="classfeder_1_1lexer_1_1Position.html#ad2e85c3c9c6684391d6da2d9e0351122">feder::lexer::Position</a>
 </li>
 <li>getLHS()
 : <a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a21747db8b833d4ece8480feaecf815b8">feder::syntax::BiOpExpr</a>
@@ -190,7 +199,7 @@ $(function() {
 : <a class="el" href="classfeder_1_1syntax_1_1ArrayConExpr.html#aa160f4fa5da56b506264432c171788be">feder::syntax::ArrayConExpr</a>
 </li>
 <li>getObjects()
-: <a class="el" href="classfeder_1_1syntax_1_1ArrayListExpr.html#a72da673d0a7c415f19ae272bc09b74f1">feder::syntax::ArrayListExpr</a>
+: <a class="el" href="classfeder_1_1syntax_1_1ArrayListExpr.html#a7c295ad4a5a774d64ebf117020e0291a">feder::syntax::ArrayListExpr</a>
 </li>
 <li>getOperator()
 : <a class="el" href="classfeder_1_1lexer_1_1Token.html#ab6edec099f259bb8388a855f3ba950b8">feder::lexer::Token</a>
@@ -212,11 +221,12 @@ $(function() {
 : <a class="el" href="classfeder_1_1lexer_1_1Token.html#af4b543f46c6e50632c7995eb97cd114f">feder::lexer::Token</a>
 </li>
 <li>getProgram()
-: <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a4a2b3c86a75239efda53ab68e7d698f3">feder::syntax::FuncExpr</a>
-, <a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html#aaddc1fbd0b8acb9a34700e094bae5421">feder::syntax::NmspExpr</a>
+: <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#ad697b3aa945af513aab9d896a21ac2c7">feder::syntax::ForExpr</a>
+, <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#ae2e060cde7905a91d7717ad3619645b6">feder::syntax::FuncExpr</a>
+, <a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html#a89cae769ddb05f093b6d127cd9008bd3">feder::syntax::NmspExpr</a>
 </li>
 <li>getReturnExpr()
-: <a class="el" href="classfeder_1_1syntax_1_1Program.html#a745a74683911fe1292097be8c547e2dc">feder::syntax::Program</a>
+: <a class="el" href="classfeder_1_1syntax_1_1Program.html#a81edce49334cc773855e190467d94484">feder::syntax::Program</a>
 </li>
 <li>getReturnType()
 : <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a06060397c8ba41ea903eb8b630f2c0c5">feder::syntax::FuncExpr</a>
@@ -230,6 +240,9 @@ $(function() {
 <li>getSize()
 : <a class="el" href="classfeder_1_1syntax_1_1ArrayConExpr.html#a9b92322ef23344c64f50a5a4f01b717b">feder::syntax::ArrayConExpr</a>
 </li>
+<li>getStep()
+: <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#aea9d09006f11fcd50829f61aa697280b">feder::syntax::ForExpr</a>
+</li>
 <li>getString()
 : <a class="el" href="classfeder_1_1lexer_1_1Token.html#a882ecc9bd33a88a802510b37d06cbb1b">feder::lexer::Token</a>
 , <a class="el" href="classfeder_1_1syntax_1_1StrExpr.html#aaacb87936ce4a6cac33830f90d03208c">feder::syntax::StrExpr</a>
@@ -238,8 +251,8 @@ $(function() {
 : <a class="el" href="classfeder_1_1syntax_1_1TraitExpr.html#a7744c6d3bf10d88a27ba045a2e478bd0">feder::syntax::TraitExpr</a>
 </li>
 <li>getTraits()
-: <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#ae69a86639dbd4e4f93741c71cf434735">feder::syntax::ClassExpr</a>
-, <a class="el" href="classfeder_1_1syntax_1_1TraitExpr.html#a2b8966a24b785388a777654383415d35">feder::syntax::TraitExpr</a>
+: <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#aebeca1fe6e7a580eb10bd88855b529dd">feder::syntax::ClassExpr</a>
+, <a class="el" href="classfeder_1_1syntax_1_1TraitExpr.html#a046b01ea40c61e7c745ad487c67a1a84">feder::syntax::TraitExpr</a>
 </li>
 <li>getType()
 : <a class="el" href="classfeder_1_1lexer_1_1Token.html#a868bfdffc565198cd2b4250e53bb7351">feder::lexer::Token</a>
@@ -255,8 +268,14 @@ $(function() {
 <li>hasError()
 : <a class="el" href="classfeder_1_1syntax_1_1Program.html#a659c14cec4e5b8736353caea87367e4c">feder::syntax::Program</a>
 </li>
+<li>hasInitialization()
+: <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#acc9a8d09b5751cfc51de5fdd3f4f9461">feder::syntax::ForExpr</a>
+</li>
 <li>hasReturn()
 : <a class="el" href="classfeder_1_1syntax_1_1Program.html#a3dba8a1937d714014e18a238c8643474">feder::syntax::Program</a>
+</li>
+<li>hasStep()
+: <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#a3d5cc8cf1aeb8f6f63dd37b1f29ffa24">feder::syntax::ForExpr</a>
 </li>
 </ul>
 
@@ -283,6 +302,9 @@ $(function() {
 <li>isDefined()
 : <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#ac08d527787ef500678e5a6a906d72d53">feder::syntax::FuncExpr</a>
 </li>
+<li>isPostConditionCheck()
+: <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#a06ca73aed6c20c93cf7ef56f57221e4c">feder::syntax::ForExpr</a>
+</li>
 <li>isRightAssociative()
 : <a class="el" href="classfeder_1_1lexer_1_1Token.html#a07f3fe5cba22879e9aab7f99ff9e2efd">feder::lexer::Token</a>
 </li>
@@ -291,6 +313,7 @@ $(function() {
 , <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#aa5f4a0f16be7b416d25f6116f03626cb">feder::syntax::ClassExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1EnumExpr.html#af35d06ca830d7a65ea8c248bc78066c1">feder::syntax::EnumExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1Expr.html#a3297eff8706e83edfb83f2d3a1b51697">feder::syntax::Expr</a>
+, <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#a7f84a6a122f9caa1da19282a0171a919">feder::syntax::ForExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a60c2971c7b4db501a5df236da3188f01">feder::syntax::FuncExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#add22b3a3747442291bb455f14a6e81a5">feder::syntax::IfExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#a9246ce1f17f53804c2cbf1383e3f955e">feder::syntax::MatchExpr</a>
@@ -337,11 +360,17 @@ $(function() {
 
 
 <h3><a id="index_o"></a>- o -</h3><ul>
+<li>operator !=()
+: <a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a39ad8e8d326ac6465d7d02293be44ddb">feder::syntax::BiOpExpr</a>
+, <a class="el" href="classfeder_1_1syntax_1_1Expr.html#ad5266b1b51bfeb483c7346ffc41964c1">feder::syntax::Expr</a>
+</li>
 <li>operator!=()
-: <a class="el" href="classfeder_1_1lexer_1_1Token.html#ad13b00ca075e72c5fa20225f6c5b8874">feder::lexer::Token</a>
+: <a class="el" href="classfeder_1_1lexer_1_1Token.html#afd6f1bf7023976ed9bf78822415b13e9">feder::lexer::Token</a>
 </li>
 <li>operator==()
 : <a class="el" href="classfeder_1_1lexer_1_1Token.html#aa92cbbd5a48521867db844706dd21356">feder::lexer::Token</a>
+, <a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a2839957f8f079839d00f6e7c8d75061d">feder::syntax::BiOpExpr</a>
+, <a class="el" href="classfeder_1_1syntax_1_1Expr.html#a4b658fc395706fd7fc1b15ddee030ea5">feder::syntax::Expr</a>
 </li>
 </ul>
 
@@ -386,6 +415,7 @@ $(function() {
 , <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#aea8544b8950fe98998861f40af92f82d">feder::syntax::ClassExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1EnumExpr.html#ac821aa9a753691f6582e75b7652a5680">feder::syntax::EnumExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1Expr.html#aec67457f8a22add8bd217af86b50d6a9">feder::syntax::Expr</a>
+, <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#a107fb6cb7e0a35827e71f6fafa7ab7cf">feder::syntax::ForExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a32f4f460c49309be0816fb9b67408ff0">feder::syntax::FuncExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1FuncParamExpr.html#a9c3f23ad94c6f11448f5438e798e33a5">feder::syntax::FuncParamExpr</a>
 , <a class="el" href="classfeder_1_1syntax_1_1IdExpr.html#a761be304b64286436f2c7400a971d323">feder::syntax::IdExpr</a>
@@ -399,7 +429,7 @@ $(function() {
 , <a class="el" href="classfeder_1_1syntax_1_1UnOpExpr.html#a7da8f26abc605bb205c4058f8893205c">feder::syntax::UnOpExpr</a>
 </li>
 <li>Token()
-: <a class="el" href="classfeder_1_1lexer_1_1Token.html#a31c66e0faada0ab3434e2fc94a89139e">feder::lexer::Token</a>
+: <a class="el" href="classfeder_1_1lexer_1_1Token.html#a511e5e5c0b01aef88af9e536e0e574e6">feder::lexer::Token</a>
 </li>
 <li>TraitExpr()
 : <a class="el" href="classfeder_1_1syntax_1_1TraitExpr.html#ac6f422c199bababcdddd6f9473366ddd">feder::syntax::TraitExpr</a>

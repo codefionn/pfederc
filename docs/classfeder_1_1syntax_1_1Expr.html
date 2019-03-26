@@ -92,14 +92,15 @@ Inheritance diagram for feder::syntax::Expr:</div>
 <area href="classfeder_1_1syntax_1_1BiOpExpr.html" title="Binary operator expression." alt="feder::syntax::BiOpExpr" shape="rect" coords="189,224,368,248"/>
 <area href="classfeder_1_1syntax_1_1BraceExpr.html" title="Brace expression." alt="feder::syntax::BraceExpr" shape="rect" coords="189,280,368,304"/>
 <area href="classfeder_1_1syntax_1_1CharExpr.html" title="Character expression." alt="feder::syntax::CharExpr" shape="rect" coords="189,336,368,360"/>
-<area href="classfeder_1_1syntax_1_1FuncExpr.html" title="Function expression." alt="feder::syntax::FuncExpr" shape="rect" coords="189,392,368,416"/>
-<area href="classfeder_1_1syntax_1_1IdExpr.html" title="Identifier expression." alt="feder::syntax::IdExpr" shape="rect" coords="189,448,368,472"/>
-<area href="classfeder_1_1syntax_1_1IfExpr.html" title="If expression." alt="feder::syntax::IfExpr" shape="rect" coords="189,504,368,528"/>
-<area href="classfeder_1_1syntax_1_1MatchExpr.html" title="Match expression." alt="feder::syntax::MatchExpr" shape="rect" coords="189,560,368,584"/>
-<area href="classfeder_1_1syntax_1_1NumExpr.html" title="Expression for floating-point and integer numberse." alt="feder::syntax::NumExpr" shape="rect" coords="189,616,368,640"/>
-<area href="classfeder_1_1syntax_1_1StrExpr.html" title="String expression." alt="feder::syntax::StrExpr" shape="rect" coords="189,672,368,696"/>
-<area href="classfeder_1_1syntax_1_1TemplateExpr.html" title="Template expression." alt="feder::syntax::TemplateExpr" shape="rect" coords="189,728,368,752"/>
-<area href="classfeder_1_1syntax_1_1UnOpExpr.html" title="Unary operator expression." alt="feder::syntax::UnOpExpr" shape="rect" coords="189,784,368,808"/>
+<area href="classfeder_1_1syntax_1_1ForExpr.html" title="For/Do expression." alt="feder::syntax::ForExpr" shape="rect" coords="189,392,368,416"/>
+<area href="classfeder_1_1syntax_1_1FuncExpr.html" title="Function expression." alt="feder::syntax::FuncExpr" shape="rect" coords="189,448,368,472"/>
+<area href="classfeder_1_1syntax_1_1IdExpr.html" title="Identifier expression." alt="feder::syntax::IdExpr" shape="rect" coords="189,504,368,528"/>
+<area href="classfeder_1_1syntax_1_1IfExpr.html" title="If expression." alt="feder::syntax::IfExpr" shape="rect" coords="189,560,368,584"/>
+<area href="classfeder_1_1syntax_1_1MatchExpr.html" title="Match expression." alt="feder::syntax::MatchExpr" shape="rect" coords="189,616,368,640"/>
+<area href="classfeder_1_1syntax_1_1NumExpr.html" title="Expression for floating-point and integer numberse." alt="feder::syntax::NumExpr" shape="rect" coords="189,672,368,696"/>
+<area href="classfeder_1_1syntax_1_1StrExpr.html" title="String expression." alt="feder::syntax::StrExpr" shape="rect" coords="189,728,368,752"/>
+<area href="classfeder_1_1syntax_1_1TemplateExpr.html" title="Template expression." alt="feder::syntax::TemplateExpr" shape="rect" coords="189,784,368,808"/>
+<area href="classfeder_1_1syntax_1_1UnOpExpr.html" title="Unary operator expression." alt="feder::syntax::UnOpExpr" shape="rect" coords="189,840,368,864"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -116,6 +117,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aec67457f8a22add8bd217af86b50d6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3297eff8706e83edfb83f2d3a1b51697"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1Expr.html#a3297eff8706e83edfb83f2d3a1b51697">isStatement</a> () const noexcept</td></tr>
 <tr class="separator:a3297eff8706e83edfb83f2d3a1b51697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b658fc395706fd7fc1b15ddee030ea5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1Expr.html#a4b658fc395706fd7fc1b15ddee030ea5">operator==</a> (<a class="el" href="group__syntax.html#ga3a920d8e611fde2a62ad15a786faacfa">ExprType</a> type) const noexcept</td></tr>
+<tr class="separator:a4b658fc395706fd7fc1b15ddee030ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5266b1b51bfeb483c7346ffc41964c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1Expr.html#ad5266b1b51bfeb483c7346ffc41964c1">operator !=</a> (<a class="el" href="group__syntax.html#ga3a920d8e611fde2a62ad15a786faacfa">ExprType</a> type) const noexcept</td></tr>
+<tr class="separator:ad5266b1b51bfeb483c7346ffc41964c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parent of expressions. </p>
@@ -242,7 +247,73 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns true, if this expression is a statements, otherwise this expression is a secondary statement and false is returned. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#a9246ce1f17f53804c2cbf1383e3f955e">feder::syntax::MatchExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#add22b3a3747442291bb455f14a6e81a5">feder::syntax::IfExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a71a039d8c13a9208c90bf9fc45c39ba8">feder::syntax::BiOpExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html#afd5628b9693428e84fd79091cbe4f1f4">feder::syntax::NmspExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1TraitExpr.html#ad3ef98e0e3697ed51424dc127e27e80d">feder::syntax::TraitExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1EnumExpr.html#af35d06ca830d7a65ea8c248bc78066c1">feder::syntax::EnumExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#aa5f4a0f16be7b416d25f6116f03626cb">feder::syntax::ClassExpr</a>, and <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a60c2971c7b4db501a5df236da3188f01">feder::syntax::FuncExpr</a>.</p>
+<p>Reimplemented in <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#a7f84a6a122f9caa1da19282a0171a919">feder::syntax::ForExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#a9246ce1f17f53804c2cbf1383e3f955e">feder::syntax::MatchExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#add22b3a3747442291bb455f14a6e81a5">feder::syntax::IfExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a71a039d8c13a9208c90bf9fc45c39ba8">feder::syntax::BiOpExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html#afd5628b9693428e84fd79091cbe4f1f4">feder::syntax::NmspExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1TraitExpr.html#ad3ef98e0e3697ed51424dc127e27e80d">feder::syntax::TraitExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1EnumExpr.html#af35d06ca830d7a65ea8c248bc78066c1">feder::syntax::EnumExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#aa5f4a0f16be7b416d25f6116f03626cb">feder::syntax::ClassExpr</a>, and <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a60c2971c7b4db501a5df236da3188f01">feder::syntax::FuncExpr</a>.</p>
+
+</div>
+</div>
+<a id="ad5266b1b51bfeb483c7346ffc41964c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5266b1b51bfeb483c7346ffc41964c1">&#9670;&nbsp;</a></span>operator !=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::syntax::Expr::operator != </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__syntax.html#ga3a920d8e611fde2a62ad15a786faacfa">ExprType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns <a class="el" href="classfeder_1_1syntax_1_1Expr.html#abc8e4c2ffb44f9f3da0f512085ee8970">getType()</a> != type. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4b658fc395706fd7fc1b15ddee030ea5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b658fc395706fd7fc1b15ddee030ea5">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::syntax::Expr::operator== </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__syntax.html#ga3a920d8e611fde2a62ad15a786faacfa">ExprType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns <a class="el" href="classfeder_1_1syntax_1_1Expr.html#abc8e4c2ffb44f9f3da0f512085ee8970">getType()</a> == type. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -270,7 +341,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns expression converted to Feder code. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#a913ec289aab45fc2570341dad1dfde17">feder::syntax::MatchExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#ac4c0c1538077ec55d1c29480dfc57b61">feder::syntax::IfExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ArrayIndexExpr.html#a38446939ffb1485013723ebaf79b7685">feder::syntax::ArrayIndexExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ArrayListExpr.html#aec9de4727781999d29edfa0dd88c167b">feder::syntax::ArrayListExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ArrayConExpr.html#abde090297aa658408fc31b0ab60f0d2b">feder::syntax::ArrayConExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html#ac4f868f04e03cc05d51a04d5701a17d7">feder::syntax::TemplateExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a40f18b87b1dfb4821354c4426412b27e">feder::syntax::BraceExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1UnOpExpr.html#a7da8f26abc605bb205c4058f8893205c">feder::syntax::UnOpExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a9f3f9e065c539d2145859d4f4ee7ecad">feder::syntax::BiOpExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html#ac6b04caaf52eac3ae0be65a91890da3e">feder::syntax::NmspExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1TraitExpr.html#afb77f02ccd6430c5c70147d23f9e29fb">feder::syntax::TraitExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1EnumExpr.html#ac821aa9a753691f6582e75b7652a5680">feder::syntax::EnumExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#aea8544b8950fe98998861f40af92f82d">feder::syntax::ClassExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a32f4f460c49309be0816fb9b67408ff0">feder::syntax::FuncExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1FuncParamExpr.html#a9c3f23ad94c6f11448f5438e798e33a5">feder::syntax::FuncParamExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1CharExpr.html#aca915542e62c736bfc3576b79509e5d2">feder::syntax::CharExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1StrExpr.html#a22077c6ab09cca9fd6d4e166c2c9e1e9">feder::syntax::StrExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1NumExpr.html#a50082026cab29bf22d4fea36e153c29a">feder::syntax::NumExpr</a>, and <a class="el" href="classfeder_1_1syntax_1_1IdExpr.html#a761be304b64286436f2c7400a971d323">feder::syntax::IdExpr</a>.</p>
+<p>Reimplemented in <a class="el" href="classfeder_1_1syntax_1_1ForExpr.html#a107fb6cb7e0a35827e71f6fafa7ab7cf">feder::syntax::ForExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#a913ec289aab45fc2570341dad1dfde17">feder::syntax::MatchExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#ac4c0c1538077ec55d1c29480dfc57b61">feder::syntax::IfExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ArrayIndexExpr.html#a38446939ffb1485013723ebaf79b7685">feder::syntax::ArrayIndexExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ArrayListExpr.html#aec9de4727781999d29edfa0dd88c167b">feder::syntax::ArrayListExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ArrayConExpr.html#abde090297aa658408fc31b0ab60f0d2b">feder::syntax::ArrayConExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html#ac4f868f04e03cc05d51a04d5701a17d7">feder::syntax::TemplateExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a40f18b87b1dfb4821354c4426412b27e">feder::syntax::BraceExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1UnOpExpr.html#a7da8f26abc605bb205c4058f8893205c">feder::syntax::UnOpExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a9f3f9e065c539d2145859d4f4ee7ecad">feder::syntax::BiOpExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1NmspExpr.html#ac6b04caaf52eac3ae0be65a91890da3e">feder::syntax::NmspExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1TraitExpr.html#afb77f02ccd6430c5c70147d23f9e29fb">feder::syntax::TraitExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1EnumExpr.html#ac821aa9a753691f6582e75b7652a5680">feder::syntax::EnumExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#aea8544b8950fe98998861f40af92f82d">feder::syntax::ClassExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a32f4f460c49309be0816fb9b67408ff0">feder::syntax::FuncExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1FuncParamExpr.html#a9c3f23ad94c6f11448f5438e798e33a5">feder::syntax::FuncParamExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1CharExpr.html#aca915542e62c736bfc3576b79509e5d2">feder::syntax::CharExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1StrExpr.html#a22077c6ab09cca9fd6d4e166c2c9e1e9">feder::syntax::StrExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1NumExpr.html#a50082026cab29bf22d4fea36e153c29a">feder::syntax::NumExpr</a>, and <a class="el" href="classfeder_1_1syntax_1_1IdExpr.html#a761be304b64286436f2c7400a971d323">feder::syntax::IdExpr</a>.</p>
 
 </div>
 </div>

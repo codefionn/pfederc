@@ -10,7 +10,8 @@ bool parser::match(lexer::Lexer &lex, lexer::Token *tok,
     if (tok)
       *tok = lex.currentToken();
 
-    lex.nextToken(); // eat current token
+    if (tokType != lexer::tok_eof)
+      lex.nextToken(); // eat current token
 
     return true; // match successfull
   }
@@ -20,6 +21,37 @@ bool parser::match(lexer::Lexer &lex, lexer::Token *tok,
                                 std::to_string(tokType));
 
   return false; // match not successfull
+}
+
+bool parser::match(lexer::Lexer &lex, lexer::Token *tok,
+           const std::vector<lexer::TokenType> &tokTypes) noexcept {
+
+  for (auto tokType : tokTypes) {
+    if (lex.currentToken() == tokType) {
+      if (tok)
+        *tok = lex.currentToken();
+
+      if (tokType != lexer::tok_eof)
+        lex.nextToken(); // eat matched token
+
+      return true; // match was successfull
+    }
+  }
+
+  std::string tokStrList;
+
+  // generated token string list for error message
+  for (auto it = tokTypes.begin(); it != tokTypes.end(); ++it) {
+    if (it != tokTypes.begin())
+      tokStrList += ", ";
+
+    tokStrList += std::to_string(*it);
+  }
+
+  syntax::reportSyntaxError(lex, lex.currentToken().getPosition(),
+                            "Expected one token of " + tokStrList + ".");
+
+  return false;
 }
 
 static bool _isRightSideUnary(lexer::Token &tokOp, lexer::Lexer &lex) noexcept {

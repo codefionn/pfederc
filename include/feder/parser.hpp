@@ -51,10 +51,10 @@ std::unique_ptr<syntax::Expr> parse(lexer::Lexer &lexer, std::size_t prec = 0,
 std::unique_ptr<syntax::Program> parseProgram(lexer::Lexer &lexer,
                                               bool topLevel = true) noexcept;
 
-/*!\return Returns true, if currentToken matches cur_tok (and if
+/*!\return Returns true, if currentToken matches tokType (and if
  * curtok == tok_op curop). Otherwise false.
- * \brief If match then advance to next token. If no match, an error
- * messages is printed.
+ * \brief If match then advance to next token. If no match, an error messages
+ * is printed.
  * \param lex
  * \param tok Will be set to currentToken (if not nullptr).
  * \param tokType
@@ -62,6 +62,17 @@ std::unique_ptr<syntax::Program> parseProgram(lexer::Lexer &lexer,
  */
 bool match(lexer::Lexer &lex, lexer::Token *tok, lexer::TokenType tokType,
            lexer::OperatorType opType = lexer::op_asg) noexcept;
+
+/*!\return Return true, if currenToken matches one of tokTypes. Otherwise
+ * false is returned and also if tokTypes.size() == 0.
+ * \brief If match then advance to next token. If no match, an error message is
+ * printed.
+ * \param lex
+ * \param lex Will be set to current Token (if not nullptr).
+ * \param tokTypes size() > 0.
+ */
+bool match(lexer::Lexer &lex, lexer::Token *tok,
+           const std::vector<lexer::TokenType> &tokTypes) noexcept;
 
 /*!\} */
 } // end namespace parser

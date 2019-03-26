@@ -916,6 +916,91 @@ _parsePrimaryMatch(lexer::Lexer &lex) noexcept {
       std::move(enumValExpr), std::move(matchCases));
 }
 
+static std::unique_ptr<syntax::ForExpr>
+_parsePrimaryFor(lexer::Lexer &lex) noexcept {
+  lexer::Position startPos(lex.currentToken().getPosition());
+  bool postCondition = lex.currentToken() == lexer::tok_do;
+  lex.nextToken(); // eat for/do
+
+  std::unique_ptr<syntax::Expr> init;
+  std::unique_ptr<syntax::Expr> cond;
+  std::unique_ptr<syntax::Expr> step;
+
+  std::unique_ptr<syntax::Program> prog;
+
+  if (postCondition && lex.currentToken() != lexer::tok_eol) {
+    // optional init + optional step
+    init = parser::parse(lex);
+    if (!init)
+      return nullptr; // error forwarding
+
+    if (lex.currentToken() == lexer::tok_delim) {
+      lex.nextToken(); // eat ;
+      step = parser::parse(lex);
+      if (!step)
+        return nullptr; // error forwarding
+    } else {
+      step = std::move(init);
+      init = nullptr;
+    }
+  } else if (!postCondition) {
+    // optional init + condition + optional step
+    init = parser::parse(lex);
+    if (!init)
+      return nullptr; // error forwarding
+
+    if (lex.currentToken() == lexer::tok_delim) {
+      lex.nextToken(); // eat ;
+
+      cond = parser::parse(lex);
+      if (!cond)
+        return nullptr; // error forwarding
+
+      if (lex.currentToken() == lexer::tok_delim) {
+        lex.nextToken(); // eat ;
+
+        step = parser::parse(lex);
+        if (!step)
+          return nullptr; // error forwarding
+      } else {
+        step = std::move(cond);
+        cond = std::move(init);
+        init = nullptr;
+      }
+    } else {
+      cond = std::move(init);
+      init = nullptr;
+    }
+  }
+
+  if (!parser::match(lex, nullptr, lexer::tok_eol))
+    return nullptr;
+
+  prog = parser::parseProgram(lex, false);
+  if (!prog)
+    return nullptr; // error forwarding
+
+  if (!parser::match(lex, nullptr, lexer::tok_delim))
+    return nullptr;
+
+  if (postCondition) {
+    if (!parser::match(lex, nullptr, lexer::tok_for))
+      return nullptr;
+
+    cond = parser::parse(lex);
+    if (!cond)
+      return nullptr; // error forwarding
+
+    if (!parser::match(lex, nullptr,
+        std::vector<lexer::TokenType>{lexer::tok_eol, lexer::tok_eof}))
+      return nullptr;
+  }
+
+  return std::make_unique<syntax::ForExpr>(startPos,
+      std::move(init), std::move(cond), std::move(step),
+      std::move(prog), postCondition);
+}
+
 std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
   switch (lex.currentToken().getType()) {
   case lexer::tok_id:
@@ -950,6 +1035,7 @@ std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
     return _parsePrimaryMatch(lex);
   case lexer::tok_for:
   case lexer::tok_do:
+    return _parsePrimaryFor(lex);
 
   case lexer::tok_op:
     return _parsePrimaryUnOpExpr(lex);

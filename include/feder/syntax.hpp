@@ -41,6 +41,7 @@ class BraceExpr;
 class TemplateExpr;
 class IfExpr;
 class MatchExpr;
+class ForExpr;
 
 class Program {
   std::vector<std::unique_ptr<Expr>> lines;
@@ -143,6 +144,16 @@ public:
    * this expression is a secondary statement and false is returned.
    */
   virtual bool isStatement() const noexcept { return false; }
+
+  /*!\return Returns getType() == type.
+   * \param type
+   */
+  bool operator ==(ExprType type) const noexcept { return getType() == type; }
+
+  /*!\return Returns getType() != type.
+   * \param type
+   */
+  bool operator !=(ExprType type) const noexcept { return getType() != type; }
 };
 
 /*!\brief Identifier expression.
@@ -572,6 +583,20 @@ public:
   virtual std::string to_string() const noexcept override;
 
   virtual bool isStatement() const noexcept override;
+
+  /*!\return Returns getOperator() == type.
+   * \param type
+   */
+  bool operator ==(lexer::OperatorType type) const noexcept {
+    return getOperator() == type;
+  }
+
+  /*!\return Returns getOperator() != type.
+   * \param type
+   */
+  bool operator !=(lexer::OperatorType type) const noexcept {
+    return getOperator() != type;
+  }
 };
 
 /*!\brief Unary operator expression
@@ -793,6 +818,87 @@ public:
   /*!\return Returns match cases.
    */
   const auto &getMatchCases() const noexcept { return matchCases; }
+
+  virtual std::string to_string() const noexcept override;
+
+  virtual bool isStatement() const noexcept override;
+};
+
+/*!\brief For/Do expression
+ */
+class ForExpr : public Expr {
+  bool postConditionCheck;
+  std::unique_ptr<Expr> initExpr;
+  std::unique_ptr<Expr> condExpr;
+  std::unique_ptr<Expr> stepExpr;
+
+  std::unique_ptr<Program> program;
+public:
+  /*!\brief Initializes for/do expression.
+   * \param pos
+   * \param initExpr Optional initialization expression.
+   * \param condExpr Required loop-condition expression.
+   * \param stepExpr Optional iterator step expression.
+   * \param program
+   * \param postConditionCheck True if 'do'-loop, false if 'for'-loop.
+   */
+  ForExpr(const lexer::Position &pos,
+          std::unique_ptr<Expr> &&initExpr,
+          std::unique_ptr<Expr> &&condExpr,
+          std::unique_ptr<Expr> &&stepExpr,
+          std::unique_ptr<Program> &&program,
+          bool postConditionCheck = false) noexcept;
+
+  virtual ~ForExpr();
+
+  /*!\return Returns true, if condition is check post-body (so there's at
+   * least one guaranteed executio of the body). This behaviour matches the
+   * 'do'-loop. Otherwise false is returned, which correspondes to the
+   * 'for'-loop.
+   */
+  bool isPostConditionCheck() const noexcept { return postConditionCheck; }
+
+  /*!\return Returns if has initialization.
+   */
+  bool hasInitialization() const noexcept { return (bool) initExpr; }
+
+  /*!\return Returns optional initialization expression.
+   */
+  auto &getInitialization() noexcept { return *initExpr; }
+
+  /*!\return Returns optional initialization expression (const).
+   */
+  const auto &getInitialization() const noexcept { return *initExpr; }
+
+  /*!\return Return loop condition.
+   * \see isPostConditionCheck
+   */
+  auto &getCondition() noexcept { return *condExpr; }
+
+  /*!\return Return loop condition (const).
+   * \see isPostConditionCheck
+   */
+  const auto &getCondition() const noexcept { return *condExpr; }
+
+  /*!\return Returns if has iterator step.
+   */
+  bool hasStep() const noexcept { return (bool) stepExpr; }
+
+  /*!\return Returns optional iterator step.
+   */
+  auto &getStep() noexcept { return *stepExpr; }
+
+  /*!\return Returns optional iterator step (const).
+   */
+  const auto &getStep() const noexcept { return *stepExpr; }
+
+  /*!\return Returns program/body of the do/for loop.
+   */
+  auto &getProgram() noexcept { return *program; }
+  
+  /*!\return Returns program/body of the do/for loop.
+   */
+  const auto &getProgram() const noexcept { return *program; }
 
   virtual std::string to_string() const noexcept override;
 

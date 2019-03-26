@@ -166,6 +166,19 @@ MatchExpr::MatchExpr(const lexer::Position &pos,
 
 MatchExpr::~MatchExpr() {}
 
+ForExpr::ForExpr(const lexer::Position &pos,
+                 std::unique_ptr<syntax::Expr> &&initExpr,
+                 std::unique_ptr<syntax::Expr> &&condExpr,
+                 std::unique_ptr<syntax::Expr> &&stepExpr,
+                 std::unique_ptr<syntax::Program> &&program,
+                 bool postConditionCheck) noexcept
+    : Expr(expr_for, pos),
+      initExpr(std::move(initExpr)), condExpr(std::move(condExpr)),
+      stepExpr(std::move(stepExpr)), program(std::move(program)),
+      postConditionCheck{postConditionCheck} {}
+
+ForExpr::~ForExpr() {}
+
 // reportSyntaxError
 
 std::unique_ptr<Expr>
@@ -412,6 +425,25 @@ std::string MatchExpr::to_string() const noexcept {
   return result;
 }
 
+std::string ForExpr::to_string() const noexcept {
+  std::string result;
+  result += "for ";
+
+  if (hasInitialization()) {
+    result += getInitialization().to_string();
+    result += "; ";
+  }
+
+  result += getCondition().to_string();
+
+  if (hasStep()) {
+    result += "; ";
+    result += getStep().to_string();
+  }
+
+  return result;
+}
+
 // isStatement
 
 bool FuncExpr::isStatement() const noexcept {
@@ -456,3 +488,5 @@ bool NmspExpr::isStatement() const noexcept { return getIdentifier() != "_"; }
 bool IfExpr::isStatement() const noexcept { return true; }
 
 bool MatchExpr::isStatement() const noexcept { return true; }
+
+bool ForExpr::isStatement() const noexcept { return true; }
