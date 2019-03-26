@@ -92,8 +92,8 @@ Inheritance diagram for feder::syntax::IfExpr:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1620e9ff9c1f8ce11fad4c51cd1837ea"><td class="memItemLeft" align="right" valign="top"><a id="a1620e9ff9c1f8ce11fad4c51cd1837ea"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>IfExpr</b> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::vector&lt; <a class="el" href="group__syntax.html#ga16165d29573fa0168eb22557101e3344">IfCaseExpr</a> &gt; &amp;&amp;ifs, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; &amp;&amp;elseExpr) noexcept</td></tr>
+<tr class="memitem:a1620e9ff9c1f8ce11fad4c51cd1837ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#a1620e9ff9c1f8ce11fad4c51cd1837ea">IfExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::vector&lt; <a class="el" href="group__syntax.html#ga16165d29573fa0168eb22557101e3344">IfCaseExpr</a> &gt; &amp;&amp;ifs, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; &amp;&amp;elseExpr) noexcept</td></tr>
+<tr class="memdesc:a1620e9ff9c1f8ce11fad4c51cd1837ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes if expression.  <a href="#a1620e9ff9c1f8ce11fad4c51cd1837ea">More...</a><br /></td></tr>
 <tr class="separator:a1620e9ff9c1f8ce11fad4c51cd1837ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15b8e312ff9953dfd0d5b8f28e9125a1"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#a15b8e312ff9953dfd0d5b8f28e9125a1">getIfCases</a> () noexcept</td></tr>
 <tr class="separator:a15b8e312ff9953dfd0d5b8f28e9125a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,7 +124,60 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>If expression. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a1620e9ff9c1f8ce11fad4c51cd1837ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1620e9ff9c1f8ce11fad4c51cd1837ea">&#9670;&nbsp;</a></span>IfExpr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::syntax::IfExpr::IfExpr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="group__syntax.html#ga16165d29573fa0168eb22557101e3344">IfCaseExpr</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>ifs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>elseExpr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes if expression. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td></td></tr>
+    <tr><td class="paramname">ifs</td><td>If cases (conditional cases). ifs.size() &gt;= 1. </td></tr>
+    <tr><td class="paramname">elseExpr</td><td>Optional else case. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae9713409a5bc97e3b6461f97eea1b4c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae9713409a5bc97e3b6461f97eea1b4c1">&#9670;&nbsp;</a></span>getElseCase() <span class="overload">[1/2]</span></h2>
 

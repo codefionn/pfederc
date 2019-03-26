@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['parse',['parse',['../group__parser.html#gaf0633d2fdba0a50678ca5e2486e2b071',1,'feder::parser']]],
-  ['parseprimary',['parsePrimary',['../group__parser.html#ga4358be534a56e4b090de543aff3e1a29',1,'feder::parser']]],
-  ['parseprogram',['parseProgram',['../group__parser.html#gad024ae49b00817415a480dd44cbe695a',1,'feder::parser']]],
-  ['parserhs',['parseRHS',['../group__parser.html#ga75fc20f073b098e42a667a7ff35374ab',1,'feder::parser']]],
-  ['position',['Position',['../classfeder_1_1lexer_1_1Position.html#a02a4542ca91742c49ff799480a542ffd',1,'feder::lexer::Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd, size_t lineStart, size_t lineEnd) noexcept'],['../classfeder_1_1lexer_1_1Position.html#a01775f526eea70a3bc955eace64907f7',1,'feder::lexer::Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd, size_t line) noexcept'],['../classfeder_1_1lexer_1_1Position.html#a78e278f9929015146cf67b1ffb8ce490',1,'feder::lexer::Position::Position(const Position &amp;pos) noexcept'],['../classfeder_1_1lexer_1_1Position.html#ae4fbc65c331a67684f57e244dba4c5ae',1,'feder::lexer::Position::Position(const Position &amp;pos0, const Position &amp;pos1) noexcept']]],
-  ['pushtoken',['pushToken',['../classfeder_1_1lexer_1_1Lexer.html#a8e38a79d100d3f1fad7c53453d826f65',1,'feder::lexer::Lexer']]]
+  ['operator_20_21_3d',['operator !=',['../classfeder_1_1syntax_1_1Expr.html#ad5266b1b51bfeb483c7346ffc41964c1',1,'feder::syntax::Expr::operator !=()'],['../classfeder_1_1syntax_1_1BiOpExpr.html#a39ad8e8d326ac6465d7d02293be44ddb',1,'feder::syntax::BiOpExpr::operator !=()']]],
+  ['operator_21_3d',['operator!=',['../classfeder_1_1lexer_1_1Token.html#ad13b00ca075e72c5fa20225f6c5b8874',1,'feder::lexer::Token::operator!=(TokenType type) const noexcept'],['../classfeder_1_1lexer_1_1Token.html#afd6f1bf7023976ed9bf78822415b13e9',1,'feder::lexer::Token::operator!=(OperatorType type) const noexcept']]],
+  ['operator_3d_3d',['operator==',['../classfeder_1_1lexer_1_1Token.html#aa92cbbd5a48521867db844706dd21356',1,'feder::lexer::Token::operator==(TokenType type) const noexcept'],['../classfeder_1_1lexer_1_1Token.html#afe91ac5b571b2262dde3b9736edf27d9',1,'feder::lexer::Token::operator==(OperatorType optype) const noexcept'],['../classfeder_1_1syntax_1_1Expr.html#a4b658fc395706fd7fc1b15ddee030ea5',1,'feder::syntax::Expr::operator==()'],['../classfeder_1_1syntax_1_1BiOpExpr.html#a2839957f8f079839d00f6e7c8d75061d',1,'feder::syntax::BiOpExpr::operator==()']]]
 ];

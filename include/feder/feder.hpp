@@ -10,6 +10,11 @@
  * pfederc is a hand-written compiler written in C++ for
  * [Feder](https://github.com/codefionn/federlang "Federlang").
  *
+ * ## Notation
+ *
+ * - 'optional': Means that argument can be nullptr or
+ *   std::unique_ptr<?>(nullptr).
+ *
  * ## License
  *
  * Copyright 2019 Fionn Langhans

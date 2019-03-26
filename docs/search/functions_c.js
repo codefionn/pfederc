@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['readline',['readLine',['../classfeder_1_1lexer_1_1Lexer.html#ae3af31045286dd252289faa9da5a13fc',1,'feder::lexer::Lexer']]],
-  ['reportlexererror',['reportLexerError',['../classfeder_1_1lexer_1_1Lexer.html#ae4ab6704d5b19a6f5aeefc79450104d3',1,'feder::lexer::Lexer::reportLexerError(const std::string &amp;msg) noexcept'],['../classfeder_1_1lexer_1_1Lexer.html#a8bd892ce4f574b323675b05f08ffb501',1,'feder::lexer::Lexer::reportLexerError(const std::string &amp;msg, const Position &amp;pos) noexcept']]],
-  ['reportsemanticerror',['reportSemanticError',['../classfeder_1_1lexer_1_1Lexer.html#a235212ab2b936d1730b8a86a5897e08c',1,'feder::lexer::Lexer']]],
-  ['reportsemanticwarning',['reportSemanticWarning',['../classfeder_1_1lexer_1_1Lexer.html#a6a83b4071fb9c267c32d5d596c0f8a00',1,'feder::lexer::Lexer']]],
-  ['reportsyntaxerror',['reportSyntaxError',['../classfeder_1_1lexer_1_1Lexer.html#a2f0197ea9f81563afb0d188b5d9a0f30',1,'feder::lexer::Lexer::reportSyntaxError()'],['../group__syntax.html#gac796dee69f3f5b087f31cf2e899f5919',1,'feder::syntax::reportSyntaxError()']]]
+  ['parse',['parse',['../group__parser.html#gaf0633d2fdba0a50678ca5e2486e2b071',1,'feder::parser']]],
+  ['parseprimary',['parsePrimary',['../group__parser.html#ga4358be534a56e4b090de543aff3e1a29',1,'feder::parser']]],
+  ['parseprogram',['parseProgram',['../group__parser.html#gad024ae49b00817415a480dd44cbe695a',1,'feder::parser']]],
+  ['parserhs',['parseRHS',['../group__parser.html#ga75fc20f073b098e42a667a7ff35374ab',1,'feder::parser']]],
+  ['position',['Position',['../classfeder_1_1lexer_1_1Position.html#a02a4542ca91742c49ff799480a542ffd',1,'feder::lexer::Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd, size_t lineStart, size_t lineEnd) noexcept'],['../classfeder_1_1lexer_1_1Position.html#a01775f526eea70a3bc955eace64907f7',1,'feder::lexer::Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd, size_t line) noexcept'],['../classfeder_1_1lexer_1_1Position.html#a78e278f9929015146cf67b1ffb8ce490',1,'feder::lexer::Position::Position(const Position &amp;pos) noexcept'],['../classfeder_1_1lexer_1_1Position.html#ae4fbc65c331a67684f57e244dba4c5ae',1,'feder::lexer::Position::Position(const Position &amp;pos0, const Position &amp;pos1) noexcept']]],
+  ['program',['Program',['../classfeder_1_1syntax_1_1Program.html#a6fdc272d3877c4b604a2739ceefd017a',1,'feder::syntax::Program']]],
+  ['pushtoken',['pushToken',['../classfeder_1_1lexer_1_1Lexer.html#a8e38a79d100d3f1fad7c53453d826f65',1,'feder::lexer::Lexer']]]
 ];

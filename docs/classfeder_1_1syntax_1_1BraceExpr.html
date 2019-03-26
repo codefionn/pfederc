@@ -92,17 +92,14 @@ Inheritance diagram for feder::syntax::BraceExpr:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2847d3db993110ff198bcbf2e5f15686"><td class="memItemLeft" align="right" valign="top"><a id="a2847d3db993110ff198bcbf2e5f15686"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BraceExpr</b> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;expr) noexcept</td></tr>
+<tr class="memitem:a2847d3db993110ff198bcbf2e5f15686"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a2847d3db993110ff198bcbf2e5f15686">BraceExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;expr) noexcept</td></tr>
+<tr class="memdesc:a2847d3db993110ff198bcbf2e5f15686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialzes brace expression.  <a href="#a2847d3db993110ff198bcbf2e5f15686">More...</a><br /></td></tr>
 <tr class="separator:a2847d3db993110ff198bcbf2e5f15686"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a802de92e63483bfe5fd74b9e01e8d271"><td class="memItemLeft" align="right" valign="top"><a id="a802de92e63483bfe5fd74b9e01e8d271"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasExpression</b> () const noexcept</td></tr>
+<tr class="memitem:a802de92e63483bfe5fd74b9e01e8d271"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a802de92e63483bfe5fd74b9e01e8d271">hasExpression</a> () const noexcept</td></tr>
 <tr class="separator:a802de92e63483bfe5fd74b9e01e8d271"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0103e0fcf136fbcaa7eb05a38c8ed5d0"><td class="memItemLeft" align="right" valign="top"><a id="a0103e0fcf136fbcaa7eb05a38c8ed5d0"></a>
-<a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getExpression</b> () noexcept</td></tr>
+<tr class="memitem:a0103e0fcf136fbcaa7eb05a38c8ed5d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a0103e0fcf136fbcaa7eb05a38c8ed5d0">getExpression</a> () noexcept</td></tr>
 <tr class="separator:a0103e0fcf136fbcaa7eb05a38c8ed5d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6108dad2f908e6a1195e6b3ea307251b"><td class="memItemLeft" align="right" valign="top"><a id="a6108dad2f908e6a1195e6b3ea307251b"></a>
-const <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getExpression</b> () const noexcept</td></tr>
+<tr class="memitem:a6108dad2f908e6a1195e6b3ea307251b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a6108dad2f908e6a1195e6b3ea307251b">getExpression</a> () const noexcept</td></tr>
 <tr class="separator:a6108dad2f908e6a1195e6b3ea307251b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40f18b87b1dfb4821354c4426412b27e"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a40f18b87b1dfb4821354c4426412b27e">to_string</a> () const noexcept override</td></tr>
 <tr class="separator:a40f18b87b1dfb4821354c4426412b27e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,7 +120,133 @@ const <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &amp;&#160
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Brace expression. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2847d3db993110ff198bcbf2e5f15686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2847d3db993110ff198bcbf2e5f15686">&#9670;&nbsp;</a></span>BraceExpr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::syntax::BraceExpr::BraceExpr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>expr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialzes brace expression. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td></td></tr>
+    <tr><td class="paramname">expr</td><td>Optional brace expression </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0103e0fcf136fbcaa7eb05a38c8ed5d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0103e0fcf136fbcaa7eb05a38c8ed5d0">&#9670;&nbsp;</a></span>getExpression() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a>&amp; feder::syntax::BraceExpr::getExpression </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns optional expression. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a802de92e63483bfe5fd74b9e01e8d271">hasExpression</a> </dd></dl>
+
+</div>
+</div>
+<a id="a6108dad2f908e6a1195e6b3ea307251b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6108dad2f908e6a1195e6b3ea307251b">&#9670;&nbsp;</a></span>getExpression() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a>&amp; feder::syntax::BraceExpr::getExpression </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns optional expression (const). </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a802de92e63483bfe5fd74b9e01e8d271">hasExpression</a> </dd></dl>
+
+</div>
+</div>
+<a id="a802de92e63483bfe5fd74b9e01e8d271"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a802de92e63483bfe5fd74b9e01e8d271">&#9670;&nbsp;</a></span>hasExpression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::syntax::BraceExpr::hasExpression </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns if has expression. </dd></dl>
+
+</div>
+</div>
 <a id="a40f18b87b1dfb4821354c4426412b27e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a40f18b87b1dfb4821354c4426412b27e">&#9670;&nbsp;</a></span>to_string()</h2>
 

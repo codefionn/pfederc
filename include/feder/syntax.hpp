@@ -49,9 +49,15 @@ class Program {
   bool error;
 
 public:
+  /*!\brief Initializes program.
+   * \param lines
+   * \param return Optional return expression.
+   * \param error
+   */
   Program(std::vector<std::unique_ptr<Expr>> &&lines,
           std::unique_ptr<Expr> &&returnExpr,
           bool error = false) noexcept;
+
   virtual ~Program();
 
   /*!\return Returns lines of program.
@@ -167,6 +173,8 @@ protected:
 
 public:
   /*!\brief Initializes identifier expression with id (identifier).
+   * \param pos
+   * \param id Identifier
    */
   IdExpr(const lexer::Position &pos, const std::string &id) noexcept;
   virtual ~IdExpr();
@@ -186,9 +194,13 @@ class NumExpr : public Expr {
 
 public:
   /*!\brief Initializes number expression.
+   * \param pos
+   * \param numType Number type
+   * \param numVal Number value matching with numType
    */
   NumExpr(const lexer::Position &pos, lexer::NumberType numType,
           lexer::NumberValue numVal) noexcept;
+
   virtual ~NumExpr();
 
   /*!\return Returns value of the number expression.
@@ -210,7 +222,12 @@ class StrExpr : public Expr {
   std::string str;
 
 public:
+  /*!\brief Initializes string expression.
+   * \param pos
+   * \param str String without escape sequences.
+   */
   StrExpr(const lexer::Position &pos, const std::string &str) noexcept;
+
   virtual ~StrExpr();
 
   /*!\return Returns associated string.
@@ -226,7 +243,12 @@ class CharExpr : public Expr {
   char c;
 
 public:
+  /*!\brief Initializes character expression
+   * \param pos
+   * \param c Character (of course without escape sequences)
+   */
   CharExpr(const lexer::Position &pos, char c) noexcept;
+
   virtual ~CharExpr();
 
   /*!\return Returns associated character.
@@ -250,9 +272,9 @@ class FuncParamExpr : public IdExpr {
 public:
   /*!\brief Initializes function parameter expression.
    * \param name Name of the parameter
-   * \param semanticType
-   * \param guard Can be null (optional).
-   * \param guardResult Can be null (optional).
+   * \param semanticType Semantic type of the parameter.
+   * \param guard Optional argument guard.
+   * \param guardResult  Optional guard result (requires guard).
    */
   FuncParamExpr(const lexer::Position &pos, const std::string &name,
                 std::unique_ptr<Expr> &&semanticType,
@@ -307,11 +329,22 @@ class FuncExpr : public Expr {
   bool virtualFunc;
 
 public:
+  /*!\brief Initializes function expression
+   * \param pos
+   * \param name Name of the function (if type name.size() == 0).
+   * If just declared name.size() == 1 and if defined name.size() >= 1.
+   * \param templ Optional function template.
+   * \param returnType Optional function return type.
+   * \param params Parameters. params.size() >= 0.
+   * \param program Optional program.
+   * \param virtualFunc If true, name.size() >= 1 must be true.
+   */
   FuncExpr(const lexer::Position &pos, const std::vector<std::string> &name,
            std::unique_ptr<TemplateExpr> &&templ,
            std::unique_ptr<Expr> &&returnType,
            std::vector<std::unique_ptr<FuncParamExpr>> &&params,
            std::unique_ptr<Program> &&program, bool virtualFunc) noexcept;
+
   virtual ~FuncExpr();
 
   /*!\return Returns name of function. If empty, not a func declaration,
@@ -326,10 +359,18 @@ public:
    */
   bool isVirtual() const noexcept { return virtualFunc; }
 
+  /*!\return Returns if function has template.
+   */
   bool hasTemplate() const noexcept { return (bool)templ; }
 
+  /*!\return Returns optional function template.
+   * \see hasTemplate
+   */
   auto &getTemplate() noexcept { return *templ; }
 
+  /*!\return Returns optional function template (const).
+   * \see hasTemplate
+   */
   const auto &getTemplate() const noexcept { return *templ; }
 
   /*!\return Returns return type of the function. Can be null (optional).
@@ -342,6 +383,8 @@ public:
    */
   const Expr &getReturnType() const noexcept { return *returnType; }
 
+  /*!\return Returns if function has return type.
+   */
   bool hasReturnType() const noexcept { return (bool)returnType; }
 
   /*!\return Returns parameters of function.
@@ -387,6 +430,15 @@ class ClassExpr : public IdExpr {
   std::vector<std::unique_ptr<FuncExpr>> functions;
 
 public:
+  /*!\brief Initializes class expression
+   * \param pos
+   * \param name Name of the class. More or one character required.
+   * \param templ Optional class template.
+   * \param traits Inherited/implemented traits.
+   * \param attributes Class attributes (only declarations).
+   * \param constructors Class constructors.
+   * \param functions Class functions.
+   */
   ClassExpr(const lexer::Position &pos, const std::string &name,
             std::unique_ptr<TemplateExpr> &&templ,
             std::vector<std::unique_ptr<Expr>> &&traits,
@@ -395,10 +447,18 @@ public:
             std::vector<std::unique_ptr<FuncExpr>> &&functions) noexcept;
   virtual ~ClassExpr();
 
+  /*!\return Returns if class has template.
+   */
   bool hasTemplate() const noexcept { return (bool)templ; }
 
+  /*!\return Returns optional class template.
+   * \see hasTemplate
+   */
   auto &getTemplate() noexcept { return *templ; }
 
+  /*!\return Returns optional class template (const).
+   * \see hasTemplate
+   */
   const auto &getTemplate() const noexcept { return *templ; }
 
   /*!\return Returns inherited traits.
@@ -445,15 +505,30 @@ class EnumExpr : public IdExpr {
   std::unique_ptr<TemplateExpr> templ;
 
 public:
+  /*!\brief Initializes enum expression
+   * \param pos
+   * \param name Enum template. One or more characters.
+   * \param templ Optional enum template.
+   * \param constructors constructors.size() > 0
+   */
   EnumExpr(const lexer::Position &pos, const std::string &name,
            std::unique_ptr<TemplateExpr> &&templ,
            std::vector<std::unique_ptr<Expr>> &&constructors) noexcept;
+
   virtual ~EnumExpr();
 
+  /*!\return Returns if enum has template.
+   */
   bool hasTemplate() const noexcept { return (bool)templ; }
 
+  /*!\return Returns optional enum template.
+   * \see hasTemplate
+   */
   auto &getTemplate() noexcept { return *templ; }
 
+  /*!\return Returns optional enum template (const).
+   * \see hasTemplate
+   */
   const auto &getTemplate() const noexcept { return *templ; }
 
   /*!\return Returns constructors of the enum.
@@ -522,8 +597,14 @@ class NmspExpr : public IdExpr {
   std::unique_ptr<Program> program;
 
 public:
+  /*!\brief Initializes namespace expression
+   * \param pos
+   * \param name Namespace identifier name. One or more characters.
+   * \param program Namespace body
+   */
   NmspExpr(const lexer::Position &pos, const std::string &name,
            std::unique_ptr<Program> &&program) noexcept;
+
   virtual ~NmspExpr();
 
   /*!\return Returns program of the namespace.
@@ -546,8 +627,15 @@ class BiOpExpr : public Expr {
   std::unique_ptr<Expr> lhs, rhs;
 
 public:
+  /*!\brief Initializes binary operator expression
+   * \param pos
+   * \param opType Valid binary operator.
+   * \param lsh left-hand-side
+   * \param rhs right-hand-side
+   */
   BiOpExpr(const lexer::Position &pos, lexer::OperatorType opType,
            std::unique_ptr<Expr> &&lhs, std::unique_ptr<Expr> &&rhs) noexcept;
+
   virtual ~BiOpExpr();
 
   /*!\return Returns binary operator type.
@@ -607,8 +695,15 @@ class UnOpExpr : public Expr {
   std::unique_ptr<Expr> expr;
 
 public:
+  /*!\brief Initializes unary operator expression
+   * \param pos
+   * \param opPos Operator position is either op_lunary or op_runary.
+   * \param opType Valid left/right side unary operator
+   * \param expr Associated expression
+   */
   UnOpExpr(const lexer::Position &pos, lexer::OperatorPosition opPos,
            lexer::OperatorType opType, std::unique_ptr<Expr> &&expr) noexcept;
+
   virtual ~UnOpExpr();
 
   /*!\return Returns unary operator type.
@@ -636,13 +731,26 @@ class BraceExpr : public Expr {
   std::unique_ptr<Expr> expr;
 
 public:
+  /*!\brief Initialzes brace expression
+   * \param pos
+   * \param expr Optional brace expression
+   */
   BraceExpr(const lexer::Position &pos, std::unique_ptr<Expr> &&expr) noexcept;
+
   virtual ~BraceExpr();
 
+  /*!\return Returns if has expression.
+   */
   bool hasExpression() const noexcept { return (bool)expr; }
 
+  /*!\return Returns optional expression.
+   * \see hasExpression
+   */
   Expr &getExpression() noexcept { return *expr; }
 
+  /*!\return Returns optional expression (const).
+   * \see hasExpression
+   */
   const Expr &getExpression() const noexcept { return *expr; }
 
   virtual std::string to_string() const noexcept override;
@@ -654,12 +762,21 @@ class TemplateExpr : public Expr {
   std::vector<std::unique_ptr<Expr>> templates;
 
 public:
+  /*!\brief Initialzes template expressoin
+   * \param pos
+   * \param templates templates.size() >= 1
+   */
   TemplateExpr(const lexer::Position &pos,
                std::vector<std::unique_ptr<Expr>> &&templates) noexcept;
+
   virtual ~TemplateExpr();
 
+  /*!\return Returns template types.
+   */
   auto &getTemplates() noexcept { return templates; }
 
+  /*!\return Returns template types (const).
+   */
   const auto &getTemplates() const noexcept { return templates; }
 
   virtual std::string to_string() const noexcept override;
@@ -733,8 +850,13 @@ class ArrayIndexExpr : public Expr {
   std::unique_ptr<Expr> indexExpr;
 
 public:
+  /*!\brief Initializes array expression
+   * \param pos
+   * \param indexExpr
+   */
   ArrayIndexExpr(const lexer::Position &pos,
                  std::unique_ptr<Expr> &&indexExpr) noexcept;
+
   virtual ~ArrayIndexExpr();
 
   /*!\return Returns index expression.
@@ -759,6 +881,11 @@ class IfExpr : public Expr {
   std::unique_ptr<Program> elseExpr; //!< Else case, optional.
 
 public:
+  /*!\brief Initializes if expression
+   * \param pos
+   * \param ifs If cases (conditional cases). ifs.size() >= 1.
+   * \param elseExpr Optional else case.
+   */
   IfExpr(const lexer::Position &pos, std::vector<IfCaseExpr> &&ifs,
          std::unique_ptr<Program> &&elseExpr) noexcept;
 
@@ -798,9 +925,15 @@ class MatchExpr : public Expr {
   std::unique_ptr<Expr> enumVal;
   std::vector<MatchCaseExpr> matchCases;
 public:
+  /*!\brief Initializes match expression
+   * \param pos
+   * \param enumVal Enum value expression to compare match cases to.
+   * \param matchCases
+   */
   MatchExpr(const lexer::Position &pos,
             std::unique_ptr<Expr> &&enumVal,
             std::vector<MatchCaseExpr> &&matchCases) noexcept;
+
   virtual ~MatchExpr();
 
   /*!\return Returns enum value.

@@ -6,7 +6,7 @@ var searchData=
   ['i8',['i8',['../unionfeder_1_1lexer_1_1NumberValue.html#a1159711f9055bd35fd439f212bc20948',1,'feder::lexer::NumberValue']]],
   ['idexpr',['IdExpr',['../classfeder_1_1syntax_1_1IdExpr.html',1,'feder::syntax::IdExpr'],['../classfeder_1_1syntax_1_1IdExpr.html#ad3025ed395a067e00eed99fe9e10c43a',1,'feder::syntax::IdExpr::IdExpr()']]],
   ['ifcaseexpr',['IfCaseExpr',['../group__syntax.html#ga16165d29573fa0168eb22557101e3344',1,'feder::syntax']]],
-  ['ifexpr',['IfExpr',['../classfeder_1_1syntax_1_1IfExpr.html',1,'feder::syntax']]],
+  ['ifexpr',['IfExpr',['../classfeder_1_1syntax_1_1IfExpr.html',1,'feder::syntax::IfExpr'],['../classfeder_1_1syntax_1_1IfExpr.html#a1620e9ff9c1f8ce11fad4c51cd1837ea',1,'feder::syntax::IfExpr::IfExpr()']]],
   ['isdeclared',['isDeclared',['../classfeder_1_1syntax_1_1FuncExpr.html#ab1a15f8764a0864bd2aac76594483712',1,'feder::syntax::FuncExpr']]],
   ['isdefined',['isDefined',['../classfeder_1_1syntax_1_1FuncExpr.html#ac08d527787ef500678e5a6a906d72d53',1,'feder::syntax::FuncExpr']]],
   ['isleftassociative',['isLeftAssociative',['../group__lexer.html#ga825e644df86754dc3f7d5ac10cf5a46d',1,'feder::lexer']]],

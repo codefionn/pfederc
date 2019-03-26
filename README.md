@@ -8,6 +8,38 @@ specify a Feder standard library.
 
 *Passau is a city in Bavaria, Germany*.
 
+## Build
+
+Build sections assumens you've cloned this repository and your working path
+is the main directory of the project (pfederc).
+
+CMake build:
+
+```bash
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+Testing (could take some time):
+
+```bash
+cd build/test
+ctest
+```
+
+If memory checks should also be done, install *valgrind*.
+
+## Build with Docker
+
+Build & run:
+
+```bash
+docker build --rm -t pfederc .
+docker run --rm -ti pfederc
+```
+
 ## Resources
 
 About pfederc:
@@ -19,48 +51,15 @@ About pfederc:
 
 Some online resources used directly or as reference:
 
-- Precedence climbing method:
-  [https://en.wikipedia.org/wiki/Operator-precedence\_parser](https://en.wikipedia.org/wiki/Operator-precedence_parser)
-- Mangling:
-  [https://itanium-cxx-abi.github.io/cxx-abi/abi.html#mangling](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#mangling)
-- Tracing garbage collection:
-  [https://en.wikipedia.org/wiki/Tracing\_garbage\_collection](https://en.wikipedia.org/wiki/Tracing_garbage_collection)
+- [Precedence climbing method](https://en.wikipedia.org/wiki/Operator-precedence_parser)
+- [C++-Itanium-ABI Mangling](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#mangling)
+- [Tracing garbage collection](https://en.wikipedia.org/wiki/Tracing_garbage_collection)
+- [C++ Operator Precedence](https://en.cppreference.com/w/cpp/language/operator_precedence)
 
 And books:
 
 - [The Garbage Collection Handbook](http://www.gchandbook.org/)
 - [Compilers: Principles, Techniques, and Tools](https://www.worldcat.org/title/compilers-principles-techniques-and-tools/oclc/12285707) (Dragonbook)
-
-## Build
-
-Clone & build:
-
-```bash
-git clone https://github.com/codefionn/pfederc
-cd pfederc
-mkdir build ; cd build
-cmake .. ; cmake --build .
-```
-
-Testing (in pfederc main directory):
-
-```bash
-cd build/test
-ctest
-```
-
-If memory checks should also be done, install *valgrind*.
-
-## Build with Docker
-
-Clone, build & run:
-
-```bash
-git clone https://github.com/codefionn/pfederc
-cd pfederc
-docker build --rm -t pfederc .
-docker run --rm -ti pfederc
-```
 
 ## Documentation
 
@@ -70,5 +69,5 @@ Build and open with:
 
 ```bash
 doxygen .doxyconf
-xdg-open docs/index.html
+xdg-open docs/index.html # Linux
 ```

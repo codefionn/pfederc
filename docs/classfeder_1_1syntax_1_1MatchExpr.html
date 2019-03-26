@@ -92,8 +92,8 @@ Inheritance diagram for feder::syntax::MatchExpr:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af921a8945cc11aabc937e8e4f69f5dca"><td class="memItemLeft" align="right" valign="top"><a id="af921a8945cc11aabc937e8e4f69f5dca"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MatchExpr</b> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;enumVal, std::vector&lt; MatchCaseExpr &gt; &amp;&amp;matchCases) noexcept</td></tr>
+<tr class="memitem:af921a8945cc11aabc937e8e4f69f5dca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#af921a8945cc11aabc937e8e4f69f5dca">MatchExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;enumVal, std::vector&lt; MatchCaseExpr &gt; &amp;&amp;matchCases) noexcept</td></tr>
+<tr class="memdesc:af921a8945cc11aabc937e8e4f69f5dca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes match expression.  <a href="#af921a8945cc11aabc937e8e4f69f5dca">More...</a><br /></td></tr>
 <tr class="separator:af921a8945cc11aabc937e8e4f69f5dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaba436cb5a29c0903ef600152afbb63"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#adaba436cb5a29c0903ef600152afbb63">getEnumValue</a> () noexcept</td></tr>
 <tr class="separator:adaba436cb5a29c0903ef600152afbb63"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,7 +122,60 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Match expression. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af921a8945cc11aabc937e8e4f69f5dca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af921a8945cc11aabc937e8e4f69f5dca">&#9670;&nbsp;</a></span>MatchExpr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">feder::syntax::MatchExpr::MatchExpr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>enumVal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; MatchCaseExpr &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>matchCases</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes match expression. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td></td></tr>
+    <tr><td class="paramname">enumVal</td><td>Enum value expression to compare match cases to. </td></tr>
+    <tr><td class="paramname">matchCases</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="adaba436cb5a29c0903ef600152afbb63"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adaba436cb5a29c0903ef600152afbb63">&#9670;&nbsp;</a></span>getEnumValue() <span class="overload">[1/2]</span></h2>
 

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['currentchar',['currentChar',['../classfeder_1_1lexer_1_1Lexer.html#a3bc2de9368acff8d79bbec495217380e',1,'feder::lexer::Lexer']]],
-  ['currenttoken',['currentToken',['../classfeder_1_1lexer_1_1Lexer.html#a2fd3f27be1f59d414aac24665c5311bc',1,'feder::lexer::Lexer']]]
+  ['biopexpr',['BiOpExpr',['../classfeder_1_1syntax_1_1BiOpExpr.html#a01d38778f8b0be5a21e54a73f649481e',1,'feder::syntax::BiOpExpr']]],
+  ['braceexpr',['BraceExpr',['../classfeder_1_1syntax_1_1BraceExpr.html#a2847d3db993110ff198bcbf2e5f15686',1,'feder::syntax::BraceExpr']]]
 ];
