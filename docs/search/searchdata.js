@@ -1,7 +1,7 @@
 var indexSectionsWithContent =
 {
   0: "abcefghilmnoprstu",
-  1: "abcefilnpstu",
+  1: "abcefilmnpstu",
   2: "fglps",
   3: "acefghilmnoprt",
   4: "fiu",

@@ -158,6 +158,14 @@ IfExpr::IfExpr(const lexer::Position &pos, std::vector<IfCaseExpr> &&ifs,
 
 IfExpr::~IfExpr() {}
 
+MatchExpr::MatchExpr(const lexer::Position &pos,
+                     std::unique_ptr<Expr> &&enumVal,
+                     std::vector<MatchCaseExpr> &&matchCases) noexcept
+    : Expr(expr_match, pos), enumVal(std::move(enumVal)),
+      matchCases(std::move(matchCases)) {}
+
+MatchExpr::~MatchExpr() {}
+
 // reportSyntaxError
 
 std::unique_ptr<Expr>
@@ -397,6 +405,13 @@ std::string IfExpr::to_string() const noexcept {
   return result;
 }
 
+std::string MatchExpr::to_string() const noexcept {
+  std::string result;
+  result += "match " + getEnumValue().to_string();
+
+  return result;
+}
+
 // isStatement
 
 bool FuncExpr::isStatement() const noexcept {
@@ -439,3 +454,5 @@ bool BiOpExpr::isStatement() const noexcept {
 bool NmspExpr::isStatement() const noexcept { return getIdentifier() != "_"; }
 
 bool IfExpr::isStatement() const noexcept { return true; }
+
+bool MatchExpr::isStatement() const noexcept { return true; }

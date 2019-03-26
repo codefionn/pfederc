@@ -237,6 +237,23 @@ set_tests_properties(parseline_fif0 parseline_fif1 parseline_fif2
   parseline_fif3
   PROPERTIES WILL_FAIL TRUE)
 
+## Match
+add_test(parseline_match0 parseline "match enumVal\nenumCase => doSomething()\n;\n;")
+add_test(parseline_match1 parseline "match enumVal\nenumCase1 => doSmth0()\n;\nenumCase1 => doSmth1()\n;\n;")
+add_test(parseline_match2 parseline "match enumVal\nenumCase1 => doSmth0()\n;\nenumCase1 => doSmth1()\n;\nenumCase2 => doSmth2()\n;\n;")
+add_test(parseline_match3 parseline "match enumVal\nenumCase(x) => doSmth0()\n;\n;")
+add_test(parseline_match4 parseline "match enumVal\nenumCase(x, y) => doSmth0()\n;\n;")
+add_test(parseline_match5 parseline "match enumVal\nenumCase => ;\n;")
+add_test(parseline_match6 parseline "match enumVal\nmy.enumCase => doSmth()\n;\n;")
+add_test(parseline_match7 parseline "match enumVal\nnot.my.enumCase => doSmth()\n;\n;")
+
+## Match - Fail tests
+add_test(parseline_fmatch0 parseline "match enumVal enumCase => doSomethings()\n;\n;")
+add_test(parseline_fmatch1 parseline "match enumVal\n enumCase => doSomethings()\n;;")
+add_test(parseline_fmatch2 parseline "match enumVal\n enumCase")
+set_tests_properties(parseline_fmatch0 parseline_fmatch1 parseline_fmatch2
+  PROPERTIES WILL_FAIL TRUE)
+
 ## Comments
 add_test(parseline_comment0 parseline "func{T} hello(t : T) // comment\n;")
 add_test(parseline_comment1 parseline "/* 111 == */ 100 + 11")

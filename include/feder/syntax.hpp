@@ -40,6 +40,7 @@ class UnOpExpr;
 class BraceExpr;
 class TemplateExpr;
 class IfExpr;
+class MatchExpr;
 
 class Program {
   std::vector<std::unique_ptr<Expr>> lines;
@@ -758,6 +759,40 @@ public:
   /*!\return Returns else case. Optional, might be invalid.
    */
   const auto &getElseCase() const noexcept { return *elseExpr; }
+
+  virtual std::string to_string() const noexcept override;
+
+  virtual bool isStatement() const noexcept override;
+};
+
+typedef std::pair<std::unique_ptr<Expr>, std::unique_ptr<Program>> MatchCaseExpr;
+
+/*!\brief Match expression.
+ */
+class MatchExpr : public Expr {
+  std::unique_ptr<Expr> enumVal;
+  std::vector<MatchCaseExpr> matchCases;
+public:
+  MatchExpr(const lexer::Position &pos,
+            std::unique_ptr<Expr> &&enumVal,
+            std::vector<MatchCaseExpr> &&matchCases) noexcept;
+  virtual ~MatchExpr();
+
+  /*!\return Returns enum value.
+   */
+  auto &getEnumValue() noexcept { return *enumVal; }
+
+  /*!\return Returns enum value (const).
+   */
+  const auto &getEnumValue() const noexcept { return *enumVal; }
+
+  /*!\return Returns match cases.
+   */
+  auto &getMatchCases() noexcept { return matchCases; }
+
+  /*!\return Returns match cases.
+   */
+  const auto &getMatchCases() const noexcept { return matchCases; }
 
   virtual std::string to_string() const noexcept override;
 

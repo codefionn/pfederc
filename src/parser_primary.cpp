@@ -799,6 +799,117 @@ _parsePrimaryIf(lexer::Lexer &lex) noexcept {
       std::move(ifCases), std::move(elseCase));
 }
 
+syntax::MatchCaseExpr
+_parsePrimaryMatchCase(lexer::Lexer &lex) noexcept {
+  // Parse identifiercall
+  std::unique_ptr<syntax::Expr> idExpr;
+  while ((!idExpr && lex.currentToken() == lexer::tok_id)
+      || (idExpr && lex.currentToken() == lexer::op_mem)) {
+    if (idExpr) {
+      lex.nextToken(); // eat .
+    }
+
+    lexer::Token idTok;
+    if (!parser::match(lex, &idTok, lexer::tok_id))
+      return syntax::MatchCaseExpr(nullptr, nullptr);
+
+    auto newid = std::make_unique<syntax::IdExpr>(idTok.getPosition(),
+        idTok.getString());
+
+    if (idExpr)
+      idExpr = std::make_unique<syntax::BiOpExpr>(
+          lexer::Position(idExpr->getPosition(), idTok.getPosition()),
+          lexer::op_mem, std::move(idExpr), std::move(newid));
+    else
+      idExpr = std::move(newid);
+  }
+
+  if (lex.currentToken() == lexer::op_impl) {
+    lex.nextToken();
+
+    // Match case body   
+    auto program = parser::parseProgram(lex, false);
+    if (!program || program->hasError())
+      return syntax::MatchCaseExpr(nullptr, nullptr);
+
+    if (!parser::match(lex, nullptr, lexer::tok_delim))
+      return syntax::MatchCaseExpr(nullptr, nullptr);
+
+    return syntax::MatchCaseExpr(std::move(idExpr), std::move(program));
+  } else if (lex.currentToken() != lexer::tok_obrace) {
+    syntax::reportSyntaxError(lex,
+        lex.currentToken().getPosition(),
+        "Expected token '(' or '=>'.");
+    return syntax::MatchCaseExpr(nullptr, nullptr);
+  }
+
+  auto constructor = parser::parsePrimary(lex);
+  if (!constructor)
+    return syntax::MatchCaseExpr(nullptr, nullptr);
+
+  // TODO: Check if valid constructor
+
+  idExpr = std::make_unique<syntax::BiOpExpr>(
+      lexer::Position(idExpr->getPosition(), constructor->getPosition()),
+      lexer::op_fncall, std::move(idExpr), std::move(constructor));
+
+  if (!parser::match(lex, nullptr, lexer::tok_op, lexer::op_impl))
+    return syntax::MatchCaseExpr(nullptr, nullptr);
+
+  // Match case body
+  auto program = parser::parseProgram(lex, false);
+  if (!program || program->hasError())
+    return syntax::MatchCaseExpr(nullptr, nullptr);
+
+  if (!parser::match(lex, nullptr, lexer::tok_delim))
+    return syntax::MatchCaseExpr(nullptr, nullptr);
+
+  return syntax::MatchCaseExpr(std::move(idExpr), std::move(program));
+}
+
+std::unique_ptr<syntax::Expr>
+_parsePrimaryMatch(lexer::Lexer &lex) noexcept {
+  lexer::Position startPos(lex.currentToken().getPosition());
+  lex.nextToken(); // eat match
+
+  auto enumValExpr = parser::parse(lex);
+  if (!enumValExpr)
+    return nullptr; // error forwarding
+
+  if (!parser::match(lex, nullptr, lexer::tok_eol))
+    return nullptr;
+
+  bool err = false;
+
+  std::vector<syntax::MatchCaseExpr> matchCases;
+  while (lex.currentToken() != lexer::tok_delim
+      && lex.currentToken() != lexer::tok_eof) {
+    if (lex.currentToken() == lexer::tok_eol) {
+      lex.nextToken(); // eat newline
+      continue;
+    }
+
+    auto matchcase = _parsePrimaryMatchCase(lex);
+    if (!matchcase.first)
+      err = true;
+    else
+      matchCases.push_back(std::move(matchcase));
+
+    if (!parser::match(lex, nullptr, lexer::tok_eol))
+      return nullptr;
+  }
+
+  if (!parser::match(lex, nullptr, lexer::tok_delim))
+    return nullptr;
+
+  if (err)
+    return nullptr;
+
+  return std::make_unique<syntax::MatchExpr>(
+      lexer::Position(startPos, enumValExpr->getPosition()),
+      std::move(enumValExpr), std::move(matchCases));
+}
+
 std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
   switch (lex.currentToken().getType()) {
   case lexer::tok_id:
@@ -830,6 +941,7 @@ std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
   case lexer::tok_if:
     return _parsePrimaryIf(lex);
   case lexer::tok_match:
+    return _parsePrimaryMatch(lex);
   case lexer::tok_for:
   case lexer::tok_do:
 
