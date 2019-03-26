@@ -612,6 +612,14 @@ static TokenType tokenIdentifier(Lexer &lexer, TokenType &curtok,
     return curtok = tok_func;
   if (str == "Func")
     return curtok = tok_vfunc;
+  if (str == "if")
+    return curtok = tok_if;
+  if (str == "else")
+    return curtok = tok_else;
+  if (str == "for")
+    return tok_for;
+  if (str == "do")
+    return tok_do;
   if (str == "match")
     return curtok = tok_match;
 
