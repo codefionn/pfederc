@@ -40,6 +40,18 @@ docker build --rm -t pfederc .
 docker run --rm -ti pfederc
 ```
 
+## Install on Linux
+
+Install in ~/.local
+
+```bash
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX='~/.local' -G 'Unix Makefiles' ..
+make -j
+make install
+```
+
 ## Resources
 
 About pfederc:

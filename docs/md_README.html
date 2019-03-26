@@ -79,7 +79,9 @@ $(function() {
 <div class="fragment"><div class="line">cd build/test</div><div class="line">ctest</div></div><!-- fragment --><p>If memory checks should also be done, install <em>valgrind</em>.</p>
 <h2>Build with Docker</h2>
 <p>Build &amp; run:</p>
-<div class="fragment"><div class="line">docker build --rm -t pfederc .</div><div class="line">docker run --rm -ti pfederc</div></div><!-- fragment --><h2>Resources</h2>
+<div class="fragment"><div class="line">docker build --rm -t pfederc .</div><div class="line">docker run --rm -ti pfederc</div></div><!-- fragment --><h2>Install on Linux</h2>
+<p>Install in ~/.local</p>
+<div class="fragment"><div class="line">mkdir build</div><div class="line">cd build</div><div class="line">cmake -DCMAKE_INSTALL_PREFIX=&#39;~/.local&#39; -G &#39;Unix Makefiles&#39; ..</div><div class="line">make -j</div><div class="line">make install</div></div><!-- fragment --><h2>Resources</h2>
 <p>About pfederc:</p>
 <ul>
 <li>API Documentation: <a href="https://codefionn.github.io/pfederc">https://codefionn.github.io/pfederc</a></li>
