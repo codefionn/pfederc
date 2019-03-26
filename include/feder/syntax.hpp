@@ -39,6 +39,7 @@ class BiOpExpr;
 class UnOpExpr;
 class BraceExpr;
 class TemplateExpr;
+class IfExpr;
 
 class Program {
   std::vector<std::unique_ptr<Expr>> lines;
@@ -76,6 +77,10 @@ enum ExprType {
   expr_enum,       //!< \see EnumExpr
   expr_trait,      //!< \see TraitExpr
   expr_nmsp,       //!< \see NmspExpr
+
+  expr_if,    //!< \see IfExpr
+  expr_match, //!< \see MatchExpr
+  expr_for,   //!< \see ForExpr
 
   expr_array_con,   //!< \see ArrayConExpr
   expr_array_list,  //!< \see ArrayListExpr
@@ -120,8 +125,7 @@ public:
   /*!\return Returns true, if this expression is a statements, otherwise
    * this expression is a secondary statement and false is returned.
    */
-  virtual bool isStatement() const noexcept
-  { return false; }
+  virtual bool isStatement() const noexcept { return false; }
 };
 
 /*!\brief Identifier expression.
@@ -700,6 +704,48 @@ public:
   const Expr &getIndex() const noexcept { return *indexExpr; }
 
   virtual std::string to_string() const noexcept override;
+};
+
+/*!\brief If case.
+ */
+typedef std::pair<std::unique_ptr<Expr>, std::unique_ptr<Program>> IfCaseExpr;
+
+/*!\brief If expression.
+ */
+class IfExpr : public Expr {
+  std::vector<IfCaseExpr> ifs;    //!< If cases. size >= 1.
+  std::unique_ptr<Program> elseExpr; //!< Else case, optional.
+
+public:
+  IfExpr(const lexer::Position &pos, std::vector<IfCaseExpr> &&ifs,
+         std::unique_ptr<Program> &&elseExpr) noexcept;
+
+  virtual ~IfExpr();
+
+  /*!\returns If cases. size >= 1.
+   */
+  auto &getIfCases() noexcept { return ifs; }
+
+  /*!\returns If cases. size >= 1 (const).
+   */
+  const auto &getIfCases() const noexcept { return ifs; }
+
+  /*!\return Returns true if has else case, otherwise false. If true is
+   * returned [\ref getElseCase] is valid, otherwise invalid.
+   */
+  bool hasElseCase() const noexcept { return (bool)elseExpr; }
+
+  /*!\return Returns else case. Optional, might be invalid.
+   */
+  auto &getElseCase() noexcept { return *elseExpr; }
+
+  /*!\return Returns else case. Optional, might be invalid.
+   */
+  const auto &getElseCase() const noexcept { return *elseExpr; }
+
+  virtual std::string to_string() const noexcept override;
+
+  virtual bool isStatement() const noexcept override;
 };
 
 /*!\brief Prints error.

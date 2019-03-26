@@ -221,6 +221,21 @@ add_test(parseline_templ1 parseline "func{T : myawesometype} hello(t : T) ;")
 add_test(parseline_templ2 parseline "hello{mytype0, mytype1, mytype2}")
 add_test(parseline_templ3 parseline "func{t0 : T, t1 :T} hello() ;")
 
+## If
+add_test(parseline_if0 parseline "if true\nretfalse()\n;")
+add_test(parseline_if1 parseline "if true\nrettrue()\nelse\nretfalse()\n;")
+add_test(parseline_if2 parseline "if i == 0\nhello1()\nelse if i == 1\nhello2()\nelse\nhello3()\n;")
+add_test(parseline_if3 parseline "if i == 0\nhello1()\nelse if i == 1\nhello2()\n;")
+
+## If - Fail tests
+add_test(parseline_fif0 parseline "if else ;")
+add_test(parseline_fif1 parseline "if\nelse\n;")
+add_test(parseline_fif2 parseline "if true rettrue()\n;")
+add_test(parseline_fif3 parseline "if true\nrettrue()\nelse retfalse()\n;")
+set_tests_properties(parseline_fif0 parseline_fif1 parseline_fif2
+  parseline_fif3
+  PROPERTIES WILL_FAIL TRUE)
+
 ## Comments
 add_test(parseline_comment0 parseline "func{T} hello(t : T) // comment\n;")
 add_test(parseline_comment1 parseline "/* 111 == */ 100 + 11")

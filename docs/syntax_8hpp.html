@@ -70,6 +70,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -142,6 +143,16 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1ArrayIndexExpr.html">feder::syntax::ArrayIndexExpr</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array index expression.  <a href="classfeder_1_1syntax_1_1ArrayIndexExpr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1IfExpr.html">feder::syntax::IfExpr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">If expression.  <a href="classfeder_1_1syntax_1_1IfExpr.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga16165d29573fa0168eb22557101e3344"><td class="memItemLeft" align="right" valign="top">
+typedef std::pair&lt; std::unique_ptr&lt; Expr &gt;, std::unique_ptr&lt; Program &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__syntax.html#ga16165d29573fa0168eb22557101e3344">feder::syntax::IfCaseExpr</a></td></tr>
+<tr class="memdesc:ga16165d29573fa0168eb22557101e3344"><td class="mdescLeft">&#160;</td><td class="mdescRight">If case. <br /></td></tr>
+<tr class="separator:ga16165d29573fa0168eb22557101e3344"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -158,15 +169,18 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa7b3548e4011fb40d29be33eaebcd621a">feder::syntax::expr_trait</a>, 
 <a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa80e6085a22d015dcd13055d25431bbed">feder::syntax::expr_nmsp</a>, 
+<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa371c2f1d020213e911057f7e933a69a8">feder::syntax::expr_if</a>, 
+<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaac11529bce7a72ada49b4511f7f6f39a4">feder::syntax::expr_match</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaad707955b57d9172ed9b861ea8d07fbc6">feder::syntax::expr_for</a>, 
 <a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa3f472ee0ca4b69c80700a8d9723988ae">feder::syntax::expr_array_con</a>, 
 <a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaaff740b556789bcf79d9c5a9d9d14e9a6">feder::syntax::expr_array_list</a>, 
+<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa2e19e2b3b192b22fe6763bd77e7c5c3f">feder::syntax::expr_array_index</a>, 
 <br />
-&#160;&#160;<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa2e19e2b3b192b22fe6763bd77e7c5c3f">feder::syntax::expr_array_index</a>, 
-<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa7a099e1d83bd3ad53f7f5c037e15cbfd">feder::syntax::expr_unop</a>, 
+&#160;&#160;<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa7a099e1d83bd3ad53f7f5c037e15cbfd">feder::syntax::expr_unop</a>, 
 <a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa16ac811f151f8d7577b12a2a96d0bb2d">feder::syntax::expr_biop</a>, 
 <a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa237ab6c923172308eee8d2de1879190b">feder::syntax::expr_brace</a>, 
-<br />
-&#160;&#160;<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1">feder::syntax::expr_template</a>
+<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1">feder::syntax::expr_template</a>
 <br />
  }</td></tr>
 <tr class="memdesc:ga3a920d8e611fde2a62ad15a786faacfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expression types.  <a href="group__syntax.html#ga3a920d8e611fde2a62ad15a786faacfa">More...</a><br /></td></tr>

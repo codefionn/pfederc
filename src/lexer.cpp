@@ -71,6 +71,7 @@ bool feder::lexer::isPrimaryToken(TokenType tok) noexcept {
   case tok_cbrace_array:
   case tok_cbrace_template:
   case tok_delim:
+  case tok_else:
   case tok_cmd:
     return false;
   default:

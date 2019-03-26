@@ -380,6 +380,9 @@ _parsePrimaryFunction(lexer::Lexer &lex) noexcept {
   if (!program)
     return nullptr;
 
+  while (lex.currentToken() == lexer::tok_eol)
+    lex.nextToken();
+
   if (!parser::match(lex, nullptr, lexer::tok_delim))
     return nullptr;
 
@@ -715,6 +718,94 @@ _parsePrimaryNamespace(lexer::Lexer &lex) noexcept {
       std::move(program));
 }
 
+static syntax::IfCaseExpr
+_parsePrimaryIfCase(lexer::Lexer &lex) noexcept {
+  if (!parser::match(lex, nullptr, lexer::tok_if))
+    return syntax::IfCaseExpr(nullptr, nullptr);
+
+  auto condition = parser::parse(lex);
+  if (!condition)
+    return syntax::IfCaseExpr(nullptr, nullptr);
+
+  if (!parser::match(lex, nullptr, lexer::tok_eol))
+    return syntax::IfCaseExpr(nullptr, nullptr);
+
+  auto program = parser::parseProgram(lex, false);
+  if (!program || program->hasError())
+    return syntax::IfCaseExpr(nullptr, nullptr);
+
+  while (lex.currentToken() == lexer::tok_eol)
+    lex.nextToken();
+
+  if (lex.currentToken() != lexer::tok_delim
+      && lex.currentToken() != lexer::tok_else) {
+    syntax::reportSyntaxError(lex,
+        lex.currentToken().getPosition(),
+        "Expected token ';' or 'else'.");
+    return syntax::IfCaseExpr(nullptr, nullptr);
+  }
+
+  return syntax::IfCaseExpr(std::move(condition), std::move(program));
+}
+
+static std::unique_ptr<syntax::IfExpr>
+_parsePrimaryIf(lexer::Lexer &lex) noexcept {
+  lexer::Position startPos = lex.currentToken().getPosition();
+
+  std::vector<syntax::IfCaseExpr> ifCases;
+  std::unique_ptr<syntax::Program> elseCase;
+
+  bool err = false;
+  bool isfirst = true;
+
+  while (lex.currentToken() != lexer::tok_delim
+      && lex.currentToken() != lexer::tok_eof) {
+    if (lex.currentToken() == lexer::tok_eol) {
+      lex.nextToken(); // eat newline
+      continue;
+    }
+
+    if (!isfirst && !parser::match(lex, nullptr, lexer::tok_else))
+      return nullptr;
+
+    if (lex.currentToken() == lexer::tok_if) {
+      isfirst = false;
+
+      syntax::IfCaseExpr ifcase(_parsePrimaryIfCase(lex));
+      if (!ifcase.first) {
+        err = true;
+        continue;
+      }
+
+      ifCases.push_back(std::move(ifcase));
+    } else {
+      if (!parser::match(lex, nullptr, lexer::tok_eol));
+
+      auto program = parser::parseProgram(lex, false);
+      if (!program || program->hasError())
+        err = true;
+      else
+        elseCase = std::move(program);
+
+      break;
+    }
+  }
+
+  // Skip newlines
+  while (lex.currentToken() == lexer::tok_eol)
+    lex.nextToken();
+
+  if (!parser::match(lex, nullptr, lexer::tok_delim))
+    return nullptr;
+
+  if (err)
+    return nullptr;
+
+  return std::make_unique<syntax::IfExpr>(
+      lexer::Position(startPos, ifCases[0].first->getPosition()),
+      std::move(ifCases), std::move(elseCase));
+}
+
 std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
   switch (lex.currentToken().getType()) {
   case lexer::tok_id:
@@ -742,11 +833,19 @@ std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
     return _parsePrimaryEnum(lex);
   case lexer::tok_nmsp:
     return _parsePrimaryNamespace(lex);
+
+  case lexer::tok_if:
+    return _parsePrimaryIf(lex);
+  case lexer::tok_match:
+  case lexer::tok_for:
+  case lexer::tok_do:
+
   case lexer::tok_op:
     return _parsePrimaryUnOpExpr(lex);
 
   case lexer::tok_err:
     return nullptr;
+
   default:
     return syntax::reportSyntaxError(
         lex, lex.currentToken().getPosition(),

@@ -76,10 +76,9 @@ ClassExpr::ClassExpr(
 
 ClassExpr::~ClassExpr() {}
 
-EnumExpr::EnumExpr(
-    const feder::lexer::Position &pos, const std::string &name,
-    std::unique_ptr<TemplateExpr> &&templ,
-    std::vector<std::unique_ptr<Expr>> &&constructors) noexcept
+EnumExpr::EnumExpr(const feder::lexer::Position &pos, const std::string &name,
+                   std::unique_ptr<TemplateExpr> &&templ,
+                   std::vector<std::unique_ptr<Expr>> &&constructors) noexcept
     : IdExpr(expr_enum, pos, name), templ(std::move(templ)),
       constructors(std::move(constructors)) {}
 
@@ -150,6 +149,14 @@ ArrayIndexExpr::ArrayIndexExpr(const feder::lexer::Position &pos,
     : Expr(expr_array_index, pos), indexExpr(std::move(indexExpr)) {}
 
 ArrayIndexExpr::~ArrayIndexExpr() {}
+
+IfExpr::IfExpr(const lexer::Position &pos, std::vector<IfCaseExpr> &&ifs,
+               std::unique_ptr<Program> &&elseExpr) noexcept
+    : Expr(expr_if, pos), ifs(std::move(ifs)), elseExpr(std::move(elseExpr)) {}
+
+IfExpr::~IfExpr() {}
+
+// reportSyntaxError
 
 std::unique_ptr<Expr>
 feder::syntax::reportSyntaxError(feder::lexer::Lexer &lex,
@@ -367,27 +374,43 @@ std::string ArrayIndexExpr::to_string() const noexcept {
   return "[" + getIndex().to_string() + "]";
 }
 
+std::string IfExpr::to_string() const noexcept {
+  std::string result;
+  for (auto it = getIfCases().begin(); it != getIfCases().end(); ++it) {
+    if (it != getIfCases().begin())
+      result += "else ";
+
+    result += "if ";
+
+    result += it->first->to_string();
+    result += "\n";
+  }
+
+  if (hasElseCase()) {
+    result += "else\n";
+  }
+
+  result += ";";
+
+  return result;
+}
 
 // isStatement
 
 bool FuncExpr::isStatement() const noexcept {
-  if (isType()) return false;
-  if (getName().back() == "_") return false;
+  if (isType())
+    return false;
+  if (getName().back() == "_")
+    return false;
 
   return true;
 }
 
-bool ClassExpr::isStatement() const noexcept {
-  return getIdentifier() != "_";
-}
+bool ClassExpr::isStatement() const noexcept { return getIdentifier() != "_"; }
 
-bool EnumExpr::isStatement() const noexcept {
-  return getIdentifier() != "_";
-}
+bool EnumExpr::isStatement() const noexcept { return getIdentifier() != "_"; }
 
-bool TraitExpr::isStatement() const noexcept {
-  return getIdentifier() != "_";
-}
+bool TraitExpr::isStatement() const noexcept { return getIdentifier() != "_"; }
 
 bool BiOpExpr::isStatement() const noexcept {
   switch (getOperator()) {
@@ -411,6 +434,6 @@ bool BiOpExpr::isStatement() const noexcept {
   }
 }
 
-bool NmspExpr::isStatement() const noexcept {
-  return getIdentifier() != "_";
-}
+bool NmspExpr::isStatement() const noexcept { return getIdentifier() != "_"; }
+
+bool IfExpr::isStatement() const noexcept { return true; }
