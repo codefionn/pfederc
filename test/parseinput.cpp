@@ -3,7 +3,7 @@
 using namespace feder;
 
 int main(int argsc, char * argsv[]) {
-  lexer::Lexer lex("<stdin>", std::cin);
+  lexer::Tokenizer lex("<stdin>", std::cin);
   lex.nextToken();
 
   auto line = parser::parse(lex);

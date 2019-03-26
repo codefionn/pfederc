@@ -190,7 +190,7 @@ std::size_t feder::lexer::getPrecedence(OperatorType op,
 
 // Position
 
-Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd,
+Position::Position(Tokenizer *lexer, size_t columnStart, size_t columnEnd,
                    size_t lineStart, size_t lineEnd) noexcept
     : lexer{lexer}, columnStart{columnStart}, columnEnd{columnEnd},
       lineStart{lineStart}, lineEnd{lineEnd} {
@@ -201,7 +201,7 @@ Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd,
 #endif /* SANITY */
 }
 
-Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd,
+Position::Position(Tokenizer *lexer, size_t columnStart, size_t columnEnd,
                    size_t line) noexcept
     : lexer{lexer}, columnStart{columnStart}, columnEnd{columnEnd},
       lineStart{line}, lineEnd{line} {
@@ -213,14 +213,14 @@ Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd,
 }
 
 Position::Position(const Position &pos0, const Position &pos1) noexcept {
-  if (pos0.getLexer() == pos1.getLexer()) {
-    lexer = const_cast<Lexer *>(pos0.getLexer());
+  if (pos0.getTokenizer() == pos1.getTokenizer()) {
+    lexer = const_cast<Tokenizer *>(pos0.getTokenizer());
     columnStart = std::min(pos0.getColumnStart(), pos1.getColumnStart());
     columnEnd = std::max(pos0.getColumnEnd(), pos1.getColumnEnd());
     lineStart = std::min(pos0.getLineStart(), pos1.getLineStart());
     lineEnd = std::max(pos0.getLineEnd(), pos1.getLineEnd());
   } else {
-    lexer = const_cast<Lexer *>(pos0.getLexer());
+    lexer = const_cast<Tokenizer *>(pos0.getTokenizer());
     columnStart = pos0.getColumnStart();
     columnEnd = pos0.getColumnEnd();
     lineStart = pos0.getLineStart();
@@ -235,7 +235,7 @@ Position::Position(const Position &pos0, const Position &pos1) noexcept {
 }
 
 Position::Position(const Position &pos) noexcept
-    : lexer{const_cast<Position &>(pos).getLexer()},
+    : lexer{const_cast<Position &>(pos).getTokenizer()},
       columnStart{pos.getColumnStart()}, columnEnd{pos.getColumnEnd()},
       lineStart{pos.getLineStart()}, lineEnd{pos.getLineEnd()} {
 #ifdef SANITY
@@ -251,7 +251,7 @@ Position Position::minColumn() const noexcept {
   std::size_t newColumnEnd = columnEnd == 0 ? columnEnd : columnEnd - 1;
   std::size_t newColumnStart =
       newColumnEnd > columnStart ? columnStart : newColumnEnd;
-  return Position(const_cast<Lexer *>(lexer), newColumnStart, newColumnEnd,
+  return Position(const_cast<Tokenizer *>(lexer), newColumnStart, newColumnEnd,
                   lineStart, lineEnd);
 }
 
@@ -320,14 +320,14 @@ bool Token::isRightAssociative() const noexcept {
   }
 }
 
-// Lexer
+// Tokenizer
 
-Lexer::Lexer(const std::string &name, std::istream &input)
+Tokenizer::Tokenizer(const std::string &name, std::istream &input)
     : name(name), input{input}, lastlinechar{EOF - 2},
       curchar{EOF - 2}, // -3 makes nextToken read a new char first
       lineEnd{0}, columnEnd{0}, curtokval{nullptr}, skipNewLine{false} {}
 
-Lexer::~Lexer() {
+Tokenizer::~Tokenizer() {
   if (curtokval)
     delete curtokval;
 }
@@ -346,7 +346,7 @@ static bool _iswhitespace(int c) {
   }
 }
 
-int Lexer::nextChar() noexcept {
+int Tokenizer::nextChar() noexcept {
   if (!input)
     return EOF; // Invalid input stream
 
@@ -397,17 +397,17 @@ int Lexer::nextChar() noexcept {
   return curchar;
 }
 
-Position Lexer::getPosition() const noexcept {
-  return Position(const_cast<Lexer *>(this), columnStart, columnEnd, lineStart,
+Position Tokenizer::getPosition() const noexcept {
+  return Position(const_cast<Tokenizer *>(this), columnStart, columnEnd, lineStart,
                   lineEnd);
 }
 
-Position Lexer::getCursorPosition() const noexcept {
-  return Position(const_cast<Lexer *>(this), columnEnd, columnEnd, lineEnd,
+Position Tokenizer::getCursorPosition() const noexcept {
+  return Position(const_cast<Tokenizer *>(this), columnEnd, columnEnd, lineEnd,
                   lineEnd);
 }
 
-void Lexer::readLine() noexcept {
+void Tokenizer::readLine() noexcept {
   while (nextChar() != '\n' && currentChar() != EOF - 1 && currentChar() != EOF)
     ;
 
@@ -423,7 +423,7 @@ void Lexer::readLine() noexcept {
  * \param numVal
  * \param numType
  */
-static TokenType tokenNumber(Lexer &lexer, TokenType &curtok,
+static TokenType tokenNumber(Tokenizer &lexer, TokenType &curtok,
                              NumberValue &numVal,
                              NumberType &numType) noexcept {
   bool _isdecimal = true;
@@ -442,7 +442,7 @@ static TokenType tokenNumber(Lexer &lexer, TokenType &curtok,
 
       if (!isxdigit(lexer.currentChar()))
         return curtok =
-                   lexer.reportLexerError("Expected hexadecimal character!",
+                   lexer.reportTokenizerError("Expected hexadecimal character!",
                                           lexer.getCursorPosition());
 
       while (isxdigit(lexer.currentChar())) {
@@ -483,7 +483,7 @@ static TokenType tokenNumber(Lexer &lexer, TokenType &curtok,
       // invalid 0[num]
       // Current pos points to invalid character
       // but pointing to the zero is better (so column - 1)
-      return curtok = lexer.reportLexerError(
+      return curtok = lexer.reportTokenizerError(
                  "Number sequences can't be leaded by 0.",
                  lexer.getCursorPosition().minColumn());
     }
@@ -525,7 +525,7 @@ static TokenType tokenNumber(Lexer &lexer, TokenType &curtok,
     }
 
     if (isalpha(lexer.currentChar()) || lexer.currentChar() == '_')
-      return curtok = lexer.reportLexerError(
+      return curtok = lexer.reportTokenizerError(
                  std::string("Invalid character '") +
                  (char)lexer.currentChar() +
                  std::string("' directly after number token."));
@@ -589,14 +589,14 @@ static TokenType tokenNumber(Lexer &lexer, TokenType &curtok,
   }
 
   if (isalpha(lexer.currentChar()) || lexer.currentChar() == '_')
-    return curtok = lexer.reportLexerError(
+    return curtok = lexer.reportTokenizerError(
                std::string("Invalid character '") + (char)lexer.currentChar() +
                std::string("' directly after number token."));
 
   return curtok = tok_num;
 }
 
-static TokenType tokenIdentifier(Lexer &lexer, TokenType &curtok,
+static TokenType tokenIdentifier(Tokenizer &lexer, TokenType &curtok,
                                  OperatorType &curop,
                                  std::string &str) noexcept {
   str = ""; // Reset string
@@ -644,7 +644,7 @@ static TokenType tokenIdentifier(Lexer &lexer, TokenType &curtok,
  * False if invalid.
  * \param str resolved sequence from escape sequence second character.
  */
-static bool escapeSequence(Lexer &lexer, std::string &str) {
+static bool escapeSequence(Tokenizer &lexer, std::string &str) {
   switch (lexer.currentChar()) {
   case '0':
     str += '\0';
@@ -681,14 +681,14 @@ static bool escapeSequence(Lexer &lexer, std::string &str) {
     break;
   default:
     Position pos = lexer.getPosition();
-    lexer.reportLexerError("Invalid escape sequence.", pos);
+    lexer.reportTokenizerError("Invalid escape sequence.", pos);
     return false;
   }
 
   return true;
 }
 
-static TokenType tokenString(Lexer &lexer, TokenType &curtok,
+static TokenType tokenString(Tokenizer &lexer, TokenType &curtok,
                              std::string &str) noexcept {
   str = "";         // Reset string
   lexer.nextChar(); // eat "
@@ -713,14 +713,14 @@ static TokenType tokenString(Lexer &lexer, TokenType &curtok,
   }
 
   if (lexer.currentChar() != '\"')
-    return curtok = lexer.reportLexerError("Expected \'\"\' not end-of-file.");
+    return curtok = lexer.reportTokenizerError("Expected \'\"\' not end-of-file.");
 
   lexer.nextChar(); // eat "
 
   return curtok = tok_str;
 }
 
-static TokenType tokenChar(Lexer &lexer, TokenType &curtok,
+static TokenType tokenChar(Tokenizer &lexer, TokenType &curtok,
                            std::string &str) noexcept {
   str = "";         // Reset string
   lexer.nextChar(); // eat '
@@ -735,18 +735,18 @@ static TokenType tokenChar(Lexer &lexer, TokenType &curtok,
     str += lexer.currentChar();
     lexer.nextChar(); // eat char
   } else {
-    return curtok = lexer.reportLexerError("Invalid not-printable character.");
+    return curtok = lexer.reportTokenizerError("Invalid not-printable character.");
   }
 
   if (lexer.currentChar() != '\'')
-    return curtok = lexer.reportLexerError("Expected '.");
+    return curtok = lexer.reportTokenizerError("Expected '.");
 
   lexer.nextChar(); // eat '
 
   return curtok = tok_char;
 }
 
-TokenType Lexer::constructToken() noexcept {
+TokenType Tokenizer::constructToken() noexcept {
   if (curchar == EOF - 1 || curchar == EOF - 2)
     nextChar();
 
@@ -950,7 +950,7 @@ TokenType Lexer::constructToken() noexcept {
       }
 
       if (curchar != '/')
-        return curtok = reportLexerError("Expected '*/'.");
+        return curtok = reportTokenizerError("Expected '*/'.");
       nextChar();                       // eat '/'
       return curtok = constructToken(); // Return next token
     } else
@@ -1042,13 +1042,13 @@ TokenType Lexer::constructToken() noexcept {
   }
 
   if (isprint(curchar))
-    return curtok = reportLexerError(std::string("Invalid character \'") +
+    return curtok = reportTokenizerError(std::string("Invalid character \'") +
                                      (char)curchar + "\'.");
   else
-    return curtok = reportLexerError("Invalid not-printable character.");
+    return curtok = reportTokenizerError("Invalid not-printable character.");
 }
 
-const Token &Lexer::nextToken() noexcept {
+const Token &Tokenizer::nextToken() noexcept {
   // First come the pushed_tokens
   if (!pushed_tokens.empty()) {
     // queue
@@ -1082,11 +1082,11 @@ const Token &Lexer::nextToken() noexcept {
   }
 }
 
-TokenType Lexer::reportLexerError(const std::string &msg) noexcept {
-  return reportLexerError(msg, getPosition());
+TokenType Tokenizer::reportTokenizerError(const std::string &msg) noexcept {
+  return reportTokenizerError(msg, getPosition());
 }
 
-TokenType Lexer::reportLexerError(const std::string &msg,
+TokenType Tokenizer::reportTokenizerError(const std::string &msg,
                                   const Position &pos) noexcept {
   readLine(); // read till EOL
 
@@ -1120,14 +1120,14 @@ TokenType Lexer::reportLexerError(const std::string &msg,
   return tok_err;
 }
 
-void Lexer::reportSyntaxError(const std::string &msg,
+void Tokenizer::reportSyntaxError(const std::string &msg,
                               const Position &pos) noexcept {
   readLine(); // read till EOL
 
   reportSemanticError(msg, pos);
 }
 
-void Lexer::reportSemanticError(const std::string &msg,
+void Tokenizer::reportSemanticError(const std::string &msg,
                                 const Position &pos) noexcept {
   size_t startindex = pos.getColumnStart() - 1;
   if (pos.getColumnStart() == 0)

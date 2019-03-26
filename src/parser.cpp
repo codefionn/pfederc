@@ -1,7 +1,7 @@
 #include "feder/parser.hpp"
 using namespace feder;
 
-bool parser::match(lexer::Lexer &lex, lexer::Token *tok,
+bool parser::match(lexer::Tokenizer &lex, lexer::Token *tok,
                    lexer::TokenType tokType,
                    lexer::OperatorType opType) noexcept {
   if (lex.currentToken() == tokType &&
@@ -23,7 +23,7 @@ bool parser::match(lexer::Lexer &lex, lexer::Token *tok,
   return false; // match not successfull
 }
 
-bool parser::match(lexer::Lexer &lex, lexer::Token *tok,
+bool parser::match(lexer::Tokenizer &lex, lexer::Token *tok,
            const std::vector<lexer::TokenType> &tokTypes) noexcept {
 
   for (auto tokType : tokTypes) {
@@ -54,7 +54,7 @@ bool parser::match(lexer::Lexer &lex, lexer::Token *tok,
   return false;
 }
 
-static bool _isRightSideUnary(lexer::Token &tokOp, lexer::Lexer &lex) noexcept {
+static bool _isRightSideUnary(lexer::Token &tokOp, lexer::Tokenizer &lex) noexcept {
   if (!lexer::isPrimaryToken(lex.currentToken().getType()))
     return true;
 
@@ -85,7 +85,7 @@ static bool _isBinaryOperator(const lexer::Token &tok) noexcept {
   }
 }
 
-static bool _parseRHSRightUnary(lexer::Lexer &lex, lexer::Token &opTok,
+static bool _parseRHSRightUnary(lexer::Tokenizer &lex, lexer::Token &opTok,
                                 std::unique_ptr<syntax::Expr> &lhs) {
   // Is right-side unary ?
   if (opTok.getType() == lexer::tok_op &&
@@ -117,7 +117,7 @@ static lexer::OperatorType _getOperatorType(lexer::Token &opTok) {
 }
 
 std::unique_ptr<syntax::Expr>
-parser::parseRHS(lexer::Lexer &lex, std::unique_ptr<syntax::Expr> lhs,
+parser::parseRHS(lexer::Tokenizer &lex, std::unique_ptr<syntax::Expr> lhs,
                  std::size_t prec, bool parseFunctionDecl) noexcept {
 
   lexer::Token curtok;
@@ -162,7 +162,7 @@ parser::parseRHS(lexer::Lexer &lex, std::unique_ptr<syntax::Expr> lhs,
   return std::move(lhs);
 }
 
-std::unique_ptr<syntax::Expr> parser::parse(lexer::Lexer &lex, std::size_t prec,
+std::unique_ptr<syntax::Expr> parser::parse(lexer::Tokenizer &lex, std::size_t prec,
                                             bool parseFunctionDecl) noexcept {
   std::unique_ptr<syntax::Expr> primaryExpr = parser::parsePrimary(lex);
   if (!primaryExpr)
@@ -171,7 +171,7 @@ std::unique_ptr<syntax::Expr> parser::parse(lexer::Lexer &lex, std::size_t prec,
   return parser::parseRHS(lex, std::move(primaryExpr), prec, parseFunctionDecl);
 }
 
-std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Lexer &lex,
+std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
                                                       bool topLevel) noexcept {
   std::vector<std::unique_ptr<syntax::Expr>> lines;
 

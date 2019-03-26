@@ -182,7 +182,7 @@ ForExpr::~ForExpr() {}
 // reportSyntaxError
 
 std::unique_ptr<Expr>
-feder::syntax::reportSyntaxError(feder::lexer::Lexer &lex,
+feder::syntax::reportSyntaxError(feder::lexer::Tokenizer &lex,
                                  const feder::lexer::Position &pos,
                                  const std::string &msg) noexcept {
   lex.reportSyntaxError(msg, pos);

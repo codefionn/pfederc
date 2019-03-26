@@ -1,9 +1,9 @@
 var searchData=
 [
   ['readme',['README',['../md_README.html',1,'']]],
-  ['readline',['readLine',['../classfeder_1_1lexer_1_1Lexer.html#ae3af31045286dd252289faa9da5a13fc',1,'feder::lexer::Lexer']]],
-  ['reportlexererror',['reportLexerError',['../classfeder_1_1lexer_1_1Lexer.html#ae4ab6704d5b19a6f5aeefc79450104d3',1,'feder::lexer::Lexer::reportLexerError(const std::string &amp;msg) noexcept'],['../classfeder_1_1lexer_1_1Lexer.html#a8bd892ce4f574b323675b05f08ffb501',1,'feder::lexer::Lexer::reportLexerError(const std::string &amp;msg, const Position &amp;pos) noexcept']]],
-  ['reportsemanticerror',['reportSemanticError',['../classfeder_1_1lexer_1_1Lexer.html#a235212ab2b936d1730b8a86a5897e08c',1,'feder::lexer::Lexer']]],
-  ['reportsemanticwarning',['reportSemanticWarning',['../classfeder_1_1lexer_1_1Lexer.html#a6a83b4071fb9c267c32d5d596c0f8a00',1,'feder::lexer::Lexer']]],
-  ['reportsyntaxerror',['reportSyntaxError',['../classfeder_1_1lexer_1_1Lexer.html#a2f0197ea9f81563afb0d188b5d9a0f30',1,'feder::lexer::Lexer::reportSyntaxError()'],['../group__syntax.html#gac796dee69f3f5b087f31cf2e899f5919',1,'feder::syntax::reportSyntaxError()']]]
+  ['readline',['readLine',['../classfeder_1_1lexer_1_1Tokenizer.html#adba09db9990bfb505e406b7eede622d1',1,'feder::lexer::Tokenizer']]],
+  ['reportsemanticerror',['reportSemanticError',['../classfeder_1_1lexer_1_1Tokenizer.html#a0408cdd1dd121d411659f7a83a81da75',1,'feder::lexer::Tokenizer']]],
+  ['reportsemanticwarning',['reportSemanticWarning',['../classfeder_1_1lexer_1_1Tokenizer.html#abf2db580e7c79d860966887296be7eff',1,'feder::lexer::Tokenizer']]],
+  ['reportsyntaxerror',['reportSyntaxError',['../classfeder_1_1lexer_1_1Tokenizer.html#a90eaf34416e04f9a4c8d3c4c678ef632',1,'feder::lexer::Tokenizer::reportSyntaxError()'],['../group__syntax.html#ga4d92fe5ef67647b05c1bd08ecc2a5859',1,'feder::syntax::reportSyntaxError()']]],
+  ['reporttokenizererror',['reportTokenizerError',['../classfeder_1_1lexer_1_1Tokenizer.html#a3b7cc5145307c6fc1ed0cf835f83a371',1,'feder::lexer::Tokenizer::reportTokenizerError(const std::string &amp;msg) noexcept'],['../classfeder_1_1lexer_1_1Tokenizer.html#a061f544f1e467e288970d5d1e9acd5d6',1,'feder::lexer::Tokenizer::reportTokenizerError(const std::string &amp;msg, const Position &amp;pos) noexcept']]]
 ];

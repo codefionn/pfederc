@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['match',['match',['../group__parser.html#ga936da9aa59a0b1ff1378ca97b9a39c14',1,'feder::parser::match(lexer::Lexer &amp;lex, lexer::Token *tok, lexer::TokenType tokType, lexer::OperatorType opType=lexer::op_asg) noexcept'],['../group__parser.html#ga2b51f96465f321848771779273305973',1,'feder::parser::match(lexer::Lexer &amp;lex, lexer::Token *tok, const std::vector&lt; lexer::TokenType &gt; &amp;tokTypes) noexcept']]],
-  ['matchexpr',['MatchExpr',['../classfeder_1_1syntax_1_1MatchExpr.html#af921a8945cc11aabc937e8e4f69f5dca',1,'feder::syntax::MatchExpr']]],
-  ['mincolumn',['minColumn',['../classfeder_1_1lexer_1_1Position.html#af0f68ff113e450b401c15e8f0bf9fbec',1,'feder::lexer::Position']]],
-  ['movelhs',['moveLHS',['../classfeder_1_1syntax_1_1BiOpExpr.html#a7150f4cb6c459b0c7e5cfbad538dc9c7',1,'feder::syntax::BiOpExpr']]],
-  ['moverhs',['moveRHS',['../classfeder_1_1syntax_1_1BiOpExpr.html#a6376b6171d19f163047d311b7ce44bdc',1,'feder::syntax::BiOpExpr']]]
+  ['nextchar',['nextChar',['../classfeder_1_1lexer_1_1Tokenizer.html#a4cb5657cffb2e17bc73c3bd939d783fc',1,'feder::lexer::Tokenizer']]],
+  ['nexttoken',['nextToken',['../classfeder_1_1lexer_1_1Tokenizer.html#a29f1925b859e78d542aae55fac8a66aa',1,'feder::lexer::Tokenizer']]],
+  ['nmspexpr',['NmspExpr',['../classfeder_1_1syntax_1_1NmspExpr.html#a5693749747d03e307491be38c7be4e36',1,'feder::syntax::NmspExpr']]],
+  ['numexpr',['NumExpr',['../classfeder_1_1syntax_1_1NumExpr.html#aa9eae88e92efd2a4402f99cedf08209f',1,'feder::syntax::NumExpr']]]
 ];

@@ -1041,7 +1041,7 @@ public:
 /*!\brief Prints error.
  * \return Returns nullptr;
  */
-std::unique_ptr<Expr> reportSyntaxError(lexer::Lexer &lexer,
+std::unique_ptr<Expr> reportSyntaxError(lexer::Tokenizer &lexer,
                                         const lexer::Position &pos,
                                         const std::string &msg) noexcept;
 

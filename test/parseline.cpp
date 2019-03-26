@@ -7,7 +7,7 @@ int main(int argsc, char * argsv[]) {
     return 1;
 
   std::istringstream input(argsv[1]);
-  lexer::Lexer lex("<arg>", input);
+  lexer::Tokenizer lex("<arg>", input);
   lex.nextToken();
 
   auto line = parser::parse(lex);

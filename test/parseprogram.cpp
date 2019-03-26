@@ -6,7 +6,7 @@ int main(int argsc, char * argsv[]) {
   if (argsc != 2) return 1;
 
   std::istringstream input(argsv[1]);
-  lexer::Lexer lex("<arg>", input);
+  lexer::Tokenizer lex("<arg>", input);
   lex.nextToken();
 
   auto prog = parser::parseProgram(lex);

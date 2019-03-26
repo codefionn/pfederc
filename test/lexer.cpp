@@ -7,7 +7,7 @@ int main(int argsc, char * argsv[]) {
     std::istringstream strstream(argsv[1]);
 
     bool error = false;
-    Lexer lexer("<stdin>", strstream);
+    Tokenizer lexer("<stdin>", strstream);
     Token tok;
     while ((tok = lexer.nextToken()).getType() != tok_eof) {
       if (tok.getType() == tok_err)
@@ -19,7 +19,7 @@ int main(int argsc, char * argsv[]) {
   }
 
   bool error = false;
-  Lexer lexer("<stdin>", std::cin);
+  Tokenizer lexer("<stdin>", std::cin);
   Token tok;
   while ((tok = lexer.nextToken()).getType() != tok_eof) {
     if (tok.getType() == tok_err)

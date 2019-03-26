@@ -76,31 +76,31 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga4358be534a56e4b090de543aff3e1a29"><td class="memItemLeft" align="right" valign="top"><a id="ga4358be534a56e4b090de543aff3e1a29"></a>
-std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#ga4358be534a56e4b090de543aff3e1a29">feder::parser::parsePrimary</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;lexer) noexcept</td></tr>
-<tr class="memdesc:ga4358be534a56e4b090de543aff3e1a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary token. <br /></td></tr>
-<tr class="separator:ga4358be534a56e4b090de543aff3e1a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga75fc20f073b098e42a667a7ff35374ab"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#ga75fc20f073b098e42a667a7ff35374ab">feder::parser::parseRHS</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;lexer, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a> &gt; lhs, std::size_t prec, bool parseFunctionDecl=false) noexcept</td></tr>
-<tr class="memdesc:ga75fc20f073b098e42a667a7ff35374ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse RHS expression of binary operator.  <a href="group__parser.html#ga75fc20f073b098e42a667a7ff35374ab">More...</a><br /></td></tr>
-<tr class="separator:ga75fc20f073b098e42a667a7ff35374ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf0633d2fdba0a50678ca5e2486e2b071"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#gaf0633d2fdba0a50678ca5e2486e2b071">feder::parser::parse</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;lexer, std::size_t prec=0, bool parseFunctionDecl=false) noexcept</td></tr>
-<tr class="memdesc:gaf0633d2fdba0a50678ca5e2486e2b071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary expresion + optional operator where prec is passed to parseRHS.  <a href="group__parser.html#gaf0633d2fdba0a50678ca5e2486e2b071">More...</a><br /></td></tr>
-<tr class="separator:gaf0633d2fdba0a50678ca5e2486e2b071"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad024ae49b00817415a480dd44cbe695a"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">syntax::Program</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#gad024ae49b00817415a480dd44cbe695a">feder::parser::parseProgram</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;lexer, bool topLevel=true) noexcept</td></tr>
-<tr class="memdesc:gad024ae49b00817415a480dd44cbe695a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse program lines.  <a href="group__parser.html#gad024ae49b00817415a480dd44cbe695a">More...</a><br /></td></tr>
-<tr class="separator:gad024ae49b00817415a480dd44cbe695a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga936da9aa59a0b1ff1378ca97b9a39c14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#ga936da9aa59a0b1ff1378ca97b9a39c14">feder::parser::match</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;lex, <a class="el" href="classfeder_1_1lexer_1_1Token.html">lexer::Token</a> *tok, <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">lexer::TokenType</a> tokType, <a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">lexer::OperatorType</a> opType=lexer::op_asg) noexcept</td></tr>
-<tr class="memdesc:ga936da9aa59a0b1ff1378ca97b9a39c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">If match then advance to next token. If no match, an error messages is printed.  <a href="group__parser.html#ga936da9aa59a0b1ff1378ca97b9a39c14">More...</a><br /></td></tr>
-<tr class="separator:ga936da9aa59a0b1ff1378ca97b9a39c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2b51f96465f321848771779273305973"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#ga2b51f96465f321848771779273305973">feder::parser::match</a> (<a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;lex, <a class="el" href="classfeder_1_1lexer_1_1Token.html">lexer::Token</a> *tok, const std::vector&lt; <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">lexer::TokenType</a> &gt; &amp;tokTypes) noexcept</td></tr>
-<tr class="memdesc:ga2b51f96465f321848771779273305973"><td class="mdescLeft">&#160;</td><td class="mdescRight">If match then advance to next token. If no match, an error message is printed.  <a href="group__parser.html#ga2b51f96465f321848771779273305973">More...</a><br /></td></tr>
-<tr class="separator:ga2b51f96465f321848771779273305973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf821143aaa577a152dfc86e12d69e67"><td class="memItemLeft" align="right" valign="top"><a id="gacf821143aaa577a152dfc86e12d69e67"></a>
+std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#gacf821143aaa577a152dfc86e12d69e67">feder::parser::parsePrimary</a> (<a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;lexer) noexcept</td></tr>
+<tr class="memdesc:gacf821143aaa577a152dfc86e12d69e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary token. <br /></td></tr>
+<tr class="separator:gacf821143aaa577a152dfc86e12d69e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffa9b60399cb8e9983a7b9ff44c2511f"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#gaffa9b60399cb8e9983a7b9ff44c2511f">feder::parser::parseRHS</a> (<a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;lexer, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a> &gt; lhs, std::size_t prec, bool parseFunctionDecl=false) noexcept</td></tr>
+<tr class="memdesc:gaffa9b60399cb8e9983a7b9ff44c2511f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse RHS expression of binary operator.  <a href="group__parser.html#gaffa9b60399cb8e9983a7b9ff44c2511f">More...</a><br /></td></tr>
+<tr class="separator:gaffa9b60399cb8e9983a7b9ff44c2511f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga41eb9ed99ea6141b3b1aa9d6ca831707"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#ga41eb9ed99ea6141b3b1aa9d6ca831707">feder::parser::parse</a> (<a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;lexer, std::size_t prec=0, bool parseFunctionDecl=false) noexcept</td></tr>
+<tr class="memdesc:ga41eb9ed99ea6141b3b1aa9d6ca831707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse primary expresion + optional operator where prec is passed to parseRHS.  <a href="group__parser.html#ga41eb9ed99ea6141b3b1aa9d6ca831707">More...</a><br /></td></tr>
+<tr class="separator:ga41eb9ed99ea6141b3b1aa9d6ca831707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga25062883358df9d9060a838aa1308edc"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">syntax::Program</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#ga25062883358df9d9060a838aa1308edc">feder::parser::parseProgram</a> (<a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;lexer, bool topLevel=true) noexcept</td></tr>
+<tr class="memdesc:ga25062883358df9d9060a838aa1308edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse program lines.  <a href="group__parser.html#ga25062883358df9d9060a838aa1308edc">More...</a><br /></td></tr>
+<tr class="separator:ga25062883358df9d9060a838aa1308edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae7b3825244a0cc20c70eb107531f2239"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#gae7b3825244a0cc20c70eb107531f2239">feder::parser::match</a> (<a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;lex, <a class="el" href="classfeder_1_1lexer_1_1Token.html">lexer::Token</a> *tok, <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">lexer::TokenType</a> tokType, <a class="el" href="group__lexer.html#ga0b9f97971c5bce8d249427fa86afedf6">lexer::OperatorType</a> opType=lexer::op_asg) noexcept</td></tr>
+<tr class="memdesc:gae7b3825244a0cc20c70eb107531f2239"><td class="mdescLeft">&#160;</td><td class="mdescRight">If match then advance to next token. If no match, an error messages is printed.  <a href="group__parser.html#gae7b3825244a0cc20c70eb107531f2239">More...</a><br /></td></tr>
+<tr class="separator:gae7b3825244a0cc20c70eb107531f2239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5459261ceb5e28b60d712ecf6652295"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__parser.html#gad5459261ceb5e28b60d712ecf6652295">feder::parser::match</a> (<a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;lex, <a class="el" href="classfeder_1_1lexer_1_1Token.html">lexer::Token</a> *tok, const std::vector&lt; <a class="el" href="group__lexer.html#gacd10a4c7bad26913f314ffaaf177a85d">lexer::TokenType</a> &gt; &amp;tokTypes) noexcept</td></tr>
+<tr class="memdesc:gad5459261ceb5e28b60d712ecf6652295"><td class="mdescLeft">&#160;</td><td class="mdescRight">If match then advance to next token. If no match, an error message is printed.  <a href="group__parser.html#gad5459261ceb5e28b60d712ecf6652295">More...</a><br /></td></tr>
+<tr class="separator:gad5459261ceb5e28b60d712ecf6652295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Syntactic analysis/Parser. </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga936da9aa59a0b1ff1378ca97b9a39c14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga936da9aa59a0b1ff1378ca97b9a39c14">&#9670;&nbsp;</a></span>match() <span class="overload">[1/2]</span></h2>
+<a id="gae7b3825244a0cc20c70eb107531f2239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae7b3825244a0cc20c70eb107531f2239">&#9670;&nbsp;</a></span>match() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -111,7 +111,7 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
         <tr>
           <td class="memname">bool feder::parser::match </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;&#160;</td>
           <td class="paramname"><em>lex</em>, </td>
         </tr>
         <tr>
@@ -159,8 +159,8 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
 
 </div>
 </div>
-<a id="ga2b51f96465f321848771779273305973"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2b51f96465f321848771779273305973">&#9670;&nbsp;</a></span>match() <span class="overload">[2/2]</span></h2>
+<a id="gad5459261ceb5e28b60d712ecf6652295"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad5459261ceb5e28b60d712ecf6652295">&#9670;&nbsp;</a></span>match() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,7 +171,7 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
         <tr>
           <td class="memname">bool feder::parser::match </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;&#160;</td>
           <td class="paramname"><em>lex</em>, </td>
         </tr>
         <tr>
@@ -212,8 +212,8 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
 
 </div>
 </div>
-<a id="gaf0633d2fdba0a50678ca5e2486e2b071"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf0633d2fdba0a50678ca5e2486e2b071">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="ga41eb9ed99ea6141b3b1aa9d6ca831707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga41eb9ed99ea6141b3b1aa9d6ca831707">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +224,7 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
         <tr>
           <td class="memname">std::unique_ptr&lt;<a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a>&gt; feder::parser::parse </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;&#160;</td>
           <td class="paramname"><em>lexer</em>, </td>
         </tr>
         <tr>
@@ -264,8 +264,8 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
 
 </div>
 </div>
-<a id="gad024ae49b00817415a480dd44cbe695a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad024ae49b00817415a480dd44cbe695a">&#9670;&nbsp;</a></span>parseProgram()</h2>
+<a id="ga25062883358df9d9060a838aa1308edc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga25062883358df9d9060a838aa1308edc">&#9670;&nbsp;</a></span>parseProgram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -276,7 +276,7 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
         <tr>
           <td class="memname">std::unique_ptr&lt;<a class="el" href="classfeder_1_1syntax_1_1Program.html">syntax::Program</a>&gt; feder::parser::parseProgram </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;&#160;</td>
           <td class="paramname"><em>lexer</em>, </td>
         </tr>
         <tr>
@@ -310,8 +310,8 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
 
 </div>
 </div>
-<a id="ga75fc20f073b098e42a667a7ff35374ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga75fc20f073b098e42a667a7ff35374ab">&#9670;&nbsp;</a></span>parseRHS()</h2>
+<a id="gaffa9b60399cb8e9983a7b9ff44c2511f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaffa9b60399cb8e9983a7b9ff44c2511f">&#9670;&nbsp;</a></span>parseRHS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -322,7 +322,7 @@ std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">synta
         <tr>
           <td class="memname">std::unique_ptr&lt;<a class="el" href="classfeder_1_1syntax_1_1Expr.html">syntax::Expr</a>&gt; feder::parser::parseRHS </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Lexer.html">lexer::Lexer</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;&#160;</td>
           <td class="paramname"><em>lexer</em>, </td>
         </tr>
         <tr>

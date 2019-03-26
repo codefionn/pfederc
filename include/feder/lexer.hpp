@@ -202,13 +202,13 @@ union NumberValue {
 // Pre-declaration
 class Position;
 class Token;
-class Lexer;
+class Tokenizer;
 
 /*!\brief Class for referencing code position.
- * \see Lexer
+ * \see Tokenizer
  */
 class Position {
-  Lexer *lexer; //
+  Tokenizer *lexer; //
   std::size_t columnStart, columnEnd, lineStart, lineEnd;
 
 public:
@@ -219,7 +219,7 @@ public:
    * \param lineStart
    * \param lineEnd
    */
-  Position(Lexer *lexer, size_t columnStart, size_t columnEnd, size_t lineStart,
+  Position(Tokenizer *lexer, size_t columnStart, size_t columnEnd, size_t lineStart,
            size_t lineEnd) noexcept;
 
   /*!\brief Initializes code position reference.
@@ -228,7 +228,7 @@ public:
    * \param columnEnd
    * \param line
    */
-  Position(Lexer *lexer, size_t columnStart, size_t columnEnd,
+  Position(Tokenizer *lexer, size_t columnStart, size_t columnEnd,
            size_t line) noexcept;
 
   Position() noexcept : lexer{nullptr} {}
@@ -249,11 +249,11 @@ public:
 
   /*!\return Where to find the referenced position.
    */
-  Lexer *getLexer() noexcept { return lexer; }
+  Tokenizer *getTokenizer() noexcept { return lexer; }
 
   /*!\return Where to find the referenced position (const).
    */
-  const Lexer *getLexer() const noexcept { return lexer; }
+  const Tokenizer *getTokenizer() const noexcept { return lexer; }
 
   /*!\return Returns first column of the marked area.
    * \see getColumnEnd
@@ -283,7 +283,7 @@ public:
 };
 
 /*!\brief A Token is the result of the lexical analysis nextToken.
- * \see Lexer.nextToken
+ * \see Tokenizer.nextToken
  */
 class Token {
   Position pos;
@@ -410,13 +410,13 @@ public:
  *
  * This class can be used to tokenize an input stream.
  *
- *     Lexer lexer("<stdin>", std::cin);
+ *     Tokenizer lexer("<stdin>", std::cin);
  *     Token tok;
  *     while ((tok = lexer.nextToken()).getType() != tok_eof) {
  *       // Do something with the token
  *     }
  */
-class Lexer {
+class Tokenizer {
   std::string name;    //!< Name of the lexer (file-name)
   std::istream &input; //!< Input stream to read from.
 
@@ -447,10 +447,10 @@ public:
    * \param input Input stream to read characters from.
    * \see getName
    */
-  Lexer(const std::string &name, std::istream &input);
-  Lexer(const Lexer &lexer) = delete;
+  Tokenizer(const std::string &name, std::istream &input);
+  Tokenizer(const Tokenizer &lexer) = delete;
 
-  virtual ~Lexer();
+  virtual ~Tokenizer();
 
   /*!\return Returns name of lexer (e.g. file name, just a name
    * representing the input stream).
@@ -514,7 +514,7 @@ public:
    * real position of is done like this:
    *
    *     Position pos = lexer.getPosition();
-   *     Position realPos(pos.getLexer(),
+   *     Position realPos(pos.getTokenizer(),
    *       pos.getColumnStart() - 1,
    *       pos.getColumnEnd() - 2,
    *       pos.getLineStart(), pos.getLineEnd());
@@ -533,7 +533,7 @@ public:
    * real position of is done like this:
    *
    *     Position pos = lexer.getPosition();
-   *     Position realPos(pos.getLexer(),
+   *     Position realPos(pos.getTokenizer(),
    *       pos.getColumnStart() - 1,
    *       pos.getColumnEnd() - 2,
    *       pos.getLineStart(), pos.getLineEnd());
@@ -547,14 +547,14 @@ public:
    * \param msg
    * \see getPosition readLine
    */
-  TokenType reportLexerError(const std::string &msg) noexcept;
+  TokenType reportTokenizerError(const std::string &msg) noexcept;
 
   /*!\brief Reports a lexical error. Reads till EOL.
    * \param msg
    * \param pos
    * \see getPosition readLine
    */
-  TokenType reportLexerError(const std::string &msg,
+  TokenType reportTokenizerError(const std::string &msg,
                              const Position &pos) noexcept;
 
   /*!\brief Reports a syntax error. Reads till EOL.

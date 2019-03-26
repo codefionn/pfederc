@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['parse',['parse',['../group__parser.html#gaf0633d2fdba0a50678ca5e2486e2b071',1,'feder::parser']]],
-  ['parseprimary',['parsePrimary',['../group__parser.html#ga4358be534a56e4b090de543aff3e1a29',1,'feder::parser']]],
-  ['parseprogram',['parseProgram',['../group__parser.html#gad024ae49b00817415a480dd44cbe695a',1,'feder::parser']]],
-  ['parserhs',['parseRHS',['../group__parser.html#ga75fc20f073b098e42a667a7ff35374ab',1,'feder::parser']]],
-  ['position',['Position',['../classfeder_1_1lexer_1_1Position.html#a02a4542ca91742c49ff799480a542ffd',1,'feder::lexer::Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd, size_t lineStart, size_t lineEnd) noexcept'],['../classfeder_1_1lexer_1_1Position.html#a01775f526eea70a3bc955eace64907f7',1,'feder::lexer::Position::Position(Lexer *lexer, size_t columnStart, size_t columnEnd, size_t line) noexcept'],['../classfeder_1_1lexer_1_1Position.html#a78e278f9929015146cf67b1ffb8ce490',1,'feder::lexer::Position::Position(const Position &amp;pos) noexcept'],['../classfeder_1_1lexer_1_1Position.html#ae4fbc65c331a67684f57e244dba4c5ae',1,'feder::lexer::Position::Position(const Position &amp;pos0, const Position &amp;pos1) noexcept']]],
-  ['program',['Program',['../classfeder_1_1syntax_1_1Program.html#a6fdc272d3877c4b604a2739ceefd017a',1,'feder::syntax::Program']]],
-  ['pushtoken',['pushToken',['../classfeder_1_1lexer_1_1Lexer.html#a8e38a79d100d3f1fad7c53453d826f65',1,'feder::lexer::Lexer']]]
+  ['readline',['readLine',['../classfeder_1_1lexer_1_1Tokenizer.html#adba09db9990bfb505e406b7eede622d1',1,'feder::lexer::Tokenizer']]],
+  ['reportsemanticerror',['reportSemanticError',['../classfeder_1_1lexer_1_1Tokenizer.html#a0408cdd1dd121d411659f7a83a81da75',1,'feder::lexer::Tokenizer']]],
+  ['reportsemanticwarning',['reportSemanticWarning',['../classfeder_1_1lexer_1_1Tokenizer.html#abf2db580e7c79d860966887296be7eff',1,'feder::lexer::Tokenizer']]],
+  ['reportsyntaxerror',['reportSyntaxError',['../classfeder_1_1lexer_1_1Tokenizer.html#a90eaf34416e04f9a4c8d3c4c678ef632',1,'feder::lexer::Tokenizer::reportSyntaxError()'],['../group__syntax.html#ga4d92fe5ef67647b05c1bd08ecc2a5859',1,'feder::syntax::reportSyntaxError()']]],
+  ['reporttokenizererror',['reportTokenizerError',['../classfeder_1_1lexer_1_1Tokenizer.html#a3b7cc5145307c6fc1ed0cf835f83a371',1,'feder::lexer::Tokenizer::reportTokenizerError(const std::string &amp;msg) noexcept'],['../classfeder_1_1lexer_1_1Tokenizer.html#a061f544f1e467e288970d5d1e9acd5d6',1,'feder::lexer::Tokenizer::reportTokenizerError(const std::string &amp;msg, const Position &amp;pos) noexcept']]]
 ];

@@ -2,7 +2,7 @@
 using namespace feder;
 
 static std::unique_ptr<syntax::IdExpr>
-_parsePrimaryIdExpr(lexer::Lexer &lex) noexcept {
+_parsePrimaryIdExpr(lexer::Tokenizer &lex) noexcept {
   lexer::Token tok = lex.currentToken();
   lex.nextToken(); // eat id
 
@@ -11,7 +11,7 @@ _parsePrimaryIdExpr(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::NumExpr>
-_parsePrimaryNumExpr(lexer::Lexer &lex) noexcept {
+_parsePrimaryNumExpr(lexer::Tokenizer &lex) noexcept {
   lexer::Token tok = lex.currentToken();
   lex.nextToken(); // eat num
 
@@ -21,7 +21,7 @@ _parsePrimaryNumExpr(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::StrExpr>
-_parsePrimaryString(lexer::Lexer &lex) noexcept {
+_parsePrimaryString(lexer::Tokenizer &lex) noexcept {
   lexer::Token tok = lex.currentToken();
   lex.nextToken(); // eat str
 
@@ -29,7 +29,7 @@ _parsePrimaryString(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::CharExpr>
-_parsePrimaryChar(lexer::Lexer &lex) noexcept {
+_parsePrimaryChar(lexer::Tokenizer &lex) noexcept {
   lexer::Token tok = lex.currentToken();
   lex.nextToken(); // eat str
 
@@ -38,7 +38,7 @@ _parsePrimaryChar(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::BraceExpr>
-_parsePrimaryBraceExpr(lexer::Lexer &lex) noexcept {
+_parsePrimaryBraceExpr(lexer::Tokenizer &lex) noexcept {
   lex.skipNewLine = true;
 
   lexer::Position posStart = lex.currentToken().getPosition();
@@ -68,7 +68,7 @@ _parsePrimaryBraceExpr(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::UnOpExpr>
-_parsePrimaryUnOpExpr(lexer::Lexer &lex) noexcept {
+_parsePrimaryUnOpExpr(lexer::Tokenizer &lex) noexcept {
   if (!lexer::isValidOperatorPosition(lex.currentToken().getOperator(),
                                       lexer::op_lunary)) {
     syntax::reportSyntaxError(
@@ -90,7 +90,7 @@ _parsePrimaryUnOpExpr(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::Expr>
-_parsePrimaryArray(lexer::Lexer &lex) noexcept {
+_parsePrimaryArray(lexer::Tokenizer &lex) noexcept {
   lexer::Position posStart = lex.currentToken().getPosition();
   lex.nextToken(); // eat [
 
@@ -148,7 +148,7 @@ _parsePrimaryArray(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::TemplateExpr>
-_parsePrimaryTemplate(lexer::Lexer &lex) noexcept {
+_parsePrimaryTemplate(lexer::Tokenizer &lex) noexcept {
   lexer::Position startPos = lex.currentToken().getPosition();
   lex.nextToken(); // eat {
 
@@ -178,7 +178,7 @@ _parsePrimaryTemplate(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::FuncParamExpr>
-_parsePrimaryFunctionParam(lexer::Lexer &lex) noexcept {
+_parsePrimaryFunctionParam(lexer::Tokenizer &lex) noexcept {
   auto param = parser::parse(lex, 0, true);
   if (!param)
     return nullptr;
@@ -229,7 +229,7 @@ _parsePrimaryFunctionParam(lexer::Lexer &lex) noexcept {
 }
 
 static std::vector<std::unique_ptr<syntax::FuncParamExpr>>
-_parsePrimaryFunctionParams(lexer::Lexer &lex, bool &err) noexcept {
+_parsePrimaryFunctionParams(lexer::Tokenizer &lex, bool &err) noexcept {
   err = false;
   lex.skipNewLine = true;
 
@@ -274,7 +274,7 @@ _parsePrimaryFunctionParams(lexer::Lexer &lex, bool &err) noexcept {
   return result;
 }
 
-static std::vector<std::string> _parsePrimaryFunctionName(lexer::Lexer &lex,
+static std::vector<std::string> _parsePrimaryFunctionName(lexer::Tokenizer &lex,
                                                           bool &err) noexcept {
   err = false;
 
@@ -299,7 +299,7 @@ static std::vector<std::string> _parsePrimaryFunctionName(lexer::Lexer &lex,
 }
 
 static std::unique_ptr<syntax::FuncExpr>
-_parsePrimaryFunction(lexer::Lexer &lex) noexcept {
+_parsePrimaryFunction(lexer::Tokenizer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
   bool virtualFunc = lex.currentToken() == lexer::tok_vfunc;
   lex.nextToken(); // eat 'func'/'Func'
@@ -392,7 +392,7 @@ _parsePrimaryFunction(lexer::Lexer &lex) noexcept {
 }
 
 static std::vector<std::unique_ptr<syntax::Expr>>
-_parseInherited(lexer::Lexer &lex, bool &error) noexcept {
+_parseInherited(lexer::Tokenizer &lex, bool &error) noexcept {
   error = false;
 
   if (lex.currentToken() != lexer::op_tcast)
@@ -424,7 +424,7 @@ _parseInherited(lexer::Lexer &lex, bool &error) noexcept {
 }
 
 static void _parsePrimaryClassBody(
-    lexer::Lexer &lex, bool &err, const std::string &className,
+    lexer::Tokenizer &lex, bool &err, const std::string &className,
     std::vector<std::unique_ptr<syntax::Expr>> &attributes,
     std::vector<std::unique_ptr<syntax::FuncExpr>> &constructors,
     std::vector<std::unique_ptr<syntax::FuncExpr>> &functions) noexcept {
@@ -500,7 +500,7 @@ static void _parsePrimaryClassBody(
 }
 
 static std::unique_ptr<syntax::ClassExpr>
-_parsePrimaryClass(lexer::Lexer &lex) noexcept {
+_parsePrimaryClass(lexer::Tokenizer &lex) noexcept {
   lexer::Position startPos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'class'
 
@@ -547,7 +547,7 @@ _parsePrimaryClass(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::TraitExpr>
-_parsePrimaryTrait(lexer::Lexer &lex) noexcept {
+_parsePrimaryTrait(lexer::Tokenizer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'trait'
 
@@ -613,7 +613,7 @@ _parsePrimaryTrait(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::EnumExpr>
-_parsePrimaryEnum(lexer::Lexer &lex) noexcept {
+_parsePrimaryEnum(lexer::Tokenizer &lex) noexcept {
   lexer::Position startPos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'enum'
 
@@ -695,7 +695,7 @@ _parsePrimaryEnum(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::NmspExpr>
-_parsePrimaryNamespace(lexer::Lexer &lex) noexcept {
+_parsePrimaryNamespace(lexer::Tokenizer &lex) noexcept {
   lexer::Position pos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'namespace'
 
@@ -719,7 +719,7 @@ _parsePrimaryNamespace(lexer::Lexer &lex) noexcept {
 }
 
 static syntax::IfCaseExpr
-_parsePrimaryIfCase(lexer::Lexer &lex) noexcept {
+_parsePrimaryIfCase(lexer::Tokenizer &lex) noexcept {
   if (!parser::match(lex, nullptr, lexer::tok_if))
     return syntax::IfCaseExpr(nullptr, nullptr);
 
@@ -746,7 +746,7 @@ _parsePrimaryIfCase(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::IfExpr>
-_parsePrimaryIf(lexer::Lexer &lex) noexcept {
+_parsePrimaryIf(lexer::Tokenizer &lex) noexcept {
   lexer::Position startPos = lex.currentToken().getPosition();
 
   std::vector<syntax::IfCaseExpr> ifCases;
@@ -800,7 +800,7 @@ _parsePrimaryIf(lexer::Lexer &lex) noexcept {
 }
 
 syntax::MatchCaseExpr
-_parsePrimaryMatchCase(lexer::Lexer &lex) noexcept {
+_parsePrimaryMatchCase(lexer::Tokenizer &lex) noexcept {
   // Parse identifiercall
   std::unique_ptr<syntax::Expr> idExpr;
   while ((!idExpr && lex.currentToken() == lexer::tok_id)
@@ -868,7 +868,7 @@ _parsePrimaryMatchCase(lexer::Lexer &lex) noexcept {
 }
 
 std::unique_ptr<syntax::Expr>
-_parsePrimaryMatch(lexer::Lexer &lex) noexcept {
+_parsePrimaryMatch(lexer::Tokenizer &lex) noexcept {
   lexer::Position startPos(lex.currentToken().getPosition());
   lex.nextToken(); // eat match
 
@@ -917,7 +917,7 @@ _parsePrimaryMatch(lexer::Lexer &lex) noexcept {
 }
 
 static std::unique_ptr<syntax::ForExpr>
-_parsePrimaryFor(lexer::Lexer &lex) noexcept {
+_parsePrimaryFor(lexer::Tokenizer &lex) noexcept {
   lexer::Position startPos(lex.currentToken().getPosition());
   bool postCondition = lex.currentToken() == lexer::tok_do;
   lex.nextToken(); // eat for/do
@@ -1001,7 +1001,7 @@ _parsePrimaryFor(lexer::Lexer &lex) noexcept {
       std::move(prog), postCondition);
 }
 
-std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Lexer &lex) noexcept {
+std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Tokenizer &lex) noexcept {
   switch (lex.currentToken().getType()) {
   case lexer::tok_id:
     return _parsePrimaryIdExpr(lex);
