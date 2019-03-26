@@ -812,15 +812,24 @@ TokenType Lexer::constructToken() noexcept {
     return curtok = tok_op;
   case '=':
     nextChar(); // eat =
-    if (curchar == '=') {
+    switch (curchar) {
+    case '=':
       nextChar(); // eat =
       if (curchar == '=') {
         nextChar(); // eat =
         curop = op_veq;
       } else
         curop = op_eq;
-    } else
+      
+      break;
+    case '>':
+      nextChar(); // eat >
+      curop = op_impl;
+      break;
+    default:
       curop = op_asg;
+      break;
+    }
 
     return curtok = tok_op;
   case '&':
