@@ -1137,7 +1137,7 @@ void Lexer::reportSemanticError(const std::string &msg,
     endindex = 0;
 
   if (startindex > endindex)
-    std::swap(startindex, endindex);
+    endindex = startindex;
 
   for (size_t i = pos.getLineStart(); i <= pos.getLineEnd(); ++i) {
     std::cerr << getLines()[i] << std::endl;
