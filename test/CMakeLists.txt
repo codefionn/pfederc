@@ -251,7 +251,9 @@ add_test(parseline_match7 parseline "match enumVal\nnot.my.enumCase => doSmth()\
 add_test(parseline_fmatch0 parseline "match enumVal enumCase => doSomethings()\n;\n;")
 add_test(parseline_fmatch1 parseline "match enumVal\n enumCase => doSomethings()\n;;")
 add_test(parseline_fmatch2 parseline "match enumVal\n enumCase")
+add_test(parseline_fmatch3 parseline "match enumVal\n;")
 set_tests_properties(parseline_fmatch0 parseline_fmatch1 parseline_fmatch2
+  parseline_fmatch3
   PROPERTIES WILL_FAIL TRUE)
 
 ## Comments
@@ -308,9 +310,8 @@ find_program(VALGRIND "valgrind")
 if (VALGRIND AND PFEDERC_TEST_VALGRIND)
   set(VALGRIND_PROG ${VALGRIND} "--tool=memcheck" "--leak-check=yes")
 
-  set(parseline_file )
-
   add_test(NAME valgrind_parseline0 COMMAND ${VALGRIND_PROG} $<TARGET_FILE:parseline> "hello[100]")
   add_test(NAME valgrind_parseline1 COMMAND ${VALGRIND_PROG} $<TARGET_FILE:parseline> "trait MyTrait :: MyTraitParent\nFunc helloWorld : std.String ; \n;")
   add_test(NAME valgrind_parseline2 COMMAND ${VALGRIND_PROG} $<TARGET_FILE:parseline> "func helloWorld\nstd.io.println(\"Hello, World!\")\n;")
+  add_test(NAME valgrind_parseprogram0 COMMAND ${VALGRIND_PROG} $<TARGET_FILE:parseprogram> "std.io.print(\"Hello, \")\nstd.io.println(\"World!\")")
 endif()

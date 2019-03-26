@@ -902,6 +902,12 @@ _parsePrimaryMatch(lexer::Lexer &lex) noexcept {
   if (!parser::match(lex, nullptr, lexer::tok_delim))
     return nullptr;
 
+  if (matchCases.empty()) {
+    err = true;
+    lex.reportSemanticError("Expected at least one match case.",
+        lexer::Position(startPos, enumValExpr->getPosition()));
+  }
+
   if (err)
     return nullptr;
 
