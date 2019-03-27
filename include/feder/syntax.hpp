@@ -55,8 +55,7 @@ public:
    * \param error
    */
   Program(std::vector<std::unique_ptr<Expr>> &&lines,
-          std::unique_ptr<Expr> &&returnExpr,
-          bool error = false) noexcept;
+          std::unique_ptr<Expr> &&returnExpr, bool error = false) noexcept;
 
   virtual ~Program();
 
@@ -74,17 +73,15 @@ public:
 
   /*!\return Returns true, if program has return. Otherwise false is returned.
    */
-  bool hasReturn() const noexcept { return (bool) returnExpr; }
+  bool hasReturn() const noexcept { return (bool)returnExpr; }
 
   /*!\return Returns optional return expression.
    */
-  auto &getReturnExpr() noexcept
-  { return *returnExpr; }
+  auto &getReturnExpr() noexcept { return *returnExpr; }
 
   /*!\return Returns optional return expression (const).
    */
-  const auto &getReturnExpr() const noexcept
-  { return *returnExpr; }
+  const auto &getReturnExpr() const noexcept { return *returnExpr; }
 };
 
 /*!\brief Expression types.
@@ -154,12 +151,12 @@ public:
   /*!\return Returns getType() == type.
    * \param type
    */
-  bool operator ==(ExprType type) const noexcept { return getType() == type; }
+  bool operator==(ExprType type) const noexcept { return getType() == type; }
 
   /*!\return Returns getType() != type.
    * \param type
    */
-  bool operator !=(ExprType type) const noexcept { return getType() != type; }
+  bool operator!=(ExprType type) const noexcept { return getType() != type; }
 };
 
 /*!\brief Identifier expression.
@@ -675,14 +672,14 @@ public:
   /*!\return Returns getOperator() == type.
    * \param type
    */
-  bool operator ==(lexer::OperatorType type) const noexcept {
+  bool operator==(lexer::OperatorType type) const noexcept {
     return getOperator() == type;
   }
 
   /*!\return Returns getOperator() != type.
    * \param type
    */
-  bool operator !=(lexer::OperatorType type) const noexcept {
+  bool operator!=(lexer::OperatorType type) const noexcept {
     return getOperator() != type;
   }
 };
@@ -877,7 +874,7 @@ typedef std::pair<std::unique_ptr<Expr>, std::unique_ptr<Program>> IfCaseExpr;
 /*!\brief If expression.
  */
 class IfExpr : public Expr {
-  std::vector<IfCaseExpr> ifs;    //!< If cases. size >= 1.
+  std::vector<IfCaseExpr> ifs;       //!< If cases. size >= 1.
   std::unique_ptr<Program> elseExpr; //!< Else case, optional.
 
 public:
@@ -917,21 +914,22 @@ public:
   virtual bool isStatement() const noexcept override;
 };
 
-typedef std::pair<std::unique_ptr<Expr>, std::unique_ptr<Program>> MatchCaseExpr;
+typedef std::pair<std::unique_ptr<Expr>, std::unique_ptr<Program>>
+    MatchCaseExpr;
 
 /*!\brief Match expression.
  */
 class MatchExpr : public Expr {
   std::unique_ptr<Expr> enumVal;
   std::vector<MatchCaseExpr> matchCases;
+
 public:
   /*!\brief Initializes match expression
    * \param pos
    * \param enumVal Enum value expression to compare match cases to.
    * \param matchCases
    */
-  MatchExpr(const lexer::Position &pos,
-            std::unique_ptr<Expr> &&enumVal,
+  MatchExpr(const lexer::Position &pos, std::unique_ptr<Expr> &&enumVal,
             std::vector<MatchCaseExpr> &&matchCases) noexcept;
 
   virtual ~MatchExpr();
@@ -966,6 +964,7 @@ class ForExpr : public Expr {
   std::unique_ptr<Expr> stepExpr;
 
   std::unique_ptr<Program> program;
+
 public:
   /*!\brief Initializes for/do expression.
    * \param pos
@@ -975,10 +974,8 @@ public:
    * \param program
    * \param postConditionCheck True if 'do'-loop, false if 'for'-loop.
    */
-  ForExpr(const lexer::Position &pos,
-          std::unique_ptr<Expr> &&initExpr,
-          std::unique_ptr<Expr> &&condExpr,
-          std::unique_ptr<Expr> &&stepExpr,
+  ForExpr(const lexer::Position &pos, std::unique_ptr<Expr> &&initExpr,
+          std::unique_ptr<Expr> &&condExpr, std::unique_ptr<Expr> &&stepExpr,
           std::unique_ptr<Program> &&program,
           bool postConditionCheck = false) noexcept;
 
@@ -993,7 +990,7 @@ public:
 
   /*!\return Returns if has initialization.
    */
-  bool hasInitialization() const noexcept { return (bool) initExpr; }
+  bool hasInitialization() const noexcept { return (bool)initExpr; }
 
   /*!\return Returns optional initialization expression.
    */
@@ -1015,7 +1012,7 @@ public:
 
   /*!\return Returns if has iterator step.
    */
-  bool hasStep() const noexcept { return (bool) stepExpr; }
+  bool hasStep() const noexcept { return (bool)stepExpr; }
 
   /*!\return Returns optional iterator step.
    */
@@ -1028,7 +1025,7 @@ public:
   /*!\return Returns program/body of the do/for loop.
    */
   auto &getProgram() noexcept { return *program; }
-  
+
   /*!\return Returns program/body of the do/for loop.
    */
   const auto &getProgram() const noexcept { return *program; }

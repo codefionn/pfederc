@@ -24,7 +24,7 @@ bool parser::match(lexer::Tokenizer &lex, lexer::Token *tok,
 }
 
 bool parser::match(lexer::Tokenizer &lex, lexer::Token *tok,
-           const std::vector<lexer::TokenType> &tokTypes) noexcept {
+                   const std::vector<lexer::TokenType> &tokTypes) noexcept {
 
   for (auto tokType : tokTypes) {
     if (lex.currentToken() == tokType) {
@@ -54,7 +54,49 @@ bool parser::match(lexer::Tokenizer &lex, lexer::Token *tok,
   return false;
 }
 
-static bool _isRightSideUnary(lexer::Token &tokOp, lexer::Tokenizer &lex) noexcept {
+std::vector<std::string>
+parser::parseIdentifierCall(lexer::Tokenizer &lex) noexcept {
+  lexer::Token idTok;
+  if (!parser::match(lex, &idTok, lexer::tok_id))
+    return std::vector<std::string>();
+
+  std::vector<std::string> result;
+  result.push_back(idTok.getString());
+  while (lex.currentToken() == lexer::op_mem) {
+    lex.nextToken(); // eat .
+    if (!parser::match(lex, &idTok, lexer::tok_id))
+      return std::vector<std::string>();
+
+    result.push_back(idTok.getString());
+  }
+
+  return result;
+}
+
+std::unique_ptr<syntax::Expr>
+parser::parseIdentifierCallExpr(lexer::Tokenizer &lex) noexcept {
+  lexer::Token idTok;
+  if (!parser::match(lex, &idTok, lexer::tok_id))
+    return nullptr;
+
+  std::unique_ptr<syntax::Expr> result;
+  result =
+      std::make_unique<syntax::IdExpr>(lex.getPosition(), idTok.getString());
+  while (lex.currentToken() == lexer::op_mem) {
+    lex.nextToken(); // eat .
+    if (!parser::match(lex, &idTok, lexer::tok_id))
+      return nullptr;
+
+    result = std::make_unique<syntax::BiOpExpr>(
+        lex.getPosition(), lexer::op_mem, std::move(result),
+        std::make_unique<syntax::IdExpr>(lex.getPosition(), idTok.getString()));
+  }
+
+  return std::move(result);
+}
+
+static bool _isRightSideUnary(lexer::Token &tokOp,
+                              lexer::Tokenizer &lex) noexcept {
   if (!lexer::isPrimaryToken(lex.currentToken().getType()))
     return true;
 
@@ -162,7 +204,8 @@ parser::parseRHS(lexer::Tokenizer &lex, std::unique_ptr<syntax::Expr> lhs,
   return std::move(lhs);
 }
 
-std::unique_ptr<syntax::Expr> parser::parse(lexer::Tokenizer &lex, std::size_t prec,
+std::unique_ptr<syntax::Expr> parser::parse(lexer::Tokenizer &lex,
+                                            std::size_t prec,
                                             bool parseFunctionDecl) noexcept {
   std::unique_ptr<syntax::Expr> primaryExpr = parser::parsePrimary(lex);
   if (!primaryExpr)
@@ -193,8 +236,7 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
       error = true;
     else {
       error = true;
-      lex.reportSemanticError(
-         "Expected statement", line->getPosition());
+      lex.reportSemanticError("Expected statement", line->getPosition());
     }
 
     if (lex.currentToken() == lexer::tok_eof)
@@ -223,5 +265,5 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
   }
 
   return std::make_unique<syntax::Program>(std::move(lines),
-      std::move(returnExpr), error);
+                                           std::move(returnExpr), error);
 }

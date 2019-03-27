@@ -40,7 +40,8 @@ std::unique_ptr<syntax::Expr> parseRHS(lexer::Tokenizer &lexer,
  * \param prec Minimal operator precedence.
  * \see parseRHS
  */
-std::unique_ptr<syntax::Expr> parse(lexer::Tokenizer &lexer, std::size_t prec = 0,
+std::unique_ptr<syntax::Expr> parse(lexer::Tokenizer &lexer,
+                                    std::size_t prec = 0,
                                     bool parseFunctionDecl = false) noexcept;
 
 /*!\brief Parse program lines.
@@ -73,6 +74,19 @@ bool match(lexer::Tokenizer &lex, lexer::Token *tok, lexer::TokenType tokType,
  */
 bool match(lexer::Tokenizer &lex, lexer::Token *tok,
            const std::vector<lexer::TokenType> &tokTypes) noexcept;
+
+/*!\return Returns an empty vector on failure, otherwise size() >= 1, with
+ * strings, which have at least one character.
+ * \param lex
+ */
+std::vector<std::string> parseIdentifierCall(lexer::Tokenizer &lex) noexcept;
+
+/*!\return Returns nullptr on failure, otherwise IdExpr or BiOpExpr.
+ * \param lex
+ */
+std::unique_ptr<syntax::Expr>
+parseIdentifierCallExpr(lexer::Tokenizer &lex) noexcept;
+
 
 /*!\} */
 } // end namespace parser

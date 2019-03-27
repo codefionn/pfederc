@@ -280,19 +280,9 @@ static std::vector<std::string> _parsePrimaryFunctionName(lexer::Tokenizer &lex,
 
   std::vector<std::string> result;
   if (lex.currentToken() == lexer::tok_id) {
-    result.push_back(lex.currentToken().getString());
-    lex.nextToken(); // eat id
-    while (lex.currentToken() == lexer::op_mem) {
-      lex.nextToken(); // eat .
-
-      lexer::Token tokid;
-      if (!parser::match(lex, &tokid, lexer::tok_id)) {
-        err = true;
-        return result;
-      }
-
-      result.push_back(tokid.getString());
-    }
+    result = parser::parseIdentifierCall(lex);
+    if (result.empty())
+      err = true;
   }
 
   return result;
@@ -802,27 +792,10 @@ _parsePrimaryIf(lexer::Tokenizer &lex) noexcept {
 syntax::MatchCaseExpr
 _parsePrimaryMatchCase(lexer::Tokenizer &lex) noexcept {
   // Parse identifiercall
-  std::unique_ptr<syntax::Expr> idExpr;
-  while ((!idExpr && lex.currentToken() == lexer::tok_id)
-      || (idExpr && lex.currentToken() == lexer::op_mem)) {
-    if (idExpr) {
-      lex.nextToken(); // eat .
-    }
+  auto idExpr = parser::parseIdentifierCallExpr(lex);
+  if (!idExpr)
+    return syntax::MatchCaseExpr(nullptr, nullptr);
 
-    lexer::Token idTok;
-    if (!parser::match(lex, &idTok, lexer::tok_id))
-      return syntax::MatchCaseExpr(nullptr, nullptr);
-
-    auto newid = std::make_unique<syntax::IdExpr>(idTok.getPosition(),
-        idTok.getString());
-
-    if (idExpr)
-      idExpr = std::make_unique<syntax::BiOpExpr>(
-          lexer::Position(idExpr->getPosition(), idTok.getPosition()),
-          lexer::op_mem, std::move(idExpr), std::move(newid));
-    else
-      idExpr = std::move(newid);
-  }
 
   if (lex.currentToken() == lexer::op_impl) {
     lex.nextToken();
