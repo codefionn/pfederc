@@ -157,6 +157,10 @@ public:
    * \param type
    */
   bool operator!=(ExprType type) const noexcept { return getType() != type; }
+
+  /*!\return Returns if expression has potential return value.
+   */
+  virtual bool hasReturn() const noexcept { return false; }
 };
 
 /*!\brief Identifier expression.
@@ -181,6 +185,8 @@ public:
   const std::string &getIdentifier() const noexcept { return id; }
 
   virtual std::string to_string() const noexcept override { return id; }
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Expression for floating-point and integer numberse.
@@ -211,6 +217,8 @@ public:
   auto getNumberType() const noexcept { return numType; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief String expression
@@ -232,6 +240,8 @@ public:
   const std::string &getString() const noexcept { return str; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Character expression
@@ -253,6 +263,8 @@ public:
   char getCharacter() const noexcept { return c; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Function parameter expression.
@@ -415,6 +427,8 @@ public:
   virtual std::string to_string() const noexcept override;
 
   virtual bool isStatement() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Class expression.
@@ -493,6 +507,8 @@ public:
   virtual std::string to_string() const noexcept override;
 
   virtual bool isStatement() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Enum expression.
@@ -682,6 +698,8 @@ public:
   bool operator!=(lexer::OperatorType type) const noexcept {
     return getOperator() != type;
   }
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Unary operator expression
@@ -720,6 +738,8 @@ public:
   const Expr &getExpression() const noexcept { return *expr; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Brace expression
@@ -751,6 +771,8 @@ public:
   const Expr &getExpression() const noexcept { return *expr; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Template expression
@@ -812,6 +834,8 @@ public:
   const Expr &getSize() const noexcept { return *size; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Array list (constructor) expression.
@@ -839,6 +863,8 @@ public:
   }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief Array index expression.
@@ -865,6 +891,8 @@ public:
   const Expr &getIndex() const noexcept { return *indexExpr; }
 
   virtual std::string to_string() const noexcept override;
+
+  virtual bool hasReturn() const noexcept override;
 };
 
 /*!\brief If case.
@@ -887,6 +915,10 @@ public:
          std::unique_ptr<Program> &&elseExpr) noexcept;
 
   virtual ~IfExpr();
+
+  /*!\return Returns if expression returns a value.
+   */
+  virtual bool hasReturn() const noexcept override;
 
   /*!\returns If cases. size >= 1.
    */
@@ -922,17 +954,37 @@ typedef std::pair<std::unique_ptr<Expr>, std::unique_ptr<Program>>
 class MatchExpr : public Expr {
   std::unique_ptr<Expr> enumVal;
   std::vector<MatchCaseExpr> matchCases;
+  std::unique_ptr<Program> defaultCase;
 
 public:
   /*!\brief Initializes match expression
    * \param pos
    * \param enumVal Enum value expression to compare match cases to.
    * \param matchCases
+   * \param defaultCase optional default case
    */
   MatchExpr(const lexer::Position &pos, std::unique_ptr<Expr> &&enumVal,
-            std::vector<MatchCaseExpr> &&matchCases) noexcept;
+            std::vector<MatchCaseExpr> &&matchCases,
+            std::unique_ptr<Program>   &&defaultCase) noexcept;
 
   virtual ~MatchExpr();
+
+  /*!\return Returns if expression returns a value.
+   */
+  virtual bool hasReturn() const noexcept override;
+
+  /*!\return Returns if match expression has default case ('_').
+   */
+  bool hasDefaultCase() const noexcept
+  { return (bool) defaultCase; }
+
+  /*!\return Returns optional default case.
+   */
+  auto &getDefaultCase() noexcept { return *defaultCase; }
+
+  /*!\return Returns optional default case (const).
+   */
+  const auto &getDefaultCase() const noexcept { return *defaultCase; }
 
   /*!\return Returns enum value.
    */

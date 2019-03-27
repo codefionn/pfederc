@@ -95,6 +95,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1620e9ff9c1f8ce11fad4c51cd1837ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#a1620e9ff9c1f8ce11fad4c51cd1837ea">IfExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::vector&lt; <a class="el" href="group__syntax.html#ga16165d29573fa0168eb22557101e3344">IfCaseExpr</a> &gt; &amp;&amp;ifs, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; &amp;&amp;elseExpr) noexcept</td></tr>
 <tr class="memdesc:a1620e9ff9c1f8ce11fad4c51cd1837ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes if expression.  <a href="#a1620e9ff9c1f8ce11fad4c51cd1837ea">More...</a><br /></td></tr>
 <tr class="separator:a1620e9ff9c1f8ce11fad4c51cd1837ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1ffc67a60d2d0a1e2ad6ab1b3597eb3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#ac1ffc67a60d2d0a1e2ad6ab1b3597eb3">hasReturn</a> () const noexcept override</td></tr>
+<tr class="separator:ac1ffc67a60d2d0a1e2ad6ab1b3597eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15b8e312ff9953dfd0d5b8f28e9125a1"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#a15b8e312ff9953dfd0d5b8f28e9125a1">getIfCases</a> () noexcept</td></tr>
 <tr class="separator:a15b8e312ff9953dfd0d5b8f28e9125a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b38a826368295ccdfb8a0ca45d39b83"><td class="memItemLeft" align="right" valign="top">const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#a5b38a826368295ccdfb8a0ca45d39b83">getIfCases</a> () const noexcept</td></tr>
@@ -305,6 +307,34 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns true if has else case, otherwise false. If true is returned [<a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#ae9713409a5bc97e3b6461f97eea1b4c1">getElseCase</a>] is valid, otherwise invalid. </dd></dl>
+
+</div>
+</div>
+<a id="ac1ffc67a60d2d0a1e2ad6ab1b3597eb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1ffc67a60d2d0a1e2ad6ab1b3597eb3">&#9670;&nbsp;</a></span>hasReturn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool feder::syntax::IfExpr::hasReturn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns if expression returns a value. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classfeder_1_1syntax_1_1Expr.html#a2b9845ea2d377236bffb420348c7cae8">feder::syntax::Expr</a>.</p>
 
 </div>
 </div>

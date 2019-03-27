@@ -8,10 +8,16 @@ specify a Feder standard library.
 
 *Passau is a city in Bavaria, Germany*.
 
-## Build
+## Download
 
-Build sections assumens you've cloned this repository and your working path
-is the main directory of the project (pfederc).
+Clone repository and jump into main directory of the project:
+
+```bash
+git clone https://github.com/codefionn/pfederc
+cd pfederc
+```
+
+## Build
 
 CMake build:
 

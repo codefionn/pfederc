@@ -122,6 +122,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aea8544b8950fe98998861f40af92f82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5f4a0f16be7b416d25f6116f03626cb"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#aa5f4a0f16be7b416d25f6116f03626cb">isStatement</a> () const noexcept override</td></tr>
 <tr class="separator:aa5f4a0f16be7b416d25f6116f03626cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af58117cac78d8c9d095b381bb9b57c62"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#af58117cac78d8c9d095b381bb9b57c62">hasReturn</a> () const noexcept override</td></tr>
+<tr class="separator:af58117cac78d8c9d095b381bb9b57c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classfeder_1_1syntax_1_1IdExpr"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classfeder_1_1syntax_1_1IdExpr')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classfeder_1_1syntax_1_1IdExpr.html">feder::syntax::IdExpr</a></td></tr>
 <tr class="memitem:ad3025ed395a067e00eed99fe9e10c43a inherit pub_methods_classfeder_1_1syntax_1_1IdExpr"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1IdExpr.html#ad3025ed395a067e00eed99fe9e10c43a">IdExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, const std::string &amp;id) noexcept</td></tr>
 <tr class="memdesc:ad3025ed395a067e00eed99fe9e10c43a inherit pub_methods_classfeder_1_1syntax_1_1IdExpr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes identifier expression with id (identifier).  <a href="classfeder_1_1syntax_1_1IdExpr.html#ad3025ed395a067e00eed99fe9e10c43a">More...</a><br /></td></tr>
@@ -491,6 +493,34 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns inherited traits (const). </dd></dl>
+
+</div>
+</div>
+<a id="af58117cac78d8c9d095b381bb9b57c62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af58117cac78d8c9d095b381bb9b57c62">&#9670;&nbsp;</a></span>hasReturn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool feder::syntax::ClassExpr::hasReturn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns if expression has potential return value. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classfeder_1_1syntax_1_1IdExpr.html#a8c753ac5b2a47f28edabc82949b8007d">feder::syntax::IdExpr</a>.</p>
 
 </div>
 </div>

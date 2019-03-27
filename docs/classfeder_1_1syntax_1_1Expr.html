@@ -121,6 +121,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4b658fc395706fd7fc1b15ddee030ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1adfe967be3a5e20552fb267b24d5de7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1Expr.html#a1adfe967be3a5e20552fb267b24d5de7">operator!=</a> (<a class="el" href="group__syntax.html#ga3a920d8e611fde2a62ad15a786faacfa">ExprType</a> type) const noexcept</td></tr>
 <tr class="separator:a1adfe967be3a5e20552fb267b24d5de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b9845ea2d377236bffb420348c7cae8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1Expr.html#a2b9845ea2d377236bffb420348c7cae8">hasReturn</a> () const noexcept</td></tr>
+<tr class="separator:a2b9845ea2d377236bffb420348c7cae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parent of expressions. </p>
@@ -220,6 +222,34 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns expression type. </dd></dl>
+
+</div>
+</div>
+<a id="a2b9845ea2d377236bffb420348c7cae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b9845ea2d377236bffb420348c7cae8">&#9670;&nbsp;</a></span>hasReturn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool feder::syntax::Expr::hasReturn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns if expression has potential return value. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#ab423c7d030e3cee7a31c37653e685050">feder::syntax::MatchExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1IfExpr.html#ac1ffc67a60d2d0a1e2ad6ab1b3597eb3">feder::syntax::IfExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ArrayIndexExpr.html#a6febf93caca48a82027e81a5c68fb167">feder::syntax::ArrayIndexExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ArrayListExpr.html#a9801d4f26bab1565f370473dd51641ac">feder::syntax::ArrayListExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ArrayConExpr.html#a2f3615606ae7172766bf3845545babc7">feder::syntax::ArrayConExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html#a89acbb80ae3a17c0201f4d50a95394d4">feder::syntax::BraceExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1UnOpExpr.html#a72d1a98b5897632706f84ef6ef0a70e4">feder::syntax::UnOpExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1BiOpExpr.html#a122c8b66062d537c3ab6f5d707088282">feder::syntax::BiOpExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1ClassExpr.html#af58117cac78d8c9d095b381bb9b57c62">feder::syntax::ClassExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#ac8859fdf4a3bfbeb34417af94c0a9afd">feder::syntax::FuncExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1CharExpr.html#a30800eb77d5ccfe44c76715ac9992ead">feder::syntax::CharExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1StrExpr.html#a1537a73072d8f5d91e20f97ba9584d3f">feder::syntax::StrExpr</a>, <a class="el" href="classfeder_1_1syntax_1_1NumExpr.html#a0c4c5a370137e5264c5a10a5e4ffc069">feder::syntax::NumExpr</a>, and <a class="el" href="classfeder_1_1syntax_1_1IdExpr.html#a8c753ac5b2a47f28edabc82949b8007d">feder::syntax::IdExpr</a>.</p>
 
 </div>
 </div>

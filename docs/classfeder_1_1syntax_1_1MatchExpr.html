@@ -92,9 +92,17 @@ Inheritance diagram for feder::syntax::MatchExpr:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af921a8945cc11aabc937e8e4f69f5dca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#af921a8945cc11aabc937e8e4f69f5dca">MatchExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;enumVal, std::vector&lt; MatchCaseExpr &gt; &amp;&amp;matchCases) noexcept</td></tr>
-<tr class="memdesc:af921a8945cc11aabc937e8e4f69f5dca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes match expression.  <a href="#af921a8945cc11aabc937e8e4f69f5dca">More...</a><br /></td></tr>
-<tr class="separator:af921a8945cc11aabc937e8e4f69f5dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae56e71941b064541d8b03474b35bb349"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#ae56e71941b064541d8b03474b35bb349">MatchExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;enumVal, std::vector&lt; MatchCaseExpr &gt; &amp;&amp;matchCases, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; &amp;&amp;defaultCase) noexcept</td></tr>
+<tr class="memdesc:ae56e71941b064541d8b03474b35bb349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes match expression.  <a href="#ae56e71941b064541d8b03474b35bb349">More...</a><br /></td></tr>
+<tr class="separator:ae56e71941b064541d8b03474b35bb349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab423c7d030e3cee7a31c37653e685050"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#ab423c7d030e3cee7a31c37653e685050">hasReturn</a> () const noexcept override</td></tr>
+<tr class="separator:ab423c7d030e3cee7a31c37653e685050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe8b7403c3724f5a0148035f3f82f36b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#afe8b7403c3724f5a0148035f3f82f36b">hasDefaultCase</a> () const noexcept</td></tr>
+<tr class="separator:afe8b7403c3724f5a0148035f3f82f36b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedbedbab4339ec376df8ed9f3613d19e"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#aedbedbab4339ec376df8ed9f3613d19e">getDefaultCase</a> () noexcept</td></tr>
+<tr class="separator:aedbedbab4339ec376df8ed9f3613d19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe8e459375c0ce67e4f50bb1dbb61d60"><td class="memItemLeft" align="right" valign="top">const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#abe8e459375c0ce67e4f50bb1dbb61d60">getDefaultCase</a> () const noexcept</td></tr>
+<tr class="separator:abe8e459375c0ce67e4f50bb1dbb61d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaba436cb5a29c0903ef600152afbb63"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#adaba436cb5a29c0903ef600152afbb63">getEnumValue</a> () noexcept</td></tr>
 <tr class="separator:adaba436cb5a29c0903ef600152afbb63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5b98d7524b016a5b602593db549cd71"><td class="memItemLeft" align="right" valign="top">const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1MatchExpr.html#ab5b98d7524b016a5b602593db549cd71">getEnumValue</a> () const noexcept</td></tr>
@@ -123,8 +131,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Match expression. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af921a8945cc11aabc937e8e4f69f5dca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af921a8945cc11aabc937e8e4f69f5dca">&#9670;&nbsp;</a></span>MatchExpr()</h2>
+<a id="ae56e71941b064541d8b03474b35bb349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae56e71941b064541d8b03474b35bb349">&#9670;&nbsp;</a></span>MatchExpr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -148,7 +156,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::vector&lt; MatchCaseExpr &gt; &amp;&amp;&#160;</td>
-          <td class="paramname"><em>matchCases</em>&#160;</td>
+          <td class="paramname"><em>matchCases</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>defaultCase</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -169,6 +183,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">pos</td><td></td></tr>
     <tr><td class="paramname">enumVal</td><td>Enum value expression to compare match cases to. </td></tr>
     <tr><td class="paramname">matchCases</td><td></td></tr>
+    <tr><td class="paramname">defaultCase</td><td>optional default case </td></tr>
   </table>
   </dd>
 </dl>
@@ -176,6 +191,58 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aedbedbab4339ec376df8ed9f3613d19e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedbedbab4339ec376df8ed9f3613d19e">&#9670;&nbsp;</a></span>getDefaultCase() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto&amp; feder::syntax::MatchExpr::getDefaultCase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns optional default case. </dd></dl>
+
+</div>
+</div>
+<a id="abe8e459375c0ce67e4f50bb1dbb61d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe8e459375c0ce67e4f50bb1dbb61d60">&#9670;&nbsp;</a></span>getDefaultCase() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const auto&amp; feder::syntax::MatchExpr::getDefaultCase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns optional default case (const). </dd></dl>
+
+</div>
+</div>
 <a id="adaba436cb5a29c0903ef600152afbb63"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adaba436cb5a29c0903ef600152afbb63">&#9670;&nbsp;</a></span>getEnumValue() <span class="overload">[1/2]</span></h2>
 
@@ -277,6 +344,60 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns match cases. </dd></dl>
+
+</div>
+</div>
+<a id="afe8b7403c3724f5a0148035f3f82f36b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe8b7403c3724f5a0148035f3f82f36b">&#9670;&nbsp;</a></span>hasDefaultCase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::syntax::MatchExpr::hasDefaultCase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns if match expression has default case ('_'). </dd></dl>
+
+</div>
+</div>
+<a id="ab423c7d030e3cee7a31c37653e685050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab423c7d030e3cee7a31c37653e685050">&#9670;&nbsp;</a></span>hasReturn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool feder::syntax::MatchExpr::hasReturn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns if expression returns a value. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classfeder_1_1syntax_1_1Expr.html#a2b9845ea2d377236bffb420348c7cae8">feder::syntax::Expr</a>.</p>
 
 </div>
 </div>

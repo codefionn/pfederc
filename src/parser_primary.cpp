@@ -837,6 +837,15 @@ _parsePrimaryMatchCase(lexer::Tokenizer &lex) noexcept {
   if (!parser::match(lex, nullptr, lexer::tok_delim))
     return syntax::MatchCaseExpr(nullptr, nullptr);
 
+  if (!(idExpr->getType() == syntax::expr_id
+        && dynamic_cast<syntax::IdExpr&>(*idExpr).getIdentifier() == "_")
+      && !idExpr->hasReturn()) {
+    lex.reportSemanticError(
+        "Expected default case or secondary expression.",
+        idExpr->getPosition());
+    return syntax::MatchCaseExpr(nullptr, nullptr);
+  }
+
   return syntax::MatchCaseExpr(std::move(idExpr), std::move(program));
 }
 
@@ -854,6 +863,7 @@ _parsePrimaryMatch(lexer::Tokenizer &lex) noexcept {
 
   bool err = false;
 
+  std::unique_ptr<syntax::Program> defaultCase(nullptr);
   std::vector<syntax::MatchCaseExpr> matchCases;
   while (lex.currentToken() != lexer::tok_delim
       && lex.currentToken() != lexer::tok_eof) {
@@ -865,15 +875,26 @@ _parsePrimaryMatch(lexer::Tokenizer &lex) noexcept {
     auto matchcase = _parsePrimaryMatchCase(lex);
     if (!matchcase.first)
       err = true;
-    else
-      matchCases.push_back(std::move(matchcase));
+    else {
+      if (matchcase.first->getType() == syntax::expr_id
+          && dynamic_cast<syntax::IdExpr&>(*matchcase.first).getIdentifier() == "_") {
+        if (defaultCase) {
+          lex.reportSemanticError(
+              "Match statement must have just one default case.",
+              matchcase.first->getPosition());
+        } else 
+          defaultCase = std::move(matchcase.second);
+      } else {
+        matchCases.push_back(std::move(matchcase));
+      }
+    }
 
     if (!parser::match(lex, nullptr, lexer::tok_eol))
       return nullptr;
   }
 
   if (!parser::match(lex, nullptr, lexer::tok_delim))
-    return nullptr;
+    err = true;
 
   if (matchCases.empty()) {
     err = true;
@@ -886,7 +907,8 @@ _parsePrimaryMatch(lexer::Tokenizer &lex) noexcept {
 
   return std::make_unique<syntax::MatchExpr>(
       lexer::Position(startPos, enumValExpr->getPosition()),
-      std::move(enumValExpr), std::move(matchCases));
+      std::move(enumValExpr), std::move(matchCases),
+      std::move(defaultCase));
 }
 
 static std::unique_ptr<syntax::ForExpr>

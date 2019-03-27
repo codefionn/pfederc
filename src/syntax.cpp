@@ -160,9 +160,11 @@ IfExpr::~IfExpr() {}
 
 MatchExpr::MatchExpr(const lexer::Position &pos,
                      std::unique_ptr<Expr> &&enumVal,
-                     std::vector<MatchCaseExpr> &&matchCases) noexcept
+                     std::vector<MatchCaseExpr> &&matchCases,
+                     std::unique_ptr<Program>   &&defaultCase) noexcept
     : Expr(expr_match, pos), enumVal(std::move(enumVal)),
-      matchCases(std::move(matchCases)) {}
+      matchCases(std::move(matchCases)),
+      defaultCase(std::move(defaultCase)) {}
 
 MatchExpr::~MatchExpr() {}
 
@@ -490,3 +492,86 @@ bool IfExpr::isStatement() const noexcept { return true; }
 bool MatchExpr::isStatement() const noexcept { return true; }
 
 bool ForExpr::isStatement() const noexcept { return true; }
+
+// hasReturn
+
+bool IdExpr::hasReturn() const noexcept {
+  return getIdentifier() != "_";
+}
+
+bool NumExpr::hasReturn() const noexcept {
+  return true;
+}
+
+bool StrExpr::hasReturn() const noexcept {
+  return true;
+}
+
+bool CharExpr::hasReturn() const noexcept {
+  return true;
+}
+
+bool FuncExpr::hasReturn() const noexcept {
+  return getName().size() == 0
+    || (getName().size() == 1 && getName()[0] == "_");
+}
+
+bool ClassExpr::hasReturn() const noexcept {
+  return getIdentifier() == "_";
+}
+
+bool BiOpExpr::hasReturn() const noexcept {
+  if (getOperator() == lexer::op_fncall)
+    return getLHS().hasReturn();
+
+  return getLHS().hasReturn() && getRHS().hasReturn();
+}
+
+bool UnOpExpr::hasReturn() const noexcept {
+  return getExpression().hasReturn();
+}
+
+bool BraceExpr::hasReturn() const noexcept {
+  return hasExpression() && getExpression().hasReturn();
+}
+
+bool ArrayConExpr::hasReturn() const noexcept {
+  return getObject().hasReturn() && getSize().hasReturn();
+}
+
+bool ArrayListExpr::hasReturn() const noexcept {
+  for (auto &obj : getObjects()) {
+    if (!obj->hasReturn())
+      return false;
+  }
+
+  return true;
+}
+
+bool ArrayIndexExpr::hasReturn() const noexcept {
+  return getIndex().hasReturn();
+}
+
+bool IfExpr::hasReturn() const noexcept {
+  if (!hasElseCase())
+    return false;
+
+  for (auto &ifcase : getIfCases()) {
+    if (!ifcase.second->hasReturn())
+      return false;
+  }
+
+  return getElseCase().hasReturn();
+}
+
+bool MatchExpr::hasReturn() const noexcept {
+  if (!hasDefaultCase())
+    return false;
+
+  for (auto &matchcase : getMatchCases()) {
+    if (!matchcase.second->hasReturn())
+      return false;
+  }
+
+  return getDefaultCase().hasReturn();
+}

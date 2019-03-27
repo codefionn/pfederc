@@ -72,8 +72,9 @@ $(function() {
 <h1>pfederc</h1>
 <p><em>pfederc</em> (Passau Feder compiler) is a program for managing and compiling Feder source code. Written in Standard C++14 and using LLVM. This project doesn't specify a Feder standard library.</p>
 <p><em>Passau is a city in Bavaria, Germany</em>.</p>
-<h2>Build</h2>
-<p>Build sections assumens you've cloned this repository and your working path is the main directory of the project (pfederc).</p>
+<h2>Download</h2>
+<p>Clone repository and jump into main directory of the project:</p>
+<div class="fragment"><div class="line">git clone https://github.com/codefionn/pfederc</div><div class="line">cd pfederc</div></div><!-- fragment --><h2>Build</h2>
 <p>CMake build:</p>
 <div class="fragment"><div class="line">mkdir build</div><div class="line">cd build</div><div class="line">cmake ..</div><div class="line">cmake --build .</div></div><!-- fragment --><p>Testing (could take some time):</p>
 <div class="fragment"><div class="line">cd build/test</div><div class="line">ctest</div></div><!-- fragment --><p>If memory checks should also be done, install <em>valgrind</em>.</p>
