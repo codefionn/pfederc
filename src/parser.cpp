@@ -95,26 +95,6 @@ parser::parseIdentifierCallExpr(lexer::Tokenizer &lex) noexcept {
   return std::move(result);
 }
 
-static bool _isRightSideUnary(lexer::Token &tokOp,
-                              lexer::Tokenizer &lex) noexcept {
-  if (!lexer::isPrimaryToken(lex.currentToken().getType()))
-    return true;
-
-  if (lex.currentToken().getType() == lexer::tok_op) {
-    if (!lexer::isValidOperatorPosition(tokOp.getOperator(), lexer::op_binary))
-      return true;
-
-    if (!lexer::isValidOperatorPosition(tokOp.getOperator(), lexer::op_runary))
-      return false;
-
-    if (!lexer::isValidOperatorPosition(lex.currentToken().getOperator(),
-                                        lexer::op_lunary))
-      return true;
-  }
-
-  return false;
-}
-
 static bool _isBinaryOperator(const lexer::Token &tok) noexcept {
   switch (tok.getType()) {
   case lexer::tok_op:
@@ -152,10 +132,10 @@ static lexer::OperatorType _getOperatorType(lexer::Token &opTok) {
     return lexer::op_templatecall;
   case lexer::tok_op:
     return opTok.getOperator();
+  default:
+    feder::fatal("Reached unreachable code.");
+    return lexer::op_sub;
   }
-
-  feder::fatal("Reached unreachable code.");
-  return lexer::op_sub;
 }
 
 std::unique_ptr<syntax::Expr>
@@ -242,8 +222,11 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
     if (lex.currentToken() == lexer::tok_eof)
       break;
 
-    if (!parser::match(lex, nullptr, lexer::tok_eol))
-      error = true;
+    if (lex.currentToken() != lexer::tok_eof
+        && lex.currentToken() != lexer::tok_delim
+        && lex.currentToken() != lexer::tok_else)
+      if (!parser::match(lex, nullptr, lexer::tok_eol))
+        error = true;
   }
 
   std::unique_ptr<syntax::Expr> returnExpr;

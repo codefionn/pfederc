@@ -240,13 +240,13 @@ set_tests_properties(parseline_fif0 parseline_fif1 parseline_fif2
   PROPERTIES WILL_FAIL TRUE)
 
 ## Match
-add_test(parseline_match0 parseline "match enumVal\nenumCase => doSomething()\n;\n;")
-add_test(parseline_match1 parseline "match enumVal\nenumCase1 => doSmth0()\n;\nenumCase1 => doSmth1()\n;\n;")
-add_test(parseline_match2 parseline "match enumVal\nenumCase1 => doSmth0()\n;\nenumCase1 => doSmth1()\n;\nenumCase2 => doSmth2()\n;\n;")
-add_test(parseline_match3 parseline "match enumVal\nenumCase(x) => doSmth0()\n;\n;")
-add_test(parseline_match4 parseline "match enumVal\nenumCase(x, y) => doSmth0()\n;\n;")
+add_test(parseline_match0 parseline "match enumVal\nenumCase => doSomething();\n;")
+add_test(parseline_match1 parseline "match enumVal\nenumCase1 => doSmth0();\nenumCase1 => doSmth1()\n;\n;")
+add_test(parseline_match2 parseline "match enumVal\nenumCase1 => doSmth0();\nenumCase1 => doSmth1()\n;\nenumCase2 => doSmth2()\n;\n;")
+add_test(parseline_match3 parseline "match enumVal\nenumCase(x) => doSmth0();\n;")
+add_test(parseline_match4 parseline "match enumVal\nenumCase(x, y) => doSmth0();\n;")
 add_test(parseline_match5 parseline "match enumVal\nenumCase => ;\n;")
-add_test(parseline_match6 parseline "match enumVal\nmy.enumCase => doSmth()\n;\n;")
+add_test(parseline_match6 parseline "match enumVal\nmy.enumCase => doSmth();\n;")
 add_test(parseline_match7 parseline "match enumVal\nnot.my.enumCase => doSmth()\n;\n;")
 
 ## Match - Fail tests
