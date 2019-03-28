@@ -16,11 +16,19 @@ Expr::~Expr() {}
 
 IdExpr::IdExpr(ExprType type, const feder::lexer::Position &pos,
                const std::string &id) noexcept
-    : Expr(type, pos), id(id) {}
+    : Expr(type, pos), id(id) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK(this->id.size() > 0, "id,size() == 0");
+#endif
+}
 
 IdExpr::IdExpr(const feder::lexer::Position &pos,
                const std::string &id) noexcept
-    : Expr(expr_id, pos), id(id) {}
+    : Expr(expr_id, pos), id(id) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK(this->id.size() > 0, "id,size() == 0");
+#endif
+}
 
 IdExpr::~IdExpr() {}
 
@@ -48,7 +56,11 @@ FuncParamExpr::FuncParamExpr(const feder::lexer::Position &pos,
                              std::unique_ptr<Expr> &&guard,
                              std::unique_ptr<Expr> &&guardResult) noexcept
     : IdExpr(expr_func_param, pos, name), semanticType(std::move(semanticType)),
-      guard(std::move(guard)), guardResult(std::move(guardResult)) {}
+      guard(std::move(guard)), guardResult(std::move(guardResult)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) this->semanticType, "!semanticType");
+#endif
+}
 
 FuncParamExpr::~FuncParamExpr() {}
 
@@ -61,7 +73,12 @@ FuncExpr::FuncExpr(const feder::lexer::Position &pos,
                    bool virtualFunc) noexcept
     : Expr(expr_func, pos), name(name), templ(std::move(templ)),
       returnType(std::move(returnType)), params(std::move(params)),
-      program(std::move(program)), virtualFunc{virtualFunc} {}
+      program(std::move(program)), virtualFunc{virtualFunc} {
+#ifdef SANITY
+  FEDER_SANITY_CHECK(!this->name.empty() || (!this->templ && !this->program), "Invalid Function Type");
+  FEDER_SANITY_CHECK(this->name.empty() || ((bool) this->program || this->name.size() == 1), "Function decl. name.size() != 1");
+#endif
+}
 
 FuncExpr::~FuncExpr() {}
 
@@ -82,7 +99,11 @@ EnumExpr::EnumExpr(const feder::lexer::Position &pos, const std::string &name,
                    std::unique_ptr<TemplateExpr> &&templ,
                    std::vector<std::unique_ptr<Expr>> &&constructors) noexcept
     : IdExpr(expr_enum, pos, name), templ(std::move(templ)),
-      constructors(std::move(constructors)) {}
+      constructors(std::move(constructors)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK(this->constructors.size() > 0, "constructors.size() == 0");
+#endif
+}
 
 EnumExpr::~EnumExpr() {}
 
@@ -92,7 +113,12 @@ TraitExpr::TraitExpr(
     std::vector<std::unique_ptr<Expr>> &&traits,
     std::vector<std::unique_ptr<FuncExpr>> &&functions) noexcept
     : IdExpr(expr_trait, pos, name), templ(std::move(templ)),
-      traits(std::move(traits)), functions(std::move(functions)) {}
+      traits(std::move(traits)), functions(std::move(functions)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK(this->traits.size() > 0 || this->functions.size() > 0,
+      "Either implement traits or declare functions.");
+#endif
+}
 
 TraitExpr::~TraitExpr() {}
 
@@ -107,7 +133,12 @@ BiOpExpr::BiOpExpr(const feder::lexer::Position &pos,
                    std::unique_ptr<Expr> &&lhs,
                    std::unique_ptr<Expr> &&rhs) noexcept
     : Expr(expr_biop, pos), opType{opType}, lhs(std::move(lhs)),
-      rhs(std::move(rhs)) {}
+      rhs(std::move(rhs)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) this->lhs && (bool) this->rhs,
+      "lhs and rhs not optional.");
+#endif
+}
 
 BiOpExpr::~BiOpExpr() {}
 
@@ -116,7 +147,11 @@ UnOpExpr::UnOpExpr(const feder::lexer::Position &pos,
                    feder::lexer::OperatorType opType,
                    std::unique_ptr<Expr> &&expr) noexcept
     : Expr(expr_unop, pos), opPos{opPos}, opType{opType},
-      expr(std::move(expr)) {}
+      expr(std::move(expr)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) this->expr, "expr not optional.");
+#endif
+}
 
 UnOpExpr::~UnOpExpr() {}
 
@@ -129,32 +164,57 @@ BraceExpr::~BraceExpr() {}
 TemplateExpr::TemplateExpr(
     const lexer::Position &pos,
     std::vector<std::unique_ptr<Expr>> &&templates) noexcept
-    : Expr(expr_template, pos), templates(std::move(templates)) {}
+    : Expr(expr_template, pos), templates(std::move(templates)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK(this->templates.size() > 0, "templates.size() == 0");
+#endif
+}
 
 TemplateExpr::~TemplateExpr() {}
 
 ArrayConExpr::ArrayConExpr(const feder::lexer::Position &pos,
                            std::unique_ptr<Expr> &&obj,
                            std::unique_ptr<Expr> &&size) noexcept
-    : Expr(expr_array_con, pos), obj(std::move(obj)), size(std::move(size)) {}
+    : Expr(expr_array_con, pos), obj(std::move(obj)), size(std::move(size)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) this->obj && (bool) this->size,
+      "obj and size not optional.");
+#endif
+}
 
 ArrayConExpr::~ArrayConExpr() {}
 
 ArrayListExpr::ArrayListExpr(const feder::lexer::Position &pos,
                              std::vector<std::unique_ptr<Expr>> &&objs) noexcept
-    : Expr(expr_array_list, pos), objs(std::move(objs)) {}
+    : Expr(expr_array_list, pos), objs(std::move(objs)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK(this->objs.size() > 1, "objs.size() <= 1");
+#endif
+}
 
 ArrayListExpr::~ArrayListExpr() {}
 
 ArrayIndexExpr::ArrayIndexExpr(const feder::lexer::Position &pos,
                                std::unique_ptr<Expr> &&indexExpr) noexcept
-    : Expr(expr_array_index, pos), indexExpr(std::move(indexExpr)) {}
+    : Expr(expr_array_index, pos), indexExpr(std::move(indexExpr)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) this->indexExpr, "indexExpr not optional.");
+#endif
+}
 
 ArrayIndexExpr::~ArrayIndexExpr() {}
 
 IfExpr::IfExpr(const lexer::Position &pos, std::vector<IfCaseExpr> &&ifs,
                std::unique_ptr<Program> &&elseExpr) noexcept
-    : Expr(expr_if, pos), ifs(std::move(ifs)), elseExpr(std::move(elseExpr)) {}
+    : Expr(expr_if, pos), ifs(std::move(ifs)), elseExpr(std::move(elseExpr)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK(this->ifs.size() > 0, "ifs.size() == 0");
+  for (auto &ifcase : this->ifs) {
+    FEDER_SANITY_CHECK((bool) ifcase.first, "!ifcase.first");
+    FEDER_SANITY_CHECK((bool) ifcase.second, "!ifcase.second");
+  }
+#endif
+}
 
 IfExpr::~IfExpr() {}
 
@@ -164,7 +224,13 @@ MatchExpr::MatchExpr(const lexer::Position &pos,
                      std::unique_ptr<Program>   &&defaultCase) noexcept
     : Expr(expr_match, pos), enumVal(std::move(enumVal)),
       matchCases(std::move(matchCases)),
-      defaultCase(std::move(defaultCase)) {}
+      defaultCase(std::move(defaultCase)) {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) this->enumVal, "enumVal not optional.");
+  FEDER_SANITY_CHECK((bool) this->defaultCase || this->matchCases.size() > 0,
+      "At least one case expected.");
+#endif
+}
 
 MatchExpr::~MatchExpr() {}
 
@@ -177,7 +243,12 @@ ForExpr::ForExpr(const lexer::Position &pos,
     : Expr(expr_for, pos),
       initExpr(std::move(initExpr)), condExpr(std::move(condExpr)),
       stepExpr(std::move(stepExpr)), program(std::move(program)),
-      postConditionCheck{postConditionCheck} {}
+      postConditionCheck{postConditionCheck} {
+#ifdef SANITY
+  FEDER_SANITY_CHECK((bool) this->condExpr, "condExpr not optional.");
+  FEDER_SANITY_CHECK((bool) this->program, "program not optional.");
+#endif
+}
 
 ForExpr::~ForExpr() {}
 
