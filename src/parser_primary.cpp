@@ -165,6 +165,8 @@ _parsePrimaryArray(lexer::Tokenizer &lex) noexcept {
 
 static std::unique_ptr<syntax::TemplateExpr>
 _parsePrimaryTemplate(lexer::Tokenizer &lex) noexcept {
+  lex.skipNewLine = true;
+
   lexer::Position startPos = lex.currentToken().getPosition();
   lex.nextToken(); // eat {
 
@@ -173,6 +175,8 @@ _parsePrimaryTemplate(lexer::Tokenizer &lex) noexcept {
   auto expr = parser::parse(lex);
   if (!expr)
     err = true; // error forwarding
+
+  lex.skipNewLine = false;
 
   lexer::Token endPosTok;
   if (!parser::match(lex, &endPosTok, lexer::tok_cbrace_template))
