@@ -44,6 +44,6 @@ endif()
 add_executable(pfederc "${pfederc_SOURCE_DIR}/src/main.cpp")
 target_link_libraries(pfederc pfederclib)
 
-install(TARGETS pfederc RUNTIME)
+install(TARGETS pfederc RUNTIME DESTINATION bin)
 
 add_subdirectory("${pfederc_SOURCE_DIR}/test")

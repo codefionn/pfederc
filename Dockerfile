@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y update  && apt-get -y upgrade \
  && apt-get -y install g++ cmake libllvm7 \
  && rm -rf /var/lib/apt/lists/*
-RUN cmake -DCMAKE_CXX_COMPILER=g++ .. 
+RUN cmake .. 
 RUN cmake --build .
 
 CMD [ "./pfederc" ]
