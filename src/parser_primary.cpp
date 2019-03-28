@@ -317,6 +317,8 @@ _parsePrimaryFunction(lexer::Tokenizer &lex) noexcept {
   bool virtualFunc = lex.currentToken() == lexer::tok_vfunc;
   lex.nextToken(); // eat 'func'/'Func'
 
+  lex.pushSkipNewLine();
+
   std::unique_ptr<syntax::TemplateExpr> templ = nullptr;
   if (lex.currentToken() == lexer::tok_obrace_template) {
     // Template
@@ -365,6 +367,8 @@ _parsePrimaryFunction(lexer::Tokenizer &lex) noexcept {
       err = true;
     }
 
+    lex.popSkipNewLine();
+
     if (err)
       return nullptr;
 
@@ -385,6 +389,8 @@ _parsePrimaryFunction(lexer::Tokenizer &lex) noexcept {
       err = true;
     }
 
+    lex.popSkipNewLine();
+
     if (err)
       return nullptr;
 
@@ -403,6 +409,8 @@ _parsePrimaryFunction(lexer::Tokenizer &lex) noexcept {
 
   if (!parser::match(lex, nullptr, lexer::tok_delim))
     err = true;
+
+  lex.popSkipNewLine();
 
   if (err)
     return nullptr;
@@ -522,6 +530,8 @@ static void _parsePrimaryClassBody(
 
 static std::unique_ptr<syntax::ClassExpr>
 _parsePrimaryClass(lexer::Tokenizer &lex) noexcept {
+  lex.pushSkipNewLine();
+
   lexer::Position startPos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'class'
 
@@ -558,6 +568,8 @@ _parsePrimaryClass(lexer::Tokenizer &lex) noexcept {
   if (!parser::match(lex, nullptr, lexer::tok_delim))
     err = true;
 
+  lex.popSkipNewLine();
+
   if (err)
     return nullptr;
 
@@ -569,6 +581,8 @@ _parsePrimaryClass(lexer::Tokenizer &lex) noexcept {
 
 static std::unique_ptr<syntax::TraitExpr>
 _parsePrimaryTrait(lexer::Tokenizer &lex) noexcept {
+  lex.pushSkipNewLine();
+
   lexer::Position pos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'trait'
 
@@ -604,14 +618,20 @@ _parsePrimaryTrait(lexer::Tokenizer &lex) noexcept {
     }
 
     auto fun = _parsePrimaryFunction(lex);
-    if (!fun)
-      return nullptr; // error forwarding
+    if (!fun) {
+      err = true; // error forwarding
+
+      if (!parser::match(lex, nullptr, lexer::tok_eol))
+        err = true;
+      
+      continue;
+    }
 
     if (!fun->isDeclared() || !fun->isVirtual()) {
       syntax::reportSyntaxError(
           lex, fun->getPosition(),
           "Traits must have just declared, virtual functions.");
-      return nullptr;
+      err = true;
     }
 
     funs.push_back(std::move(fun));
@@ -630,6 +650,8 @@ _parsePrimaryTrait(lexer::Tokenizer &lex) noexcept {
     err = true;
   }
 
+  lex.popSkipNewLine();
+
   if (err)
     return nullptr;
 
@@ -640,6 +662,8 @@ _parsePrimaryTrait(lexer::Tokenizer &lex) noexcept {
 
 static std::unique_ptr<syntax::EnumExpr>
 _parsePrimaryEnum(lexer::Tokenizer &lex) noexcept {
+  lex.pushSkipNewLine();
+
   lexer::Position startPos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'enum'
 
@@ -711,6 +735,8 @@ _parsePrimaryEnum(lexer::Tokenizer &lex) noexcept {
   if (!parser::match(lex, nullptr, lexer::tok_delim))
     err = true;
 
+  lex.popSkipNewLine();
+
   if (err)
     return nullptr;
 
@@ -721,6 +747,8 @@ _parsePrimaryEnum(lexer::Tokenizer &lex) noexcept {
 
 static std::unique_ptr<syntax::NmspExpr>
 _parsePrimaryNamespace(lexer::Tokenizer &lex) noexcept {
+  lex.pushSkipNewLine();
+
   lexer::Position pos = lex.currentToken().getPosition();
   lex.nextToken(); // eat 'namespace'
 
@@ -739,6 +767,8 @@ _parsePrimaryNamespace(lexer::Tokenizer &lex) noexcept {
 
   if (!parser::match(lex, nullptr, lexer::tok_delim))
     err = true;
+
+  lex.popSkipNewLine();
 
   if (err)
     return nullptr;
@@ -782,6 +812,8 @@ _parsePrimaryIfCase(lexer::Tokenizer &lex) noexcept {
 
 static std::unique_ptr<syntax::IfExpr>
 _parsePrimaryIf(lexer::Tokenizer &lex) noexcept {
+  lex.pushSkipNewLine();
+
   lexer::Position startPos = lex.currentToken().getPosition();
 
   std::vector<syntax::IfCaseExpr> ifCases;
@@ -825,6 +857,8 @@ _parsePrimaryIf(lexer::Tokenizer &lex) noexcept {
 
   if (!parser::match(lex, nullptr, lexer::tok_delim))
     err = true;
+
+  lex.popSkipNewLine();
 
   if (err)
     return nullptr;
@@ -903,6 +937,8 @@ _parsePrimaryMatchCase(lexer::Tokenizer &lex) noexcept {
 
 std::unique_ptr<syntax::Expr>
 _parsePrimaryMatch(lexer::Tokenizer &lex) noexcept {
+  lex.pushSkipNewLine();
+
   lexer::Position startPos(lex.currentToken().getPosition());
   lex.nextToken(); // eat match
 
@@ -954,6 +990,8 @@ _parsePrimaryMatch(lexer::Tokenizer &lex) noexcept {
         lexer::Position(startPos, enumValExpr->getPosition()));
   }
 
+  lex.popSkipNewLine();
+
   if (err)
     return nullptr;
 
@@ -965,6 +1003,8 @@ _parsePrimaryMatch(lexer::Tokenizer &lex) noexcept {
 
 static std::unique_ptr<syntax::ForExpr>
 _parsePrimaryFor(lexer::Tokenizer &lex) noexcept {
+  lex.pushSkipNewLine();
+
   lexer::Position startPos(lex.currentToken().getPosition());
   bool postCondition = lex.currentToken() == lexer::tok_do;
   lex.nextToken(); // eat for/do
@@ -1034,16 +1074,19 @@ _parsePrimaryFor(lexer::Tokenizer &lex) noexcept {
 
   if (postCondition) {
     if (!parser::match(lex, nullptr, lexer::tok_for))
-      return nullptr;
-
-    cond = parser::parse(lex);
-    if (!cond)
-      return nullptr; // error forwarding
-
-    if (!parser::match(lex, nullptr,
-        std::vector<lexer::TokenType>{lexer::tok_eol, lexer::tok_eof}))
-      return nullptr;
+      err = true;
+    else {
+      cond = parser::parse(lex);
+      if (!cond)
+        err = true; // error forwarding
+  
+      if (!parser::match(lex, nullptr,
+          std::vector<lexer::TokenType>{lexer::tok_eol, lexer::tok_eof}))
+        err = true;
+    }
   }
+
+  lex.popSkipNewLine();
 
   if (err)
     return nullptr;

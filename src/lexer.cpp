@@ -1170,6 +1170,16 @@ std::size_t Token::getPrecedence(OperatorPosition pos) const noexcept {
   }
 }
 
+void Tokenizer::pushSkipNewLine() noexcept {
+  skipNewLineStack.push_back(skipNewLine);
+  skipNewLine = false;
+}
+
+void Tokenizer::popSkipNewLine() noexcept {
+  skipNewLine = skipNewLineStack.back();
+  skipNewLineStack.erase(skipNewLineStack.end() - 1);
+}
+
 std::string std::to_string(feder::lexer::TokenType tok) {
   switch (tok) {
   case tok_class:

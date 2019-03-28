@@ -438,6 +438,8 @@ class Tokenizer {
 
   std::vector<Token> pushed_tokens; //!< Next tokens (Stack).
 
+  std::vector<bool> skipNewLineStack;
+
   Token *curtokval;
   TokenType constructToken() noexcept;
 
@@ -581,6 +583,16 @@ public:
                              const Position &pos) noexcept;
 
   bool skipNewLine;
+
+  /*!\brief Pushes skipNewLine on a stack. Sets skipNewLine to false.
+   * \see popSkipNewLine
+   */
+  void pushSkipNewLine() noexcept;
+
+  /*!\brief Sets skipNewLine to last pushed element of the stack. Then the last
+   * element of the stack is erased.
+   */ 
+  void popSkipNewLine() noexcept;
 };
 
 /*!\} */

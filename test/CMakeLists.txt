@@ -185,6 +185,8 @@ add_test(parseline_class0 parseline "class Str\nvar : MyClass\nfunc Str : Str\nd
 add_test(parseline_class1 parseline "class Str :: MyClass\nvar : MyClass\nfunc Str : Str\ndoSomething()\n;\nfunc hello0 ;\nfunc hello\ndoSomething()\n;\n;")
 add_test(parseline_class2 parseline "class Str :: MyClass\nvar0 : MyClass\nfunc _Str : Str\ndoSomething()\n;\nfunc Str : Str\ndoSomething()\n;\nfunc hello0 ;\nfunc hello\ndoSomething()\n;\nvar1 : MyClass\n;")
 
+add_test(parseline_class3 parseline "(class _\nfunc hello0 ;\nfunc hello1 ;\n;)")
+
 ## Classes - Fail tests
 
 add_test(parseline_fclass0 parseline "class Str")
