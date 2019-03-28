@@ -1034,7 +1034,7 @@ public:
   virtual ~ForExpr();
 
   /*!\return Returns true, if condition is check post-body (so there's at
-   * least one guaranteed executio of the body). This behaviour matches the
+   * least one guaranteed execution of the body). This behaviour matches the
    * 'do'-loop. Otherwise false is returned, which correspondes to the
    * 'for'-loop.
    */
