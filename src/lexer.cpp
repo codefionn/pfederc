@@ -325,11 +325,30 @@ bool Token::isRightAssociative() const noexcept {
 Tokenizer::Tokenizer(const std::string &name, std::istream &input)
     : name(name), input{input}, lastlinechar{EOF - 2},
       curchar{EOF - 2}, // -3 makes nextToken read a new char first
-      lineEnd{0}, columnEnd{0}, curtokval{nullptr}, skipNewLine{false} {}
+      lineEnd{0}, columnEnd{0}, curtokval{nullptr}, skipNewLine{false},
+      advancedpos{nullptr} {}
 
 Tokenizer::~Tokenizer() {
   if (curtokval)
     delete curtokval;
+  if (advancedpos)
+    delete advancedpos;
+}
+
+bool Tokenizer::advanced() noexcept {
+  if (!advancedpos) {
+    advancedpos = new Position(getPosition());
+    return true;
+  }
+
+  bool result = *advancedpos != getPosition();
+  if (result) {
+    delete advancedpos;
+    advancedpos = new Position(getPosition());
+    return true;
+  }
+
+  return false;
 }
 
 /*!\return Returns true if ' ', horizontal tab or vertical tab.

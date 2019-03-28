@@ -268,6 +268,10 @@ _parsePrimaryFunctionParams(lexer::Tokenizer &lex, bool &err) noexcept {
 
   while (lex.currentToken() != lexer::tok_cbrace &&
          lex.currentToken() != lexer::tok_eof) {
+    if (!lex.advanced()) {
+      err = true;
+      break;
+    }
 
     if (result.size() > 0) {
       if (lex.currentToken() != lexer::op_comma) {
@@ -459,6 +463,11 @@ static void _parsePrimaryClassBody(
     std::vector<std::unique_ptr<syntax::FuncExpr>> &functions) noexcept {
   while (lex.currentToken() != lexer::tok_eof &&
          lex.currentToken() != lexer::tok_delim) {
+    if (!lex.advanced()) {
+      err = true;
+      break;
+    }
+
     if (lex.currentToken() == lexer::tok_eol) {
       lex.nextToken(); // eat newline
       continue;
@@ -612,6 +621,11 @@ _parsePrimaryTrait(lexer::Tokenizer &lex) noexcept {
 
   while (lex.currentToken() == lexer::tok_vfunc ||
          lex.currentToken() == lexer::tok_eol) {
+    if (!lex.advanced()) {
+      err = true;
+      break;
+    }
+
     if (lex.currentToken() == lexer::tok_eol) {
       lex.nextToken(); // eat newline
       continue;
@@ -686,6 +700,11 @@ _parsePrimaryEnum(lexer::Tokenizer &lex) noexcept {
   std::vector<std::unique_ptr<syntax::Expr>> constructors;
   while (lex.currentToken() != lexer::tok_delim
       && lex.currentToken() != lexer::tok_eof) {
+    if (!lex.advanced()) {
+      err = true;
+      break;
+    }
+
     if (lex.currentToken() == lexer::tok_eol) {
       lex.nextToken(); // eat newline
       continue;
@@ -824,6 +843,11 @@ _parsePrimaryIf(lexer::Tokenizer &lex) noexcept {
 
   while (lex.currentToken() != lexer::tok_delim
       && lex.currentToken() != lexer::tok_eof) {
+    if (!lex.advanced()) {
+      err = true;
+      break;
+    }
+
     if (lex.currentToken() == lexer::tok_eol) {
       lex.nextToken(); // eat newline
       continue;
@@ -955,6 +979,11 @@ _parsePrimaryMatch(lexer::Tokenizer &lex) noexcept {
   std::vector<syntax::MatchCaseExpr> matchCases;
   while (lex.currentToken() != lexer::tok_delim
       && lex.currentToken() != lexer::tok_eof) {
+    if (!lex.advanced()) {
+      err = true;
+      break;
+    }
+
     if (lex.currentToken() == lexer::tok_eol) {
       lex.nextToken(); // eat newline
       continue;

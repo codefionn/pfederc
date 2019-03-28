@@ -280,6 +280,22 @@ public:
    * columnStart.
    */
   Position minColumn() const noexcept;
+
+  bool operator ==(const Position &pos) const {
+    return getColumnStart() == pos.getColumnStart()
+      && getColumnEnd() == pos.getColumnEnd()
+      && getLineStart() == pos.getLineStart()
+      && getLineEnd() == pos.getLineEnd()
+      && getTokenizer() == pos.getTokenizer();
+  }
+  
+  bool operator !=(const Position &pos) const {
+    return getColumnStart() != pos.getColumnStart()
+      || getColumnEnd() != pos.getColumnEnd()
+      || getLineStart() != pos.getLineStart()
+      || getLineEnd() != pos.getLineEnd()
+      || getTokenizer() != pos.getTokenizer();
+  }
 };
 
 /*!\brief A Token is the result of the lexical analysis nextToken.
@@ -440,9 +456,10 @@ class Tokenizer {
 
   std::vector<bool> skipNewLineStack;
 
+  Position *advancedpos; //!< for measuring if tokenizer advanced position
+
   Token *curtokval;
   TokenType constructToken() noexcept;
-
 public:
   /*!\brief Initialize the lexer.
    * \param name Name representive for the input stream.
@@ -544,6 +561,11 @@ public:
    * expect it to be like this. So don't try to "correct" this "error".
    */
   Position getCursorPosition() const noexcept;
+
+  /*!\brief Checks if tokenizer position advanced.  nextToken() must have been
+   * called at least once before calling this function.
+   */
+  bool advanced() noexcept;
 
   /*!\brief Reports a lexical error. Reads till EOL.
    * \param msg
