@@ -95,6 +95,8 @@ _parsePrimaryUnOpExpr(lexer::Tokenizer &lex) noexcept {
 
 static std::unique_ptr<syntax::Expr>
 _parsePrimaryArray(lexer::Tokenizer &lex) noexcept {
+  lex.skipNewLine = true;
+
   lexer::Position posStart = lex.currentToken().getPosition();
   lex.nextToken(); // eat [
 
@@ -112,6 +114,8 @@ _parsePrimaryArray(lexer::Tokenizer &lex) noexcept {
     if (!expr1)
       err = true; // error forwarding
 
+    lex.skipNewLine = false;
+
     lexer::Token posEndTok;
     if (!parser::match(lex, &posEndTok, lexer::tok_cbrace_array))
       err = true;
@@ -123,6 +127,8 @@ _parsePrimaryArray(lexer::Tokenizer &lex) noexcept {
         lexer::Position(posStart, posEndTok.getPosition()), std::move(expr),
         std::move(expr1));
   }
+
+  lex.skipNewLine = false;
 
   lexer::Token posEndTok;
   if (!parser::match(lex, &posEndTok, lexer::tok_cbrace_array))
