@@ -623,6 +623,13 @@ static TokenType tokenIdentifier(Tokenizer &lexer, TokenType &curtok,
   while (isalpha(lexer.currentChar()) || lexer.currentChar() == '_' ||
          (str != "_" && isdigit(lexer.currentChar()))) {
     str += lexer.currentChar();
+
+    if (str == "_" && isdigit(lexer.currentChar())) {
+      lexer.reportTokenizerError("Expected '_' or letter.",
+          lexer.getCursorPosition());
+      return curtok = tok_err;
+    }
+
     lexer.nextChar(); // eat char
   }
 
