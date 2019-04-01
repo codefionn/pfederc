@@ -220,7 +220,7 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
 
       if (!lex.advanced()) {
         error = true;
-        std::cout << std::to_string(lex.currentToken().getType()) << std::endl;
+        break;
       }
     } else {
       error = true;
@@ -228,7 +228,7 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
 
       if (!lex.advanced()) {
         error = true;
-        std::cout << std::to_string(lex.currentToken().getType()) << std::endl;
+        break;
       }
     }
 
