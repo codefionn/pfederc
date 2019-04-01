@@ -39,6 +39,7 @@ bool feder::lexer::isValidOperatorPosition(OperatorType op,
     case op_bnot:
     case op_lnot:
     case op_safe:
+    case op_mem:
       return true;
     default:
       return false;
