@@ -843,11 +843,6 @@ _parsePrimaryIf(lexer::Tokenizer &lex) noexcept {
 
   while (lex.currentToken() != lexer::tok_delim
       && lex.currentToken() != lexer::tok_eof) {
-    if (!lex.advanced()) {
-      err = true;
-      break;
-    }
-
     if (lex.currentToken() == lexer::tok_eol) {
       lex.nextToken(); // eat newline
       continue;
@@ -862,12 +857,19 @@ _parsePrimaryIf(lexer::Tokenizer &lex) noexcept {
       syntax::IfCaseExpr ifcase(_parsePrimaryIfCase(lex));
       if (!ifcase.first) {
         err = true;
+
+        if (!lex.advanced()) {
+          err = true;
+          break;
+        }
+
         continue;
       }
 
       ifCases.push_back(std::move(ifcase));
     } else {
-      if (!parser::match(lex, nullptr, lexer::tok_eol));
+      if (!parser::match(lex, nullptr, lexer::tok_eol))
+        err = true;
 
       auto program = parser::parseProgram(lex, false);
       if (!program || program->hasError())

@@ -200,7 +200,10 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
 
   bool error = false;
 
-  while (true) {
+  while (lex.currentToken() != lexer::tok_eof
+      && lex.currentToken() != lexer::tok_delim
+      && lex.currentToken() != lexer::tok_else) {
+
     if (lex.currentToken() == lexer::tok_eol) {
       lex.nextToken();
       continue;
@@ -210,17 +213,24 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
       break;
 
     std::unique_ptr<syntax::Expr> line(parser::parse(lex));
-    if (line && line->isStatement())
+    if (line && line->isStatement()) {
       lines.push_back(std::move(line));
-    else if (!line)
+    } else if (!line) {
       error = true;
-    else {
+
+      if (!lex.advanced()) {
+        error = true;
+        std::cout << std::to_string(lex.currentToken().getType()) << std::endl;
+      }
+    } else {
       error = true;
       lex.reportSemanticError("Expected statement", line->getPosition());
-    }
 
-    if (lex.currentToken() == lexer::tok_eof)
-      break;
+      if (!lex.advanced()) {
+        error = true;
+        std::cout << std::to_string(lex.currentToken().getType()) << std::endl;
+      }
+    }
 
     if (lex.currentToken() != lexer::tok_eof
         && lex.currentToken() != lexer::tok_delim
@@ -243,10 +253,9 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
   while (lex.currentToken() == lexer::tok_eol)
     lex.nextToken();
 
-  if (topLevel && lex.currentToken() != lexer::tok_eof) {
-    syntax::reportSyntaxError(lex, lex.currentToken().getPosition(),
-                              "Expected end-of-file.");
-    error = true;
+  if (topLevel) {
+    if (!parser::match(lex, nullptr, lexer::tok_eof))
+      error = true;
   }
 
   return std::make_unique<syntax::Program>(std::move(lines),

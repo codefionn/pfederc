@@ -322,6 +322,8 @@ add_test(parseprogram_trait0 parseprogram "trait MyTrait \n Func hello ; \n;")
 add_test(parseprogram_ret0 parseprogram "return true")
 add_test(parseprogram_ret1 parseprogram "if true\nreturn true\n;")
 
+add_test(parseprogram_class0 parseprogram "class Person\nage : uint64\nname : std.String\nfunc Person(age : uint64, name : std.String) : &Person\n.age = age\n.name = name\n;\n;\np0 := Person(\"Fionn Langhans\", 19)")
+
 ## Program - Fail tests
 add_test(parseprogram_fail0 parseprogram "1 + 2")
 add_test(parseprogram_fail1 parseprogram "hello[1]")
