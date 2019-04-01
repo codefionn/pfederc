@@ -224,9 +224,11 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
 
     if (lex.currentToken() != lexer::tok_eof
         && lex.currentToken() != lexer::tok_delim
-        && lex.currentToken() != lexer::tok_else)
+        && lex.currentToken() != lexer::tok_else) {
       if (!parser::match(lex, nullptr, lexer::tok_eol))
         error = true;
+    } else 
+      break;
   }
 
   std::unique_ptr<syntax::Expr> returnExpr;
