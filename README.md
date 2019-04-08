@@ -13,7 +13,7 @@ specify a Feder standard library.
 Clone repository and jump into main directory of the project:
 
 ```bash
-git clone https://github.com/codefionn/pfederc
+git clone https://github.com/federlang/pfederc
 cd pfederc
 ```
 
@@ -63,9 +63,9 @@ make install
 About pfederc:
 
 - API Documentation:
-  [https://codefionn.github.io/pfederc](https://codefionn.github.io/pfederc)
+  [https://codefionn.github.io/pfederc](https://federlang.github.io/pfederc)
 - Language documentation:
-  [https://codefionn.github.io/feder-ref](https://codefionn.github.io/feder-ref)
+  [https://codefionn.github.io/feder-ref](https://federlang.github.io/feder-ref)
 
 Some online resources used directly or as reference:
 

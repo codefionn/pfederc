@@ -8,7 +8,7 @@
 /*!\mainpage
  *
  * pfederc is a hand-written compiler written in C++ for
- * [Feder](https://github.com/codefionn/federlang "Federlang").
+ * [Feder](https://github.com/federlang/feder-ref "Federlang Reference Manual").
  *
  * ## Notation
  *

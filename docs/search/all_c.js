@@ -10,7 +10,9 @@ var searchData=
   ['pfederc_5fversion_5fmajor',['PFEDERC_VERSION_MAJOR',['../global_8hpp.html#ac79baa209da1b1f4d726555adb6d845d',1,'global.hpp']]],
   ['pfederc_5fversion_5fminor',['PFEDERC_VERSION_MINOR',['../global_8hpp.html#aba3f3567688992426bba2a958b1d51f1',1,'global.hpp']]],
   ['pfederc_5fversion_5frevision',['PFEDERC_VERSION_REVISION',['../global_8hpp.html#a3cdfd14200764978041650614f99a5ed',1,'global.hpp']]],
+  ['popskipnewline',['popSkipNewLine',['../classfeder_1_1lexer_1_1Tokenizer.html#ac719fd1f472545c66d2e1e8cf21ec52a',1,'feder::lexer::Tokenizer']]],
   ['position',['Position',['../classfeder_1_1lexer_1_1Position.html',1,'feder::lexer::Position'],['../classfeder_1_1lexer_1_1Position.html#a013a22a2e0ddaa6276a82af04992e4fa',1,'feder::lexer::Position::Position(Tokenizer *lexer, size_t columnStart, size_t columnEnd, size_t lineStart, size_t lineEnd) noexcept'],['../classfeder_1_1lexer_1_1Position.html#aa840d9fbed58147c3cebf3088b6d80b6',1,'feder::lexer::Position::Position(Tokenizer *lexer, size_t columnStart, size_t columnEnd, size_t line) noexcept'],['../classfeder_1_1lexer_1_1Position.html#a78e278f9929015146cf67b1ffb8ce490',1,'feder::lexer::Position::Position(const Position &amp;pos) noexcept'],['../classfeder_1_1lexer_1_1Position.html#ae4fbc65c331a67684f57e244dba4c5ae',1,'feder::lexer::Position::Position(const Position &amp;pos0, const Position &amp;pos1) noexcept']]],
   ['program',['Program',['../classfeder_1_1syntax_1_1Program.html',1,'feder::syntax::Program'],['../classfeder_1_1syntax_1_1Program.html#a6fdc272d3877c4b604a2739ceefd017a',1,'feder::syntax::Program::Program()']]],
+  ['pushskipnewline',['pushSkipNewLine',['../classfeder_1_1lexer_1_1Tokenizer.html#a066eb339e89560355f2e6e0fd9498a11',1,'feder::lexer::Tokenizer']]],
   ['pushtoken',['pushToken',['../classfeder_1_1lexer_1_1Tokenizer.html#a29018703c88bee0e16c680476a4ecf30',1,'feder::lexer::Tokenizer']]]
 ];
