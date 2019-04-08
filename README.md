@@ -3,7 +3,7 @@
 # pfederc
 
 *pfederc* (Passau Feder compiler) is a program for managing and compiling Feder
-source code. Written in Standard C++14 and using LLVM. This project doesn't
+source code. Written in Standard C++14 and using LLVM8. This project doesn't
 specify a Feder standard library.
 
 *Passau is a city in Bavaria, Germany*.
@@ -65,7 +65,7 @@ About pfederc:
 - API Documentation:
   [https://codefionn.github.io/pfederc](https://codefionn.github.io/pfederc)
 - Language documentation:
-  [https://codefionn.github.io/federlang](https://codefionn.github.io/federlang)
+  [https://codefionn.github.io/feder-ref](https://codefionn.github.io/feder-ref)
 
 Some online resources used directly or as reference:
 
