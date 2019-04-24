@@ -32,16 +32,13 @@ set(pfederc_SOURCES
 add_library(pfederclib ${pfederc_SOURCES})
 set_property(TARGET pfederclib PROPERTY CXX_STANDARD 14)
 
-# pfederclib - compile features
-
-target_compile_features(pfederclib PUBLIC cxx_std_14)
-
 # pfederclib - sanity checks
 if (NOT PFEDERC_SANITY_CHECKS)
   target_compile_definitions(pfederclib PRIVATE NSANITY=1)
 endif()
 
 add_executable(pfederc "${pfederc_SOURCE_DIR}/src/main.cpp")
+set_property(TARGET pfederc PROPERTY CXX_STANDARD 14)
 target_link_libraries(pfederc pfederclib)
 
 install(TARGETS pfederc RUNTIME DESTINATION bin)
