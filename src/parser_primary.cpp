@@ -1,6 +1,8 @@
 #include "feder/parser.hpp"
 using namespace feder;
 
+static std::unique_ptr<syntax::CapsExpr> _parsePrimaryCaps(lexer::Tokenizer &lex) noexcept;
+
 static std::unique_ptr<syntax::IdExpr>
 _parsePrimaryIdExpr(lexer::Tokenizer &lex) noexcept {
   lexer::Token tok = lex.currentToken();
@@ -323,7 +325,14 @@ _parsePrimaryFunction(lexer::Tokenizer &lex) noexcept {
 
   lex.pushSkipNewLine();
 
-  std::unique_ptr<syntax::TemplateExpr> templ = nullptr;
+  std::unique_ptr<syntax::CapsExpr> caps(nullptr);
+  if (lex.currentToken() == lexer::tok_caps) {
+	  caps = std::move(_parsePrimaryCaps(lex));
+	  if (!caps)
+		  return nullptr;
+  }
+
+  std::unique_ptr<syntax::TemplateExpr> templ(nullptr);
   if (lex.currentToken() == lexer::tok_obrace_template) {
     // Template
     templ = _parsePrimaryTemplate(lex);
@@ -378,7 +387,7 @@ _parsePrimaryFunction(lexer::Tokenizer &lex) noexcept {
 
     // Type
     return std::make_unique<syntax::FuncExpr>(
-        pos, funcname, nullptr, std::move(resultType), std::move(params),
+        pos, funcname, std::move(caps), nullptr, std::move(resultType), std::move(params),
         nullptr, false);
   }
 
@@ -399,7 +408,7 @@ _parsePrimaryFunction(lexer::Tokenizer &lex) noexcept {
       return nullptr;
 
     return std::make_unique<syntax::FuncExpr>(
-        pos, funcname, std::move(templ), std::move(resultType),
+        pos, funcname, std::move(caps), std::move(templ), std::move(resultType),
         std::move(params), nullptr, virtualFunc);
   }
 
@@ -420,7 +429,8 @@ _parsePrimaryFunction(lexer::Tokenizer &lex) noexcept {
     return nullptr;
 
   return std::make_unique<syntax::FuncExpr>(
-      pos, funcname, std::move(templ), std::move(resultType), std::move(params),
+      pos, funcname, std::move(caps),
+	  std::move(templ), std::move(resultType), std::move(params),
       std::move(program), virtualFunc);
 }
 
@@ -1138,7 +1148,7 @@ static std::uint32_t _capfromstr(const lexer::Token &tok) noexcept {
   return 0x0;
 }
 
-static std::unique_ptr<syntax::Expr> _parsePrimaryCaps(lexer::Tokenizer &lex) noexcept {
+static std::unique_ptr<syntax::CapsExpr> _parsePrimaryCaps(lexer::Tokenizer &lex) noexcept {
   lexer::Position pos(lex.currentToken().getPosition());
   if (!parser::match(lex, nullptr, lexer::tok_caps))
 	  return nullptr;

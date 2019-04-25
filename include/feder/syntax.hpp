@@ -42,6 +42,7 @@ class TemplateExpr;
 class IfExpr;
 class MatchExpr;
 class ForExpr;
+class CapsExpr;
 
 class Program {
   std::vector<std::unique_ptr<Expr>> lines;
@@ -339,6 +340,8 @@ class FuncExpr : public Expr {
 
   bool virtualFunc;
 
+  std::unique_ptr<CapsExpr> caps; //!< Optional.
+
 public:
   /*!\brief Initializes function expression
    * \param pos
@@ -351,6 +354,7 @@ public:
    * \param virtualFunc If true, name.size() >= 1 must be true.
    */
   FuncExpr(const lexer::Position &pos, const std::vector<std::string> &name,
+           std::unique_ptr<CapsExpr> &&caps,
            std::unique_ptr<TemplateExpr> &&templ,
            std::unique_ptr<Expr> &&returnType,
            std::vector<std::unique_ptr<FuncParamExpr>> &&params,
@@ -369,6 +373,18 @@ public:
    * (starting with Func). Otherwise false is returned.
    */
   bool isVirtual() const noexcept { return virtualFunc; }
+
+  /*!\return Returns if function has capabilties.
+   */
+  bool hasCapabilities() const noexcept { return (bool)caps; }
+
+  /*!\return Returns optional capabilities.
+   */
+  auto &getCapabilties() noexcept { return *caps; }
+
+  /*!\return Returns optional capabilities (const).
+   */
+  const auto &getCapabilties() const noexcept { return *caps; }
 
   /*!\return Returns if function has template.
    */

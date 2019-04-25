@@ -66,12 +66,14 @@ FuncParamExpr::~FuncParamExpr() {}
 
 FuncExpr::FuncExpr(const feder::lexer::Position &pos,
                    const std::vector<std::string> &name,
+				   std::unique_ptr<CapsExpr> &&caps,
                    std::unique_ptr<TemplateExpr> &&templ,
                    std::unique_ptr<Expr> &&returnType,
                    std::vector<std::unique_ptr<FuncParamExpr>> &&params,
                    std::unique_ptr<Program> &&program,
                    bool virtualFunc) noexcept
-    : Expr(expr_func, pos), name(name), templ(std::move(templ)),
+    : Expr(expr_func, pos), name(name), caps(std::move(caps)),
+	  templ(std::move(templ)),
       returnType(std::move(returnType)), params(std::move(params)),
       program(std::move(program)), virtualFunc{virtualFunc} {
 #ifdef SANITY
