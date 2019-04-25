@@ -112,6 +112,8 @@ enum ExprType {
 
   expr_brace,    //!< \see BraceExpr
   expr_template, //!< \see TemplateExpr
+
+  expr_caps,     //!< \see CapsExpr
 };
 
 /*!\brief Parent of expressions.
@@ -1085,6 +1087,23 @@ public:
   virtual std::string to_string() const noexcept override;
 
   virtual bool isStatement() const noexcept override;
+};
+
+constexpr std::uint32_t CAPS_SAFE = 0x01;
+constexpr std::uint32_t CAPS_CONST = 0x02;
+constexpr std::uint32_t CAPS_THIS = 0x04;
+
+class CapsExpr : public Expr {
+  std::uint32_t bitmap;
+public:
+  CapsExpr(const lexer::Position &pos, std::uint32_t bitmap) noexcept;
+  virtual ~CapsExpr();
+
+  std::uint32_t getBitmap() const noexcept { return bitmap; }
+
+  bool hasCapabilities(std::uint32_t caps) const noexcept;
+
+  virtual std::string to_string() const noexcept override;
 };
 
 /*!\brief Prints error.

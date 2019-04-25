@@ -838,6 +838,9 @@ TokenType Tokenizer::constructToken() noexcept {
     }
 
     return curtok = tok_op;
+  case '@':
+    nextChar(); // eat @
+    return curtok = tok_caps;
   case '=':
     nextChar(); // eat =
     switch (curchar) {
@@ -1189,6 +1192,8 @@ std::size_t Token::getPrecedence(OperatorPosition pos) const noexcept {
   switch (getType()) {
   case tok_op:
     return feder::lexer::getPrecedence(getOperator(), pos);
+  case tok_caps:
+	return 14;
   case tok_obrace:
   case tok_obrace_array:
   case tok_obrace_template:
@@ -1270,6 +1275,8 @@ std::string std::to_string(feder::lexer::TokenType tok) {
     return "error";
   case tok_return:
     return "return";
+  case tok_caps:
+    return "@";
   default:
     feder::fatal("Unknown token type.");
     return "";
@@ -1368,6 +1375,8 @@ std::string std::to_string(feder::lexer::OperatorType op) {
     return "[]";
   case op_templatecall:
     return "{}";
+  case op_caps:
+    return "@";
   default:
     feder::fatal("Unknown operator type.");
     return "";

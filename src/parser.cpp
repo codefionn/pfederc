@@ -98,6 +98,7 @@ parser::parseIdentifierCallExpr(lexer::Tokenizer &lex) noexcept {
 static bool _isBinaryOperator(const lexer::Token &tok) noexcept {
   switch (tok.getType()) {
   case lexer::tok_op:
+  case lexer::tok_caps:
   case lexer::tok_obrace:
   case lexer::tok_obrace_array:
   case lexer::tok_obrace_template:
@@ -124,6 +125,8 @@ static bool _parseRHSRightUnary(lexer::Tokenizer &lex, lexer::Token &opTok,
 
 static lexer::OperatorType _getOperatorType(lexer::Token &opTok) {
   switch (opTok.getType()) {
+  case lexer::tok_caps:
+	  return lexer::op_caps;
   case lexer::tok_obrace:
     return lexer::op_fncall;
   case lexer::tok_obrace_array:

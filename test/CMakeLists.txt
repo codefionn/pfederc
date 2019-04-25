@@ -291,6 +291,17 @@ set_tests_properties(parseline_fdo0 parseline_fdo1 parseline_fdo2
   parseline_fdo3 parseline_fdo4 parseline_fdo5
   PROPERTIES WILL_FAIL TRUE)
 
+## Caps
+
+add_test(parseline_caps0 parseline "MyClass()@This")
+add_test(parseline_caps1 parseline "safe MyClass()@This,Safe")
+
+## Caps - Fail tests
+
+add_test(parseline_fcaps0 parseline "MyClass()@NotACap")
+set_tests_properties(parseline_fcaps0
+  PROPERTIES WILL_FAIL TRUE)
+
 ## Comments
 add_test(parseline_comment0 parseline "func{T} hello(t : T) // comment\n;")
 add_test(parseline_comment1 parseline "/* 111 == */ 100 + 11")

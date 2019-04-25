@@ -52,6 +52,8 @@ enum TokenType {
 
   tok_delim, //!< ;
   tok_return, //!< 'return'
+  
+  tok_caps, //!< \@
 
   tok_op, //!< Operator
 
@@ -128,6 +130,7 @@ enum OperatorType {
   op_fncall,       //!< a()
   op_indexcall,    //!< a[]
   op_templatecall, //!< a{T}
+  op_caps,         //!< \@
 };
 
 /*!\return Returns true, if the operator is left associative,

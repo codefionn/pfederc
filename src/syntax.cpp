@@ -252,6 +252,11 @@ ForExpr::ForExpr(const lexer::Position &pos,
 
 ForExpr::~ForExpr() {}
 
+CapsExpr::CapsExpr(const lexer::Position &pos, std::uint32_t bitmap) noexcept
+	: Expr(expr_caps, pos), bitmap{bitmap} {}
+
+CapsExpr::~CapsExpr() {}
+
 // reportSyntaxError
 
 std::unique_ptr<Expr>
@@ -512,6 +517,27 @@ std::string ForExpr::to_string() const noexcept {
   if (hasStep()) {
     result += "; ";
     result += getStep().to_string();
+  }
+
+  return result;
+}
+
+std::string CapsExpr::to_string() const noexcept {
+  std::string result;
+
+  if ((bitmap & CAPS_SAFE) != 0)
+    result += "Safe";
+  
+  if ((bitmap & CAPS_CONST) != 0) {
+    if (result.length() > 0)
+      result += ", ";
+    result += "Const";
+  }
+  
+  if ((bitmap & CAPS_THIS) != 0) {
+    if (result.length() > 0)
+      result += ", ";
+    result += "This";
   }
 
   return result;

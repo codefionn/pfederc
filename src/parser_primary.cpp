@@ -1127,6 +1127,54 @@ _parsePrimaryFor(lexer::Tokenizer &lex) noexcept {
       std::move(prog), postCondition);
 }
 
+static std::uint32_t _capfromstr(const lexer::Token &tok) noexcept {
+  if (tok.getString() == "Safe")
+    return syntax::CAPS_SAFE;
+  if (tok.getString() == "Const")
+    return syntax::CAPS_CONST;
+  if (tok.getString() == "This")
+    return syntax::CAPS_THIS;
+
+  return 0x0;
+}
+
+static std::unique_ptr<syntax::Expr> _parsePrimaryCaps(lexer::Tokenizer &lex) noexcept {
+  lexer::Position pos(lex.currentToken().getPosition());
+  if (!parser::match(lex, nullptr, lexer::tok_caps))
+	  return nullptr;
+  lexer::Token tok;
+  if (!parser::match(lex, &tok, lexer::tok_id))
+    return nullptr;
+
+  std::uint32_t caps = 0x00;
+
+  std::uint32_t cap;
+  if (!(cap = _capfromstr(tok)))
+    return nullptr;
+
+  caps |= cap;
+  
+  while (lex.currentToken() == lexer::op_comma) {
+    lex.nextToken(); // eat ,
+    if (!parser::match(lex, &tok, lexer::tok_id))
+    return nullptr;
+    
+    if (!(cap = _capfromstr(tok)))
+      return nullptr;
+
+    if ((caps & cap) != 0) {
+      syntax::reportSyntaxError(lex, tok.getPosition(),\
+        "Capabilities must not be mentioned twice in same capability expression!");
+      return nullptr;
+    }
+  
+    caps |= cap;
+    pos = lexer::Position(pos, tok.getPosition());
+  }
+
+  return std::make_unique<syntax::CapsExpr>(pos, caps);
+}
+
 std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Tokenizer &lex) noexcept {
   switch (lex.currentToken().getType()) {
   case lexer::tok_id:
@@ -1162,6 +1210,9 @@ std::unique_ptr<syntax::Expr> parser::parsePrimary(lexer::Tokenizer &lex) noexce
   case lexer::tok_for:
   case lexer::tok_do:
     return _parsePrimaryFor(lex);
+
+  case lexer::tok_caps:
+    return _parsePrimaryCaps(lex);
 
   case lexer::tok_op:
     return _parsePrimaryUnOpExpr(lex);
