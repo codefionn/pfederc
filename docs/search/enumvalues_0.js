@@ -5,6 +5,7 @@ var searchData=
   ['expr_5farray_5flist',['expr_array_list',['../group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaaff740b556789bcf79d9c5a9d9d14e9a6',1,'feder::syntax']]],
   ['expr_5fbiop',['expr_biop',['../group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa16ac811f151f8d7577b12a2a96d0bb2d',1,'feder::syntax']]],
   ['expr_5fbrace',['expr_brace',['../group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa237ab6c923172308eee8d2de1879190b',1,'feder::syntax']]],
+  ['expr_5fcaps',['expr_caps',['../group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaabe061c1af8914366462f9f1a310940af',1,'feder::syntax']]],
   ['expr_5fchar',['expr_char',['../group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaacde70a3e3a8214818f10411f9a73a989',1,'feder::syntax']]],
   ['expr_5fclass',['expr_class',['../group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaaf6098f53f89173eaa8ef71c38ef9ad0c',1,'feder::syntax']]],
   ['expr_5fenum',['expr_enum',['../group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa4f779c5d729e09d05145262c5ed86789',1,'feder::syntax']]],

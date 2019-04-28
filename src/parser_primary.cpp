@@ -1144,6 +1144,8 @@ static std::uint32_t _capfromstr(const lexer::Token &tok) noexcept {
     return syntax::CAPS_CONST;
   if (tok.getString() == "This")
     return syntax::CAPS_THIS;
+  if (tok.getString() == "Value")
+    return syntax::CAPS_VALUE;
 
   return 0x0;
 }
@@ -1169,11 +1171,14 @@ static std::unique_ptr<syntax::CapsExpr> _parsePrimaryCaps(lexer::Tokenizer &lex
     if (!parser::match(lex, &tok, lexer::tok_id))
     return nullptr;
     
-    if (!(cap = _capfromstr(tok)))
+    if (!(cap = _capfromstr(tok))) {
+      syntax::reportSyntaxError(lex, tok.getPosition(),
+          "Invalid capability identifier.");
       return nullptr;
+    }
 
     if ((caps & cap) != 0) {
-      syntax::reportSyntaxError(lex, tok.getPosition(),\
+      syntax::reportSyntaxError(lex, tok.getPosition(),
         "Capabilities must not be mentioned twice in same capability expression!");
       return nullptr;
     }

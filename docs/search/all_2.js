@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['capsexpr',['CapsExpr',['../classfeder_1_1syntax_1_1CapsExpr.html',1,'feder::syntax']]],
   ['charexpr',['CharExpr',['../classfeder_1_1syntax_1_1CharExpr.html',1,'feder::syntax::CharExpr'],['../classfeder_1_1syntax_1_1CharExpr.html#a8d42c0eacf2ef71d0ef9faf9dbc5dd62',1,'feder::syntax::CharExpr::CharExpr()']]],
   ['classexpr',['ClassExpr',['../classfeder_1_1syntax_1_1ClassExpr.html',1,'feder::syntax::ClassExpr'],['../classfeder_1_1syntax_1_1ClassExpr.html#a11f5af9e2871e7db224eb1cbacf286db',1,'feder::syntax::ClassExpr::ClassExpr()']]],
   ['currentchar',['currentChar',['../classfeder_1_1lexer_1_1Tokenizer.html#a67f958b2ed9e103e084d9ff147fc496c',1,'feder::lexer::Tokenizer']]],

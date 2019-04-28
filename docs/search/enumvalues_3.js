@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['tok_5fcaps',['tok_caps',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85dabb295d143511bccfea54f197d381ee99',1,'feder::lexer']]],
   ['tok_5fcbrace',['tok_cbrace',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85dafe55d178b1e09b9ffefa3b6677269c4f',1,'feder::lexer']]],
   ['tok_5fcbrace_5farray',['tok_cbrace_array',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da2bcff9c58f6630fa45b3aa937a04a52a',1,'feder::lexer']]],
   ['tok_5fcbrace_5ftemplate',['tok_cbrace_template',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85daf6d3ea62facc9dff2aff91fa7cba613f',1,'feder::lexer']]],

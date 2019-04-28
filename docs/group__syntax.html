@@ -68,7 +68,8 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Syntactic analysis results</div>  </div>
 </div><!--header-->
@@ -144,6 +145,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1ForExpr.html">feder::syntax::ForExpr</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">For/Do expression.  <a href="classfeder_1_1syntax_1_1ForExpr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1CapsExpr.html">feder::syntax::CapsExpr</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -181,7 +184,9 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa7a099e1d83bd3ad53f7f5c037e15cbfd">feder::syntax::expr_unop</a>, 
 <a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa16ac811f151f8d7577b12a2a96d0bb2d">feder::syntax::expr_biop</a>, 
 <a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa237ab6c923172308eee8d2de1879190b">feder::syntax::expr_brace</a>, 
-<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1">feder::syntax::expr_template</a>
+<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1">feder::syntax::expr_template</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__syntax.html#gga3a920d8e611fde2a62ad15a786faacfaabe061c1af8914366462f9f1a310940af">feder::syntax::expr_caps</a>
 <br />
  }</td></tr>
 <tr class="memdesc:ga3a920d8e611fde2a62ad15a786faacfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expression types.  <a href="group__syntax.html#ga3a920d8e611fde2a62ad15a786faacfa">More...</a><br /></td></tr>
@@ -192,6 +197,21 @@ Functions</h2></td></tr>
 <tr class="memitem:ga4d92fe5ef67647b05c1bd08ecc2a5859"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__syntax.html#ga4d92fe5ef67647b05c1bd08ecc2a5859">feder::syntax::reportSyntaxError</a> (<a class="el" href="classfeder_1_1lexer_1_1Tokenizer.html">lexer::Tokenizer</a> &amp;lexer, const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, const std::string &amp;msg) noexcept</td></tr>
 <tr class="memdesc:ga4d92fe5ef67647b05c1bd08ecc2a5859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints error.  <a href="group__syntax.html#ga4d92fe5ef67647b05c1bd08ecc2a5859">More...</a><br /></td></tr>
 <tr class="separator:ga4d92fe5ef67647b05c1bd08ecc2a5859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga3b494d40c388a42991b55c3e01572207"><td class="memItemLeft" align="right" valign="top"><a id="ga3b494d40c388a42991b55c3e01572207"></a>
+constexpr std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>feder::syntax::CAPS_SAFE</b> = 0x01</td></tr>
+<tr class="separator:ga3b494d40c388a42991b55c3e01572207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae90d57d4af21dc444e26dbb5defb11ab"><td class="memItemLeft" align="right" valign="top"><a id="gae90d57d4af21dc444e26dbb5defb11ab"></a>
+constexpr std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>feder::syntax::CAPS_CONST</b> = 0x02</td></tr>
+<tr class="separator:gae90d57d4af21dc444e26dbb5defb11ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae9db650a2a869d2b6d0342fa358c89fa"><td class="memItemLeft" align="right" valign="top"><a id="gae9db650a2a869d2b6d0342fa358c89fa"></a>
+constexpr std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>feder::syntax::CAPS_THIS</b> = 0x04</td></tr>
+<tr class="separator:gae9db650a2a869d2b6d0342fa358c89fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga45b0db6bd8d0d7b05011fd47f2be8d4c"><td class="memItemLeft" align="right" valign="top"><a id="ga45b0db6bd8d0d7b05011fd47f2be8d4c"></a>
+constexpr std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>feder::syntax::CAPS_VALUE</b> = 0x08</td></tr>
+<tr class="separator:ga45b0db6bd8d0d7b05011fd47f2be8d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Contains syntactic elements required by the parser. </p>
@@ -250,6 +270,8 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="gga3a920d8e611fde2a62ad15a786faacfaa237ab6c923172308eee8d2de1879190b"></a>expr_brace&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1BraceExpr.html" title="Brace expression.">BraceExpr</a> </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="gga3a920d8e611fde2a62ad15a786faacfaa5f4960c07c91ff8ca4d418b32597d8d1"></a>expr_template&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html" title="Template expression.">TemplateExpr</a> </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3a920d8e611fde2a62ad15a786faacfaabe061c1af8914366462f9f1a310940af"></a>expr_caps&#160;</td><td class="fielddoc"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1CapsExpr.html">CapsExpr</a> </dd></dl>
 </td></tr>
 </table>
 

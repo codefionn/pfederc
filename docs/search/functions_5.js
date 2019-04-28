@@ -1,6 +1,7 @@
 var searchData=
 [
   ['getattributes',['getAttributes',['../classfeder_1_1syntax_1_1ClassExpr.html#ab28cfeff1efb270f5a53b8446369b21d',1,'feder::syntax::ClassExpr::getAttributes() noexcept'],['../classfeder_1_1syntax_1_1ClassExpr.html#a5fd12210c302941ef624e03703f5090c',1,'feder::syntax::ClassExpr::getAttributes() const noexcept']]],
+  ['getcapabilties',['getCapabilties',['../classfeder_1_1syntax_1_1FuncExpr.html#a1885892afc7cd959db34e68ddccc9410',1,'feder::syntax::FuncExpr::getCapabilties() noexcept'],['../classfeder_1_1syntax_1_1FuncExpr.html#a35317981e9ce65c056c5338ebcc18348',1,'feder::syntax::FuncExpr::getCapabilties() const noexcept']]],
   ['getcharacter',['getCharacter',['../classfeder_1_1lexer_1_1Token.html#a8ec531cc78e9d8707b7188e1982ca728',1,'feder::lexer::Token::getCharacter()'],['../classfeder_1_1syntax_1_1CharExpr.html#a35e67f1744ea42ec6d06fca1535fc795',1,'feder::syntax::CharExpr::getCharacter()']]],
   ['getcolumnend',['getColumnEnd',['../classfeder_1_1lexer_1_1Position.html#a4fb709d7baac61a029dce38c9de238e1',1,'feder::lexer::Position']]],
   ['getcolumnstart',['getColumnStart',['../classfeder_1_1lexer_1_1Position.html#a0226adbef5d3077e5ec633316a1f6034',1,'feder::lexer::Position']]],

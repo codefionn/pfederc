@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['hascapabilities',['hasCapabilities',['../classfeder_1_1syntax_1_1FuncExpr.html#a06b4e10191b1ecfd3f9db0bd7d6689ae',1,'feder::syntax::FuncExpr']]],
   ['hasdefaultcase',['hasDefaultCase',['../classfeder_1_1syntax_1_1MatchExpr.html#afe8b7403c3724f5a0148035f3f82f36b',1,'feder::syntax::MatchExpr']]],
   ['haselsecase',['hasElseCase',['../classfeder_1_1syntax_1_1IfExpr.html#a0df2f75157baaf0e20399adcc983af17',1,'feder::syntax::IfExpr']]],
   ['haserror',['hasError',['../classfeder_1_1syntax_1_1Program.html#a659c14cec4e5b8736353caea87367e4c',1,'feder::syntax::Program']]],

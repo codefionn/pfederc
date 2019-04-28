@@ -92,9 +92,9 @@ Inheritance diagram for feder::syntax::FuncExpr:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a799b8c5f3d2e6d95ff2dd63e903284b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a799b8c5f3d2e6d95ff2dd63e903284b6">FuncExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, const std::vector&lt; std::string &gt; &amp;name, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html">TemplateExpr</a> &gt; &amp;&amp;templ, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;returnType, std::vector&lt; std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1FuncParamExpr.html">FuncParamExpr</a> &gt;&gt; &amp;&amp;params, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; &amp;&amp;program, bool virtualFunc) noexcept</td></tr>
-<tr class="memdesc:a799b8c5f3d2e6d95ff2dd63e903284b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes function expression.  <a href="#a799b8c5f3d2e6d95ff2dd63e903284b6">More...</a><br /></td></tr>
-<tr class="separator:a799b8c5f3d2e6d95ff2dd63e903284b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e3c5e95d0a3b3d35f9a1a8ff7ca23b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a5e3c5e95d0a3b3d35f9a1a8ff7ca23b7">FuncExpr</a> (const <a class="el" href="classfeder_1_1lexer_1_1Position.html">lexer::Position</a> &amp;pos, const std::vector&lt; std::string &gt; &amp;name, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1CapsExpr.html">CapsExpr</a> &gt; &amp;&amp;caps, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1TemplateExpr.html">TemplateExpr</a> &gt; &amp;&amp;templ, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Expr.html">Expr</a> &gt; &amp;&amp;returnType, std::vector&lt; std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1FuncParamExpr.html">FuncParamExpr</a> &gt;&gt; &amp;&amp;params, std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1Program.html">Program</a> &gt; &amp;&amp;program, bool virtualFunc) noexcept</td></tr>
+<tr class="memdesc:a5e3c5e95d0a3b3d35f9a1a8ff7ca23b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes function expression.  <a href="#a5e3c5e95d0a3b3d35f9a1a8ff7ca23b7">More...</a><br /></td></tr>
+<tr class="separator:a5e3c5e95d0a3b3d35f9a1a8ff7ca23b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8d13306328a448bf86aebafdc4a43cc"><td class="memItemLeft" align="right" valign="top">const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#ae8d13306328a448bf86aebafdc4a43cc">getName</a> () const noexcept</td></tr>
 <tr class="separator:ae8d13306328a448bf86aebafdc4a43cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dc3c2322d6acfdf87ba1f1a2f9c56fa"><td class="memItemLeft" align="right" valign="top"><a id="a3dc3c2322d6acfdf87ba1f1a2f9c56fa"></a>
@@ -102,6 +102,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isType</b> () const n
 <tr class="separator:a3dc3c2322d6acfdf87ba1f1a2f9c56fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52a7d21e44d202417d594acf5cb24ac7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a52a7d21e44d202417d594acf5cb24ac7">isVirtual</a> () const noexcept</td></tr>
 <tr class="separator:a52a7d21e44d202417d594acf5cb24ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06b4e10191b1ecfd3f9db0bd7d6689ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a06b4e10191b1ecfd3f9db0bd7d6689ae">hasCapabilities</a> () const noexcept</td></tr>
+<tr class="separator:a06b4e10191b1ecfd3f9db0bd7d6689ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1885892afc7cd959db34e68ddccc9410"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a1885892afc7cd959db34e68ddccc9410">getCapabilties</a> () noexcept</td></tr>
+<tr class="separator:a1885892afc7cd959db34e68ddccc9410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35317981e9ce65c056c5338ebcc18348"><td class="memItemLeft" align="right" valign="top">const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#a35317981e9ce65c056c5338ebcc18348">getCapabilties</a> () const noexcept</td></tr>
+<tr class="separator:a35317981e9ce65c056c5338ebcc18348"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3fa80a20922d42e1153c0963dc124fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#ab3fa80a20922d42e1153c0963dc124fd">hasTemplate</a> () const noexcept</td></tr>
 <tr class="separator:ab3fa80a20922d42e1153c0963dc124fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfa91a84fa503334ddea8c2edbaca892"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#adfa91a84fa503334ddea8c2edbaca892">getTemplate</a> () noexcept</td></tr>
@@ -148,8 +154,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isType</b> () const n
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Function expression. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a799b8c5f3d2e6d95ff2dd63e903284b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a799b8c5f3d2e6d95ff2dd63e903284b6">&#9670;&nbsp;</a></span>FuncExpr()</h2>
+<a id="a5e3c5e95d0a3b3d35f9a1a8ff7ca23b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e3c5e95d0a3b3d35f9a1a8ff7ca23b7">&#9670;&nbsp;</a></span>FuncExpr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,6 +174,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isType</b> () const n
           <td></td>
           <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
           <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classfeder_1_1syntax_1_1CapsExpr.html">CapsExpr</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>caps</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -229,6 +241,58 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isType</b> () const n
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1885892afc7cd959db34e68ddccc9410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1885892afc7cd959db34e68ddccc9410">&#9670;&nbsp;</a></span>getCapabilties() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto&amp; feder::syntax::FuncExpr::getCapabilties </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns optional capabilities. </dd></dl>
+
+</div>
+</div>
+<a id="a35317981e9ce65c056c5338ebcc18348"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35317981e9ce65c056c5338ebcc18348">&#9670;&nbsp;</a></span>getCapabilties() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const auto&amp; feder::syntax::FuncExpr::getCapabilties </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns optional capabilities (const). </dd></dl>
+
+</div>
+</div>
 <a id="ae8d13306328a448bf86aebafdc4a43cc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8d13306328a448bf86aebafdc4a43cc">&#9670;&nbsp;</a></span>getName()</h2>
 
@@ -466,6 +530,32 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isType</b> () const n
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns optional function template (const). </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classfeder_1_1syntax_1_1FuncExpr.html#ab3fa80a20922d42e1153c0963dc124fd">hasTemplate</a> </dd></dl>
+
+</div>
+</div>
+<a id="a06b4e10191b1ecfd3f9db0bd7d6689ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06b4e10191b1ecfd3f9db0bd7d6689ae">&#9670;&nbsp;</a></span>hasCapabilities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::syntax::FuncExpr::hasCapabilities </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns if function has capabilties. </dd></dl>
 
 </div>
 </div>
