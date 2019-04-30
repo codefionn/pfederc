@@ -295,7 +295,8 @@ set_tests_properties(parseline_fdo0 parseline_fdo1 parseline_fdo2
 
 add_test(parseline_caps0 parseline "MyClass()@This")
 add_test(parseline_caps1 parseline "safe MyClass()@This,Safe")
-add_test(parseline_caps1 parseline "safe MyClass()@This,Safe,Const")
+add_test(parseline_caps2 parseline "safe MyClass()@This,Safe,Const")
+add_test(parseline_caps3 parseline "func@Safe,Unique aFunction ;")
 
 ## Caps - Fail tests
 

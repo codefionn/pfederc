@@ -1105,10 +1105,11 @@ public:
   virtual bool isStatement() const noexcept override;
 };
 
-constexpr std::uint32_t CAPS_SAFE = 0x01;
-constexpr std::uint32_t CAPS_CONST = 0x02;
-constexpr std::uint32_t CAPS_THIS = 0x04;
-constexpr std::uint32_t CAPS_VALUE = 0x08;
+constexpr std::uint32_t CAPS_SAFE =   0x01;
+constexpr std::uint32_t CAPS_CONST =  0x02;
+constexpr std::uint32_t CAPS_THIS =   0x04;
+constexpr std::uint32_t CAPS_VALUE =  0x08;
+constexpr std::uint32_t CAPS_UNIQUE = 0x10;
 
 class CapsExpr : public Expr {
   std::uint32_t bitmap;

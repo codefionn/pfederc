@@ -1146,6 +1146,8 @@ static std::uint32_t _capfromstr(const lexer::Token &tok) noexcept {
     return syntax::CAPS_THIS;
   if (tok.getString() == "Value")
     return syntax::CAPS_VALUE;
+  if (tok.getString() == "Unique")
+    return syntax::CAPS_UNIQUE;
 
   return 0x0;
 }
