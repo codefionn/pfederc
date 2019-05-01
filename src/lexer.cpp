@@ -437,6 +437,19 @@ void Tokenizer::readLine() noexcept {
     curchar = EOF - 1; // Set to read char state
 }
 
+/*!\return Return true, if num0 is less than num1, otherwise false.
+ * Prints error to console if true is returned.
+ */
+template<typename S, typename T>
+static bool tokenNumberOverflow(Tokenizer &lex, S num0, T num1) {
+  if (num0 < num1) {
+    lex.reportTokenizerError("Number overflow.");
+    return true;
+  }
+
+  return false;
+}
+
 /*!\return tok_num or tok_err.
  * \param lexer
  * \param curtok
@@ -466,7 +479,10 @@ static TokenType tokenNumber(Tokenizer &lexer, TokenType &curtok,
                                           lexer.getCursorPosition());
 
       while (isxdigit(lexer.currentChar())) {
+        std::uint64_t oldResult{result}; // For overflow detection
         result *= 16;
+        if (tokenNumberOverflow(lexer, result, oldResult))
+          return curtok = tok_err;
 
         if (lexer.currentChar() >= '0' && lexer.currentChar() <= '9')
           result += lexer.currentChar() - '0';
@@ -483,7 +499,11 @@ static TokenType tokenNumber(Tokenizer &lexer, TokenType &curtok,
       // octal
       lexer.nextChar(); // eat o
       while (lexer.currentChar() >= '0' && lexer.currentChar() <= '7') {
+        std::uint64_t oldResult{result};
         result *= 8;
+        if (tokenNumberOverflow(lexer, result, oldResult))
+          return curtok = tok_err;
+
         result += lexer.currentChar() - '0';
 
         lexer.nextChar();
@@ -494,7 +514,11 @@ static TokenType tokenNumber(Tokenizer &lexer, TokenType &curtok,
       // binary
       lexer.nextChar(); // eat b
       while (lexer.currentChar() == '0' || lexer.currentChar() == '1') {
+        std::uint64_t oldResult{result};
         result *= 2;
+        if (tokenNumberOverflow(lexer, result, oldResult))
+          return curtok = tok_err;
+
         result += lexer.currentChar() - '0';
 
         lexer.nextChar();

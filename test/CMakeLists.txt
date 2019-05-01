@@ -58,6 +58,11 @@ set_tests_properties(lexer_operators PROPERTIES PASS_REGULAR_EXPRESSION
 add_test(lexer_comment0 lexer "// i'm a comment")
 add_test(lexer_comment1 lexer "/* comment */")
 
+## Number overflow
+add_test(lexer_numover0 lexer "0x11111111111111111")
+set_tests_properties(lexer_numover0
+  PROPERTIES WILL_FAIL TRUE)
+
 # parseline
 add_executable(parseline "${pfederc_SOURCE_DIR}/test/parseline.cpp")
 target_link_libraries(parseline pfederclib)
