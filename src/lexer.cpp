@@ -442,7 +442,7 @@ void Tokenizer::readLine() noexcept {
  */
 template<typename S, typename T>
 static bool tokenNumberOverflow(Tokenizer &lex, S num0, T num1) {
-  if (num0 < num1) {
+  if (num1 > std::numeric_limits<S>::max()) {
     lex.reportTokenizerError("Number overflow.");
     return true;
   }
@@ -534,13 +534,32 @@ static TokenType tokenNumber(Tokenizer &lexer, TokenType &curtok,
 
     // Or just 0
   } else {
+    bool _overflowdetected = false;
+    Position pos;
+
     // dec
     while (isdigit(lexer.currentChar())) {
       numStr += lexer.currentChar();
+
+      std::uint64_t oldResult{result};
       result *= 10;
+      if (!_overflowdetected && result < oldResult) {
+        _overflowdetected = true;
+        pos = lexer.getCursorPosition();
+      }
+
       result += lexer.currentChar() - '0';
 
+      if (!_overflowdetected && result < oldResult) {
+        _overflowdetected = true;
+        pos = lexer.getCursorPosition();
+      }
+
       lexer.nextChar(); // eat digit
+    }
+
+    if (_overflowdetected && lexer.currentChar() != '.') {
+      return curtok = lexer.reportTokenizerError("Number overflow.", pos);
     }
   }
 
@@ -590,9 +609,13 @@ static TokenType tokenNumber(Tokenizer &lexer, TokenType &curtok,
     if (_isunsigned) {
       numType = num_u8;
       numVal.u8 = result;
+      if (tokenNumberOverflow(lexer, numVal.u8, result))
+        return curtok = tok_err;
     } else {
       numType = num_i8;
       numVal.i8 = result;
+      if (tokenNumberOverflow(lexer, numVal.i8, result))
+        return curtok = tok_err;
     }
 
     break;
@@ -601,9 +624,13 @@ static TokenType tokenNumber(Tokenizer &lexer, TokenType &curtok,
     if (_isunsigned) {
       numType = num_u16;
       numVal.u16 = result;
+      if (tokenNumberOverflow(lexer, numVal.u16, result))
+        return curtok = tok_err;
     } else {
       numType = num_i16;
       numVal.i16 = result;
+      if (tokenNumberOverflow(lexer, numVal.i16, result))
+        return curtok = tok_err;
     }
 
     break;
@@ -612,9 +639,13 @@ static TokenType tokenNumber(Tokenizer &lexer, TokenType &curtok,
     if (_isunsigned) {
       numType = num_u64;
       numVal.u64 = result;
+      if (tokenNumberOverflow(lexer, numVal.u64, result))
+        return curtok = tok_err;
     } else {
       numType = num_i64;
       numVal.i64 = result;
+      if (tokenNumberOverflow(lexer, numVal.i64, result))
+        return curtok = tok_err;
     }
 
     break;
@@ -624,9 +655,13 @@ static TokenType tokenNumber(Tokenizer &lexer, TokenType &curtok,
     if (_isunsigned) {
       numType = num_u32;
       numVal.u32 = result;
+      if (tokenNumberOverflow(lexer, numVal.u32, result))
+        return curtok = tok_err;
     } else {
       numType = num_i32;
       numVal.i32 = result;
+      if (tokenNumberOverflow(lexer, numVal.i32, result))
+        return curtok = tok_err;
     }
 
     break;

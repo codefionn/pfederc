@@ -59,8 +59,27 @@ add_test(lexer_comment0 lexer "// i'm a comment")
 add_test(lexer_comment1 lexer "/* comment */")
 
 ## Number overflow
-add_test(lexer_numover0 lexer "0x11111111111111111")
-set_tests_properties(lexer_numover0
+add_test(lexer_numover0 lexer "2147483647")
+add_test(lexer_numover1 lexer "2147483647l")
+add_test(lexer_numover2 lexer "4294967295u")
+add_test(lexer_numover3 lexer "4294967295ul")
+add_test(lexer_numover4 lexer "9223372036854775807L")
+add_test(lexer_numover5 lexer "18446744073709551615uL")
+add_test(lexer_numover6 lexer "127s")
+add_test(lexer_numover7 lexer "255us")
+add_test(lexer_numover8 lexer "32767S")
+add_test(lexer_numover9 lexer "65535uS")
+
+## Number overflow - Failtests
+add_test(lexer_fnumover0 lexer "0x11111111111111111")
+add_test(lexer_fnumover1 lexer "18446744073709551616")
+add_test(lexer_fnumover2 lexer "256us")
+add_test(lexer_fnumover3 lexer "128s")
+add_test(lexer_fnumover4 lexer "2147483648")
+add_test(lexer_fnumover5 lexer "21474836471")
+add_test(lexer_fnumover6 lexer "0x8FFFFFFF")
+set_tests_properties(lexer_fnumover0 lexer_fnumover1 lexer_fnumover2
+  lexer_fnumover3 lexer_fnumover4 lexer_fnumover5 lexer_fnumover6
   PROPERTIES WILL_FAIL TRUE)
 
 # parseline

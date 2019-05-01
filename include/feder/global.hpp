@@ -12,6 +12,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <memory>
 #include <string>
