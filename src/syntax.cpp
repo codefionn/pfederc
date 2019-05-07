@@ -429,10 +429,10 @@ std::string UnOpExpr::to_string() const noexcept {
   case lexer::op_runary:
     return "(" + getExpression().to_string() + std::to_string(getOperator()) +
            ")";
+  default:
+    feder::fatal("Impossible-to-reach code reached");
+    return "";
   }
-
-  feder::fatal("Impossible-to-reach code reached");
-  return "";
 }
 
 std::string BraceExpr::to_string() const noexcept {
