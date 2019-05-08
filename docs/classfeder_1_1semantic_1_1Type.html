@@ -78,17 +78,21 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5ad682d66e4acde36ebabd742246cc51"><td class="memItemLeft" align="right" valign="top"><a id="a5ad682d66e4acde36ebabd742246cc51"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> (std::uint16_t modifiers) noexcept</td></tr>
-<tr class="separator:a5ad682d66e4acde36ebabd742246cc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13398982468c4c372d1c6e41d5fbfe27"><td class="memItemLeft" align="right" valign="top">std::uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#a13398982468c4c372d1c6e41d5fbfe27">getModifiers</a> () const noexcept</td></tr>
-<tr class="separator:a13398982468c4c372d1c6e41d5fbfe27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a235f2e9df6dff9c58f9dd0ba29343e5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#a235f2e9df6dff9c58f9dd0ba29343e5b">hasModifiers</a> (std::uint16_t modifiers) const noexcept</td></tr>
-<tr class="separator:a235f2e9df6dff9c58f9dd0ba29343e5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea0371e4acd1ed9ce8f10a949dc1212a"><td class="memItemLeft" align="right" valign="top"><a id="aea0371e4acd1ed9ce8f10a949dc1212a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> (type_semantic modifiers, <a class="el" href="classfeder_1_1semantic_1_1Type.html">Type</a> *parent=nullptr) noexcept</td></tr>
+<tr class="separator:aea0371e4acd1ed9ce8f10a949dc1212a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa465e54083879d9c322bb6743d9d2a44"><td class="memItemLeft" align="right" valign="top">type_semantic&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#aa465e54083879d9c322bb6743d9d2a44">getModifiers</a> () const noexcept</td></tr>
+<tr class="separator:aa465e54083879d9c322bb6743d9d2a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9740582e33438f9ded74fe805ccb4ab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#aa9740582e33438f9ded74fe805ccb4ab">hasModifiers</a> (type_semantic modifiers) const noexcept</td></tr>
+<tr class="separator:aa9740582e33438f9ded74fe805ccb4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc752fb1df42e9d692cf08bb10a7e9e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1semantic_1_1Type.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#afc752fb1df42e9d692cf08bb10a7e9e6">getParent</a> () const noexcept</td></tr>
+<tr class="separator:afc752fb1df42e9d692cf08bb10a7e9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa85edb5ed9ac52c5d0110ba8e24e7b3d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#aa85edb5ed9ac52c5d0110ba8e24e7b3d">hasParent</a> () const noexcept</td></tr>
+<tr class="separator:aa85edb5ed9ac52c5d0110ba8e24e7b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a13398982468c4c372d1c6e41d5fbfe27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13398982468c4c372d1c6e41d5fbfe27">&#9670;&nbsp;</a></span>getModifiers()</h2>
+<a id="aa465e54083879d9c322bb6743d9d2a44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa465e54083879d9c322bb6743d9d2a44">&#9670;&nbsp;</a></span>getModifiers()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -97,7 +101,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::uint16_t feder::semantic::Type::getModifiers </td>
+          <td class="memname">type_semantic feder::semantic::Type::getModifiers </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -113,8 +117,34 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a235f2e9df6dff9c58f9dd0ba29343e5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a235f2e9df6dff9c58f9dd0ba29343e5b">&#9670;&nbsp;</a></span>hasModifiers()</h2>
+<a id="afc752fb1df42e9d692cf08bb10a7e9e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc752fb1df42e9d692cf08bb10a7e9e6">&#9670;&nbsp;</a></span>getParent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfeder_1_1semantic_1_1Type.html">Type</a>* feder::semantic::Type::getParent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns optional parent. </dd></dl>
+
+</div>
+</div>
+<a id="aa9740582e33438f9ded74fe805ccb4ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9740582e33438f9ded74fe805ccb4ab">&#9670;&nbsp;</a></span>hasModifiers()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,7 +155,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">bool feder::semantic::Type::hasModifiers </td>
           <td>(</td>
-          <td class="paramtype">std::uint16_t&#160;</td>
+          <td class="paramtype">type_semantic&#160;</td>
           <td class="paramname"><em>modifiers</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -137,6 +167,32 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Return true, if type has all modifiers, otherwise false. </dd></dl>
+
+</div>
+</div>
+<a id="aa85edb5ed9ac52c5d0110ba8e24e7b3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa85edb5ed9ac52c5d0110ba8e24e7b3d">&#9670;&nbsp;</a></span>hasParent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::semantic::Type::hasParent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true if <a class="el" href="classfeder_1_1semantic_1_1Type.html#afc752fb1df42e9d692cf08bb10a7e9e6">getParent()</a> != nullptr, otherwise false. </dd></dl>
 
 </div>
 </div>
