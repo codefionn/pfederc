@@ -227,7 +227,7 @@ std::unique_ptr<syntax::Program> parser::parseProgram(lexer::Tokenizer &lex,
       }
     } else {
       error = true;
-      lex.reportSemanticError("Expected statement", line->getPosition());
+      lex.reportSyntaxError("Expected statement", line->getPosition());
 
       if (!lex.advanced()) {
         error = true;

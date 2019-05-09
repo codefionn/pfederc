@@ -38,6 +38,7 @@ enum TokenType {
   tok_import,  //!< 'import'
 
   tok_id,   //!< Identifier
+  tok_underscore, //!< '_'
   tok_str,  //!< String
   tok_char, //!< Character
 

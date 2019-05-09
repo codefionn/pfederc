@@ -308,6 +308,13 @@ static std::vector<std::string> _parsePrimaryFunctionName(lexer::Tokenizer &lex,
   err = false;
 
   std::vector<std::string> result;
+
+  if (lex.currentToken() == lexer::tok_underscore) {
+    lex.nextToken(); // eat '_'
+    result.push_back("_");
+    return result;
+  }
+
   if (lex.currentToken() == lexer::tok_id) {
     result = parser::parseIdentifierCall(lex);
     if (result.empty())
@@ -564,7 +571,7 @@ _parsePrimaryClass(lexer::Tokenizer &lex) noexcept {
   }
 
   lexer::Token idTok;
-  if (!parser::match(lex, &idTok, lexer::tok_id))
+  if (!parser::match(lex, &idTok, {lexer::tok_id, lexer::tok_underscore}))
     err = true;
 
   // deps
@@ -580,8 +587,11 @@ _parsePrimaryClass(lexer::Tokenizer &lex) noexcept {
   std::vector<std::unique_ptr<syntax::FuncExpr>> constructors;
   std::vector<std::unique_ptr<syntax::FuncExpr>> functions;
 
+  std::string name = idTok.getType() == lexer::tok_id ?
+    idTok.getString() : "_";
+
   // Parse body of class
-  _parsePrimaryClassBody(lex, err, idTok.getString(),
+  _parsePrimaryClassBody(lex, err, name,
                          attributes, constructors, functions);
 
   if (!parser::match(lex, nullptr, lexer::tok_delim))
@@ -593,7 +603,7 @@ _parsePrimaryClass(lexer::Tokenizer &lex) noexcept {
     return nullptr;
 
   return std::make_unique<syntax::ClassExpr>(
-      lexer::Position(startPos, idTok.getPosition()), idTok.getString(),
+      lexer::Position(startPos, idTok.getPosition()), name,
       std::move(templ), std::move(traits), std::move(attributes),
       std::move(constructors), std::move(functions));
 }

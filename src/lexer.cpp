@@ -717,6 +717,8 @@ static TokenType tokenIdentifier(Tokenizer &lexer, TokenType &curtok,
     return curtok = tok_match;
   if (str == "return")
     return curtok = tok_return;
+  if (str == "_")
+    return curtok = tok_underscore;
 
   if (str == "safe") {
     curop = op_safe;
@@ -1301,6 +1303,8 @@ std::string std::to_string(feder::lexer::TokenType tok) {
     return "import";
   case tok_id:
     return "identifier";
+  case tok_underscore:
+    return "_";
   case tok_delim:
     return ";";
   case tok_str:

@@ -30,5 +30,6 @@ var searchData=
   ['tok_5freturn',['tok_return',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da1b1f666bd99b8da3423d7ddd6c5a4fa1',1,'feder::lexer']]],
   ['tok_5fstr',['tok_str',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85dad83a547fa4b8c02a3320cf74789302f5',1,'feder::lexer']]],
   ['tok_5ftrait',['tok_trait',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da477ffa3dfa2c0e49e344eb1addf3a77f',1,'feder::lexer']]],
+  ['tok_5funderscore',['tok_underscore',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85da25f6dbc21655bb686823d0647442344f',1,'feder::lexer']]],
   ['tok_5fvfunc',['tok_vfunc',['../group__lexer.html#ggacd10a4c7bad26913f314ffaaf177a85daae4b159b33bd3c9342df5b8206b6e3a6',1,'feder::lexer']]]
 ];
