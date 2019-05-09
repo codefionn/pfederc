@@ -85,6 +85,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa465e54083879d9c322bb6743d9d2a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9740582e33438f9ded74fe805ccb4ab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#aa9740582e33438f9ded74fe805ccb4ab">hasModifiers</a> (type_semantic modifiers) const noexcept</td></tr>
 <tr class="separator:aa9740582e33438f9ded74fe805ccb4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6db416d4fb6a46f5931d2ad1a6568d8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#ac6db416d4fb6a46f5931d2ad1a6568d8">isRValue</a> () const noexcept</td></tr>
+<tr class="separator:ac6db416d4fb6a46f5931d2ad1a6568d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cc15555254ccd1d55576363520781ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#a4cc15555254ccd1d55576363520781ca">isMutPointer</a> () const noexcept</td></tr>
+<tr class="separator:a4cc15555254ccd1d55576363520781ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a687c028f2d79a4dcf8a2555331468125"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#a687c028f2d79a4dcf8a2555331468125">isFunctionValue</a> () const noexcept</td></tr>
+<tr class="separator:a687c028f2d79a4dcf8a2555331468125"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc752fb1df42e9d692cf08bb10a7e9e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfeder_1_1semantic_1_1Type.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#afc752fb1df42e9d692cf08bb10a7e9e6">getParent</a> () const noexcept</td></tr>
 <tr class="separator:afc752fb1df42e9d692cf08bb10a7e9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa85edb5ed9ac52c5d0110ba8e24e7b3d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfeder_1_1semantic_1_1Type.html#aa85edb5ed9ac52c5d0110ba8e24e7b3d">hasParent</a> () const noexcept</td></tr>
@@ -193,6 +199,84 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns true if <a class="el" href="classfeder_1_1semantic_1_1Type.html#afc752fb1df42e9d692cf08bb10a7e9e6">getParent()</a> != nullptr, otherwise false. </dd></dl>
+
+</div>
+</div>
+<a id="a687c028f2d79a4dcf8a2555331468125"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a687c028f2d79a4dcf8a2555331468125">&#9670;&nbsp;</a></span>isFunctionValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::semantic::Type::isFunctionValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Is function-value. </dd></dl>
+
+</div>
+</div>
+<a id="a4cc15555254ccd1d55576363520781ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cc15555254ccd1d55576363520781ca">&#9670;&nbsp;</a></span>isMutPointer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::semantic::Type::isMutPointer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true, if semantic can be (re-)assigned, otherwise false. </dd></dl>
+
+</div>
+</div>
+<a id="ac6db416d4fb6a46f5931d2ad1a6568d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6db416d4fb6a46f5931d2ad1a6568d8">&#9670;&nbsp;</a></span>isRValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feder::semantic::Type::isRValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true, if semantic is RHS value, otherwise false. </dd></dl>
 
 </div>
 </div>

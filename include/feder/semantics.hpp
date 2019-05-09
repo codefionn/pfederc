@@ -33,10 +33,12 @@ namespace semantic {
   constexpr type_semantic TYPE_TEMPL =  0x0400;
   //!\brief Is this
   constexpr type_semantic TYPE_THIS =   0x0800;
-  //!\brief Is LHS value
-  constexpr type_semantic TYPE_LVAL =   0x1000;
+  //!\brief Is RHS value
+  constexpr type_semantic TYPE_RVAL =   0x1000;
   //!\brief Tuples
   constexpr type_semantic TYPE_TUPLE =  0x2000;
+  //!\brief Mutable, if not set, unmutable.
+  constexpr type_semantic TYPE_MUT =    0x4000;
   
   //!\brief Type has some issues.
   constexpr type_semantic TYPE_ERR   =  0x0000;
@@ -58,6 +60,22 @@ namespace semantic {
      */
     bool hasModifiers(type_semantic modifiers) const noexcept
     { return this->modifiers & modifiers == modifiers; }
+
+    /*!\return Returns true, if semantic is RHS value, otherwise false.
+     */
+    bool isRValue() const noexcept
+    { return hasModifiers(TYPE_VALUE | TYPE_LVAL); }
+
+    /*!\return Returns true, if semantic can be (re-)assigned, otherwise false.
+     */
+    bool isMutPointer() const noexcept
+    { return hasModifiers(TYPE_VAR | TYPE_MUT)
+        && !hasModifiers(TYPE_RVAL); }
+
+    /*!\return Is function-value.
+     */
+    bool isFunctionValue() const noexcept
+    { return hasModifiers(TYPE_FUNC | TYPE_VAL); }
 
     /*!\return Returns optional parent.
      */
